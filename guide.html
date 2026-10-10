@@ -517,24 +517,38 @@ sec1Title;
             const isRtl = currentLang === 'ar';
             const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
-            container.innerHTML = dataList.map(item => `
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm card-hover flex flex-col justify-between search-card">
-                    <div>
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="w-9 h-9 bg-brand-50 text-brand-700 rounded-lg flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid ${item.icon}"></i>
-                            </div>
-                            <span class="text-xs font-bold px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md">${item.tag}</span>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-900 mb-2 card-title">${item.name}</h3>
-                        <p class="text-slate-600 text-xs leading-relaxed mb-4 card-desc">${item.desc}</p>
-                    </div>
-                    <button class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition">
+            container.innerHTML = dataList.map(item => {
+                // التحقق مما إذا كانت هذه هي بطاقة البريد المؤسساتي للأساتذة لربطها بالصفحة الخارجية
+                const isProfessorsCard = item.name.includes("دليل البريد المؤسساتي") || 
+                                           item.name.includes("Annuaire E-mail") || 
+                                           item.name.includes("Faculty Email Directory");
+                
+                const buttonHtml = isProfessorsCard ? 
+                    `<a href="professors.html" class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition block">
                         ${btnText} <i class="fa-solid ${chevronIcon} text-[10px] mx-1"></i>
-                    </button>
-                </div>
-            `).join('');
+                    </a>` :
+                    `<button class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition">
+                        ${btnText} <i class="fa-solid ${chevronIcon} text-[10px] mx-1"></i>
+                    </button>`;
+
+                return `
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm card-hover flex flex-col justify-between search-card">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <div class="w-9 h-9 bg-brand-50 text-brand-700 rounded-lg flex items-center justify-center font-bold text-sm">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <span class="text-xs font-bold px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md">${item.tag}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 mb-2 card-title">${item.name}</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4 card-desc">${item.desc}</p>
+                        </div>
+                        ${buttonHtml}
+                    </div>
+                `;
+            }).join('');
         }
+        
 
         function filterGuide() {
             const input = document.getElementById('searchInput').value.toLowerCase();
