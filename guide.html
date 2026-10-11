@@ -49,14 +49,12 @@
                     </div>
                     <div>
                         <span class="text-xl font-black text-brand-900 block leading-tight" id="txt-logo-title">دليل ENSTP الشامل</span>
-                        <!-- إخفاء الجملة مع الحفاظ على الهيكل الأصلي -->
                         <span class="hidden text-xs text-slate-500 font-bold" id="txt-logo-sub">المدرسة العليا للأشغال العمومية</span>
                     </div>
                 </div>
 
                 <!-- Language Switcher & Navigation -->
                 <div class="flex items-center gap-3">
-                    <!-- Navigation Tabs (Hidden on small screens) -->
                     <nav class="hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
                         <a href="#cartographie" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-map">الخريطة والمباني</a>
                         <a href="#enseignants" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-teachers">الأساتذة والمواد</a>
@@ -66,7 +64,6 @@
                         <a href="#entraide" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-help">شبكة التضامن</a>
                     </nav>
 
-                    <!-- Language Selector Button Group -->
                     <div class="bg-slate-100 p-1 rounded-xl border border-slate-200 flex items-center text-xs font-bold">
                         <button onclick="changeLanguage('ar')" id="btn-ar" class="px-2.5 py-1.5 rounded-lg bg-white text-brand-700 shadow-sm transition">العربية</button>
                         <button onclick="changeLanguage('fr')" id="btn-fr" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition">Français</button>
@@ -125,7 +122,7 @@
         </section>
 
         <!-- Section 3: SERVICES -->
-<section id="services" class="scroll-mt-24 section-block">
+        <section id="services" class="scroll-mt-24 section-block">
             <div class="flex items-center space-x-3 space-x-reverse mb-6">
                 <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-building-columns"></i></div>
                 <div>
@@ -187,7 +184,7 @@
         <!-- Section 8: RÉSEAU D'ENTRAIDE -->
         <section id="entraide" class="scroll-mt-24 section-block">
             <div class="flex items-center space-x-3 space-x-reverse mb-6">
-<div class="w-10 h-10 bg-sky-100 text-sky-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-hands-holding-child"></i></div>
+                <div class="w-10 h-10 bg-sky-100 text-sky-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-hands-holding-child"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-8-title">شبكة التضامن والتعاون الأخوي</h2>
                     <p class="text-xs text-slate-500" id="sec-8-desc">التنقل المشترك بين الولايات، تبادل المراجع، والدعم الأكاديمي</p>
@@ -247,51 +244,51 @@
                 
                 // Data
                 cartographie: [
-                    { name: "المبنى الأكاديمي الرئيسي (A)", desc: "يضم المدرجات الكبرى A1, A2 وقاعات المحاضرات النظرية للسنة الأولى والثانية.", icon: "fa-building", tag: "مبنى أساسي" },
-                    { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق" },
-                    { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات" }
-],
+                    { name: "المبنى الأكاديمي الرئيسي (A)", desc: "يضم المدرجات الكبرى A1, A2 وقاعات المحاضرات النظرية للسنة الأولى والثانية.", icon: "fa-building", tag: "مبنى أساسي", url: "#" },
+                    { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "#" },
+                    { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "#" }
+                ],
                 enseignants: [
-                    { name: "قسم المنشآت والجسور (Ouvrages)", desc: "رئيس القسم ومسؤول عن تخصص المنشآت الفنية والهندسة المدنية.", icon: "fa-bridge", tag: "قسم أكاديمي" },
-                    { name: "قسم الطرقات والمرور (Infrastructures)", desc: "تصميم الطرق والتعبد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي" },
-                    { name: "دليل البريد المؤسساتي للأساتذة", desc: "قائمة البريد الإلكتروني الرسمي لجميع أعضاء الهيئة التدريسية.", icon: "fa-at", tag: "تواصل" }
+                    { name: "قسم المنشآت والجسور (Ouvrages)", desc: "رئيس القسم ومسؤول عن تخصص المنشآت الفنية والهندسة المدنية.", icon: "fa-bridge", tag: "قسم أكاديمي", url: "#" },
+                    { name: "قسم الطرقات والمرور (Infrastructures)", desc: "تصميم الطرق والتعبد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي", url: "#" },
+                    { name: "دليل البريد المؤسساتي للأساتذة", desc: "قائمة البريد الإلكتروني الرسمي لجميع أعضاء الهيئة التدريسية.", icon: "fa-at", tag: "تواصل", url: "professors.html" }
                 ],
                 services: [
-                    { name: "مصلحة الدراسة والتسجيل (Scolarité)", desc: "إصدار الشهادات المدرسية، كشوف النقاط، والتسجيلات السنوية.", icon: "fa-id-card", tag: "إدارة" },
-                    { name: "المكتبة المركزية والبحث العلمي", desc: "المراجع الهندسية، مذكرات التخرج، وقاعات المطالعة الرقمية.", icon: "fa-book-open", tag: "مكتبة" },
-                    { name: "دليل الإجراءات الإدارية والطعون", desc: "خطوات التبرير، سحب العطلة الأكاديمية، والطلبات المدرسية.", icon: "fa-file-signature", tag: "إجراءات" }
+                    { name: "مصلحة الدراسة والتسجيل (Scolarité)", desc: "إصدار الشهادات المدرسية، كشوف النقاط، والتسجيلات السنوية.", icon: "fa-id-card", tag: "إدارة", url: "#" },
+                    { name: "المكتبة المركزية والبحث العلمي", desc: "المراجع الهندسية، مذكرات التخرج، وقاعات المطالعة الرقمية.", icon: "fa-book-open", tag: "مكتبة", url: "#" },
+                    { name: "دليل الإجراءات الإدارية والطعون", desc: "خطوات التبرير، سحب العطلة الأكاديمية، والطلبات المدرسية.", icon: "fa-file-signature", tag: "إجراءات", url: "#" }
                 ],
                 quotidien: [
-                    { name: "مطاعم ومقاهي الجوار", desc: "قائمة بـ 5 مطاعم سريعة ومقاهي مفضلة لدى الطلبة بجوار بوابة المدرسة.", icon: "fa-utensils", tag: "إطعام" },
-                    { name: "مراكز النسخ والطباعة الهندسية", desc: "طباعة المخططات الكبيرة A0/A1 ومذكرات الدروس بأسعار مناسبة.", icon: "fa-print", tag: "طباعة ونسخ" },
-                    { name: "الصيدليات والمحلات القريبة", desc: "دليل الصيدليات المناوبة والسوبرماركت القريبة من المحيط الجامعي.", icon: "fa-capsules", tag: "صحة وتسوق" }
+                    { name: "مطاعم ومقاهي الجوار", desc: "قائمة بـ 5 مطاعم سريعة ومقاهي مفضلة لدى الطلبة بجوار بوابة المدرسة.", icon: "fa-utensils", tag: "إطعام", url: "index-food-cafe (1).html" },
+                    { name: "مراكز النسخ والطباعة الهندسية", desc: "طباعة المخططات الكبيرة A0/A1 ومذكرات الدروس بأسعار مناسبة.", icon: "fa-print", tag: "طباعة ونسخ", url: "#" },
+                    { name: "الصيدليات والمحلات القريبة", desc: "دليل الصيدليات المناوبة والسوبرماركت القريبة من المحيط الجامعي.", icon: "fa-capsules", tag: "صحة وتسوق", url: "#" }
                 ],
                 transport: [
-                    { name: "حافلات ETUSA والخطوط الجامعية", desc: "خطوط الحافلات الرابطة بين المدرسة ومحطات المترو والقطار.", icon: "fa-bus-simple", tag: "حافلات" },
-                    { name: "مواقف التاكسي الجماعي", desc: "نقاط انطلاق التاكسيات نحو القبة، الحراش، وبئر خادم مع التسعيرات.", icon: "fa-taxi", tag: "سيارات أجور" },
-                    { name: "خارطة المسارات لتفادي الازدحام", desc: "أفضل المسارات للتنقل السريع أوقات الذروة صباحاً ومساءً.", icon: "fa-map-signs", tag: "تنقل" }
+                    { name: "حافلات ETUSA والخطوط الجامعية", desc: "خطوط الحافلات الرابطة بين المدرسة ومحطات المترو والقطار.", icon: "fa-bus-simple", tag: "حافلات", url: "#" },
+                    { name: "مواقف التاكسي الجماعي", desc: "نقاط انطلاق التاكسيات نحو القبة، الحراش، وبئر خادم مع التسعيرات.", icon: "fa-taxi", tag: "سيارات أجور", url: "#" },
+                    { name: "خارطة المسارات لتفادي الازدحام", desc: "أفضل المسارات للتنقل السريع أوقات الذروة صباحاً ومساءً.", icon: "fa-map-signs", tag: "تنقل", url: "#" }
                 ],
                 cite: [
-                    { name: "خدمات الإقامة الجامعية للطلبة", desc: "دليل الغرف، الإطعام الداخلي، الأمن، واستلام الوجبات اليومية.", icon: "fa-bed", tag: "إقامة داخلية" },
-                    { name: "برنامج نهاية الأسبوع (Week-end)", desc: "مواعيد الإطعام والمناوبة ووسائل النقل يومي الجمعة والسبت.", icon: "fa-calendar-week", tag: "عطلة الأسبوع" },
-                    { name: "مستلزمات الغرفة والإقامة", desc: "قائمة الأغراض والنصائح الأساسية التي يحتاجها الطالب في الإقامة.", icon: "fa-list-check", tag: "إرشادات" }
+                    { name: "خدمات الإقامة الجامعية للطلبة", desc: "دليل الغرف، الإطعام الداخلي، الأمن، واستلام الوجبات اليومية.", icon: "fa-bed", tag: "إقامة داخلية", url: "#" },
+                    { name: "برنامج نهاية الأسبوع (Week-end)", desc: "مواعيد الإطعام والمناوبة ووسائل النقل يومي الجمعة والسبت.", icon: "fa-calendar-week", tag: "عطلة الأسبوع", url: "#" },
+                    { name: "مستلزمات الغرفة والإقامة", desc: "قائمة الأغراض والنصائح الأساسية التي يحتاجها الطالب في الإقامة.", icon: "fa-list-check", tag: "إرشادات", url: "#" }
                 ],
                 loisirs: [
-                    { name: "النوادي والأنشطة الرياضية", desc: "دوري كرة القدم، بطولة الشطرنج، وقاعات كمال الأجسام المجاورة.", icon: "fa-trophy", tag: "رياضة" },
-                    { name: "المعالم الثقافية والمتاحف بالعاصمة", desc: "مقام الشهيد، حديقة الحمة، والقصبة بزيارات مخصصة للطلبة.", icon: "fa-landmark", tag: "ثقافة" },
-                    { name: "السينما وخرجات الاستجمام", desc: "قاعات العروض الشاطئية ومتنزهات لقضاء عطلة نهاية أسبوع ممتازة.", icon: "fa-film", tag: "ترفيه" }
+                    { name: "النوادي والأنشطة الرياضية", desc: "دوري كرة القدم، بطولة الشطرنج، وقاعات كمال الأجسام المجاورة.", icon: "fa-trophy", tag: "رياضة", url: "#" },
+                    { name: "المعالم الثقافية والمتاحف بالعاصمة", desc: "مقام الشهيد، حديقة الحمة، والقصبة بزيارات مخصصة للطلبة.", icon: "fa-landmark", tag: "ثقافة", url: "#" },
+                    { name: "السينما وخرجات الاستجمام", desc: "قاعات العروض الشاطئية ومتنزهات لقضاء عطلة نهاية أسبوع ممتازة.", icon: "fa-film", tag: "ترفيه", url: "#" }
                 ],
                 entraide: [
-                    { name: "تبادل الدروس والحلول الأكاديمية", desc: "منصة مشاركة الملخصات والامتحانات السابقة للسنوات الماضية.", icon: "fa-hands-holding-circle", tag: "دعم أكاديمي" },
-                    { name: "التنقل المشترك بين الولايات (Covoiturage)", desc: "ربط الطلاب للذكور والإناث للتنقل المشترك نحو الولايات أسبوعياً.", icon: "fa-car-side", tag: "تنقل" },
-                    { name: "مبادرات التوجيه والتكافل الأخوي", desc: "جلسات توجيهية ونقل خبرة من الطلبة القدامى للمستجدين.", icon: "fa-heart-pulse", tag: "تضامن" }
+                    { name: "تبادل الدروس والحلول الأكاديمية", desc: "منصة مشاركة الملخصات والامتحانات السابقة للسنوات الماضية.", icon: "fa-hands-holding-circle", tag: "دعم أكاديمي", url: "#" },
+                    { name: "التنقل المشترك بين الولايات (Covoiturage)", desc: "ربط الطلاب للذكور والإناث للتنقل المشترك نحو الولايات أسبوعياً.", icon: "fa-car-side", tag: "تنقل", url: "#" },
+                    { name: "مبادرات التوجيه والتكافل الأخوي", desc: "جلسات توجيهية ونقل خبرة من الطلبة القدامى للمستجدين.", icon: "fa-heart-pulse", tag: "تضامن", url: "#" }
                 ]
             },
             fr: {
                 dir: 'ltr',
                 logoTitle: 'Guide Global ENSTP',
                 logoSub: 'École Nationale Supérieure des Travaux Publics',
-navMap: 'Cartographie',
+                navMap: 'Cartographie',
                 navTeachers: 'Enseignants',
                 navAdmin: 'Services & Admin',
                 navDaily: 'Vie Quotidienne',
@@ -323,44 +320,44 @@ navMap: 'Cartographie',
 
                 // Data FR
                 cartographie: [
-                    { name: "Bâtiment Académique Principal (A)", desc: "Comprend les grands amphis A1, A2 et les salles de cours théoriques 1ère/2ème année.", icon: "fa-building", tag: "Bâtiment" },
-                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire" },
-                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Itinéraire" }
+                    { name: "Bâtiment Académique Principal (A)", desc: "Comprend les grands amphis A1, A2 et les salles de cours théoriques 1ère/2ème année.", icon: "fa-building", tag: "Bâtiment", url: "#" },
+                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire", url: "#" },
+                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Itinéraire", url: "#" }
                 ],
                 enseignants: [
-                    { name: "Département Ouvrages d'Art", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département" },
-                    { name: "Département Infrastructures Routières", desc: "Conception des routes, chaussées et gestion du trafic routier.", icon: "fa-road", tag: "Département" },
-                    { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact" }
+                    { name: "Département Ouvrages d'Art", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département", url: "#" },
+                    { name: "Département Infrastructures Routières", desc: "Conception des routes, chaussées et gestion du trafic routier.", icon: "fa-road", tag: "Département", url: "#" },
+                    { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html" }
                 ],
                 services: [
-                    { name: "Service Scolarité & Inscription", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions.", icon: "fa-id-card", tag: "Admin" },
-                    { name: "Bibliothèque Centrale", desc: "Ouvrages d'ingénierie, projets de fin d'études (PFE) et espace numérique.", icon: "fa-book-open", tag: "Bibliothèque" },
-{ name: "Procédures & Recours Administratifs", desc: "Étapes de justification d'absence, congé académique et requêtes.", icon: "fa-file-signature", tag: "Procédures" }
+                    { name: "Service Scolarité & Inscription", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions.", icon: "fa-id-card", tag: "Admin", url: "#" },
+                    { name: "Bibliothèque Centrale", desc: "Ouvrages d'ingénierie, projets de fin d'études (PFE) et espace numérique.", icon: "fa-book-open", tag: "Bibliothèque", url: "#" },
+                    { name: "Procédures & Recours Administratifs", desc: "Étapes de justification d'absence, congé académique et requêtes.", icon: "fa-file-signature", tag: "Procédures", url: "#" }
                 ],
                 quotidien: [
-                    { name: "Restaurants & Cafés à Proximité", desc: "Sélection de 5 fast-foods et cafés très fréquentés près du portail.", icon: "fa-utensils", tag: "Restauration" },
-                    { name: "Centres d'Impression & Tirage A0/A1", desc: "Impression spécialisée pour plans d'ingénierie et cours à prix réduits.", icon: "fa-print", tag: "Impression" },
-                    { name: "Pharmacies & Commerces", desc: "Guide des pharmacies de garde et supérettes proches du campus.", icon: "fa-capsules", tag: "Santé & Achats" }
+                    { name: "Restaurants & Cafés à Proximité", desc: "Sélection de 5 fast-foods et cafés très fréquentés près du portail.", icon: "fa-utensils", tag: "Restauration", url: "index-food-cafe (1).html" },
+                    { name: "Centres d'Impression & Tirage A0/A1", desc: "Impression spécialisée pour plans d'ingénierie et cours à prix réduits.", icon: "fa-print", tag: "Impression", url: "#" },
+                    { name: "Pharmacies & Commerces", desc: "Guide des pharmacies de garde et supérettes proches du campus.", icon: "fa-capsules", tag: "Santé & Achats", url: "#" }
                 ],
                 transport: [
-                    { name: "Bus ETUSA & Lignes Universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus" },
-                    { name: "Stations de Taxis Collectifs", desc: "Départs vers Kouba, Harrach et Birkhadem avec tarifs approximatifs.", icon: "fa-taxi", tag: "Taxi" },
-                    { name: "Cartographie des Trajets Évitant les Bouchons", desc: "Meilleurs itinéraires pour les heures de pointe du matin et du soir.", icon: "fa-map-signs", tag: "Transport" }
+                    { name: "Bus ETUSA & Lignes Universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus", url: "#" },
+                    { name: "Stations de Taxis Collectifs", desc: "Départs vers Kouba, Harrach et Birkhadem avec tarifs approximatifs.", icon: "fa-taxi", tag: "Taxi", url: "#" },
+                    { name: "Cartographie des Trajets Évitant les Bouchons", desc: "Meilleurs itinéraires pour les heures de pointe du matin et du soir.", icon: "fa-map-signs", tag: "Transport", url: "#" }
                 ],
                 cite: [
-                    { name: "Services de la Résidence Universitaire", desc: "Guide des chambres, restauration interne, sécurité et tickets.", icon: "fa-bed", tag: "Résidence" },
-                    { name: "Programme du Week-end", desc: "Horaires du restaurant, permanences et transports le vendredi/samedi.", icon: "fa-calendar-week", tag: "Week-end" },
-                    { name: "Besoins & Équipement de Chambre", desc: "Liste des objets essentiels et conseils pour bien vivre en résidence.", icon: "fa-list-check", tag: "Conseils" }
+                    { name: "Services de la Résidence Universitaire", desc: "Guide des chambres, restauration interne, sécurité et tickets.", icon: "fa-bed", tag: "Résidence", url: "#" },
+                    { name: "Programme du Week-end", desc: "Horaires du restaurant, permanences et transports le vendredi/samedi.", icon: "fa-calendar-week", tag: "Week-end", url: "#" },
+                    { name: "Besoins & Équipement de Chambre", desc: "Liste des objets essentiels et conseils pour bien vivre en résidence.", icon: "fa-list-check", tag: "Conseils", url: "#" }
                 ],
                 loisirs: [
-                    { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport" },
-                    { name: "Monuments Cultuels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture" },
-                    { name: "Cinémas & Sorties Détente", desc: "Salles de cinéma, plages et parcs pour passer un bon week-end.", icon: "fa-film", tag: "Loisirs" }
+                    { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#" },
+                    { name: "Monuments Cultuels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "#" },
+                    { name: "Cinémas & Sorties Détente", desc: "Salles de cinéma, plages et parcs pour passer un bon week-end.", icon: "fa-film", tag: "Loisirs", url: "#" }
                 ],
                 entraide: [
-                    { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien" },
-                    { name: "Covoiturage Inter-Wilayas", desc: "Mise en relation des étudiants pour les voyages du week-end.", icon: "fa-car-side", tag: "Covoiturage" },
-                    { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Entraide" }
+                    { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien", url: "#" },
+                    { name: "Covoiturage Inter-Wilayas", desc: "Mise en relation des étudiants pour les voyages du week-end.", icon: "fa-car-side", tag: "Covoiturage", url: "#" },
+                    { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Entraide", url: "#" }
                 ]
             },
             en: {
@@ -378,7 +375,7 @@ navMap: 'Cartographie',
                 heroDesc: 'An integrated digital platform with everything an ENSTP student needs: campus navigation, faculty directory, daily services, transport, residence & peer support.',
                 searchPlaceholder: 'Search for lecture halls, professors, bus routes, food...',
                 sec1Title: 'Campus Navigation & Maps',
-sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
+                sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
                 sec2Title: 'Faculty & Academic Departments',
                 sec2Desc: 'Academic departments, official faculty emails and office hours',
                 sec3Title: 'Administrative & Academic Services',
@@ -399,44 +396,44 @@ sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
 
                 // Data EN
                 cartographie: [
-                    { name: "Main Academic Building (A)", desc: "Houses main lecture halls A1, A2 and theoretical classrooms for 1st/2nd year.", icon: "fa-building", tag: "Main Building" },
-                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory" },
-                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Pathways" }
+                    { name: "Main Academic Building (A)", desc: "Houses main lecture halls A1, A2 and theoretical classrooms for 1st/2nd year.", icon: "fa-building", tag: "Main Building", url: "#" },
+                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory", url: "#" },
+                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Pathways", url: "#" }
                 ],
                 enseignants: [
-                    { name: "Department of Structural Engineering", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Department" },
-                    { name: "Department of Highway Infrastructure", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Department" },
-                    { name: "Faculty Email Directory", desc: "List of official institutional email addresses for all teaching staff.", icon: "fa-at", tag: "Contacts" }
+                    { name: "Department of Structural Engineering", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Department", url: "#" },
+                    { name: "Department of Highway Infrastructure", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Department", url: "#" },
+                    { name: "Faculty Email Directory", desc: "List of official institutional email addresses for all teaching staff.", icon: "fa-at", tag: "Contacts", url: "professors.html" }
                 ],
                 services: [
-                    { name: "Scolarité & Registration Office", desc: "Issuance of student certificates, transcripts, and annual registration.", icon: "fa-id-card", tag: "Admin" },
-                    { name: "Central Engineering Library", desc: "Engineering books, graduation theses (PFE), and digital reading rooms.", icon: "fa-book-open", tag: "Library" },
-                    { name: "Administrative Appeals & Procedures", desc: "Steps for absence justifications, academic leave, and requests.", icon: "fa-file-signature", tag: "Procedures" }
+                    { name: "Scolarité & Registration Office", desc: "Issuance of student certificates, transcripts, and annual registration.", icon: "fa-id-card", tag: "Admin", url: "#" },
+                    { name: "Central Engineering Library", desc: "Engineering books, graduation theses (PFE), and digital reading rooms.", icon: "fa-book-open", tag: "Library", url: "#" },
+                    { name: "Administrative Appeals & Procedures", desc: "Steps for absence justifications, academic leave, and requests.", icon: "fa-file-signature", tag: "Procedures", url: "#" }
                 ],
                 quotidien: [
-                    { name: "Nearby Fast Food & Cafés", desc: "A curated list of 5 popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining" },
-                    { name: "Engineering Printing Centers (A0/A1)", desc: "Specialized printing for large blueprints and course notes at student rates.", icon: "fa-print", tag: "Printing" },
-                    { name: "Pharmacies & Convenience Stores", desc: "Guide to night-shift pharmacies and supermarkets near campus.", icon: "fa-capsules", tag: "Health & Shops" }
+                    { name: "Nearby Fast Food & Cafés", desc: "A curated list of 5 popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining", url: "index-food-cafe (1).html" },
+                    { name: "Engineering Printing Centers (A0/A1)", desc: "Specialized printing for large blueprints and course notes at student rates.", icon: "fa-print", tag: "Printing", url: "#" },
+                    { name: "Pharmacies & Convenience Stores", desc: "Guide to night-shift pharmacies and supermarkets near campus.", icon: "fa-capsules", tag: "Health & Shops", url: "#" }
                 ],
                 transport: [
-                    { name: "ETUSA & University Bus Routes", desc: "Bus lines connecting the school to metro and train stations.", icon: "fa-bus-simple", tag: "Bus" },
-{ name: "Shared Taxi Hubs", desc: "Taxi departure points to Kouba, Harrach, and Birkhadem with fares.", icon: "fa-taxi", tag: "Taxi" },
-                    { name: "Traffic Bypass Routes", desc: "Optimal travel routes to avoid peak hour traffic jams morning and evening.", icon: "fa-map-signs", tag: "Transit" }
+                    { name: "ETUSA & University Bus Routes", desc: "Bus lines connecting the school to metro and train stations.", icon: "fa-bus-simple", tag: "Bus", url: "#" },
+                    { name: "Shared Taxi Hubs", desc: "Taxi departure points to Kouba, Harrach, and Birkhadem with fares.", icon: "fa-taxi", tag: "Taxi", url: "#" },
+                    { name: "Traffic Bypass Routes", desc: "Optimal travel routes to avoid peak hour traffic jams morning and evening.", icon: "fa-map-signs", tag: "Transit", url: "#" }
                 ],
                 cite: [
-                    { name: "Dormitory Services & Dining", desc: "Room guide, internal dining hall hours, security, and meal tickets.", icon: "fa-bed", tag: "Dorms" },
-                    { name: "Weekend Schedule", desc: "Dining hall hours, duty staff, and weekend transport availability.", icon: "fa-calendar-week", tag: "Weekend" },
-                    { name: "Dorm Room Checklist & Tips", desc: "Essential items checklist and tips for comfortable dorm living.", icon: "fa-list-check", tag: "Tips" }
+                    { name: "Dormitory Services & Dining", desc: "Room guide, internal dining hall hours, security, and meal tickets.", icon: "fa-bed", tag: "Dorms", url: "#" },
+                    { name: "Weekend Schedule", desc: "Dining hall hours, duty staff, and weekend transport availability.", icon: "fa-calendar-week", tag: "Weekend", url: "#" },
+                    { name: "Dorm Room Checklist & Tips", desc: "Essential items checklist and tips for comfortable dorm living.", icon: "fa-list-check", tag: "Tips", url: "#" }
                 ],
                 loisirs: [
-                    { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports" },
-                    { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture" },
-                    { name: "Cinemas & Weekend Getaways", desc: "Movie theaters, beaches, and parks for a relaxing weekend.", icon: "fa-film", tag: "Leisure" }
+                    { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports", url: "#" },
+                    { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "#" },
+                    { name: "Cinemas & Weekend Getaways", desc: "Movie theaters, beaches, and parks for a relaxing weekend.", icon: "fa-film", tag: "Leisure", url: "#" }
                 ],
                 entraide: [
-                    { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support" },
-                    { name: "Inter-Wilaya Student Carpooling", desc: "Connecting students for shared travel back home on weekends.", icon: "fa-car-side", tag: "Carpooling" },
-                    { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring" }
+                    { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "#" },
+                    { name: "Inter-Wilaya Student Carpooling", desc: "Connecting students for shared travel back home on weekends.", icon: "fa-car-side", tag: "Carpooling", url: "#" },
+                    { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "#" }
                 ]
             }
         };
@@ -477,8 +474,7 @@ sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
             document.getElementById('searchInput').placeholder = data.searchPlaceholder;
 
             // Update Sections Title
-            document.getElementById('sec-1-title').innerText = data.
-sec1Title;
+            document.getElementById('sec-1-title').innerText = data.sec1Title;
             document.getElementById('sec-1-desc').innerText = data.sec1Desc;
             document.getElementById('sec-2-title').innerText = data.sec2Title;
             document.getElementById('sec-2-desc').innerText = data.sec2Desc;
@@ -518,18 +514,7 @@ sec1Title;
             const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
             container.innerHTML = dataList.map(item => {
-                // التحقق مما إذا كانت هذه هي بطاقة البريد المؤسساتي للأساتذة لربطها بالصفحة الخارجية
-                const isProfessorsCard = item.name.includes("دليل البريد المؤسساتي") || 
-                                           item.name.includes("Annuaire E-mail") || 
-                                           item.name.includes("Faculty Email Directory");
-                
-                const buttonHtml = isProfessorsCard ? 
-                    `<a href="professors.html" class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition block">
-                        ${btnText} <i class="fa-solid ${chevronIcon} text-[10px] mx-1"></i>
-                    </a>` :
-                    `<button class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition">
-                        ${btnText} <i class="fa-solid ${chevronIcon} text-[10px] mx-1"></i>
-                    </button>`;
+                const targetUrl = item.url || '#';
 
                 return `
                     <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm card-hover flex flex-col justify-between search-card">
@@ -543,12 +528,13 @@ sec1Title;
                             <h3 class="text-base font-bold text-slate-900 mb-2 card-title">${item.name}</h3>
                             <p class="text-slate-600 text-xs leading-relaxed mb-4 card-desc">${item.desc}</p>
                         </div>
-                        ${buttonHtml}
+                        <a href="${targetUrl}" class="w-full text-center py-2 bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 rounded-xl text-xs font-bold transition block">
+                            ${btnText} <i class="fa-solid ${chevronIcon} text-[10px] mx-1"></i>
+                        </a>
                     </div>
                 `;
             }).join('');
         }
-        
 
         function filterGuide() {
             const input = document.getElementById('searchInput').value.toLowerCase();
@@ -557,7 +543,7 @@ sec1Title;
                 const title = card.querySelector('.card-title').innerText.toLowerCase();
                 const desc = card.querySelector('.card-desc').innerText.toLowerCase();
                 if (title.includes(input) || desc.includes(input)) {
- card.style.display = "flex";
+                    card.style.display = "flex";
                 } else {
                     card.style.display = "none";
                 }
