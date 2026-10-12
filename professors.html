@@ -154,7 +154,8 @@
         .mutual-connections {
             display: flex;
             align-items: center;
-            justify-content: center;gap: 6px;
+            justify-content: center;
+            gap: 6px;
             font-size: 11px;
             color: #666;
             border-top: 1px solid #f0f0f0;
@@ -200,47 +201,60 @@
 <body>
 
     <div class="container">
-        <h1>قائمة الأساتذة </h1>
+        <h1>قائمة الأساتذة</h1>
         
         <div class="grid-container" id="grid">
-            <!-- سيتم توليد الـ 20 بطاقة تلقائياً عبر السكريبت لسهولة الكود -->
+            <!-- البطاقة الأولى مخصصة للأستاذة ريما بلال -->
+            <div class="profile-card" id="card-1">
+                <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+                <div class="card-header-bg"></div>
+                <div class="avatar-container">
+                    <img src="https://via.placeholder.com/150/e0e0e0/888888?text=ريما" alt="صورة الأستاذة ريما بلال" class="avatar">
+                </div>
+                <div class="card-body">
+                    <div class="name-container">
+                        <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="name">د. ريما بلال</a>
+                        <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
+                    </div>
+                    <p class="bio">أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)</p>
+                </div>
+                <div class="mutual-connections">
+                    <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
+                    <span>باحثة في الأبحاث العلمية والهندسية</span>
+                </div>
+                <div class="card-footer">
+                    <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" style="text-decoration: none;">
+                        <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> تواصل</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // عدد البطاقات المطلوب
+        // عدد البطاقات الإجمالي المتبقي لتوليده تلقائياً (من 2 إلى 20)
         const totalCards = 20;
         const grid = document.getElementById('grid');
 
-        // بناء 20 بطاقة فارغة بهيكل جاهز للتعديل
-        for (let i = 1; i <= totalCards; i++) {
+        for (let i = 2; i <= totalCards; i++) {
             const cardHTML = `
                 <div class="profile-card" id="card-${i}">
                     <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-                    
-                    <!-- خلفية البطاقة (يمكنك وضع رابط صورة أو تركها كخلفية ملونة) -->
                     <div class="card-header-bg"></div>
-                    
                     <div class="avatar-container">
-                        <!-- استبدل الصورة أدناه برابط صورة الأستاذ -->
                         <img src="https://via.placeholder.com/150/e0e0e0/888888?text=صورة" alt="صورة الأستاذ" class="avatar">
                     </div>
-                    
                     <div class="card-body">
                         <div class="name-container">
-                            <!-- ضع اسم الأستاذ هنا -->
                             <a href="#" class="name">اسم الأستاذ ${i}</a>
                             <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
                         </div>
-                        <!-- ضع الوصف والتخصص هنا -->
                         <p class="bio">التخصص والدرجة العلمية للأستاذ...</p>
                     </div>
-                    
                     <div class="mutual-connections">
                         <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
                         <span>معلومات إضافية / علاقات مشتركة</span>
                     </div>
-                    
                     <div class="card-footer">
                         <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> تواصل</button>
                     </div>
