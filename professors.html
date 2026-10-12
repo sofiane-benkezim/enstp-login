@@ -152,12 +152,6 @@
             font-size: 15px;
             font-weight: 700;
             color: #191919;
-            text-decoration: none;
-        }
-
-        .name:hover {
-            text-decoration: underline;
-            color: #0a66c2;
         }
 
         .verified-icon {
@@ -197,16 +191,16 @@
             background-color: #ccc;
         }
 
-        /* زر الاتصال */
+        /* أزرار البطاقة السفلى */
         .card-footer {
             padding: 8px 12px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .connect-btn {
+        .btn-action {
             width: 100%;
-            background-color: transparent;
-            border: 1px solid #0a66c2;
-            color: #0a66c2;
             border-radius: 16px;
             padding: 5px 0;
             font-weight: 600;
@@ -216,11 +210,28 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+            text-decoration: none;
             transition: background-color 0.2s;
         }
 
-        .connect-btn:hover {
+        /* زر عرض المزيد */
+        .more-btn {
+            background-color: transparent;
+            border: 1px solid #0a66c2;
+            color: #0a66c2;
+        }
+        .more-btn:hover {
             background-color: rgba(10, 102, 194, 0.08);
+        }
+
+        /* زر الإيميل (تواصل) */
+        .email-btn {
+            background-color: #0a66c2;
+            border: 1px solid #0a66c2;
+            color: #ffffff;
+        }
+        .email-btn:hover {
+            background-color: #084e96;
         }
     </style>
 </head>
@@ -242,12 +253,11 @@
                 <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
                 <div class="card-header-bg"></div>
                 <div class="avatar-container">
-                    <!-- تم وضع رابط صورة الأستاذة ريما بلال الدائرية -->
-                    <img src="ryma.jpg" alt="د. ريما بلال" class="avatar" onerror="this.src='https://via.placeholder.com/150/e0e0e0/888888?text=RB'">
+                    <img src="ryma.png" alt="د. ريما بلال" class="avatar">
                 </div>
                 <div class="card-body">
                     <div class="name-container">
-                        <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="name" data-translate="rima_name">د. ريما بلال</a>
+                        <span class="name" data-translate="rima_name">د. ريما بلال</span>
                         <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
                     </div>
                     <p class="bio" data-translate="rima_bio">أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)</p>
@@ -257,8 +267,13 @@
                     <span data-translate="rima_mutual">باحثة في الأبحاث العلمية والهندسية</span>
                 </div>
                 <div class="card-footer">
-                    <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" style="text-decoration: none;">
-                        <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> <span data-translate="connect">تواصل</span></button>
+                    <!-- زر عرض المزيد يوجه لصفحة الأستاذة -->
+                    <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="btn-action more-btn">
+                        <i class="fa-solid fa-arrow-left"></i> <span data-translate="read_more">عرض المزيد</span>
+                    </a>
+                    <!-- زر التواصل يوجه لإرسال إيميل للأستاذة -->
+                    <a href="mailto:rima.bellal@enstp.dz" class="btn-action email-btn">
+                        <i class="fa-solid fa-envelope"></i> <span data-translate="connect">تواصل</span>
                     </a>
                 </div>
             </div>
@@ -274,6 +289,7 @@
                 rima_name: "د. ريما بلال",
                 rima_bio: "أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)",
                 rima_mutual: "باحثة في الأبحاث العلمية والهندسية",
+                read_more: "عرض المزيد",
                 connect: "تواصل",
                 default_name: "اسم الأستاذ",
                 default_bio: "التخصص والدرجة العلمية للأستاذ...",
@@ -285,7 +301,8 @@
                 rima_name: "Dr. Rima Bellal",
                 rima_bio: "Enseignante et chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP)",
                 rima_mutual: "Chercheuse en recherche scientifique et ingénierie",
-                connect: "Connecter",
+                read_more: "En savoir plus",
+                connect: "Contacter",
                 default_name: "Nom du professeur",
                 default_bio: "Spécialité et diplôme académique...",
                 default_mutual: "Informations / Connexions"
@@ -296,7 +313,8 @@
                 rima_name: "Dr. Rima Bellal",
                 rima_bio: "Professor and researcher at the National Higher School of Public Works (ENSTP)",
                 rima_mutual: "Researcher in scientific research & engineering",
-                connect: "Connect",
+                read_more: "Read More",
+                connect: "Contact",
                 default_name: "Professor Name",
                 default_bio: "Specialty and academic degree...",
                 default_mutual: "Additional info / Connections"
@@ -304,11 +322,9 @@
         };
 
         function setLanguage(lang) {
-            // تحديث الأزرار النشطة
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // تحديث الاتجاه واللغة للصفحة
             const body = document.body;
             if (lang === 'ar') {
                 body.setAttribute('dir', 'rtl');
@@ -318,17 +334,17 @@
                 body.setAttribute('lang', lang);
             }
 
-            // تحديث العنوان الرئيسي والعنوان المتبقي
             document.getElementById('page-title').innerText = translations[lang].title;
             document.getElementById('main-heading').innerText = translations[lang].heading;
 
-            // تحديث النصوص للبطاقة الأولى
             document.querySelector('[data-translate="rima_name"]').innerText = translations[lang].rima_name;
             document.querySelector('[data-translate="rima_bio"]').innerText = translations[lang].rima_bio;
             document.querySelector('[data-translate="rima_mutual"]').innerText = translations[lang].rima_mutual;
-            document.querySelectorAll('.connect-btn span').forEach(el => el.innerText = translations[lang].connect);
+            
+            // تحديث نصوص الأزرار للبطاقة الأولى
+            document.querySelector('.more-btn span').innerText = translations[lang].read_more;
+            document.querySelector('.email-btn span').innerText = translations[lang].connect;
 
-            // حفظ اللغة الحالية لتحديث بقية البطاقات إن لزم
             window.currentLang = lang;
             rebuildCards(lang);
         }
@@ -336,7 +352,6 @@
         // بناء البطاقات الباقية (من 2 إلى 20)
         function rebuildCards(lang) {
             const grid = document.getElementById('grid');
-            // الاحتفاظ بالبطاقة الأولى فقط وإعادة بناء البقية
             const card1HTML = grid.children[0].outerHTML;
             grid.innerHTML = card1HTML;
 
@@ -353,7 +368,7 @@
                         </div>
                         <div class="card-body">
                             <div class="name-container">
-                                <a href="#" class="name">${t.default_name} ${i}</a>
+                                <span class="name">${t.default_name} ${i}</span>
                                 <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
                             </div>
                             <p class="bio">${t.default_bio}</p>
@@ -363,7 +378,12 @@
                             <span>${t.default_mutual}</span>
                         </div>
                         <div class="card-footer">
-                            <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> <span>${t.connect}</span></button>
+                            <a href="#" class="btn-action more-btn">
+                                <i class="fa-solid fa-arrow-left"></i> <span>${t.read_more}</span>
+                            </a>
+                            <a href="mailto:professor${i}@enstp.dz" class="btn-action email-btn">
+                                <i class="fa-solid fa-envelope"></i> <span>${t.connect}</span>
+                            </a>
                         </div>
                     </div>
                 `;
@@ -371,7 +391,6 @@
             }
         }
 
-        // التهيئة الأولية عند تحميل الصفحة
         window.currentLang = 'ar';
         rebuildCards('ar');
     </script>
