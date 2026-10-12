@@ -17,9 +17,9 @@
         }
 
         body {
-            background-color: #f3f2ef;
-            color: #191919;
-            padding: 30px 20px;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            padding: 40px 20px;
             transition: direction 0.3s ease;
         }
 
@@ -32,111 +32,117 @@
         .lang-switcher {
             display: flex;
             justify-content: flex-end;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
         .lang-btn {
             background-color: #ffffff;
-            border: 1px solid #0a66c2;
-            color: #0a66c2;
-            padding: 5px 12px;
-            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            padding: 6px 14px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             font-size: 13px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .lang-btn:hover, .lang-btn.active {
             background-color: #0a66c2;
+            border-color: #0a66c2;
             color: #ffffff;
+            box-shadow: 0 4px 12px rgba(10, 102, 194, 0.2);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 30px;
-            color: #191919;
-            font-size: 24px;
+            margin-bottom: 40px;
+            color: #1e293b;
+            font-size: 28px;
+            font-weight: 700;
         }
 
         /* شبكة عرض البطاقات */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
         }
 
-        /* تصميم البطاقات */
+        /* تصميم البطاقات الاحترافي الجديد */
         .profile-card {
             background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             position: relative;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .profile-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
         }
 
         /* زر الإغلاق X */
         .close-btn {
             position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(0, 0, 0, 0.6);
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
             color: #ffffff;
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 12px;
             z-index: 2;
+            transition: background 0.2s;
         }
 
         .close-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        /* خلفية أعلى البطاقة */
+        /* خلفية أعلى البطاقة بتدرج أنيق */
         .card-header-bg {
-            height: 60px;
-            background-color: #dbe7e9;
-            background-size: cover;
-            background-position: center;
+            height: 80px;
+            background: linear-gradient(135deg, #0a66c2 0%, #3b82f6 100%);
         }
 
-        /* الصورة الشخصية الدائرية */
+        /* الصورة الشخصية الدائرية مع تأثير ظل محيطي */
         .avatar-container {
             position: relative;
-            margin-top: -40px;
+            margin-top: -45px;
             display: flex;
             justify-content: center;
         }
 
         .avatar {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 3px solid #ffffff;
+            border: 4px solid #ffffff;
             object-fit: cover;
-            background-color: #e0e0e0;
+            background-color: #f1f5f9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* محتوى المعلومات */
         .card-body {
-            padding: 10px 12px;
+            padding: 16px 20px;
             flex-grow: 1;
         }
 
@@ -144,26 +150,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            margin-bottom: 4px;
+            gap: 6px;
+            margin-bottom: 8px;
         }
 
         .name {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
-            color: #191919;
+            color: #0f172a;
         }
 
         .verified-icon {
-            color: #666;
-            font-size: 13px;
+            color: #0a66c2;
+            font-size: 14px;
         }
 
         .bio {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 8px;
-            min-height: 36px;
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            min-height: 40px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -175,53 +182,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            font-size: 11px;
-            color: #666;
-            border-top: 1px solid #f0f0f0;
-            padding: 8px;
-            background-color: #fafafa;
+            gap: 8px;
+            font-size: 12px;
+            color: #475569;
+            border-top: 1px solid #f1f5f9;
+            padding: 10px 16px;
+            background-color: #f8fafc;
         }
 
         .mutual-avatar {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             object-fit: cover;
-            background-color: #ccc;
+            background-color: #e2e8f0;
         }
 
         /* أزرار البطاقة السفلى */
         .card-footer {
-            padding: 8px 12px 12px;
+            padding: 14px 20px 20px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .btn-action {
             width: 100%;
-            border-radius: 16px;
-            padding: 5px 0;
+            border-radius: 10px;
+            padding: 8px 0;
             font-weight: 600;
             font-size: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             text-decoration: none;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
         }
 
         /* زر عرض المزيد */
         .more-btn {
-            background-color: transparent;
-            border: 1px solid #0a66c2;
-            color: #0a66c2;
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #334155;
         }
         .more-btn:hover {
-            background-color: rgba(10, 102, 194, 0.08);
+            background-color: #e2e8f0;
+            color: #0f172a;
         }
 
         /* زر الإيميل (تواصل) */
@@ -229,9 +237,11 @@
             background-color: #0a66c2;
             border: 1px solid #0a66c2;
             color: #ffffff;
+            box-shadow: 0 2px 4px rgba(10, 102, 194, 0.2);
         }
         .email-btn:hover {
-            background-color: #084e96;
+            background-color: #004182;
+            border-color: #004182;
         }
     </style>
 </head>
