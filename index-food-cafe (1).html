@@ -1,97 +1,102 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل المطاعم والمقاهي - ENSTP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { brand: { 50: '#eff6ff', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' }, accent: { 500: '#f59e0b' } },
-                    fontFamily: { cairo: ['Cairo', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <style>
-        .mapbox{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:12px;box-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1); direction: ltr;}
-        .mapbox svg{display:block;width:100%;height:auto}
-        .g{stroke:#e2e8f0;stroke-width:1}.ring{fill:none;stroke:#64748b;stroke-width:2;stroke-dasharray:10 8;opacity:.7}
-        .rl{font-family:'Cairo',sans-serif;font-weight:500;fill:#64748b}
-        .pt{cursor:pointer}.pt circle{fill:#fff;stroke-width:4}.pt text{font-family:'Cairo',sans-serif;font-weight:700;fill:#0a2347;text-anchor:middle;dominant-baseline:central}
-        .pt.sel circle{fill:#f59e0b;stroke:#fff}
-        [dir="rtl"] .card{border-right-width:6px;border-right-color:#f26a1b}
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guide ENSTP – Restaurants & Cafés</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Semi+Condensed:wght@600;700&family=Cairo:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f4f8fe;--card:#fff;--ink:#0a2347;--mute:#4a6283;--line:#d3e0f1;--blue:#1456c0;--onblue:#fff;--sign:#ff8a1f;--food:#f26a1b;--cafe:#d9731a;--ok:#13795b;--no:#b3261e;--pg:#f4f8fe;--pgink:#0a2347;--pgmute:#4a6283;--pgline:#1456c0;
+--fh:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;--fb:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+box-sizing:border-box}
+body{margin:0;background:var(--pg);color:var(--pgink);font:400 16px/1.5 var(--fb)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px 32px}
+h1,h3{font-family:var(--fh);margin:0;line-height:1.05}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:8px 10px;flex-wrap:wrap;padding:14px 0;border-bottom:3px solid var(--pgline);margin-bottom:22px}
+.bar b{font:700 20px var(--fh);display:flex;align-items:center;gap:8px}
+.bar b::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--sign);border:3px solid var(--pgink)}
+.sch{font-size:13px;color:var(--pgmute);text-align:end;flex:1}
+.lg{display:flex;gap:6px}
+.lg button{min-height:44px;min-width:44px;padding:0 12px;border-radius:22px;border:2px solid var(--pgink);background:transparent;color:var(--pgink);font:600 14px var(--fb);cursor:pointer}
+.lg button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--onblue)}
+h1{font-size:clamp(38px,11vw,54px);font-weight:700}
+.lead{color:var(--pgmute);margin:8px 0 18px}
+.back{display:inline-flex;align-items:center;min-height:44px;font:600 16px var(--fb);color:var(--pgink);text-decoration:none;margin:-6px 0 6px}
+.mapbox{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:6px;position:sticky;top:12px}
+.mapbox svg{display:block;width:100%;height:auto}
+.g{stroke:var(--line);stroke-width:1}.ring{fill:none;stroke:var(--mute);stroke-width:2;stroke-dasharray:10 8;opacity:.7}
+.rl{font:500 22px var(--fb);fill:var(--mute)}
+.pt{cursor:pointer}.pt circle{fill:var(--card);stroke-width:5}.pt text{font:700 20px var(--fh);fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.pt.sel circle{fill:var(--sign)}
+#list{display:grid;gap:16px;grid-template-columns:1fr}
+.card{background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:inset 8px 0 0 var(--c);border-radius:12px;padding:14px;scroll-margin-top:12px}
+.card.sel{outline:3px solid var(--sign)}
+.top{display:flex;gap:12px;align-items:flex-start}
+.num{flex:none;width:30px;height:30px;border-radius:50%;border:3px solid var(--c);display:grid;place-items:center;font:700 16px var(--fh)}
+.top>div:nth-child(2){flex:1;min-width:0}
+.card h3{font-size:22px;font-weight:700}
+.t{margin:2px 0 0;color:var(--mute);font-size:15px}
+.dist{text-align:end;font:700 18px var(--fh);white-space:nowrap}
+.st{display:inline-block;margin-top:10px;padding:2px 10px;border-radius:14px;font:600 14px var(--fb);border:2px solid currentColor}
+.st.on{color:var(--ok)}.st.off{color:var(--no)}
+.card p.i{margin:8px 0 0;font-size:15px}
+.warn{background:rgba(255,138,31,.16);border-radius:6px;padding:6px 8px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:8px;font:600 14px var(--fb);text-decoration:none;border:2px solid var(--line);color:var(--ink)}
+.btn.main{background:var(--blue);color:var(--onblue);border-color:var(--blue)}
+.split{display:grid;grid-template-columns:minmax(380px,5fr) 7fr;gap:24px;align-items:start}
+[dir="rtl"] .card{box-shadow:inset -8px 0 0 var(--c)}
+html[lang="ar"]{--fh:"Cairo","Segoe UI",system-ui,sans-serif;--fb:"Cairo","Segoe UI",system-ui,sans-serif}
+</style>
 </head>
-<body class="font-cairo bg-slate-50 text-slate-800 antialiased">
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-12 w-auto object-contain">
-                    <span class="text-xl font-black text-brand-900 block">دليل المطاعم والمقاهي</span>
-                </div>
-                <a href="index.html" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold transition flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-right"></i> العودة للموقع الرئيسي
-                </a>
-            </div>
-        </div>
-    </header>
+<body>
+<div class="wrap">
+<div class="bar"><b id="bt">Guide ENSTP - Restaurants</b><span class="sch" id="sch"></span><div class="lg" id="lg" role="group"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="ar">عربي</button></div></div>
+<a class="back" href="index.html" id="backBtn">‹ Retour au site principal</a>
+<h1 id="pageTitle">Où trouver des restaurants et cafés ?</h1>
+<p class="lead" id="pageDesc">Du plus proche au plus loin.</p>
+<div class="split">
+<div class="mapbox" id="map"></div>
+<div id="list"></div>
+</div>
+</div>
+<script>
+const O={lat:36.7255818,lng:3.0695956};
+const A=(a,b)=>[[a,b]];
+const W=(a,b,f)=>{const x=A(a,b);return[x,x,x,x,x,f===undefined?x:f,x]};
+let LG="fr";
+const I={
+fr:{app:"Guide ENSTP - Resto",back:"‹ Retour au site principal",hrs:"Horaires :",nohrs:"non renseignés",here:"ENSTP",walk:"min à pied",bird:"à vol d'oiseau",rW:"Itinéraire à pied",rT:"Itinéraire en voiture",maps:"Voir sur Maps",open:"Ouvert, ferme à {t}",closed:"Fermé maintenant",open24:"Ouvert 24h/24"},
+en:{app:"ENSTP Guide - Food",back:"‹ Back to main site",hrs:"Hours:",nohrs:"not available",here:"ENSTP",walk:"min walk",bird:"as the crow flies",rW:"Walking route",rT:"Driving route",maps:"View on Maps",open:"Open, closes at {t}",closed:"Closed now",open24:"Open 24/7"},
+ar:{app:"دليل ENSTP - المطاعم",back:"› العودة للموقع الرئيسي",hrs:"الأوقات:",nohrs:"غير متوفرة",here:"المدرسة",walk:"د مشيًا",bird:"في خط مستقيم",rW:"الطريق مشيًا",rT:"الطريق بالسيارة",maps:"عرض على الخريطة",open:"مفتوح، يغلق عند {t}",closed:"مغلق الآن",open24:"مفتوح 24/24"}
+};
+const X={"Fast-food et pizza":{en:"Fast food and pizza",ar:"وجبات سريعة وبيتزا"},"Pizza à emporter, pas de place assise":{en:"Takeaway pizza",ar:"بيتزا للأخذ"},"Pizza, ouvert tard":{en:"Pizza, open late",ar:"بيتزا، مفتوح حتى وقت متأخر"},"Café":{en:"Café",ar:"مقهى"},"Glacier":{en:"Ice cream",ar:"مثلجات"}};
+const P=[
+{c:"food",n:"Zaou Fast Food",t:"Fast-food et pizza",h:"9h-22h, fermé le vendredi",o:W(9,22,null),lat:36.7291726,lng:3.0749554},
+{c:"food",n:"Pizza ON EST LA",t:"Pizza à emporter, pas de place assise",h:"10h-23h",o:W(10,23,A(13,23)),lat:36.7293919,lng:3.0745793},
+{c:"cafe",n:"Zohir cafe",t:"Café",lat:36.7263996,lng:3.0708409},
+{c:"cafe",n:"Buono Gelato",t:"Glacier",s:"11-24",lat:36.7297502,lng:3.0745068}
+].map((p,i)=>{const dx=(p.lng-O.lng)*89200,dy=(p.lat-O.lat)*111000;return{...p,...(p.s?{o:W(7,24)}:{}),i,dx,dy,d:Math.hypot(dx,dy)}});
+P.sort((a,b)=>a.d-b.d).forEach((p,j)=>p.r=j+1);
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div class="grid lg:grid-cols-12 gap-6 items-start">
-            <div class="lg:col-span-5 mapbox sticky top-24" id="map"></div>
-            <div class="lg:col-span-7" id="list"></div>
-        </div>
-    </main>
-
-    <script>
-        const O={lat:36.7255818,lng:3.0695956};
-        const W=(a,b,f)=>{const x=[[a,b]];return[x,x,x,x,x,f===undefined?x:f,x]};
-        const P=[
-            {c:"food",n:"Zaou Fast Food",t:"وجبات سريعة وبيتزا",h:"9h-22h، مغلق الجمعة",lat:36.7291726,lng:3.0749554},
-            {c:"food",n:"Pizza ON EST LA",t:"بيتزا للأخذ",h:"10h-23h",lat:36.7293919,lng:3.0745793},
-            {c:"food",n:"El pato pizza",t:"بيتزا مفتوح حتى وقت متأخر",h:"يوميًا 11h-1h",lat:36.7296762,lng:3.0747027},
-            {c:"cafe",n:"Zohir cafe",t:"مقهى",lat:36.7263996,lng:3.0708409},
-            {c:"cafe",n:"Celtic Coffee",t:"مقهى",lat:36.7292067,lng:3.0727508},
-            {c:"cafe",n:"Buono Gelato",t:"محل مثلجات",h:"11h-24h",lat:36.7297502,lng:3.0745068}
-        ].map((p,i)=>{const dx=(p.lng-O.lng)*89200,dy=(p.lat-O.lat)*111000;return{...p,i,dx,dy,d:Math.hypot(dx,dy),r:i+1}});
-
-        let sel=null;
-        function plan(){
-            let s=`<svg viewBox="0 200 450 600" role="img">`;
-            P.forEach(p=>{
-                let X=70+p.dx, Y=530-p.dy;
-                s+=`<g class="pt${sel===p.i?" sel":""}" onclick="pick(${p.i})"><circle cx="${X}" cy="${Y}" r="16" stroke="#f26a1b" stroke-width="4"/><text x="${X}" y="${Y}">${p.r}</text></g>`;
-            });
-            return s+`<circle cx="70" cy="530" r="20" fill="#f59e0b" stroke="#0a2347" stroke-width="3"/><text x="105" y="522" style="font:700 16px Cairo;fill:#0a2347">ENSTP</text></svg>`;
-        }
-        function render(){
-            document.getElementById('map').innerHTML=plan();
-            document.getElementById('list').innerHTML=P.map(p=>`
-                <article class="card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm mb-4" style="border-right:6px solid #f26a1b" id="p${p.i}">
-                    <div class="flex justify-between items-start">
-                        <div class="flex gap-3">
-                            <span class="w-8 h-8 rounded-full bg-orange-50 text-orange-600 font-bold flex items-center justify-center text-sm">${p.r}</span>
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-base">${p.n}</h3>
-                                <p class="text-xs text-slate-500 font-semibold">${p.t}</p>
-                            </div>
-                        </div>
-                        <span class="font-bold text-sm text-slate-700">≈ ${Math.round(p.d)} متر</span>
-                    </div>
-                    <div class="mt-4 flex gap-2">
-                        <a href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}" target="_blank" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition">الطريق مشيًا</a>
-                    </div>
-                </article>
-            `).join('');
-        }
-        function pick(i){sel=i;render();document.getElementById("p"+i).scrollIntoView({behavior:"smooth",block:"center"});}
-        render();
-    </script>
+let sel=null;
+function now(){const n=new Date();return{d:n.getDay(),m:n.getHours()*60+n.getMinutes()}}
+function st(h){if(!h)return null;const n=now(),s=h[n.d];if(!s)return{o:0,t:I[LG].closed};return{o:1,t:I[LG].open.replace("{t}","22h")}}
+function plan(L){
+ const u=I[LG],X=p=>70+p.dx,Y=p=>530-p.dy,xs=L.map(X),ys=L.map(Y).concat(530);
+ const w=Math.max(Math.max(...xs)+60,470),k=Math.max(1,w/560),top=Math.min(...ys)-60*k,bot=Math.max(...ys)+90*k,h=bot-top,gs=100*Math.ceil(k);
+ let s=`<svg viewBox="0 ${top} ${w} ${h}">`;
+ L.forEach(p=>{s+=`<g class="pt${sel===p.i?" sel":""}" data-i="${p.i}" tabindex="0" role="button"><circle cx="${X(p)}" cy="${Y(p)}" r="${(sel===p.i?19:15)*k}" stroke="var(--${p.c})" stroke-width="${5*k}"/><text style="font-size:${20*k}px" x="${X(p)}" y="${Y(p)}">${p.r}</text></g>`});
+ return s+`<circle cx="70" cy="530" r="${24*k}" fill="var(--sign)" stroke="var(--ink)" stroke-width="${4*k}"/><text x="${70+34*k}" y="${530-22*k}" style="font:700 ${30*k}px var(--fh);fill:var(--ink)">${u.here}</text></svg>`;
+}
+function card(p){const u=I[LG],s=p.o?st(p.o):null;
+return`<article class="card${sel===p.i?" sel":""}" id="p${p.i}" style="--c:var(--${p.c})"><div class="top"><span class="num">${p.r}</span><div><h3>${p.n}</h3><p class="t">${X[p.t]?X[p.t][LG]:p.t}</p></div><div class="dist">≈ ${Math.round(p.d)}m<small>${Math.max(1,Math.round(p.d/83))} ${u.walk}</small></div></div>${s?`<span class="st ${s.o?"on":"off"}">${s.t}</span>`:""}<p class="i"><b>${u.hrs}</b> ${p.h||u.nohrs}</p><div class="btns"><a class="btn main" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">${u.rW}</a></div></article>`}
+function render(){const u=I[LG];$("#map").innerHTML=plan(P);$("#list").innerHTML=P.map(card).join("");$("#bt").textContent=u.app;$("#backBtn").textContent=u.back}
+const $=s=>document.querySelector(s);$("#map").addEventListener("click",e=>{const g=e.target.closest(".pt");if(g)pick(+g.dataset.i)});
+function pick(i){sel=i;render();$("#p"+i).scrollIntoView({behavior:"smooth",block:"center"})}
+function setLang(l){LG=l;const d=document.documentElement;d.lang=l;d.dir=l==="ar"?"rtl":"ltr";document.querySelectorAll("#lg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===l)));render()}
+$("#lg").addEventListener("click",e=>{const b=e.target.closest("button");if(b)setLang(b.dataset.l)});
+setLang("ar");
+</script>
 </body>
 </html>
