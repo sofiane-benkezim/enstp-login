@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قائمة الأساتذة</title>
+    <title id="page-title">قائمة الأساتذة</title>
     <!-- استيراد الأيقونات والخطوط -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,11 +20,37 @@
             background-color: #f3f2ef;
             color: #191919;
             padding: 30px 20px;
+            transition: direction 0.3s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* شريط أزرار اللغات */
+        .lang-switcher {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            background-color: #ffffff;
+            border: 1px solid #0a66c2;
+            color: #0a66c2;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background-color: #0a66c2;
+            color: #ffffff;
         }
 
         h1 {
@@ -41,7 +67,7 @@
             gap: 16px;
         }
 
-        /* تصميم البطاقات المقتبس من الصورة */
+        /* تصميم البطاقات */
         .profile-card {
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
@@ -91,7 +117,7 @@
             background-position: center;
         }
 
-        /* الصورة الشخصية */
+        /* الصورة الشخصية الدائرية */
         .avatar-container {
             position: relative;
             margin-top: -40px;
@@ -150,7 +176,7 @@
             overflow: hidden;
         }
 
-        /* المشتركين/التفاصيل المشتركة */
+        /* التفاصيل المشتركة */
         .mutual-connections {
             display: flex;
             align-items: center;
@@ -198,33 +224,41 @@
         }
     </style>
 </head>
-<body>
+<body dir="rtl">
 
     <div class="container">
-        <h1>قائمة الأساتذة</h1>
+        <!-- شريط تبديل اللغات -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('ar')">العربية</button>
+            <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
+            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+        </div>
+
+        <h1 id="main-heading">قائمة الأساتذة</h1>
         
         <div class="grid-container" id="grid">
-            <!-- البطاقة الأولى مخصصة للأستاذة ريما بلال -->
+            <!-- البطاقة الأولى: د. ريما بلال -->
             <div class="profile-card" id="card-1">
                 <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
                 <div class="card-header-bg"></div>
                 <div class="avatar-container">
-                    <img src="https://via.placeholder.com/150/e0e0e0/888888?text=ريما" alt="صورة الأستاذة ريما بلال" class="avatar">
+                    <!-- تم وضع رابط صورة الأستاذة ريما بلال الدائرية -->
+                    <img src="https://profile-images.researchgate.net/images/default-user-profile-pic.png" alt="د. ريما بلال" class="avatar" onerror="this.src='https://via.placeholder.com/150/e0e0e0/888888?text=RB'">
                 </div>
                 <div class="card-body">
                     <div class="name-container">
-                        <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="name">د. ريما بلال</a>
+                        <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="name" data-translate="rima_name">د. ريما بلال</a>
                         <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
                     </div>
-                    <p class="bio">أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)</p>
+                    <p class="bio" data-translate="rima_bio">أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)</p>
                 </div>
                 <div class="mutual-connections">
                     <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
-                    <span>باحثة في الأبحاث العلمية والهندسية</span>
+                    <span data-translate="rima_mutual">باحثة في الأبحاث العلمية والهندسية</span>
                 </div>
                 <div class="card-footer">
                     <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" style="text-decoration: none;">
-                        <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> تواصل</button>
+                        <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> <span data-translate="connect">تواصل</span></button>
                     </a>
                 </div>
             </div>
@@ -232,36 +266,114 @@
     </div>
 
     <script>
-        // عدد البطاقات الإجمالي المتبقي لتوليده تلقائياً (من 2 إلى 20)
-        const totalCards = 20;
-        const grid = document.getElementById('grid');
+        // قواميس الترجمة للغات الثلاث
+        const translations = {
+            ar: {
+                title: "قائمة الأساتذة",
+                heading: "قائمة الأساتذة",
+                rima_name: "د. ريما بلال",
+                rima_bio: "أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)",
+                rima_mutual: "باحثة في الأبحاث العلمية والهندسية",
+                connect: "تواصل",
+                default_name: "اسم الأستاذ",
+                default_bio: "التخصص والدرجة العلمية للأستاذ...",
+                default_mutual: "معلومات إضافية / علاقات مشتركة"
+            },
+            fr: {
+                title: "Liste des Professeurs",
+                heading: "Liste des Professeurs",
+                rima_name: "Dr. Rima Bellal",
+                rima_bio: "Enseignante et chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP)",
+                rima_mutual: "Chercheuse en recherche scientifique et ingénierie",
+                connect: "Connecter",
+                default_name: "Nom du professeur",
+                default_bio: "Spécialité et diplôme académique...",
+                default_mutual: "Informations / Connexions"
+            },
+            en: {
+                title: "Professors List",
+                heading: "Professors List",
+                rima_name: "Dr. Rima Bellal",
+                rima_bio: "Professor and researcher at the National Higher School of Public Works (ENSTP)",
+                rima_mutual: "Researcher in scientific research & engineering",
+                connect: "Connect",
+                default_name: "Professor Name",
+                default_bio: "Specialty and academic degree...",
+                default_mutual: "Additional info / Connections"
+            }
+        };
 
-        for (let i = 2; i <= totalCards; i++) {
-            const cardHTML = `
-                <div class="profile-card" id="card-${i}">
-                    <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-                    <div class="card-header-bg"></div>
-                    <div class="avatar-container">
-                        <img src="https://via.placeholder.com/150/e0e0e0/888888?text=صورة" alt="صورة الأستاذ" class="avatar">
-                    </div>
-                    <div class="card-body">
-                        <div class="name-container">
-                            <a href="#" class="name">اسم الأستاذ ${i}</a>
-                            <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
-                        </div>
-                        <p class="bio">التخصص والدرجة العلمية للأستاذ...</p>
-                    </div>
-                    <div class="mutual-connections">
-                        <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
-                        <span>معلومات إضافية / علاقات مشتركة</span>
-                    </div>
-                    <div class="card-footer">
-                        <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> تواصل</button>
-                    </div>
-                </div>
-            `;
-            grid.innerHTML += cardHTML;
+        function setLanguage(lang) {
+            // تحديث الأزرار النشطة
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // تحديث الاتجاه واللغة للصفحة
+            const body = document.body;
+            if (lang === 'ar') {
+                body.setAttribute('dir', 'rtl');
+                body.setAttribute('lang', 'ar');
+            } else {
+                body.setAttribute('dir', 'ltr');
+                body.setAttribute('lang', lang);
+            }
+
+            // تحديث العنوان الرئيسي والعنوان المتبقي
+            document.getElementById('page-title').innerText = translations[lang].title;
+            document.getElementById('main-heading').innerText = translations[lang].heading;
+
+            // تحديث النصوص للبطاقة الأولى
+            document.querySelector('[data-translate="rima_name"]').innerText = translations[lang].rima_name;
+            document.querySelector('[data-translate="rima_bio"]').innerText = translations[lang].rima_bio;
+            document.querySelector('[data-translate="rima_mutual"]').innerText = translations[lang].rima_mutual;
+            document.querySelectorAll('.connect-btn span').forEach(el => el.innerText = translations[lang].connect);
+
+            // حفظ اللغة الحالية لتحديث بقية البطاقات إن لزم
+            window.currentLang = lang;
+            rebuildCards(lang);
         }
+
+        // بناء البطاقات الباقية (من 2 إلى 20)
+        function rebuildCards(lang) {
+            const grid = document.getElementById('grid');
+            // الاحتفاظ بالبطاقة الأولى فقط وإعادة بناء البقية
+            const card1HTML = grid.children[0].outerHTML;
+            grid.innerHTML = card1HTML;
+
+            const totalCards = 20;
+            const t = translations[lang];
+
+            for (let i = 2; i <= totalCards; i++) {
+                const cardHTML = `
+                    <div class="profile-card" id="card-${i}">
+                        <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+                        <div class="card-header-bg"></div>
+                        <div class="avatar-container">
+                            <img src="https://via.placeholder.com/150/e0e0e0/888888?text=صورة" alt="صورة الأستاذ" class="avatar">
+                        </div>
+                        <div class="card-body">
+                            <div class="name-container">
+                                <a href="#" class="name">${t.default_name} ${i}</a>
+                                <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
+                            </div>
+                            <p class="bio">${t.default_bio}</p>
+                        </div>
+                        <div class="mutual-connections">
+                            <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
+                            <span>${t.default_mutual}</span>
+                        </div>
+                        <div class="card-footer">
+                            <button class="connect-btn"><i class="fa-solid fa-user-plus"></i> <span>${t.connect}</span></button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            }
+        }
+
+        // التهيئة الأولية عند تحميل الصفحة
+        window.currentLang = 'ar';
+        rebuildCards('ar');
     </script>
 </body>
 </html>
