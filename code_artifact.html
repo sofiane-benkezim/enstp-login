@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل المواصلات الطلابية | Student Transport Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cairo Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+        }
+        .modal-active {
+            overflow: hidden;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <!-- Logo & Portal Title -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-11 h-11 bg-gradient-to-tr from-emerald-600 to-teal-500 rounded-2xl flex items-center justify-center text-white shadow-md shadow-emerald-200">
+                        <i class="fa-solid font-bold fa-bus-simple text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-slate-900 leading-tight">دليل المواصلات الطلابية</h1>
+                        <p class="text-xs text-slate-500">رفيق الطالب في التنقل اليومي والجامعي</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Quick Links -->
+                <div class="flex items-center gap-2">
+                    <button onclick="scrollToDiscounts()" class="text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-2 rounded-xl transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-emerald-600"></i>
+                        <span>الاشتراكات الطلابية</span>
+                    </button>
+                    <button onclick="openInfoModal()" class="text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-xl transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-info text-slate-500"></i>
+                        <span>تعليمات</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero & Search Section -->
+    <section class="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white py-12 px-4 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-full border border-emerald-500/30 mb-3">
+                دليل الخطوط والمستندات الرسمية
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-snug">
+                اكتشف كل وسائل النقل، المواقيت، والروابط في مكان واحد
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+                اختر وسيلة النقل لمعرفة الخطوط، حمل التطبيقات الرسمية، واستفد من التخفيضات المخصصة للطلبة.
+            </p>
+
+            <!-- Search Input Box -->
+            <div class="max-w-2xl mx-auto relative mb-6">
+                <div class="relative flex items-center">
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 text-slate-400 text-lg"></i>
+                    <input type="text" id="searchInput" oninput="filterTransports()" placeholder="ابحث عن وسيلة نقل، خط، محطة، أو مدينة..." 
+                           class="w-full pr-12 pl-10 py-3.5 bg-white/10 backdrop-blur-md text-white placeholder-slate-400 rounded-2xl border border-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:bg-slate-800/90 transition text-sm sm:text-base">
+                    <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute left-3 text-slate-400 hover:text-white p-1">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="filterCategoryButtons">
+                <button onclick="setCategory('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-emerald-500 text-white shadow-lg shadow-emerald-500/30" data-category="all">
+                    الكل <span id="count-all" class="text-xs bg-white/20 px-1.5 py-0.5 rounded-full mr-1">0</span>
+                </button>
+                <button onclick="setCategory('metro')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700" data-category="metro">
+                    <i class="fa-solid fa-train-subway ml-1 text-blue-400"></i> ميترو
+                </button>
+                <button onclick="setCategory('tram')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700" data-category="tram">
+                    <i class="fa-solid fa-train-tram ml-1 text-emerald-400"></i> ترامواي
+                </button>
+                <button onclick="setCategory('bus')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700" data-category="bus">
+                    <i class="fa-solid fa-bus ml-1 text-amber-400"></i> حافلات
+                </button>
+                <button onclick="setCategory('train')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700" data-category="train">
+                    <i class="fa-solid fa-train ml-1 text-indigo-400"></i> قطارات
+                </button>
+                <button onclick="setCategory('apps')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700" data-category="apps">
+                    <i class="fa-solid fa-mobile-screen ml-1 text-purple-400"></i> تطبيقات الذكية
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport List Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+        
+        <!-- Results stats -->
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-compass text-emerald-600"></i>
+                <span>وسائل النقل والخدمات المتاحة</span>
+            </h3>
+            <span id="resultsCount" class="text-xs font-semibold text-slate-500 bg-slate-200/70 px-2.5 py-1 rounded-lg">
+                جارٍ التحميل...
+            </span>
+        </div>
+
+        <!-- Cards Grid -->
+        <div id="transportGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Transport Cards will be injected here via JavaScript -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="noResults" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200 shadow-sm my-6">
+            <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h4 class="text-lg font-bold text-slate-700 mb-1">لم يتم العثور على نتائج</h4>
+            <p class="text-slate-500 text-sm mb-4">جرب البحث بكلمات أخرى أو تغيير الفلتر المحدد.</p>
+            <button onclick="resetFilters()" class="text-xs bg-emerald-600 text-white font-semibold px-4 py-2 rounded-xl hover:bg-emerald-700 transition">
+                إعادة ضبط البحث
+            </button>
+        </div>
+
+        <!-- Student Discount Banner -->
+        <section id="discountsSection" class="mt-14 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 -ml-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center relative z-10">
+                <div class="lg:col-span-2 space-y-3">
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20 inline-block">
+                        امتيازات طلابية حصرية
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-black">كيف تحصل على بطاقة اشتراك النقل الطلابي المخفضة؟</h3>
+                    <p class="text-emerald-100 text-sm leading-relaxed">
+                        تتيح وزارة التعليم العالي والشركات الوطنية (مثل ETUSA و Metro و SNTF) اشتراكات سنوية وشهرية برمز رمزية للطلبة الجامعيين المقيدين رسمياً.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
+                        <div class="bg-white/10 p-3 rounded-xl border border-white/10 flex items-start gap-2.5">
+                            <i class="fa-solid fa-id-card text-emerald-300 text-base mt-0.5"></i>
+                            <div>
+                                <span class="font-bold block text-white">الملف المطلوب:</span>
+                                <span class="text-emerald-100">شهادة تسجيل، صورة شمسية، نسخة بطاقة التعريف، ومبلغ نمطي.</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 p-3 rounded-xl border border-white/10 flex items-start gap-2.5">
+                            <i class="fa-solid fa-clock text-emerald-300 text-base mt-0.5"></i>
+                            <div>
+                                <span class="font-bold block text-white">فترة الصلاحية:</span>
+                                <span class="text-emerald-100">صلاحية لمدة سنة جامعية كاملة غير محدودة الرحلات.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center lg:text-left flex flex-col items-center lg:items-end justify-center">
+                    <button onclick="openSubscriptionGuideModal()" class="w-full sm:w-auto bg-white text-emerald-800 font-bold px-6 py-3.5 rounded-2xl shadow-lg hover:bg-emerald-50 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-signature text-emerald-600"></i>
+                        <span>خطوات واستخراج الاشتراك</span>
+                    </button>
+                    <p class="text-xs text-emerald-200 mt-2">تحديثات الموسم الجامعي 2026/2027</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Transport Details Modal -->
+    <div id="transportModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transition-all duration-300 transform scale-95" id="modalCard">
+            <!-- Modal Header Image -->
+            <div class="relative h-48 sm:h-56 bg-slate-800">
+                <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeTransportModal()" class="absolute top-4 left-4 w-9 h-9 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-4 right-4 flex items-center gap-2">
+                    <span id="modalBadge" class="px-3 py-1 rounded-full text-xs font-bold text-white shadow"></span>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-6 text-right flex-grow">
+                <div>
+                    <h3 id="modalTitle" class="text-2xl font-bold text-slate-900 mb-1"></h3>
+                    <p id="modalSubtitle" class="text-sm font-medium text-emerald-600"></p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">نبذة ومعلومات الخدمة</h4>
+                    <p id="modalDescription" class="text-slate-700 text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- Schedule & Station Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div class="p-3.5 bg-emerald-50/50 rounded-2xl border border-emerald-100 flex items-start gap-3">
+                        <i class="fa-solid fa-clock text-emerald-600 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-slate-800 block">ساعات العمل:</span>
+                            <span id="modalHours" class="text-slate-600"></span>
+                        </div>
+                    </div>
+                    <div class="p-3.5 bg-blue-50/50 rounded-2xl border border-blue-100 flex items-start gap-3">
+                        <i class="fa-solid fa-ticket text-blue-600 text-lg mt-0.5"></i>
+                        <div>
+                            <span class="font-bold text-slate-800 block">أسعار التذاكر والاشتراك:</span>
+                            <span id="modalPrice" class="text-slate-600"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Stations / Routes -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-800 mb-2.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-route text-emerald-600"></i>
+                        <span>أبرز المحطات والخطوط المقربة للجامعة:</span>
+                    </h4>
+                    <ul id="modalStations" class="list-disc list-inside space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    </ul>
+                </div>
+
+                <!-- Action Download & Map Buttons -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-800 mb-2.5">الروابط المتاحة والتطبيق الرسمي:</h4>
+                    <div id="modalLinks" class="flex flex-wrap gap-2">
+                        <!-- Injected links -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeTransportModal()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-xl transition">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Guide Modal -->
+    <div id="subscriptionModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 space-y-5 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-id-card text-emerald-600"></i>
+                    <span>دليل استخراج بطاقات اشتراك الطلاب</span>
+                </h3>
+                <button onclick="closeSubscriptionModal()" class="text-slate-400 hover:text-slate-600 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-xs sm:text-sm text-slate-700">
+                <div class="space-y-2">
+                    <h4 class="font-bold text-emerald-700">1. اشتراك النقل الجامعي الحافلات (ONOU):</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        يتم تسديد الرسومات عند التسجيل الجامعي عبر منصة PROGRESS أو بمكاتب الخدمات الجامعية بحي الإقامة. البطاقة تمكنك من التنقل مجاناً طوال السنة عبر حافلات النقل الجامعي النمطية.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-emerald-700">2. اشتراك الميترو والترامواي (RATP / SETRAM):</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        قم بزيارة أقراب وكالة تجارية (مثل محطة تافورة، الحراش، أو رويسو) مصحوباً بـ:
+                        شهادة مدرسية للسنة الحالية + صورة شمسية + نسخة بطاقة الهوية + رسوم البطاقة.
+                    </p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-emerald-700">3. اشتراك القطار SNTF:</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        تخفيض يصل حتى 50% للطلبة على الخطوط الضواحي والما بين المدن من خلال استخراج بطاقة التخفيضات من الشباك بالمحطة الرئيسية.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-2 text-left">
+                <button onclick="closeSubscriptionModal()" class="px-5 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl hover:bg-emerald-700 transition">
+                    فهمت ذلك
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Modal -->
+    <div id="infoModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-base font-bold text-slate-900">حول الدليل ومساعدة</h3>
+                <button onclick="closeInfoModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+                تم إنشاء هذا الموقع ليكون دليلاً مبسطاً ومباشراً للطلاب للوصول إلى كافة روابط وسائط المواصلات والتطبيقات الرسمية ومخطط المحطات.
+            </p>
+            <div class="bg-amber-50 border border-amber-200 p-3 rounded-2xl text-xs text-amber-800">
+                <i class="fa-solid fa-triangle-exclamation ml-1"></i>
+                ملاحظة: يمكنك تغيير الروابط والتفاصيل بسهولة من خلال تعديل قائمة `transportsData` في ملف الـ HTML هذا مباشرة.
+            </div>
+            <div class="text-left pt-2">
+                <button onclick="closeInfoModal()" class="px-4 py-2 bg-slate-800 text-white text-xs rounded-xl hover:bg-slate-900">
+                    تم
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+            <div>
+                <p class="font-bold text-slate-200 text-sm">دليل المواصلات الطلابية - Student Transport Guide</p>
+                <p class="text-slate-500 mt-0.5">منصة موحدة ومجانية لتسهيل تنقلات الطلبة الجامعيين</p>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="#" class="hover:text-emerald-400 transition">الرئيسية</a>
+                <span>•</span>
+                <a href="#discountsSection" class="hover:text-emerald-400 transition">الاشتراكات</a>
+                <span>•</span>
+                <a href="javascript:void(0)" onclick="openInfoModal()" class="hover:text-emerald-400 transition">تحديث الروابط</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Logic Script -->
+    <script>
+        /**
+         * =========================================================================
+         * EASY DATA EDITS / قائمة بيانات المواصلات والروابط (يمكنك تعديلها بسهولة من هنا)
+         * =========================================================================
+         * يمكنك إضافة، حذف أو تعديل العناصر والروابط أدناه.
+         */
+        const transportsData = [
+            {
+                id: "metro-algiers",
+                category: "metro",
+                badgeText: "ميترو",
+                badgeColor: "bg-blue-600",
+                title: "ميترو الجزائر (Metro d'Alger)",
+                subtitle: "خط ساحة الشهداء - عين النعجة / الحراش",
+                image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80",
+                description: "وسيلة وسريعة جداً ومكيفة تربط وسط العاصمة بالضواحي الشرقية والجنوبية، وتصل مباشرة لعدة كليات ومعاهد جامعة الجزائر.",
+                workingHours: "من 05:00 صباحاً إلى 23:00 مساءً يومياً",
+                pricing: "تذكرة عادية 50 د.ج / اشتراك طلابي شهري وسنوي بأسعار مخفضة",
+                stations: [
+                    "محطة تافورة / البريد المركزي (جامعة الجزائر 1)",
+                    "محطة الحراش (المدرسة الوطنية المتعددة التقنيات ENP)",
+                    "محطة حي البدر / عين النعجة",
+                    "محطة باش جراح / المعدومين"
+                ],
+                apps: [
+                    { name: "تطبيق الخريطة (Google Maps)", icon: "fa-map-location-dot", url: "https://maps.google.com", type: "map" },
+                    { name: "تحميل مخطط الخطوط (PDF)", icon: "fa-file-pdf", url: "https://www.metroalger.dz", type: "pdf" },
+                    { name: "الموقع الرسمي للميترو", icon: "fa-globe", url: "https://www.metroalger.dz", type: "link" }
+                ]
+            },
+            {
+                id: "tramway-algiers",
+                category: "tram",
+                badgeText: "ترامواي",
+                badgeColor: "bg-emerald-600",
+                title: "ترامواي العاصمة (SETRAM)",
+                subtitle: "خط العناصر (رويسو) - درقانة",
+                image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80",
+                description: "يمتد الترامواي على مسافة طويلة تغطي الجهة الشرقية للعاصمة ويمر بالقرب من الإقامات الجامعية بالرويبة، درقانة، والبرج.",
+                workingHours: "من 05:30 صباحاً إلى 22:30 مساءً",
+                pricing: "40 د.ج للتذكرة / اشتراك طلابي شهرية بنسبة تخفيض كبيرة",
+                stations: [
+                    "محطة العناصر (نقطة التبادل مع الميترو)",
+                    "محطة باب الزوار (جامعة USTHB الإقامة الجامعية)",
+                    "محطة درقانة شاطئ",
+                    "محطة برج الكيفان"
+                ],
+                apps: [
+                    { name: "تطبيق SETRAM (Play Store)", icon: "fa-brands fa-google-play", url: "https://play.google.com", type: "app" },
+                    { name: "مخطط الترامواي الرسمي", icon: "fa-route", url: "https://www.setram.dz", type: "link" }
+                ]
+            },
+            {
+                id: "etusa-bus",
+                category: "bus",
+                badgeText: "حافلات ETUSA",
+                badgeColor: "bg-amber-600",
+                title: "حافلات إيتوزا (ETUSA)",
+                subtitle: "شبكة النقل الحضري والشبه حضري",
+                image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80",
+                description: "تغطي معظم الأحياء والجامعات في العاصمة بخطوط متعددة، وتوفر بطاقات اشتراك طلابية سنوية زاهيدة الثمن.",
+                workingHours: "من 05:30 صباحاً إلى 19:00 مساءً (وخدمات الليل)",
+                pricing: "تذكرة من 20 إلى 50 د.ج / بطاقة الطالب مجانية تقريباً مع الاشتراك",
+                stations: [
+                    "محطة أول مايو (Place 1er Mai)",
+                    "محطة ساحة الشهداء / تافورة",
+                    "محطة الحراش وبن عكنون",
+                    "خطوط الإقامات الجامعية"
+                ],
+                apps: [
+                    { name: "تطبيق إيتوزا ETUSA App", icon: "fa-mobile-screen-button", url: "https://play.google.com", type: "app" },
+                    { name: "دليل الخطوط والمواعيد", icon: "fa-bus-simple", url: "#", type: "link" }
+                ]
+            },
+            {
+                id: "sntf-train",
+                category: "train",
+                badgeText: "قطار BANLIEUE",
+                badgeColor: "bg-indigo-600",
+                title: "قطار الضواحي (SNTF)",
+                subtitle: "خطوط الثنية، العفرون، زرالدة، وتيزي وزو",
+                image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80",
+                description: "الوسيلة الأكثر سرعة وملاءمة للطلبة القادمين من ولايات بومرداس، البليدة، وتيبازة بشكل يومي نحو الكليات.",
+                workingHours: "من 05:00 صباحاً إلى 21:00 مساءً",
+                pricing: "تخفيض 50% للطلبة حاملي بطاقات التخفيض الطلابية",
+                stations: [
+                    "محطة آغا ومحطة خضرة (الجزائر الوسطى)",
+                    "محطة جامعة بومرداس",
+                    "محطة الجامعة المركزية البليدة",
+                    "محطة تسالة المرجة وزرالدة"
+                ],
+                apps: [
+                    { name: "تطبيق مواعيد القطار SNTF", icon: "fa-train", url: "https://play.google.com", type: "app" },
+                    { name: "حجز وتحقق التوقيت بالموقع", icon: "fa-globe", url: "https://www.sntf.dz", type: "link" }
+                ]
+            },
+            {
+                id: "onou-bus",
+                category: "bus",
+                badgeText: "النقل الجامعي ONOU",
+                badgeColor: "bg-red-600",
+                title: "حافلات النقل الجامعي (ONOU)",
+                subtitle: "الحافلات الصفراء الخاصة بالطلبة",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+                description: "مخصصة حكراً للطلبة الجامعيين المقيمين والفرعيين، تربط بين مختلف الإقامات الجامعية والكليات والمعاهد.",
+                workingHours: "من 06:30 صباحاً إلى 18:30 مساءً",
+                pricing: "مجاني بالكامل للحاملين لبطاقة الطالب / حقوق شريط رمزي سنوي",
+                stations: [
+                    "جميع نقاط الانطلاق بالإقامات الجامعية",
+                    "المجمعات الجامعية (باب الزوار، بن عكنون، دالي إبراهيم، دلس)",
+                    "محطات العبور الرئيسية"
+                ],
+                apps: [
+                    { name: "البوابة الإلكترونية للخدمات الجامعية", icon: "fa-building-columns", url: "https://progres.mesrs.dz", type: "link" }
+                ]
+            },
+            {
+                id: "yassir-course",
+                category: "apps",
+                badgeText: "تطبيقات حجز",
+                badgeColor: "bg-purple-600",
+                title: "تطبيقات النقل الذكي (Yassir / Heetch)",
+                subtitle: "خدمات سيارات الأجرة وسيارات VTC",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+                description: "خيارات ممتازة عند الحالات الطارئة أو الامتحانات، وتتوفر عادة على عروض تخفيض ورموز بروموكود خاصة بالطلبة.",
+                workingHours: "متوفر 24/7 على مدار الساعة",
+                pricing: "حسب المسافة / مشاركة الرحلة مع الزملاء تخفض التكلفة",
+                stations: [
+                    "من وإلى أي وجهة أو جامعة مختارة"
+                ],
+                apps: [
+                    { name: "تحميل تطبيق Yassir", icon: "fa-mobile", url: "https://yassir.com", type: "app" },
+                    { name: "تطبيق Heetch", icon: "fa-car", url: "https://heetch.com", type: "app" }
+                ]
+            }
+        ];
+
+        // State Management variables
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        // Initializer on Page Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+            updateCounts();
+        });
+
+        // Filter by Category
+        function setCategory(category) {
+            currentCategory = category;
+            
+            // Update UI Active Status on Filter Buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-500/30');
+                    btn.classList.remove('bg-slate-800/80', 'text-slate-300');
+                } else {
+                    btn.classList.remove('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-500/30');
+                    btn.classList.add('bg-slate-800/80', 'text-slate-300');
+                }
+            });
+
+            renderCards();
+        }
+
+        // Filter Search Input Handler
+        function filterTransports() {
+            const input = document.getElementById('searchInput');
+            searchQuery = input.value.trim().toLowerCase();
+
+            const clearBtn = document.getElementById('clearSearch');
+            if (searchQuery.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            renderCards();
+        }
+
+        function clearSearchInput() {
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            renderCards();
+        }
+
+        function resetFilters() {
+            clearSearchInput();
+            setCategory('all');
+        }
+
+        // Main Dynamic Rendering Function
+        function renderCards() {
+            const grid = document.getElementById('transportGrid');
+            const noResults = document.getElementById('noResults');
+            grid.innerHTML = '';
+
+            const filtered = transportsData.filter(item => {
+                const matchesCategory = (currentCategory === 'all') || (item.category === currentCategory);
+                const matchesSearch = searchQuery === '' || 
+                    item.title.toLowerCase().includes(searchQuery) ||
+                    item.subtitle.toLowerCase().includes(searchQuery) ||
+                    item.description.toLowerCase().includes(searchQuery) ||
+                    item.stations.some(s => s.toLowerCase().includes(searchQuery));
+
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('resultsCount').innerText = `عدد النتائج: ${filtered.length}`;
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group";
+
+                // Build Cards HTML
+                card.innerHTML = `
+                    <div>
+                        <!-- Card Image Header -->
+                        <div class="relative h-44 overflow-hidden bg-slate-100">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=صورة+وسيلة+النقل'">
+                            <div class="absolute top-3 right-3">
+                                <span class="${item.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                    ${item.badgeText}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 space-y-3 text-right">
+                            <h4 class="text-lg font-bold text-slate-900 leading-snug group-hover:text-emerald-600 transition">
+                                ${item.title}
+                            </h4>
+                            <p class="text-xs font-semibold text-slate-500">${item.subtitle}</p>
+                            <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                                ${item.description}
+                            </p>
+
+                            <!-- Quick Stations Badge List -->
+                            <div class="pt-1 flex flex-wrap gap-1">
+                                ${item.stations.slice(0, 2).map(st => `<span class="bg-slate-100 text-slate-600 text-[10px] font-medium px-2 py-0.5 rounded-md border border-slate-200">${st}</span>`).join('')}
+                                ${item.stations.length > 2 ? `<span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-1.5 py-0.5 rounded-md">+${item.stations.length - 2} المزيد</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer & Action Buttons -->
+                    <div class="p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-2">
+                        <button onclick="openTransportModal('${item.id}')" class="w-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-1.5 shadow-sm">
+                            <span>عرض التفاصيل والروابط</span>
+                            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Count update badge helper
+        function updateCounts() {
+            document.getElementById('count-all').innerText = transportsData.length;
+        }
+
+        // Transport Detail Modal Handler
+        function openTransportModal(id) {
+            const item = transportsData.find(t => t.id === id);
+            if (!item) return;
+
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalSubtitle').innerText = item.subtitle;
+            document.getElementById('modalDescription').innerText = item.description;
+            document.getElementById('modalHours').innerText = item.workingHours;
+            document.getElementById('modalPrice').innerText = item.pricing;
+
+            const badge = document.getElementById('modalBadge');
+            badge.innerText = item.badgeText;
+            badge.className = `px-3 py-1 rounded-full text-xs font-bold text-white shadow ${item.badgeColor}`;
+
+            // Render Stations list
+            const stationsContainer = document.getElementById('modalStations');
+            stationsContainer.innerHTML = item.stations.map(st => `<li>${st}</li>`).join('');
+
+            // Render External Apps Links Buttons
+            const linksContainer = document.getElementById('modalLinks');
+            linksContainer.innerHTML = item.apps.map(app => `
+                <a href="${app.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-slate-700 border border-slate-200 rounded-xl text-xs font-semibold transition">
+                    <i class="fa-solid ${app.icon} text-emerald-600"></i>
+                    <span>${app.name}</span>
+                    <i class="fa-solid fa-up-right-from-square text-[10px] text-slate-400"></i>
+                </a>
+            `).join('');
+
+            const modal = document.getElementById('transportModal');
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeTransportModal() {
+            const modal = document.getElementById('transportModal');
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Subscription Modal Handlers
+        function openSubscriptionGuideModal() {
+            document.getElementById('subscriptionModal').classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeSubscriptionModal() {
+            document.getElementById('subscriptionModal').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // General Info Modal Handlers
+        function openInfoModal() {
+            document.getElementById('infoModal').classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        function scrollToDiscounts() {
+            document.getElementById('discountsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
