@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المكتبات والطباعة - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #0284c7;
+  --primary-glow: rgba(2, 132, 199, 0.3);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
+.places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+.card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+.card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #fff; }
+.place-type { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+.info-item { font-size: 13px; color: #cbd5e1; margin: 6px 0; }
+.info-item b { color: var(--text-muted); }
+.card-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-primary { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">📚 المكتبات والطباعة الهندسية - ENSTP</div>
+    <a href="index.html" class="btn btn-secondary" style="flex:unset; padding:8px 16px;">العودة للرئيسية</a>
+  </header>
+  <main class="places-grid" id="places-container"></main>
+</div>
+<script>
+const O = { lat: 36.7255818, lng: 3.0695956 };
+const PRINTS = [
+  { n: "Copie Quick Vieux Kouba", t: "Photocopie et impression", ph: "+213 550 72 28 35", h: "7h30-21h", lat: 36.7291088, lng: 3.074546, rt: [4.2, 72] },
+  { n: "Librairie 3ami Daoud", t: "Librairie et fournitures scolaires", ph: "+213 549 14 36 75", h: "7h15-23h", lat: 36.7297506, lng: 3.0734749, rt: [4.5, 18] },
+  { n: "El Maktaba Shamila", t: "Librairie", ph: "+213 791 05 75 60", h: "8h-21h", lat: 36.7289018, lng: 3.0726936, rt: [4.6, 5] },
+  { n: "Genie Papeterie", t: "Papeterie", ph: "+213 662 04 73 13", h: "7h30-20h30", lat: 36.7292151, lng: 3.074258, rt: [4.8, 12] }
+];
+
+PRINTS.forEach(p => {
+  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy);
+});
+
+document.getElementById("places-container").innerHTML = PRINTS.map(p => `
+  <article class="card">
+    <div>
+      <h3>${p.n}</h3>
+      <div class="place-type">${p.t}</div>
+      <div class="info-item"><b>المسافة:</b> نحو ${Math.round(p.d)} متر</div>
+      ${p.h ? `<div class="info-item"><b>الأوقات:</b> ${p.h}</div>` : ''}
+      ${p.ph ? `<div class="info-item"><b>الهاتف:</b> <bdi dir="ltr">${p.ph}</bdi></div>` : ''}
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">🚗 الاتجاهات</a>
+    </div>
+  </article>
+`).join('');
+</script>
+</body>
+</html>
