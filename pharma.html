@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الصيدليات والخدمات الصحية - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.3);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
+.places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+.card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+.card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #fff; }
+.place-type { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+.info-item { font-size: 13px; color: #cbd5e1; margin: 6px 0; }
+.info-item b { color: var(--text-muted); }
+.card-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-primary { background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">💊 الصيدليات والعيادات الطبية - ENSTP</div>
+    <a href="index.html" class="btn btn-secondary" style="flex:unset; padding:8px 16px;">العودة للرئيسية</a>
+  </header>
+  <main class="places-grid" id="places-container"></main>
+</div>
+<script>
+const O = { lat: 36.7255818, lng: 3.0695956 };
+const PHARMACIES = [
+  { n: "Pharmacie Chikhi", t: "Pharmacie", ph: "+213 23 70 66 38", h: "8h-23h", lat: 36.7250816, lng: 3.0731928, rt: [4.4, 106] },
+  { n: "Pharmacie Attoui", t: "Pharmacie", h: "8h-23h30", lat: 36.7298961, lng: 3.0736841, rt: [4.7, 12] },
+  { n: "Pharmacie Hassani Hocine", t: "Pharmacie", ph: "+213 550 36 16 18", h: "8h-2h", lat: 36.7279488, lng: 3.0788778, rt: [3.0, 3] },
+  { n: "Pharmacie Baida", t: "Pharmacie", ph: "+213 540 17 50 21", h: "9h-26h", lat: 36.7262975, lng: 3.0782722, rt: [4.8, 25] },
+  { n: "Pharmacie Boualem", t: "Pharmacie", ph: "+213 23 70 32 54", h: "9h-20h", lat: 36.730316, lng: 3.0679402, rt: [4.1, 35] },
+  { n: "EPH Bachir Mentouri (Kouba)", t: "Hôpital / مستشفى", ph: "+213 23 78 56 85", h: "24h/24", lat: 36.7261659, lng: 3.086889, rt: [3.3, 141] },
+  { n: "Talya Dental Clinic", t: "Clinique dentaire", ph: "+213 774 66 39 59", h: "9h-20h", lat: 36.7246844, lng: 3.0718468, rt: [5.0, 109] },
+  { n: "Dentiste 24/24", t: "Clinique dentaire 24/24", ph: "+213 775 50 80 52", h: "0h-24h", lat: 36.7243898, lng: 3.0818947, rt: [4.7, 75] }
+];
+
+PHARMACIES.forEach(p => {
+  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy);
+});
+
+document.getElementById("places-container").innerHTML = PHARMACIES.map(p => `
+  <article class="card">
+    <div>
+      <h3>${p.n}</h3>
+      <div class="place-type">${p.t}</div>
+      <div class="info-item"><b>المسافة:</b> نحو ${Math.round(p.d)} متر</div>
+      ${p.h ? `<div class="info-item"><b>الأوقات:</b> ${p.h}</div>` : ''}
+      ${p.ph ? `<div class="info-item"><b>الهاتف:</b> <bdi dir="ltr">${p.ph}</bdi></div>` : ''}
+      ${p.rt ? `<div class="info-item"><b>التقييم:</b> ★ ${p.rt[0]} (${p.rt[1]} تقييم)</div>` : ''}
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">🚗 الاتجاهات</a>
+    </div>
+  </article>
+`).join('');
+</script>
+</body>
+</html>
