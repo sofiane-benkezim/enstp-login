@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المكتبة المركزية - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.75);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.3);
+  --accent: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
+.section-card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 28px; }
+.section-card h2 { font-size: 24px; font-weight: 800; color: #fff; margin-top: 0; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-card h2 i { color: var(--primary); }
+p { color: #cbd5e1; line-height: 1.8; font-size: 15px; margin-bottom: 16px; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+.step-box { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--card-border); padding: 20px; border-radius: 16px; }
+.step-box h4 { color: var(--accent); margin-top: 0; margin-bottom: 8px; font-size: 17px; font-weight: 700; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+.gallery-card { background: rgba(15, 23, 42, 0.4); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; }
+.gallery-img { width: 100%; height: 260px; object-fit: cover; transition: transform 0.4s; }
+.gallery-card:hover .gallery-img { transform: scale(1.04); }
+.gallery-caption { padding: 12px 16px; font-size: 14px; color: #94a3b8; text-align: center; font-weight: 600; }
+.btn { padding: 14px 28px; border-radius: 14px; font-weight: 700; font-size: 15px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s; }
+.btn-primary { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+.actions-container { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand"><i class="fa-solid fa-book-bookmark text-blue-500"></i> المكتبة المركزية - ENSTP</div>
+    <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;">العودة للرئيسية</a>
+  </header>
+
+  <!-- About Section -->
+  <section class="section-card">
+    <h2><i class="fa-solid fa-info-circle"></i> نبذة عن مكتبة المدرسة الفريدة</h2>
+    <p>تتميز المكتبة المركزية للمدرسة العليا للأشغال العمومية (ENSTP) ببيئتها الهادئة والمحفزة على التحصيل العلمي والبحث الأكاديمي. تحاط المكتبة بمشاتل ومساحات خضراء توفر الجو المثالي للتركيز، وتضم داخلها قاعات مطالعة واسعة ومجهزة بأحدث الطاولات المريحة، وأجهزة التكييف والإضاءة المناسبة للطلبة.</p>
+    <p>تضع المكتبة تحت تصرف الطلاب والباحثين آلاف المراجع العلمية المتخصصة في الهندسة المدنية، المنشآت الفنية، ميكانيكا التربة، بالإضافة إلى أحدث مذكرات التخرج وبحوث المهندسين السابقين.</p>
+  </section>
+
+  <!-- Registration & Free Borrowing Section -->
+  <section class="section-card">
+    <h2><i class="fa-solid fa-id-card"></i> كيفية التسجيل والاستفادة من الكتب مجاناً</h2>
+    <p>تتيح إدارة المدرسة لكل طالب مسجل بانتظام إمكانية الانخراط في المكتبة واستعارة الكتب والمراجع مجاناً طوال الموسم الدراسي. إليك خطوات وملفات التسجيل:</p>
+    
+    <div class="steps-grid">
+      <div class="step-box">
+        <h4>1. شهادة مدرسية</h4>
+        <p style="font-size: 14px; margin: 0;">شهادة تسجيل أصلية للسنة الدراسية الحالية تثبت انتماءك للمدرسة.</p>
+      </div>
+      <div class="step-box">
+        <h4>2. صور شخصية</h4>
+        <p style="font-size: 14px; margin: 0;">صورتان شخصيتان حديثتان لاستصدار بطاقة القارئ الخاصة بالمكتبة.</p>
+      </div>
+      <div class="step-box">
+        <h4>3. استمارة الالتزام</h4>
+        <p style="font-size: 14px; margin: 0;">ملء استمارة المعلومات والتوقيع على النظام الداخلي للمكتبة لضمان الحفاظ على الكتب وإرجاعها في المواعيد.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section-card">
+    <h2><i class="fa-solid fa-images"></i> صور من داخل وخارج المكتبة</h2>
+    <p>جولة بصرية في مدخل وقاعات المطالعة المجهزة بالمكتبة:</p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img src="https://drive.google.com/file/d/1IS9-WIde1DqjOpiOqJpqW1AvtH6NPFps/view?usp=drive_link" alt="مدخل مكتبة المدرسة" class="gallery-img">
+        <div class="gallery-caption">المدخل الرئيسي والحديقة المحيطة بمكتبة المدرسة</div>
+      </div>
+      <div class="gallery-card">
+        <img src="https://drive.google.com/file/d/1mfTrGBpbFUboUSYhs8zKDmREc6LFVgCp/view?usp=drive_link" alt="قاعة المطالعة بمكتبة المدرسة" class="gallery-img">
+        <div class="gallery-caption">قاعة المطالعة الهادئة والمجهزة بالطاولات والمكيفات</div>
+      </div>
+    </div>
+    
+    <div class="actions-container">
+      <a href="https://enstp.edu.dz" target="_blank" class="btn btn-primary">
+        <i class="fa-solid fa-globe"></i> زيارة الموقع الرسمي لمكتبة المدرسة
+      </a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
