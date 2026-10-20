@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>محطات النقل والحافلات - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.3);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
+.places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+.card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+.card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #fff; }
+.place-type { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+.info-item { font-size: 13px; color: #cbd5e1; margin: 6px 0; }
+.info-item b { color: var(--text-muted); }
+.card-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-primary { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">🚌 محطات الحافلات والنقل - ENSTP</div>
+    <a href="index.html" class="btn btn-secondary" style="flex:unset; padding:8px 16px;">العودة للرئيسية</a>
+  </header>
+  <main class="places-grid" id="places-container"></main>
+</div>
+<script>
+const O = { lat: 36.7255818, lng: 3.0695956 };
+const TRANSPORT = [
+  { 
+    n: "محطة حافلات القبة (Gare routière de Kouba)", 
+    t: "محطة حافلات رئيسية (ETUSA)", 
+    lat: 36.7298726, 
+    lng: 3.0732016, 
+    note: "المحطة الأساسية التي تضم خطوط الحافلات الحضرية وشبه الحضرية الرابطة." 
+  },
+  { 
+    n: "موقف الحافلات الجامعي القريب (University Bus Stop)", 
+    t: "موقف حافلات جواري", 
+    lat: 36.7302816, 
+    lng: 3.0730786, 
+    note: "الموقف الأقرب لمحيط المدرسة والذي يستعمله الطلبة يومياً للتنقل السريع." 
+  },
+  { 
+    n: "محطة مترو المعدومين (Les Fusillés / Ruisseau)", 
+    t: "محطة المترو والربط", 
+    lat: 36.7424932, 
+    lng: 3.0834303, 
+    note: "محطة المترو الرئيسية القريبة (يمكنك ركوب الحافلة المباشرة نحو الرويسو للوصول إليها)." 
+  },
+  { 
+    n: "محطة ترامواي المعدومين (Les Fusillés)", 
+    t: "محطة الترامواي", 
+    lat: 36.7424277, 
+    lng: 3.0832741, 
+    note: "محطة ربط الترامواي المتواجدة بمحاذاة محطة مترو المعدومين." 
+  }
+];
+
+TRANSPORT.forEach(p => {
+  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy);
+});
+
+document.getElementById("places-container").innerHTML = TRANSPORT.map(p => `
+  <article class="card">
+    <div>
+      <h3>${p.n}</h3>
+      <div class="place-type">${p.t}</div>
+      <div class="info-item"><b>المسافة التقريبية:</b> نحو ${Math.round(p.d)} متر عن المدرسة</div>
+      <div class="info-item" style="color:#fbbf24; margin-top:8px; line-height: 1.5;">📍 ${p.note}</div>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">🚗 الاتجاهات المباشرة</a>
+    </div>
+  </article>
+`).join('');
+</script>
+</body>
+</html>
