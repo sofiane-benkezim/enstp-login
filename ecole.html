@@ -10,7 +10,7 @@
 :root {
   --bg-main: #090d16;
   --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
-  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-bg: rgba(30, 41, 59, 0.75);
   --card-border: rgba(255, 255, 255, 0.1);
   --primary: #3b82f6;
   --primary-glow: rgba(59, 130, 246, 0.4);
@@ -18,14 +18,14 @@
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --radius: 24px;
-  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
   --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
 }
 
 [data-theme="light"] {
   --bg-main: #f8fafc;
   --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #f8fafc 100%);
-  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: rgba(0, 0, 0, 0.1);
   --primary: #2563eb;
   --primary-glow: rgba(37, 99, 235, 0.2);
@@ -75,17 +75,19 @@ body { margin: 0; background: var(--bg-main); background-image: var(--bg-gradien
 .director-info p { font-size: 13px; margin: 0; line-height: 1.7; }
 @media (max-width: 600px) { .director-box { flex-direction: column; text-align: center; } }
 
-/* Gallery Section for Lecture Halls */
-.gallery-section { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); margin-bottom: 40px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 24px; }
-.gallery-card { background: rgba(128, 128, 128, 0.04); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; transition: transform 0.4s, border-color 0.4s; }
-.gallery-card:hover { transform: translateY(-6px); border-color: var(--primary); }
-.gallery-img-wrap { width: 100%; height: 240px; overflow: hidden; position: relative; background: #000; }
-.gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-.gallery-card:hover .gallery-img { transform: scale(1.06); }
-.gallery-content { padding: 20px; }
-.gallery-content h4 { margin: 0 0 8px; font-size: 18px; font-weight: 800; color: var(--text-main); }
-.gallery-content p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+/* Multi-Photo Gallery Sections */
+.section-box { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); margin-bottom: 40px; }
+.section-box h2 { font-size: 24px; font-weight: 800; margin-top: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 14px; }
+.section-box h2 i { color: var(--primary); }
+.section-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; line-height: 1.8; }
+
+.photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.photo-item { background: rgba(128, 128, 128, 0.04); border: 1px solid var(--card-border); border-radius: 18px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+.photo-item:hover { transform: translateY(-5px); border-color: var(--primary); }
+.photo-wrap { width: 100%; height: 220px; overflow: hidden; background: #000; }
+.photo-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.photo-item:hover .photo-wrap img { transform: scale(1.05); }
+.photo-caption { padding: 14px 16px; font-size: 14px; font-weight: 700; color: var(--text-main); text-align: center; }
 
 /* Buttons */
 .btn { padding: 14px 28px; border-radius: 14px; font-weight: 700; font-size: 15px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; font-family: var(--font); cursor: pointer; border: none; }
@@ -131,7 +133,7 @@ body { margin: 0; background: var(--bg-main); background-image: var(--bg-gradien
       <div>
         <h2 id="history-title"><i class="fa-solid fa-landmark"></i> نبذة تاريخية وأصالة التأسيس</h2>
         <p id="history-p1">تأسست المدرسة رسمياً في شهر فبراير من عام 1966 تحت اسم مدرسة مهندسي الأشغال العمومية (EITP) بحسين داي، قبل أن تنتقل إلى موقعها الإستراتيجي الحالي ببلدية القبة (حي قاريدي) بولاية الجزائر العاصمة، لتشكل منذ ذلك الحين قطباً معرفياً وهندسياً فريداً.</p>
-        <p id="history-p2">تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون"، تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.</p>
+        <p id="history-p2">تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون", تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.</p>
       </div>
       <div style="margin-top: 24px;">
         <a href="https://enstp.edu.dz" target="_blank" class="btn btn-primary" style="width: 100%;" id="btn-official">
@@ -158,45 +160,77 @@ body { margin: 0; background: var(--bg-main); background-image: var(--bg-gradien
     </div>
   </div>
 
-  <!-- Lecture Halls & Classrooms Gallery Section -->
-  <section class="gallery-section">
-    <h2 id="gallery-title" style="font-size: 24px; font-weight: 800; margin-top: 0; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 14px;">
-      <i class="fa-solid fa-chalkboard-user" style="color: var(--primary);"></i> <span id="gallery-heading">قاعات المحاضرات الكبرى (أ وب) وقاعات التدريس</span>
-    </h2>
-    <p id="gallery-sub" style="color: var(--text-muted); font-size: 15px; margin-bottom: 24px;">توثيق بصري لأبرز قاعات المحاضرات والمدرجات (أ و ب) ومخابر وقاعات التدريس النظرية والتطبيقية بالمدرسة:</p>
+  <!-- Section 1: Amphithéâtre A Gallery (Multiple Photos) -->
+  <section class="section-box">
+    <h2 id="amphi-a-heading"><i class="fa-solid fa-chalkboard"></i> قاعة المحاضرات الكبرى (أ) - Amphithéâtre A</h2>
+    <p id="amphi-a-desc" class="section-desc">المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، المؤتمرات العلمية والفعاليات الأكاديمية الرسمية للطلبة:</p>
     
-    <div class="gallery-grid">
-      <div class="gallery-card">
-        <div class="gallery-img-wrap">
-          <!-- مكان وضع صورة قاعة المحاضرات أ -->
-          <img src="photo1.jpg" img src="photo2.jpg" alt="قاعة المحاضرات أ" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80'">
+    <div class="photos-grid">
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="photo8.jpg" alt="المدرج أ - زاوية 1" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80'">
         </div>
-        <div class="gallery-content">
-          <h4 id="hall-a-title">قاعة المحاضرات (أ) - Amphithéâtre A</h4>
-          <p id="hall-a-desc">المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، والفعاليات الأكاديمية الرسمية للطلبة.</p>
-        </div>
+        <div class="photo-caption" id="cap-a1">واجهة المنصة والمدرج من الأمام</div>
       </div>
-
-      <div class="gallery-card">
-        <div class="gallery-img-wrap">
-          <!-- مكان وضع صورة قاعة المحاضرات ب -->
-          <img src="amphi_b.png" alt="قاعة المحاضرات ب" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'">
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="photo1.jpg" alt="المدرج أ - زاوية 2" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'">
         </div>
-        <div class="gallery-content">
-          <h4 id="hall-b-title">قاعة المحاضرات (ب) - Amphithéâtre B</h4>
-          <p id="hall-b-desc">مدرج حيوي مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة لمختلف التخصصات.</p>
-        </div>
+        <div class="photo-caption" id="cap-a2">المقاعد ومدرجات الجلوس الفسيحة</div>
       </div>
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="photo2.jpg" alt="المدرج أ - زاوية 3" onerror="this.src='https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="photo-caption" id="cap-a3">تجهيزات الإضاءة والتحكم السمعي البصري</div>
+      </div>
+    </div>
+  </section>
 
-      <div class="gallery-card">
-        <div class="gallery-img-wrap">
-          <!-- مكان وضع صور قاعات التدريس الأخرى -->
-          <img src="classrooms.png" alt="قاعات التدريس الأخرى" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80'">
+  <!-- Section 2: Amphithéâtre B Gallery (Multiple Photos) -->
+  <section class="section-box">
+    <h2 id="amphi-b-heading"><i class="fa-solid fa-video"></i> قاعة المحاضرات (ب) - Amphithéâtre B</h2>
+    <p id="amphi-b-desc" class="section-desc">مدرج حيوي متطور مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة:</p>
+    
+    <div class="photos-grid">
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="amphi_b_1.png" alt="المدرج ب - زاوية 1" onerror="this.src='https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80'">
         </div>
-        <div class="gallery-content">
-          <h4 id="hall-other-title">قاعات التدريس والأعمال التطبيقية</h4>
-          <p id="hall-other-desc">قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في الأعمال الموجهة (TD) والتطبيقية (TP).</p>
+        <div class="photo-caption" id="cap-b1">نظرة عامة على قاعة المحاضرات ب</div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="amphi_b_2.png" alt="المدرج ب - زاوية 2" onerror="this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80'">
         </div>
+        <div class="photo-caption" id="cap-b2">الشاشات والسبورة التفاعلية</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Other Classrooms Gallery (Multiple Photos) -->
+  <section class="section-box" style="margin-bottom: 0;">
+    <h2 id="class-heading"><i class="fa-solid fa-door-open"></i> قاعات التدريس والأعمال الموجهة الأخرى</h2>
+    <p id="class-desc" class="section-desc">قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في مجموعات صغيرة خلال الحصص التطبيقية والموجهة:</p>
+    
+    <div class="photos-grid">
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="class_1.png" alt="قاعة تدريس 1" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="photo-caption" id="cap-c1">قاعة الأعمال الموجهة (TD)</div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="class_2.png" alt="قاعة تدريس 2" onerror="this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="photo-caption" id="cap-c2">قاعات التدريس القياسية</div>
+      </div>
+      <div class="photo-item">
+        <div class="photo-wrap">
+          <img src="class_3.png" alt="قاعة تدريس 3" onerror="this.src='https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="photo-caption" id="cap-c3">الممرات وفضاءات الاستراحة الطلّابية</div>
       </div>
     </div>
   </section>
@@ -207,57 +241,66 @@ body { margin: 0; background: var(--bg-main); background-image: var(--bg-gradien
 const translations = {
   ar: {
     dir: 'rtl',
-    lang: 'ar',
     brand: 'ENSTP Portal',
     back: 'العودة للرئيسية',
     heroTitle: 'المدرسة الوطنية العليا للأشغال العمومية <br><span>فرانسيس جانسون (ENSTP)</span>',
     heroDesc: 'الصرح الأكاديمي والهندسي الأعرق في الجزائر، تأسست سنة 1966، وتكرس جهودها لتكوين نخبة مهندسي الدولة في تخصصات الهندسة المدنية، المنشآت الفنية، الطرقات وإدارة مشاريع البناء الكبرى وفق معايير عالمية متطورة.',
     historyTitle: 'نبذة تاريخية وأصالة التأسيس',
     historyP1: 'تأسست المدرسة رسمياً في شهر فبراير من عام 1966 تحت اسم مدرسة مهندسي الأشغال العمومية (EITP) بحسين داي، قبل أن تنتقل إلى موقعها الإستراتيجي الحالي ببلدية القبة (حي قاريدي) بولاية الجزائر العاصمة، لتشكل منذ ذلك الحين قطباً معرفياً وهندسياً فريداً.',
-    historyP2: 'تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون"، تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.',
+    historyP2: 'تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون", تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.',
     btnOfficial: 'زيارة الموقع الرسمي للمدرسة',
     directorTitle: 'إدارة المدرسة',
     directorDesc: 'تدار المدرسة برؤية استراتيجية تسعى للارتقاء بجودة التكوين الهندسي، تعزيز الابتكار، وتوطيد الشراكة الوثيقة مع الهيئات والمؤسسات الاقتصادية الكبرى.',
     dirName: 'الدكتورة فوزية ميكاداش باشا',
     dirRole: 'مديرة المدرسة الوطنية العليا للأشغال العمومية',
     dirBio: 'تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.',
-    galleryHeading: 'قاعات المحاضرات الكبرى (أ وب) وقاعات التدريس',
-    gallerySub: 'توثيق بصري لأبرز قاعات المحاضرات والمدرجات (أ و ب) ومخابر وقاعات التدريس النظرية والتطبيقية بالمدرسة:',
-    hallATitle: 'قاعة المحاضرات (أ) - Amphithéâtre A',
-    hallADesc: 'المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، والفعاليات الأكاديمية الرسمية للطلبة.',
-    hallBTitle: 'قاعة المحاضرات (ب) - Amphithéâtre B',
-    hallBDesc: 'مدرج حيوي مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة لمختلف التخصصات.',
-    hallOtherTitle: 'قاعات التدريس والأعمال التطبيقية',
-    hallOtherDesc: 'قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في الأعمال الموجهة (TD) والتطبيقية (TP).'
+    amphiAHeading: 'قاعة المحاضرات الكبرى (أ) - Amphithéâtre A',
+    amphiADesc: 'المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، المؤتمرات العلمية والفعاليات الأكاديمية الرسمية للطلبة:',
+    capA1: 'واجهة المنصة والمدرج من الأمام',
+    capA2: 'المقاعد ومدرجات الجلوس الفسيحة',
+    capA3: 'تجهيزات الإضاءة والتحكم السمعي البصري',
+    amphiBHeading: 'قاعة المحاضرات (ب) - Amphithéâtre B',
+    amphiBDesc: 'مدرج حيوي متطور مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة:',
+    capB1: 'نظرة عامة على قاعة المحاضرات ب',
+    capB2: 'الشاشات والسبورة التفاعلية',
+    classHeading: 'قاعات التدريس والأعمال الموجهة الأخرى',
+    classDesc: 'قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في مجموعات صغيرة خلال الحصص التطبيقية والموجهة:',
+    capC1: 'قاعة الأعمال الموجهة (TD)',
+    capC2: 'قاعات التدريس القياسية',
+    capC3: 'الممرات وفضاءات الاستراحة الطلّابية'
   },
   fr: {
     dir: 'ltr',
-    lang: 'fr',
     brand: 'ENSTP Portal',
     back: 'Retour à l\'accueil',
     heroTitle: 'École Nationale Supérieure des Travaux Publics <br><span>Francis Jeanson (ENSTP)</span>',
     heroDesc: 'Le fleuron académique et ingénierique en Algérie, fondé en 1966, dédié à la formation de l’élite des ingénieurs d’État en génie civil, ouvrages d’art, infrastructures routières et gestion des grands projets de construction.',
     historyTitle: 'Aperçu Historique et Origines',
     historyP1: 'L\'école a été officiellement fondée en février 1966 sous le nom d\'École des Ingénieurs des Travaux Publics (EITP) à Hussein Dey, avant de s\'installer dans son site stratégique actuel à Kouba (Garidi), Alger, constituant depuis lors un pôle de savoir unique.',
-    historyP2: 'L\'école est fière de porter le nom du défunt philosophe français "Francis Jeanson", en hommage à ses positions historiques courageuses soutenant la glorieuse révolution de libération nationale. Des milliers d\'ingénieurs d\'élite y ont été formés.',
+    historyP2: 'L\'école est fière de porter le nom du défunt philosophe français "Francis Jeanson", en hommage à ses positions historiques courageuses soutenant la glorieuse révolution de libération nationale.',
     btnOfficial: 'Visiter le site officiel',
     directorTitle: 'Direction de l\'École',
     directorDesc: 'L\'école est dirigée avec une vision stratégique visant à élever la qualité de la formation d\'ingénieur, à promouvoir l\'innovation et à renforcer les partenariats avec les institutions économiques.',
     dirName: 'Dr. Fawzia Mekadache Bacha',
     dirRole: 'Directrice de l\'ENSTP',
     dirBio: 'Supervise la politique pédagogique et de recherche, ainsi que le développement des partenariats scientifiques nationaux et internationaux.',
-    galleryHeading: 'Amphithéâtres Majeurs (A & B) et Salles de Cours',
-    gallerySub: 'Documentation visuelle des principaux amphithéâtres (A et B), laboratoires et salles de cours théoriques et pratiques :',
-    hallATitle: 'Amphithéâtre A',
-    hallADesc: 'L\'amphithéâtre principal dédié aux grandes conférences théoriques, colloques nationaux et événements académiques officiels.',
-    hallBTitle: 'Amphithéâtre B',
-    hallBDesc: 'Un amphithéâtre dynamique entièrement équipé de moyens audiovisuels modernes pour les cours magistraux spécialisés.',
-    hallOtherTitle: 'Salles de Cours & Travaux Pratiques',
-    hallOtherDesc: 'Salles conçues pour faciliter l\'interaction directe entre professeurs et étudiants lors des TD et TP.'
+    amphiAHeading: 'Amphithéâtre A',
+    amphiADesc: 'L\'amphithéâtre principal dédié aux grandes conférences théoriques, colloques nationaux, conférences scientifiques et événements académiques :',
+    capA1: 'Vue de la tribune et de l\'amphithéâtre',
+    capA2: 'Sièges et gradins spacieux',
+    capA3: 'Équipements d\'éclairage et contrôle audiovisuel',
+    amphiBHeading: 'Amphithéâtre B',
+    amphiBDesc: 'Amphithéâtre dynamique entièrement équipé de moyens audiovisuels modernes pour les cours dirigés et spécialisés :',
+    capB1: 'Aperçu global de l\'amphithéâtre B',
+    capB2: 'Écrans et tableau interactif',
+    classHeading: 'Salles de Cours & Travaux Dirigés',
+    classDesc: 'Salles conçues pour faciliter l\'interaction directe entre professeurs et étudiants en petits groupes lors des séances de TD et TP :',
+    capC1: 'Salle de Travaux Dirigés (TD)',
+    capC2: 'Salles de classe standard',
+    capC3: 'Couloirs et espaces de détente étudiants'
   },
   en: {
     dir: 'ltr',
-    lang: 'en',
     brand: 'ENSTP Portal',
     back: 'Back to Home',
     heroTitle: 'National Higher School of Public Works <br><span>Francis Jeanson (ENSTP)</span>',
@@ -271,14 +314,20 @@ const translations = {
     dirName: 'Dr. Fawzia Mekadache Bacha',
     dirRole: 'Director of ENSTP',
     dirBio: 'Supervises pedagogical and research policies, and develops national and international scientific partnerships to serve Algerian engineering students.',
-    galleryHeading: 'Major Lecture Halls (A & B) and Classrooms',
-    gallerySub: 'Visual documentation of the main amphitheaters (A and B), laboratories, and theoretical/practical classrooms:',
-    hallATitle: 'Amphitheater A',
-    hallADesc: 'The primary lecture hall hosting major theoretical conferences, national symposia, and official academic events.',
-    hallBTitle: 'Amphitheater B',
-    hallBDesc: 'A dynamic amphitheater fully equipped with modern audiovisual facilities for specialized lectures across various majors.',
-    hallOtherTitle: 'Classrooms & Practical Labs',
-    hallOtherDesc: 'Classrooms specially designed to facilitate direct interaction between professors and students in tutorial and lab sessions.'
+    amphiAHeading: 'Amphitheater A',
+    amphiADesc: 'The primary lecture hall hosting major theoretical conferences, national symposia, scientific congresses, and official academic events:',
+    capA1: 'Front view of the podium and amphitheater',
+    capA2: 'Spacious seating and tiers',
+    capA3: 'Lighting and audiovisual control equipment',
+    amphiBHeading: 'Amphitheater B',
+    amphiBDesc: 'A dynamic modern amphitheater fully equipped with audiovisual facilities for specialized tutorials and lectures:',
+    capB1: 'General overview of Amphitheater B',
+    capB2: 'Screens and interactive board',
+    classHeading: 'Classrooms & Tutorial Rooms',
+    classDesc: 'Rooms specifically designed to facilitate direct professor-student interaction in small groups during tutorial and lab sessions:',
+    capC1: 'Tutorial Session Room (TD)',
+    capC2: 'Standard Classrooms',
+    capC3: 'Corridors and student lounge areas'
   }
 };
 
@@ -291,14 +340,12 @@ function setLanguage(lang) {
   document.getElementById('htmlRoot').dir = d.dir;
   document.getElementById('htmlRoot').lang = lang;
   
-  // Update Active Button
   ['ar', 'fr', 'en'].forEach(l => {
     const btn = document.getElementById(`lang-${l}`);
     if(l === lang) btn.classList.add('active');
     else btn.classList.remove('active');
   });
 
-  // Text contents
   document.getElementById('txt-brand').innerText = d.brand;
   document.getElementById('btn-back').innerText = d.back;
   document.getElementById('hero-title').innerHTML = d.heroTitle;
@@ -312,14 +359,23 @@ function setLanguage(lang) {
   document.getElementById('dir-name').innerText = d.dirName;
   document.getElementById('dir-role').innerText = d.dirRole;
   document.getElementById('dir-bio').innerText = d.dirBio;
-  document.getElementById('gallery-heading').innerText = d.galleryHeading;
-  document.getElementById('gallery-sub').innerText = d.gallerySub;
-  document.getElementById('hall-a-title').innerText = d.hallATitle;
-  document.getElementById('hall-a-desc').innerText = d.hallADesc;
-  document.getElementById('hall-b-title').innerText = d.hallBTitle;
-  document.getElementById('hall-b-desc').innerText = d.hallBDesc;
-  document.getElementById('hall-other-title').innerText = d.hallOtherTitle;
-  document.getElementById('hall-other-desc').innerText = d.hallOtherDesc;
+  
+  document.getElementById('amphi-a-heading').innerHTML = `<i class="fa-solid fa-chalkboard"></i> ${d.amphiAHeading}`;
+  document.getElementById('amphi-a-desc').innerText = d.amphiADesc;
+  document.getElementById('cap-a1').innerText = d.capA1;
+  document.getElementById('cap-a2').innerText = d.capA2;
+  document.getElementById('cap-a3').innerText = d.capA3;
+
+  document.getElementById('amphi-b-heading').innerHTML = `<i class="fa-solid fa-video"></i> ${d.amphiBHeading}`;
+  document.getElementById('amphi-b-desc').innerText = d.amphiBDesc;
+  document.getElementById('cap-b1').innerText = d.capB1;
+  document.getElementById('cap-b2').innerText = d.capB2;
+
+  document.getElementById('class-heading').innerHTML = `<i class="fa-solid fa-door-open"></i> ${d.classHeading}`;
+  document.getElementById('class-desc').innerText = d.classDesc;
+  document.getElementById('cap-c1').innerText = d.capC1;
+  document.getElementById('cap-c2').innerText = d.capC2;
+  document.getElementById('cap-c3').innerText = d.capC3;
 }
 
 function toggleTheme() {
