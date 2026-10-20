@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title id="pageTitle">المدرسة العليا للأشغال العمومية - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg-main: #090d16;
+  --bg-gradient: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #3b82f6;
+  --primary-glow: rgba(59, 130, 246, 0.4);
+  --accent: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 24px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg-main: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #f8fafc 100%);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.1);
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.2);
+  --accent: #d97706;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-main); background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 80px; transition: background 0.3s, color 0.3s; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 30px 20px; }
+
+/* Header & Controls */
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 32px; background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 40px; }
+.brand { display: flex; align-items: center; gap: 16px; font-size: 22px; font-weight: 900; }
+.brand img { height: 45px; width: auto; object-fit: contain; }
+.controls { display: flex; align-items: center; gap: 12px; }
+
+/* Language & Theme Switchers */
+.lang-switcher, .theme-toggle { background: rgba(128, 128, 128, 0.1); border: 1px solid var(--card-border); padding: 4px; border-radius: 14px; display: flex; align-items: center; gap: 4px; }
+.lang-btn { background: transparent; border: none; padding: 6px 12px; border-radius: 10px; font-weight: 700; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all 0.3s; font-family: var(--font); }
+.lang-btn.active { background: var(--primary); color: #fff; box-shadow: 0 4px 12px var(--primary-glow); }
+.theme-btn { background: transparent; border: none; width: 36px; height: 36px; border-radius: 10px; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.theme-btn:hover { background: rgba(128, 128, 128, 0.2); }
+
+/* Hero Section */
+.hero { background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(30, 27, 75, 0.4)); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 56px 32px; text-align: center; margin-bottom: 40px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.hero h1 { font-size: 36px; font-weight: 900; margin: 0 0 20px; line-height: 1.4; }
+.hero h1 span { color: var(--accent); }
+.hero p { color: var(--text-muted); font-size: 16px; max-width: 900px; margin: 0 auto; line-height: 1.9; }
+
+/* Grid Layouts */
+.grid-2 { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; margin-bottom: 40px; }
+@media (max-width: 992px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.card { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+.card h2 { font-size: 22px; font-weight: 800; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 14px; }
+.card h2 i { color: var(--primary); }
+.card p { color: var(--text-muted); line-height: 1.9; font-size: 15px; margin-bottom: 16px; }
+
+/* Director Profile */
+.director-box { display: flex; gap: 24px; align-items: center; background: rgba(128, 128, 128, 0.05); border: 1px solid var(--card-border); padding: 24px; border-radius: 20px; margin-top: 24px; }
+.director-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); box-shadow: 0 0 25px var(--primary-glow); flex-shrink: 0; }
+.director-info h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
+.director-info span { font-size: 13px; color: var(--accent); font-weight: 700; display: block; margin-bottom: 8px; }
+.director-info p { font-size: 13px; margin: 0; line-height: 1.7; }
+@media (max-width: 600px) { .director-box { flex-direction: column; text-align: center; } }
+
+/* Gallery Section for Lecture Halls */
+.gallery-section { background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); margin-bottom: 40px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 24px; }
+.gallery-card { background: rgba(128, 128, 128, 0.04); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; transition: transform 0.4s, border-color 0.4s; }
+.gallery-card:hover { transform: translateY(-6px); border-color: var(--primary); }
+.gallery-img-wrap { width: 100%; height: 240px; overflow: hidden; position: relative; background: #000; }
+.gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.gallery-card:hover .gallery-img { transform: scale(1.06); }
+.gallery-content { padding: 20px; }
+.gallery-content h4 { margin: 0 0 8px; font-size: 18px; font-weight: 800; color: var(--text-main); }
+.gallery-content p { margin: 0; font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+/* Buttons */
+.btn { padding: 14px 28px; border-radius: 14px; font-weight: 700; font-size: 15px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; font-family: var(--font); cursor: pointer; border: none; }
+.btn-primary { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; box-shadow: 0 4px 20px var(--primary-glow); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6); }
+.btn-secondary { background: rgba(128, 128, 128, 0.1); color: var(--text-main); border: 1px solid var(--card-border); }
+.btn-secondary:hover { background: rgba(128, 128, 128, 0.2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP Logo">
+      <span id="txt-brand">ENSTP Portal</span>
+    </div>
+    <div class="controls">
+      <!-- Theme Toggle -->
+      <button class="theme-btn" onclick="toggleTheme()" id="themeToggleBtn" title="تبديل الإضاءة">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <button onclick="setLanguage('ar')" id="lang-ar" class="lang-btn active">AR</button>
+        <button onclick="setLanguage('fr')" id="lang-fr" class="lang-btn">FR</button>
+        <button onclick="setLanguage('en')" id="lang-en" class="lang-btn">EN</button>
+      </div>
+      <a href="index.html" class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;" id="btn-back">العودة للرئيسية</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 id="hero-title">المدرسة الوطنية العليا للأشغال العمومية <br><span>فرانسيس جانسون (ENSTP)</span></h1>
+    <p id="hero-desc">الصرح الأكاديمي والهندسي الأعرق في الجزائر، تأسست سنة 1966، وتكرس جهودها لتكوين نخبة مهندسي الدولة في تخصصات الهندسة المدنية، المنشآت الفنية، الطرقات وإدارة مشاريع البناء الكبرى وفق معايير عالمية متطورة.</p>
+  </section>
+
+  <!-- History & Director Grid -->
+  <div class="grid-2">
+    <!-- History & Origins -->
+    <div class="card">
+      <div>
+        <h2 id="history-title"><i class="fa-solid fa-landmark"></i> نبذة تاريخية وأصالة التأسيس</h2>
+        <p id="history-p1">تأسست المدرسة رسمياً في شهر فبراير من عام 1966 تحت اسم مدرسة مهندسي الأشغال العمومية (EITP) بحسين داي، قبل أن تنتقل إلى موقعها الإستراتيجي الحالي ببلدية القبة (حي قاريدي) بولاية الجزائر العاصمة، لتشكل منذ ذلك الحين قطباً معرفياً وهندسياً فريداً.</p>
+        <p id="history-p2">تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون"، تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.</p>
+      </div>
+      <div style="margin-top: 24px;">
+        <a href="https://enstp.edu.dz" target="_blank" class="btn btn-primary" style="width: 100%;" id="btn-official">
+          <i class="fa-solid fa-globe"></i> زيارة الموقع الرسمي للمدرسة
+        </a>
+      </div>
+    </div>
+
+    <!-- Director Profile -->
+    <div class="card">
+      <div>
+        <h2 id="director-title"><i class="fa-solid fa-user-tie"></i> إدارة المدرسة</h2>
+        <p id="director-desc">تدار المدرسة برؤية استراتيجية تسعى للارتقاء بجودة التكوين الهندسي، تعزيز الابتكار، وتوطيد الشراكة الوثيقة مع الهيئات والمؤسسات الاقتصادية الكبرى.</p>
+        
+        <div class="director-box">
+          <img src="director.png" alt="مديرة المدرسة" class="director-img" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80'">
+          <div class="director-info">
+            <h3 id="dir-name">الدكتورة فوزية ميكاداش باشا</h3>
+            <span id="dir-role">مديرة المدرسة الوطنية العليا للأشغال العمومية</span>
+            <p id="dir-bio">تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lecture Halls & Classrooms Gallery Section -->
+  <section class="gallery-section">
+    <h2 id="gallery-title" style="font-size: 24px; font-weight: 800; margin-top: 0; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 14px;">
+      <i class="fa-solid fa-chalkboard-user" style="color: var(--primary);"></i> <span id="gallery-heading">قاعات المحاضرات الكبرى (أ وب) وقاعات التدريس</span>
+    </h2>
+    <p id="gallery-sub" style="color: var(--text-muted); font-size: 15px; margin-bottom: 24px;">توثيق بصري لأبرز قاعات المحاضرات والمدرجات (أ و ب) ومخابر وقاعات التدريس النظرية والتطبيقية بالمدرسة:</p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <!-- مكان وضع صورة قاعة المحاضرات أ -->
+          <img src="amphi_a.png" alt="قاعة المحاضرات أ" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="gallery-content">
+          <h4 id="hall-a-title">قاعة المحاضرات (أ) - Amphithéâtre A</h4>
+          <p id="hall-a-desc">المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، والفعاليات الأكاديمية الرسمية للطلبة.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <!-- مكان وضع صورة قاعة المحاضرات ب -->
+          <img src="amphi_b.png" alt="قاعة المحاضرات ب" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="gallery-content">
+          <h4 id="hall-b-title">قاعة المحاضرات (ب) - Amphithéâtre B</h4>
+          <p id="hall-b-desc">مدرج حيوي مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة لمختلف التخصصات.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img-wrap">
+          <!-- مكان وضع صور قاعات التدريس الأخرى -->
+          <img src="classrooms.png" alt="قاعات التدريس الأخرى" class="gallery-img" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80'">
+        </div>
+        <div class="gallery-content">
+          <h4 id="hall-other-title">قاعات التدريس والأعمال التطبيقية</h4>
+          <p id="hall-other-desc">قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في الأعمال الموجهة (TD) والتطبيقية (TP).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Multilingual & Theme Script -->
+<script>
+const translations = {
+  ar: {
+    dir: 'rtl',
+    lang: 'ar',
+    brand: 'ENSTP Portal',
+    back: 'العودة للرئيسية',
+    heroTitle: 'المدرسة الوطنية العليا للأشغال العمومية <br><span>فرانسيس جانسون (ENSTP)</span>',
+    heroDesc: 'الصرح الأكاديمي والهندسي الأعرق في الجزائر، تأسست سنة 1966، وتكرس جهودها لتكوين نخبة مهندسي الدولة في تخصصات الهندسة المدنية، المنشآت الفنية، الطرقات وإدارة مشاريع البناء الكبرى وفق معايير عالمية متطورة.',
+    historyTitle: 'نبذة تاريخية وأصالة التأسيس',
+    historyP1: 'تأسست المدرسة رسمياً في شهر فبراير من عام 1966 تحت اسم مدرسة مهندسي الأشغال العمومية (EITP) بحسين داي، قبل أن تنتقل إلى موقعها الإستراتيجي الحالي ببلدية القبة (حي قاريدي) بولاية الجزائر العاصمة، لتشكل منذ ذلك الحين قطباً معرفياً وهندسياً فريداً.',
+    historyP2: 'تفتخر المدرسة بحملها لاسم الفيلسوف الفرنسي الراحل "فرانسيس جانسون"، تقديراً لمواقفه التاريخية الشجاعة المساندة لثورة التحرير الوطني المجيدة. وقد تخرج من مقاعدها عبر العقود آلاف المهندسين الكفؤين الذين قادوا وهندسوا مشاريع البنية التحتية الكبرى داخل وخارج الوطن.',
+    btnOfficial: 'زيارة الموقع الرسمي للمدرسة',
+    directorTitle: 'إدارة المدرسة',
+    directorDesc: 'تدار المدرسة برؤية استراتيجية تسعى للارتقاء بجودة التكوين الهندسي، تعزيز الابتكار، وتوطيد الشراكة الوثيقة مع الهيئات والمؤسسات الاقتصادية الكبرى.',
+    dirName: 'الدكتورة فوزية ميكاداش باشا',
+    dirRole: 'مديرة المدرسة الوطنية العليا للأشغال العمومية',
+    dirBio: 'تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.',
+    galleryHeading: 'قاعات المحاضرات الكبرى (أ وب) وقاعات التدريس',
+    gallerySub: 'توثيق بصري لأبرز قاعات المحاضرات والمدرجات (أ و ب) ومخابر وقاعات التدريس النظرية والتطبيقية بالمدرسة:',
+    hallATitle: 'قاعة المحاضرات (أ) - Amphithéâtre A',
+    hallADesc: 'المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، والفعاليات الأكاديمية الرسمية للطلبة.',
+    hallBTitle: 'قاعة المحاضرات (ب) - Amphithéâtre B',
+    hallBDesc: 'مدرج حيوي مجهز بالكامل بالوسائل السمعية البصرية الحديثة، مخصص للدروس التوجيهية والمحاضرات المتخصصة لمختلف التخصصات.',
+    hallOtherTitle: 'قاعات التدريس والأعمال التطبيقية',
+    hallOtherDesc: 'قاعات مصممة خصيصاً لتسهيل التفاعل المباشر بين الأساتذة والطلبة في الأعمال الموجهة (TD) والتطبيقية (TP).'
+  },
+  fr: {
+    dir: 'ltr',
+    lang: 'fr',
+    brand: 'ENSTP Portal',
+    back: 'Retour à l\'accueil',
+    heroTitle: 'École Nationale Supérieure des Travaux Publics <br><span>Francis Jeanson (ENSTP)</span>',
+    heroDesc: 'Le fleuron académique et ingénierique en Algérie, fondé en 1966, dédié à la formation de l’élite des ingénieurs d’État en génie civil, ouvrages d’art, infrastructures routières et gestion des grands projets de construction.',
+    historyTitle: 'Aperçu Historique et Origines',
+    historyP1: 'L\'école a été officiellement fondée en février 1966 sous le nom d\'École des Ingénieurs des Travaux Publics (EITP) à Hussein Dey, avant de s\'installer dans son site stratégique actuel à Kouba (Garidi), Alger, constituant depuis lors un pôle de savoir unique.',
+    historyP2: 'L\'école est fière de porter le nom du défunt philosophe français "Francis Jeanson", en hommage à ses positions historiques courageuses soutenant la glorieuse révolution de libération nationale. Des milliers d\'ingénieurs d\'élite y ont été formés.',
+    btnOfficial: 'Visiter le site officiel',
+    directorTitle: 'Direction de l\'École',
+    directorDesc: 'L\'école est dirigée avec une vision stratégique visant à élever la qualité de la formation d\'ingénieur, à promouvoir l\'innovation et à renforcer les partenariats avec les institutions économiques.',
+    dirName: 'Dr. Fawzia Mekadache Bacha',
+    dirRole: 'Directrice de l\'ENSTP',
+    dirBio: 'Supervise la politique pédagogique et de recherche, ainsi que le développement des partenariats scientifiques nationaux et internationaux.',
+    galleryHeading: 'Amphithéâtres Majeurs (A & B) et Salles de Cours',
+    gallerySub: 'Documentation visuelle des principaux amphithéâtres (A et B), laboratoires et salles de cours théoriques et pratiques :',
+    hallATitle: 'Amphithéâtre A',
+    hallADesc: 'L\'amphithéâtre principal dédié aux grandes conférences théoriques, colloques nationaux et événements académiques officiels.',
+    hallBTitle: 'Amphithéâtre B',
+    hallBDesc: 'Un amphithéâtre dynamique entièrement équipé de moyens audiovisuels modernes pour les cours magistraux spécialisés.',
+    hallOtherTitle: 'Salles de Cours & Travaux Pratiques',
+    hallOtherDesc: 'Salles conçues pour faciliter l\'interaction directe entre professeurs et étudiants lors des TD et TP.'
+  },
+  en: {
+    dir: 'ltr',
+    lang: 'en',
+    brand: 'ENSTP Portal',
+    back: 'Back to Home',
+    heroTitle: 'National Higher School of Public Works <br><span>Francis Jeanson (ENSTP)</span>',
+    heroDesc: 'Algiers premier academic and engineering landmark, established in 1966, dedicated to forming elite state engineers in civil engineering, bridge structures, road infrastructure, and mega-project management.',
+    historyTitle: 'Historical Overview & Origins',
+    historyP1: 'The school was officially founded in February 1966 as the Public Works Engineers School (EITP) in Hussein Dey, before moving to its current strategic location in Kouba (Garidi), Algiers, establishing a unique hub for engineering knowledge.',
+    historyP2: 'The school proudly bears the name of the late French philosopher "Francis Jeanson", honoring his courageous historical stances supporting Algeria\'s glorious national liberation revolution.',
+    btnOfficial: 'Visit Official Website',
+    directorTitle: 'School Administration',
+    directorDesc: 'The school is managed with a strategic vision aiming to elevate engineering education quality, foster innovation, and strengthen partnerships with major economic institutions.',
+    dirName: 'Dr. Fawzia Mekadache Bacha',
+    dirRole: 'Director of ENSTP',
+    dirBio: 'Supervises pedagogical and research policies, and develops national and international scientific partnerships to serve Algerian engineering students.',
+    galleryHeading: 'Major Lecture Halls (A & B) and Classrooms',
+    gallerySub: 'Visual documentation of the main amphitheaters (A and B), laboratories, and theoretical/practical classrooms:',
+    hallATitle: 'Amphitheater A',
+    hallADesc: 'The primary lecture hall hosting major theoretical conferences, national symposia, and official academic events.',
+    hallBTitle: 'Amphitheater B',
+    hallBDesc: 'A dynamic amphitheater fully equipped with modern audiovisual facilities for specialized lectures across various majors.',
+    hallOtherTitle: 'Classrooms & Practical Labs',
+    hallOtherDesc: 'Classrooms specially designed to facilitate direct interaction between professors and students in tutorial and lab sessions.'
+  }
+};
+
+let currentLang = 'ar';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  const d = translations[lang];
+  
+  document.getElementById('htmlRoot').dir = d.dir;
+  document.getElementById('htmlRoot').lang = lang;
+  
+  // Update Active Button
+  ['ar', 'fr', 'en'].forEach(l => {
+    const btn = document.getElementById(`lang-${l}`);
+    if(l === lang) btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+
+  // Text contents
+  document.getElementById('txt-brand').innerText = d.brand;
+  document.getElementById('btn-back').innerText = d.back;
+  document.getElementById('hero-title').innerHTML = d.heroTitle;
+  document.getElementById('hero-desc').innerText = d.heroDesc;
+  document.getElementById('history-title').innerHTML = `<i class="fa-solid fa-landmark"></i> ${d.historyTitle}`;
+  document.getElementById('history-p1').innerText = d.historyP1;
+  document.getElementById('history-p2').innerText = d.historyP2;
+  document.getElementById('btn-official').innerHTML = `<i class="fa-solid fa-globe"></i> ${d.btnOfficial}`;
+  document.getElementById('director-title').innerHTML = `<i class="fa-solid fa-user-tie"></i> ${d.directorTitle}`;
+  document.getElementById('director-desc').innerText = d.directorDesc;
+  document.getElementById('dir-name').innerText = d.dirName;
+  document.getElementById('dir-role').innerText = d.dirRole;
+  document.getElementById('dir-bio').innerText = d.dirBio;
+  document.getElementById('gallery-heading').innerText = d.galleryHeading;
+  document.getElementById('gallery-sub').innerText = d.gallerySub;
+  document.getElementById('hall-a-title').innerText = d.hallATitle;
+  document.getElementById('hall-a-desc').innerText = d.hallADesc;
+  document.getElementById('hall-b-title').innerText = d.hallBTitle;
+  document.getElementById('hall-b-desc').innerText = d.hallBDesc;
+  document.getElementById('hall-other-title').innerText = d.hallOtherTitle;
+  document.getElementById('hall-other-desc').innerText = d.hallOtherDesc;
+}
+
+function toggleTheme() {
+  const root = document.getElementById('htmlRoot');
+  const icon = document.getElementById('themeIcon');
+  if(root.getAttribute('data-theme') === 'light') {
+    root.removeAttribute('data-theme');
+    icon.className = 'fa-solid fa-moon';
+  } else {
+    root.setAttribute('data-theme', 'light');
+    icon.className = 'fa-solid fa-sun';
+  }
+}
+</script>
+</body>
+</html>
