@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دليل الجزائر العاصمة السياحي - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.35);
+  --accent: #f59e0b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #0f172a;
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 28px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.brand-icon svg { width: 26px; height: 26px; stroke: #fff; }
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #fff, var(--text-muted));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lg-btn-group {
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 30px;
+  border: 1px solid var(--card-border);
+}
+
+.lg-btn-group button {
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lg-btn-group button[aria-pressed="true"] {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  margin: 0 0 12px;
+  background: linear-gradient(to right, #ffffff, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+.stats-bar {
+  display: inline-flex;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--card-border);
+  padding: 12px 28px;
+  border-radius: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.stat-item span { color: var(--accent); font-weight: 900; }
+
+/* Search Box */
+.search-container {
+  max-width: 500px;
+  margin: 24px auto 0;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 30px;
+  border: 1px solid var(--card-border);
+  background: rgba(15, 23, 42, 0.8);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: var(--shadow);
+}
+
+.search-container input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 25px var(--primary-glow);
+}
+
+/* Places Grid */
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+/* Touristic Card */
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px var(--primary-glow);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.badge-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #a855f7);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.title-area h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.place-type {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.dist-badge {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.dist-badge small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.info-group {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-item {
+  font-size: 13px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-item b { color: var(--text-muted); font-weight: 600; }
+
+.review-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #e2e8f0;
+  border-right: 3px solid var(--primary);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.note-card {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #4f46e5);
+  color: #fff;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid var(--card-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .places-grid { grid-template-columns: 1fr; }
+  .header { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <!-- Header Bar -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 21h16M6 21v-8M18 21v-8M6 13a6 6 0 0 1 12 0M12 4v3M9 21v-5a3 3 0 0 1 6 0v5"/>
+        </svg>
+      </div>
+      <div class="brand-title" id="app-title">دليل الجزائر السياحي - ENSTP</div>
+    </div>
+    <div class="lg-btn-group" id="lg">
+      <button type="button" data-l="ar" aria-pressed="true">عربي</button>
+      <button type="button" data-l="fr">FR</button>
+      <button type="button" data-l="en">EN</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 id="hero-title">استكشف أفضل المعالم السياحية في الجزائر العاصمة</h1>
+    <p id="hero-subtitle">دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالقرب من المدرسة الوطنية العليا للمشاريع الكبرى.</p>
+    
+    <div class="stats-bar">
+      <div class="stat-item">المعالم السياحية: <span id="stat-count">14</span></div>
+      <div class="stat-item">• الانطلاق: <span>ENSTP القبة</span></div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="ابحث عن متحف، حديقة، أو معلم سياحي...">
+    </div>
+  </section>
+
+  <!-- Main Places List -->
+  <main class="places-grid" id="places-container"></main>
+</div>
+
+<script>
+const O = { lat: 36.7255818, lng: 3.0695956 }; // ENSTP Coordinates
+let LG = "ar";
+
+const I = {
+  fr: {
+    app: "Guide Touristique ENSTP",
+    heroT: "Explorez les meilleurs lieux touristiques d'Alger",
+    heroS: "Guide complet des 14 principaux sites touristiques et culturels.",
+    rT: "En voiture",
+    maps: "Voir sur Maps",
+    hrs: "Horaires :",
+    nohrs: "Non renseignés",
+    rat: "Note :",
+    rvw: "avis",
+    rvl: "Avis des visiteurs :",
+    bird: "à vol d'oiseau",
+    search: "Rechercher un musée, jardin ou monument...",
+    tel: "Tél :"
+  },
+  en: {
+    app: "ENSTP Tourist Guide",
+    heroT: "Explore the Best Tourist Spots in Algiers",
+    heroS: "Comprehensive guide to 14 top historical and cultural landmarks.",
+    rT: "Drive route",
+    maps: "View on Maps",
+    hrs: "Hours:",
+    nohrs: "N/A",
+    rat: "Rating:",
+    rvw: "reviews",
+    rvl: "Visitor Review:",
+    bird: "as the crow flies",
+    search: "Search museum, garden or monument...",
+    tel: "Phone:"
+  },
+  ar: {
+    app: "دليل الجزائر السياحي - ENSTP",
+    heroT: "استكشف أفضل المعالم السياحية في الجزائر العاصمة",
+    heroS: "دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالجزائر العاصمة.",
+    rT: "طريق السيارة",
+    maps: "عرض في الخريطة",
+    hrs: "الأوقات:",
+    nohrs: "غير متوفرة",
+    rat: "التقييم:",
+    rvw: "تقييمًا",
+    rvl: "رأي الزوار:",
+    bird: "خط مستقيم",
+    search: "ابحث عن متحف، حديقة، أو معلم سياحي...",
+    tel: "الهاتف:"
+  }
+};
+
+// ONLY Tourist Places Dataset (14 Locations)
+const TOURIST_PLACES = [
+  {
+    n: { ar: "المتحف الوطني باردو", fr: "Musée national du Bardo", en: "Bardo National Museum" },
+    t: { ar: "ما قبل التاريخ والإثنوغرافيا", fr: "Préhistoire et ethnographie", en: "Prehistory and ethnography" },
+    h: { ar: "9:00 - 17:00 (الجمعة: 14:00 - 17:00)، مغلق الأحد", fr: "9h-17h (vendredi : 14h-17h), fermé le dimanche", en: "9:00-17:00 (Fri: 14:00-17:00), closed Sun" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJBb3owGiyjxIRaOCcMbN-ZNg",
+    lat: 36.7607172, lng: 3.0471926,
+    note: { ar: "فن الطاسيلي الصخري والتطريز التقليدي في قصر مغاربي قديم.", fr: "Art rupestre du Tassili et broderies traditionnelles dans un ancien palais.", en: "Tassili rock art and traditional embroidery in a neo-Moorish palace." },
+    ph: "+213 21 64 76 41", rt: [4.5, 1496],
+    rv: { ar: "مجموعة مبهرة من الآثار والأعمال الفنية في قصر قديم بطراز ممتاز.", fr: "Collection impressionnante dans un ancien palais néo-mauresque.", en: "Impressive collection in a former neo-Moorish palace." }
+  },
+  {
+    n: { ar: "المتحف الوطني للفنون الجميلة", fr: "Musée national des Beaux-Arts", en: "National Museum of Fine Arts" },
+    t: { ar: "متحف فني", fr: "Musée d'art", en: "Art museum" },
+    h: { ar: "9:00 - 17:00 (الجمعة والسبت: من 10:00)، مغلق الأحد", fr: "9h-17h (vendredi et samedi : dès 10h), fermé le dimanche", en: "9:00-17:00 (Fri & Sat: from 10:00), closed Sun" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJbzZuJJyyjxIRSEWBr_Y6jhk",
+    lat: 36.7461003, lng: 3.0722615,
+    note: { ar: "الدخول نحو 200 دج. شرفة تطل بشكل إيقوني على حديقة التجارب.", fr: "Entrée ~200 DA. Terrasse avec vue sur le Jardin d'Essai.", en: "Entry ~200 DA. Terrace with view of the Botanical Garden." },
+    ph: "+213 551 40 20 70", rt: [4.6, 885],
+    rv: { ar: "رحلة رائعة عبر الفنون مع إطلالة بانورامية لا تُنسى.", fr: "Un voyage à travers les arts, avec une vue panoramique.", en: "A journey through the arts with a panoramic view." }
+  },
+  {
+    n: { ar: "حديقة التجارب بالحامة", fr: "Jardin d'Essai du Hamma", en: "Jardin d'Essai (Botanical Garden)" },
+    t: { ar: "حديقة نباتية تاريخية", fr: "Jardin botanique", en: "Botanical garden" },
+    h: { ar: "10:00 - 19:00 يوميًا", fr: "10h-19h tous les jours", en: "10:00-19:00 daily" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJ8du20ZiyjxIRLqnQ7p7GxYA",
+    lat: 36.7484043, lng: 3.075778,
+    note: { ar: "الدخول 150 دج للشخص. محطة المترو متوفرة عند المدخل مباشرة.", fr: "Entrée ~150 DA. Station de métro à l'entrée.", en: "Entry ~150 DA. Metro station right at the entrance." },
+    rt: [4.5, 7501],
+    rv: { ar: "أفضل وأجمل مكان طبيعي في العاصمة، طبيعة خلابة وأشجار نادرة.", fr: "Meilleur endroit d'Alger, verdure superbe.", en: "Best spot in Algiers, fantastic greenery." }
+  },
+  {
+    n: { ar: "ساحة الشهداء", fr: "Place des Martyrs", en: "Martyrs' Square" },
+    t: { ar: "ساحة تاريخية ومدخل القصبة", fr: "Place historique, entrée de la Casbah", en: "Historic square & Casbah entrance" },
+    h: { ar: "24/24 ساعة", fr: "24h/24", en: "24/7" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJ0aNHCv6yjxIRwOCawOfbpo0",
+    lat: 36.78458, lng: 3.0624425,
+    note: { ar: "ينصح بالزيارة نهارًا للاستمتاع بأسواق واكتشافات القصبة.", fr: "Conseillé d'y aller de jour.", en: "Recommended to visit during daylight." },
+    ph: "+213 21 08 19 62", rt: [4.5, 6410],
+    rv: { ar: "مكان مليء بالتاريخ في قلب العاصمة ونقطة انطلاق لزيارة القصبة.", fr: "Lieu plein d'histoire au cœur d'Alger.", en: "Historic spot in the heart of Algiers." }
+  },
+  {
+    n: { ar: "كنيسة السيدة الإفريقية", fr: "Basilique Notre-Dame d'Afrique", en: "Notre-Dame d'Afrique Basilica" },
+    t: { ar: "معلم تاريخي وإطلالة ساحرة", fr: "Basilique avec vue sur la baie", en: "Basilica with bay view" },
+    h: { ar: "11:00-12:30 و 15:00-17:30 (الجمعة: 10:30-12:30)", fr: "11h-12h30 et 15h-17h30", en: "11:00-12:30 & 15:00-17:30" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJu0874LuzjxIRZw7ZrxzdAz8",
+    lat: 36.8010025, lng: 3.0425614,
+    note: { ar: "الوصول بالتلفريك أو بالسيارة. إطلالة ممتازة على البحر.", fr: "Accès en téléphérique ou en voiture.", en: "Access by cable car or car." },
+    ph: "+213 23 15 40 19", rt: [4.5, 4245],
+    rv: { ar: "أجمل إطلالة panoramique على البحر والعاصمة.", fr: "Les plus belles vues de la ville.", en: "The best views over the bay." }
+  },
+  {
+    n: { ar: "البريد المركزي", fr: "Grande Poste d'Alger", en: "Algiers Grand Post Office" },
+    t: { ar: "معلم معماري بالطراز المغاربي الجديد", fr: "Monument néo-mauresque", en: "Neo-Moorish landmark" },
+    h: { ar: "8:00 - 18:00 (الخميس: حتى 16:00)، مغلق الجمعة", fr: "8h-18h, fermé le vendredi", en: "8:00-18:00, closed Friday" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJVdH_r_eyjxIRL-Nwynfanx8",
+    lat: 36.7728754, lng: 3.0593893,
+    note: { ar: "تحفة هندسية ومحاط بمقاهٍ ومحلات تجارية نشطة.", fr: "Cafés et boutiques autour.", en: "Surrounded by cafés and shops." },
+    ph: "+213 23 92 32 00", rt: [4.5, 1619],
+    rv: { ar: "تحفة معمارية في وسط العاصمة تم الحفاظ عليها ببراعة.", fr: "Chef-d'œuvre néo-mauresque très bien entretenu.", en: "A neo-Moorish masterpiece in central Algiers." }
+  },
+  {
+    n: { ar: "جامع كتشاوة", fr: "Mosquée Ketchaoua", en: "Ketchaoua Mosque" },
+    t: { ar: "جامع تاريخي عند سفح القصبة", fr: "Mosquée historique", en: "Historic mosque" },
+    h: { ar: "24/24 ساعة", fr: "24h/24", en: "24/7" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJgXehOv6yjxIRRwuxjEdaDvU",
+    lat: 36.7850182, lng: 3.0608303,
+    note: { ar: "يعكس مزيجاً رائعاً بين العمارة البيزنطية والمغاربية.", fr: "Mélange byzantin et mauresque.", en: "Unique Byzantine and Moorish architecture." },
+    rt: [4.7, 1472],
+    rv: { ar: "عمارة فريدة ومكان هادئ ونظيف ومفعم بالروحانيات والتاريخ.", fr: "Architecture unique, lieu paisible et très propre.", en: "Unique architecture, peaceful and clean." }
+  },
+  {
+    n: { ar: "منتزه الصابلات (Les Sablettes)", fr: "Sablette (Les Sablettes)", en: "Les Sablettes Seafront" },
+    t: { ar: "شاطئ وممشى سياحي", fr: "Plage et promenade", en: "Beach & seafront walk" },
+    h: { ar: "مفتوح 24/24 ساعة", fr: "Ouvert 24h/24", en: "Open 24/7" },
+    u: "https://maps.app.goo.gl/EJkWugRLghbLCmWX7",
+    lat: 36.7422222, lng: 3.1180556,
+    note: { ar: "ملاذ عائلي ممتاز للمشي والأنشطة الترفيهية ومقابلة البحر.", fr: "Parfait pour les promenades en famille.", en: "Great for family walks along the sea." }
+  },
+  {
+    n: { ar: "متنزه دريم بارك (Dream Park)", fr: "Dream Park", en: "Dream Park Amusement Park" },
+    t: { ar: "مدينة ألعاب وترفيه", fr: "Parc d'attractions", en: "Amusement park" },
+    h: { ar: "10:00 - 22:00 يوميًا", fr: "10h-22h tous les jours", en: "10:00-22:00 daily" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJvSi1eQtSjhIR7SM16aDoKhg",
+    lat: 36.7358131, lng: 3.1602967,
+    rt: [3.7, 1865],
+    rv: { ar: "منتزه ألعاب كبير مناسب للعائلات والأطفال وبأسعار معقولة.", fr: "Grand parc pour adultes et enfants.", en: "Big amusement park for families." }
+  },
+  {
+    n: { ar: "ساحة الأمير عبد القادر", fr: "Place Emir Abdelkader", en: "Emir Abdelkader Square" },
+    t: { ar: "ساحة تاريخية بوسط المدينة", fr: "Place du centre-ville", en: "Downtown historic square" },
+    h: { ar: "مفتوح دائماً", fr: "Toujours ouvert", en: "Always open" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJ1bpbEviyjxIRvbgRMigeGz0",
+    lat: 36.7761654, lng: 3.0581681,
+    note: { ar: "يتوسطها تمثال الأمير عبد القادر وتحيط بها المقاهي الكلاسيكية.", fr: "Statue historique au cœur de la ville.", en: "Historic statue in central Algiers." }
+  },
+  {
+    n: { ar: "دار مصطفى باشا", fr: "Dar Mustapha Pacha", en: "Dar Mustapha Pacha Palace" },
+    t: { ar: "قصر ومتحف للمنمنمات والخط العربي", fr: "Palais-musée", en: "Palace museum" },
+    h: { ar: "9:00 - 16:00 (الجمعة: 9:00 - 12:00)", fr: "9h-16h (vendredi : 9h-12h)", en: "9:00-16:00 (Fri: 9:00-12:00)" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJtxG6J_6yjxIRLf-sqIsln-U",
+    lat: 36.7856078, lng: 3.0609762,
+    ph: "+213 23 40 74 46", rt: [4.7, 297],
+    rv: { ar: "قصر مغاربي يعود لعام 1798، فناء أندلسي فاخر ومعروضات خط رائعة.", fr: "Palais mauresque de 1798 abritant des miniatures.", en: "Moorish palace from 1798 with fine miniatures." }
+  },
+  {
+    n: { ar: "مركز باب الزوار التجاري", fr: "Bab Ezzouar Mall", en: "Bab Ezzouar Shopping Mall" },
+    t: { ar: "مركز تجاري وترفيلي", fr: "Centre commercial", en: "Shopping mall" },
+    h: { ar: "9:00 - 23:00 يومياً", fr: "9h-23h tous les jours", en: "9:00-23:00 daily" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJP_5q4JVRjhIRa3CUt0DeRSM",
+    lat: 36.7120829, lng: 3.1973789,
+    rt: [4.1, 7814],
+    rv: { ar: "مول ضخم يتوفر على محلات تجارية عالمية ومطاعم وسينما.", fr: "Grand centre avec marques et restaurants.", en: "Large mall with international brands & food court." }
+  },
+  {
+    n: { ar: "مركز غاردن سيتي (Garden City)", fr: "Garden City Mall", en: "Garden City Mall" },
+    t: { ar: "مركز تجاري عصري مفتوح", fr: "Centre commercial", en: "Shopping & Lifestyle Mall" },
+    h: { ar: "10:00 - 22:00 (الجمعة والسبت حتى 23:00)", fr: "10h-22h (vendredi et samedi : 11h-23h)", en: "10:00-22:00 (Fri & Sat: 11:00-23:00)" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJyzHJhdmxjxIRQq2LGtxdcYY",
+    lat: 36.7505504, lng: 2.9517546,
+    ph: "+213 23 38 59 58", rt: [4.2, 6227],
+    rv: { ar: "تصميم عصري راقٍ بمساحات مفتوحة ومطاعم متنوعة ممتازة.", fr: "Centre magnifique et immense.", en: "Beautiful modern outdoor shopping center." }
+  },
+  {
+    n: { ar: "جامع الجزائر الكبير", fr: "Grande Mosquée d'Algérie", en: "Great Mosque of Algiers" },
+    t: { ar: "صرح إسلامي ومعلم حضاري عالمي", fr: "Grande mosquée", en: "Grand Mosque" },
+    h: { ar: "مفتوح 24/24 ساعة", fr: "Ouvert 24h/24", en: "Open 24/7" },
+    u: "https://www.google.com/maps/place/?q=place_id:ChIJbcKe3X1SjhIRBoSa6JtXOrE",
+    lat: 36.7350028, lng: 3.1402217,
+    note: { ar: "أكبر مسجد في إفريقيا وثالث أكبر مسجد في العالم بمئذنة شاهقة.", fr: "Plus grande mosquée d'Afrique.", en: "Largest mosque in Africa with the tallest minaret." },
+    ph: "+213 33 33 33 33", rt: [4.7, 9323],
+    rv: { ar: "جامع مهيب ونظيف وهادئ جدًا ومئذنة تحفة في المعمار.", fr: "Mosquée majestueuse, très propre et paisible.", en: "Majestic, peaceful mosque with impressive minaret." }
+  }
+];
+
+// Calculate Distance from ENSTP
+TOURIST_PLACES.forEach((p, idx) => {
+  const dx = (p.lng - O.lng) * 89200;
+  const dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy);
+  p.id = idx + 1;
+});
+
+function distFormat(d) {
+  if (d < 1000) return Math.round(d) + " م";
+  return (d / 1000).toFixed(1) + " كم";
+}
+
+function renderPlaces() {
+  const u = I[LG];
+  const query = document.getElementById("search-input").value.toLowerCase();
+  
+  const filtered = TOURIST_PLACES.filter(p => {
+    const name = p.n[LG] || p.n.ar;
+    const type = p.t[LG] || p.t.ar;
+    return name.toLowerCase().includes(query) || type.toLowerCase().includes(query);
+  });
+
+  const container = document.getElementById("places-container");
+  
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding: 60px 20px; color: var(--text-muted);">
+      <h3>لم يتم العثور على أي نتائج مطابقة للبحث</h3>
+    </div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(p => {
+    const name = p.n[LG] || p.n.ar;
+    const type = p.t[LG] || p.t.ar;
+    const hours = p.h ? (p.h[LG] || p.h.ar) : u.nohrs;
+    const note = p.note ? (p.note[LG] || p.note.ar) : "";
+    const review = p.rv ? (p.rv[LG] || p.rv.ar) : "";
+
+    return `
+      <article class="card">
+        <div>
+          <div class="card-top">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <span class="badge-num">${p.id}</span>
+              <div class="title-area">
+                <h3>${name}</h3>
+                <div class="place-type">${type}</div>
+              </div>
+            </div>
+            <div class="dist-badge">
+              ≈ ${distFormat(p.d)}
+              <small>${u.bird}</small>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <div class="info-item">
+              <b>${u.hrs}</b> <span>${hours}</span>
+            </div>
+            ${p.ph ? `<div class="info-item"><b>${u.tel}</b> <bdi dir="ltr">${p.ph}</bdi></div>` : ''}
+            ${p.rt ? `<div class="info-item"><b>${u.rat}</b> ★${p.rt[0]} (${p.rt[1]}${u.rvw})</div>` : ''}
+          </div>
+
+          ${review ? `<div class="review-card"><b>${u.rvl}</b><br>"${review}"</div>` : ''}
+          ${note ? `<div class="note-card">📍 ${note}</div>` : ''}
+        </div>
+
+        <div class="card-actions">
+          <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}&travelmode=driving">
+            🚗 ${u.rT}
+          </a>
+          <a class="btn btn-secondary" target="_blank" href="${p.u}">
+            🗺️ ${u.maps}
+          </a>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+// Language Switch
+document.getElementById("lg").addEventListener("click", e => {
+  const btn = e.target.closest("button");
+  if (btn) {
+    LG = btn.dataset.l;
+    document.documentElement.lang = LG;
+    document.documentElement.dir = LG === "ar" ? "rtl" : "ltr";
+    
+    document.querySelectorAll("#lg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.l === LG)));
+    
+    const u = I[LG];
+    document.getElementById("app-title").textContent = u.app;
+    document.getElementById("hero-title").textContent = u.heroT;
+    document.getElementById("hero-subtitle").textContent = u.heroS;
+    document.getElementById("search-input").placeholder = u.search;
+    
+    renderPlaces();
+  }
+});
+
+document.getElementById("search-input").addEventListener("input", renderPlaces);
+
+// Initial Render
+renderPlaces();
+</script>
+</body>
+</html>
