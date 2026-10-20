@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الحياة اليومية والخدمات - ENSTP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<style>
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.3);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
+.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
+.search-container { max-width: 500px; margin: 0 auto 30px; }
+.search-container input { width: 100%; padding: 16px 24px; border-radius: 30px; border: 1px solid var(--card-border); background: rgba(15, 23, 42, 0.8); color: #fff; font-family: var(--font); font-size: 15px; outline: none; transition: all 0.3s; }
+.search-container input:focus { border-color: var(--primary); box-shadow: 0 0 25px var(--primary-glow); }
+.places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
+.card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s; position: relative; }
+.card:hover { transform: translateY(-6px); border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+.card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #fff; }
+.place-type { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+.info-item { font-size: 13px; color: #cbd5e1; margin: 6px 0; }
+.info-item b { color: var(--text-muted); }
+.card-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; transition: all 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-primary { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
+.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="header">
+    <div class="brand">🍔 الحياة اليومية والخدمات القريبة - ENSTP</div>
+    <a href="index.html" class="btn btn-secondary" style="flex:unset; padding:8px 16px;">العودة للرئيسية</a>
+  </header>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="ابحث عن مطعم، مقهى، سوبرماركت، مخبزة...">
+  </div>
+  <main class="places-grid" id="places-container"></main>
+</div>
+<script>
+const O = { lat: 36.7255818, lng: 3.0695956 };
+const PLACES = [
+  { n: "Zaou Fast Food", t: "Fast-food et pizza", ph: "+213 556 35 39 37", h: "9h-22h", lat: 36.7291726, lng: 3.0749554, rt: [4.8, 24] },
+  { n: "Pizza ON EST LA", t: "Pizza à emporter", ph: "+213 558 27 70 92", h: "10h-23h", lat: 36.7293919, lng: 3.0745793, rt: [4.0, 476] },
+  { n: "El pato pizza", t: "Pizza, ouvert tard", ph: "+213 550 43 45 41", h: "11h-1h", lat: 36.7296762, lng: 3.0747027, rt: [3.6, 235] },
+  { n: "Supérette El-Benna", t: "Supérette", h: "7h-22h30", lat: 36.7245264, lng: 3.073628, rt: [3.8, 226] },
+  { n: "9asr Tacos", t: "Tacos", ph: "+213 555 15 88 25", h: "11h-24h", lat: 36.7293278, lng: 3.0744294, rt: [4.1, 328] },
+  { n: "Celtic Coffee", t: "Café", lat: 36.7292067, lng: 3.0727508, rt: [4.2, 24] },
+  { n: "Toraldo coffee", t: "Café", h: "5h-24h", lat: 36.7292481, lng: 3.0724403, rt: [4.8, 19] },
+  { n: "Boulangerie La baguette", t: "Boulangerie", lat: 36.7248389, lng: 3.0717908, rt: [4.7, 15] },
+  { n: "Boucherie Fine La Consolation", t: "Boucherie", h: "9h-20h", lat: 36.7253245, lng: 3.0725919, rt: [5.0, 6] },
+  { n: "HotSpot DZ Restaurant", t: "Restaurant", ph: "+213 798 31 71 24", h: "11h30-23h", lat: 36.7293828, lng: 3.0845324, rt: [3.9, 960] }
+];
+
+PLACES.forEach(p => {
+  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy);
+});
+
+function render() {
+  const query = document.getElementById("search-input").value.toLowerCase();
+  const filtered = PLACES.filter(p => p.n.toLowerCase().includes(query) || p.t.toLowerCase().includes(query));
+  document.getElementById("places-container").innerHTML = filtered.map(p => `
+    <article class="card">
+      <div>
+        <h3>${p.n}</h3>
+        <div class="place-type">${p.t}</div>
+        <div class="info-item"><b>المسافة:</b> نحو ${Math.round(p.d)} متر</div>
+        ${p.h ? `<div class="info-item"><b>الأوقات:</b> ${p.h}</div>` : ''}
+        ${p.ph ? `<div class="info-item"><b>الهاتف:</b> <bdi dir="ltr">${p.ph}</bdi></div>` : ''}
+        ${p.rt ? `<div class="info-item"><b>التقييم:</b> ★ ${p.rt[0]} (${p.rt[1]} تقييم)</div>` : ''}
+      </div>
+      <div class="card-actions">
+        <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">🚗 الاتجاهات</a>
+      </div>
+    </article>
+  `).join('');
+}
+document.getElementById("search-input").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>
