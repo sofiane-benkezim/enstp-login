@@ -153,13 +153,13 @@ header > div > div {
   box-shadow: 0 8px 20px rgba(15,23,42,.07);
 }
 
-/* Service cards (مع إبقاء اللون الأصفر الذهبي الجميل للبطاقات) */
+/* Service cards (اللون الأصفر الذهبي الأنيق للبطاقات) */
 .search-card {
   position: relative;
   overflow: hidden;
   padding: 0 !important;
   border-radius: 1.15rem !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.3) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.35) !important;
   background: #fff;
   box-shadow: 0 8px 28px rgba(7,26,51,.07) !important;
   transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
@@ -168,7 +168,7 @@ header > div > div {
 .search-card:hover {
   transform: translateY(-6px);
   border-color: rgba(234,184,91,.9) !important;
-  box-shadow: 0 18px 38px rgba(245,158,11,.18) !important;
+  box-shadow: 0 18px 38px rgba(245,158,11,.2) !important;
 }
 .card-image-wrap {
   position: relative;
@@ -249,64 +249,75 @@ footer p:last-child {
 }
 
 /* ========================================================= */
-/* WANDERING ROAMING BEE STYLES (النحلة الجوالة في كل أنحاء الصفحة) */
+/* MAGICAL HOST BEE (النحلة صاحبة الموقع التفاعلية) */
 /* ========================================================= */
-#wandering-bee-container {
+#host-bee-container {
     position: fixed;
-    top: 200px;
-    left: 50vw;
-    z-index: 9999;
+    top: 180px;
+    left: 70vw;
+    z-index: 99999;
     pointer-events: none;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s ease, left 0.8s ease;
+    transition: left 1.5s cubic-bezier(0.25, 1, 0.5, 1), top 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s ease;
 }
 
 .bee-wrapper {
     position: relative;
     pointer-events: auto;
     cursor: pointer;
-    animation: beeFloat 2.5s ease-in-out infinite;
+    animation: beeHover 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes beeFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-    50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+@keyframes beeHover {
+    0% { transform: translateY(0px) rotate(-2deg); }
+    100% { transform: translateY(-16px) rotate(4deg); }
+}
+
+.bee-spin {
+    animation: beeSpin 0.8s ease-in-out !important;
+}
+
+@keyframes beeSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 .wing-left {
     transform-origin: bottom right;
-    animation: flapLeft 0.1s ease-in-out infinite alternate;
+    animation: flapLeft 0.08s ease-in-out infinite alternate;
 }
 
 .wing-right {
     transform-origin: bottom left;
-    animation: flapRight 0.1s ease-in-out infinite alternate;
+    animation: flapRight 0.08s ease-in-out infinite alternate;
 }
 
 @keyframes flapLeft {
-    0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(-30deg) scale(0.85); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-35deg); }
 }
 
 @keyframes flapRight {
-    0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(30deg) scale(0.85); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(35deg); }
 }
 
+/* Bubble Message */
 .bee-bubble {
     position: absolute;
-    bottom: 85px;
-    right: -20px;
+    bottom: 80px;
+    right: -25px;
     background: #ffffff;
     color: #0f172a;
-    padding: 8px 14px;
-    border-radius: 18px;
-    font-size: 12px;
+    padding: 9px 16px;
+    border-radius: 20px;
+    font-size: 13px;
     font-weight: 800;
     white-space: nowrap;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     border: 2px solid #fbbf24;
     opacity: 0;
-    transform: translateY(10px) scale(0.95);
+    transform: translateY(12px) scale(0.9);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
 }
@@ -315,7 +326,7 @@ footer p:last-child {
     content: '';
     position: absolute;
     bottom: -8px;
-    right: 35px;
+    right: 40px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
@@ -328,12 +339,25 @@ footer p:last-child {
     transform: translateY(0) scale(1);
 }
 
+/* Owner Crown Badge */
+.bee-crown {
+    position: absolute;
+    top: -12px;
+    left: 22px;
+    font-size: 16px;
+    color: #f59e0b;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    animation: crownGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes crownGlow {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-3px) scale(1.1); }
+}
+
 /* Accessibility: respect reduced-motion settings */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
@@ -342,36 +366,19 @@ footer p:last-child {
 
 /* Mobile */
 @media (max-width: 640px) {
-  #hero-section {
-    padding-top: 4rem;
-    padding-bottom: 3.5rem;
-  }
-
-  #hero-title {
-    font-size: clamp(1.85rem, 8vw, 2.5rem);
-    letter-spacing: -.5px;
-    line-height: 1.55;
-  }
-
-  #hero-desc {
-    line-height: 2;
-  }
-
-  #searchInput {
-    min-height: 56px;
-    font-size: 13px;
-  }
-
+  #hero-section { padding-top: 4rem; padding-bottom: 3.5rem; }
+  #hero-title { font-size: clamp(1.85rem, 8vw, 2.5rem); letter-spacing: -.5px; line-height: 1.55; }
+  #hero-desc { line-height: 2; }
+  #searchInput { min-height: 56px; font-size: 13px; }
   .card-image-wrap { height:160px; }
   .card-content { padding:1rem; }
   .section-block h2 { font-size: 1.2rem; }
 }
-
 </style>
 </head>
 <body class="font-cairo bg-slate-50 text-slate-800 antialiased" id="bodyTag">
 
-  <!-- Header / Navbar -->
+    <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -406,12 +413,18 @@ footer p:last-child {
         </div>
     </header>
 
-    <!-- WANDERING ROAMING BEE (النحلة الجوالة في كل أنحاء الصفحة) -->
-    <div id="wandering-bee-container">
-        <div class="bee-wrapper" onclick="onBeeClicked()">
+    <!-- MAGICAL HOST BEE (صاحبة الموقع التفاعلية) -->
+    <div id="host-bee-container">
+        <div class="bee-wrapper" id="beeWrapper" onclick="onHostBeeClicked()">
+            <!-- Crown icon for the Owner Bee -->
+            <div class="bee-crown"><i class="fa-solid fa-crown"></i></div>
+            
+            <!-- Speech Bubble -->
             <div id="beeBubble" class="bee-bubble">
-                Let's explore ENSTP! 🐝
+                أهلاً بك في موقعي! أنا نحلة 🐝
             </div>
+
+            <!-- Bee Mascot SVG -->
             <svg class="w-16 h-16 filter drop-shadow-2xl" viewBox="0 0 100 100" fill="none">
                 <path class="wing-left" d="M32 35C15 20 8 5 30 18C38 23 42 32 38 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
                 <path class="wing-right" d="M58 35C75 20 82 5 60 18C52 23 48 32 52 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
@@ -566,7 +579,7 @@ footer p:last-child {
         </div>
     </footer>
 
-    <!-- Multilingual JavaScript Script -->
+    <!-- Multilingual & Interactive Host Bee Script -->
     <script>
         let currentLang = 'ar';
 
@@ -605,16 +618,16 @@ footer p:last-child {
                 footerTitle: 'منصة دليل الطالب الموحد - ENSTP',
                 footerSub: 'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية',
                 
-                // Data (Original)
+                // Original Data
                 cartographie: [
                     { name: "المدرسة العليا للاشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
-                     { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
-                     { name: "الجدول الزمني ", desc: "مواعيد الحصص و القاعات و اسماء الاساتذة", icon: "fa-calendar", tag: "جدول توقيت", url: "temp.html" , img: "photo32.jpg"  }
+                    { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
+                    { name: "الجدول الزمني ", desc: "مواعيد الحصص و القاعات و اسماء الاساتذة", icon: "fa-calendar", tag: "جدول توقيت", url: "temp.html" , img: "photo32.jpg"  }
                 ],
                 enseignants: [
                     { name: "قسم المنشآت والجسور (Ouvrages)", desc: "رئيس القسم ومسؤول عن تخصص المنشآت الفنية والهندسة المدنية.", icon: "fa-bridge", tag: "قسم أكاديمي", url: "#" , img: "photo14.jpg"   },
                     { name: "قسم الطرقات والمرور (Infrastructures)", desc: "تصميم الطرق والتعبد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي", url: "#" , img: "photo15.jpg"   },
-                     { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "#" , img: "photo12.jpg" }, 
+                    { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "#" , img: "photo12.jpg" }, 
                     { name: "دليل البريد المؤسساتي للأساتذة", desc: "قائمة البريد الإلكتروني الرسمي لجميع أعضاء الهيئة التدريسية.", icon: "fa-at", tag: "تواصل", url: "professors.html" , img: "photo16.jpg"   }
                 ],
                 services: [
@@ -639,7 +652,6 @@ footer p:last-child {
                 loisirs: [
                     { name: "النوادي والأنشطة الرياضية", desc: "دوري كرة القدم، بطولة الشطرنج، وقاعات كمال الأجسام المجاورة.", icon: "fa-trophy", tag: "رياضة", url: "#" , img: "photo28.jpg"   },
                     { name: "المعالم الثقافية والمتاحف بالعاصمة", desc: "مقام الشهيد، حديقة الحمة، والقصبة بزيارات مخصصة للطلبة.", icon: "fa-landmark", tag: "ثقافة", url: "alger.html" , img: "photo29.jpg" }
-                   
                 ],
                 entraide: [
                     { name: "تبادل الدروس والحلول الأكاديمية", desc: "منصة مشاركة الملخصات والامتحانات السابقة للسنوات الماضية.", icon: "fa-hands-holding-circle", tag: "دعم أكاديمي", url: "drives.html" , img: "photo30.jpg"   },
@@ -712,11 +724,9 @@ footer p:last-child {
                 loisirs: [
                     { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#", img: "photo28.jpg"  },
                     { name: "Monuments Cultuels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"}
-                   
                 ],
                 entraide: [
                     { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien", url: "drives.html", img: "photo30.jpg"},
-                   
                     { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Entraide", url: "experience.html", img: "photo31.jpg"}
                 ]
             },
@@ -786,7 +796,7 @@ footer p:last-child {
                 loisirs: [
                     { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports", url: "#", img: "photo28.jpg" },
                     { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"  }
-                    ],
+                ],
                 entraide: [
                     { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "drives.html", img: "photo30.jpg"  },
                     { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "experience.html", img: "photo31.jpg"  }
@@ -798,12 +808,10 @@ footer p:last-child {
             currentLang = lang;
             const data = translations[lang];
 
-            // Direction & Fonts
             document.documentElement.dir = data.dir;
             document.documentElement.lang = lang;
             document.getElementById('bodyTag').className = lang === 'ar' ? 'font-cairo bg-slate-50 text-slate-800 antialiased' : 'font-inter bg-slate-50 text-slate-800 antialiased';
 
-            // Update UI Buttons
             ['ar', 'fr', 'en'].forEach(l => {
                 const btn = document.getElementById(`btn-${l}`);
                 if (l === lang) {
@@ -813,7 +821,6 @@ footer p:last-child {
                 }
             });
 
-            // Update Header & Navigation
             document.getElementById('txt-logo-title').innerText = data.logoTitle;
             document.getElementById('txt-logo-sub').innerText = data.logoSub;
             document.getElementById('nav-map').innerText = data.navMap;
@@ -823,13 +830,11 @@ footer p:last-child {
             document.getElementById('nav-transport').innerText = data.navTransport;
             document.getElementById('nav-help').innerText = data.navHelp;
 
-            // Update Hero
             document.getElementById('hero-badge').innerHTML = data.heroBadge;
             document.getElementById('hero-title').innerHTML = data.heroTitle;
             document.getElementById('hero-desc').innerText = data.heroDesc;
             document.getElementById('searchInput').placeholder = data.searchPlaceholder;
 
-            // Update Sections Title
             document.getElementById('sec-1-title').innerText = data.sec1Title;
             document.getElementById('sec-1-desc').innerText = data.sec1Desc;
             document.getElementById('sec-2-title').innerText = data.sec2Title;
@@ -847,11 +852,9 @@ footer p:last-child {
             document.getElementById('sec-8-title').innerText = data.sec8Title;
             document.getElementById('sec-8-desc').innerText = data.sec8Desc;
 
-            // Update Footer
             document.getElementById('footer-title').innerText = data.footerTitle;
             document.getElementById('footer-sub').innerText = data.footerSub;
 
-            // Render All Grids
             renderGrid("cartographie-grid", data.cartographie, data.detailsBtn);
             renderGrid("enseignants-grid", data.enseignants, data.detailsBtn);
             renderGrid("services-grid", data.services, data.detailsBtn);
@@ -860,55 +863,51 @@ footer p:last-child {
             renderGrid("cite-grid", data.cite, data.detailsBtn);
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
-
-            if(lang === 'ar') triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك في كل أرجاء الموقع 🐝');
-            else if(lang === 'fr') triggerBeeMessage('Bienvenue! Je vous accompagne partout 🐝');
-            else triggerBeeMessage('Welcome! I am accompanying you everywhere 🐝');
         }
 
-  function renderGrid(containerId, dataList, btnText) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+        function renderGrid(containerId, dataList, btnText) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
 
-    const isRtl = currentLang === 'ar';
-    const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
+            const isRtl = currentLang === 'ar';
+            const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
-    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    })[ch]);
+            const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[ch]);
 
-    container.innerHTML = dataList.map(item => {
-        const targetUrl = item.url || '#';
-        const imageUrl = escapeHtml(item.img || 'default.jpg'); 
-        const icon = escapeHtml(item.icon || 'fa-compass');
-        const tag = escapeHtml(item.tag || '');
-        const name = escapeHtml(item.name || '');
-        const desc = escapeHtml(item.desc || '');
-        const url = escapeHtml(targetUrl);
-        const alt = escapeHtml(item.name || 'ENSTP Guide');
+            container.innerHTML = dataList.map(item => {
+                const targetUrl = item.url || '#';
+                const imageUrl = escapeHtml(item.img || 'default.jpg'); 
+                const icon = escapeHtml(item.icon || 'fa-compass');
+                const tag = escapeHtml(item.tag || '');
+                const name = escapeHtml(item.name || '');
+                const desc = escapeHtml(item.desc || '');
+                const url = escapeHtml(targetUrl);
+                const alt = escapeHtml(item.name || 'ENSTP Guide');
 
-        return `
-            <article class="search-card flex flex-col">
-                <div class="card-image-wrap">
-                    <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
-                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
-                    <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
-                </div>
-                <div class="card-content">
-                    <div class="card-meta">
-                        <span class="card-tag">${tag}</span>
-                        <span class="text-xs text-slate-400"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                    </div>
-                    <h3 class="card-title font-bold mb-2">${name}</h3>
-                    <p class="card-desc mb-5">${desc}</p>
-                    <a href="${url}" class="card-action">
-                        ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
-                    </a>
-                </div>
-            </article>
-        `;
-    }).join('');
-}
+                return `
+                    <article class="search-card flex flex-col">
+                        <div class="card-image-wrap">
+                            <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
+                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
+                            <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span class="card-tag">${tag}</span>
+                                <span class="text-xs text-amber-500 font-bold"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                            </div>
+                            <h3 class="card-title font-bold mb-2">${name}</h3>
+                            <p class="card-desc mb-5">${desc}</p>
+                            <a href="${url}" class="card-action">
+                                ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
 
         function filterGuide() {
             const input = document.getElementById('searchInput').value.toLowerCase();
@@ -925,76 +924,88 @@ footer p:last-child {
         }
 
         /* ========================================================= */
-        /* WANDERING ROAMING BEE SCRIPT (حركة تجوال النحلة في كل الشاشة) */
+        /* MAGICAL HOST BEE INTERACTIVE LOGIC (النحلة صاحبة الموقع) */
         /* ========================================================= */
-        const wanderingBee = document.getElementById('wandering-bee-container');
+        const hostBee = document.getElementById('host-bee-container');
+        const beeWrapper = document.getElementById('beeWrapper');
         const beeBubble = document.getElementById('beeBubble');
-        let bubbleTimeout;
+        let bubbleTimer;
 
-        const beeMessages = {
+        const hostDialogues = {
             ar: [
-                "أهلاً بك! أنا نحلة أدور في كل الموقع 🐝",
-                "اكتشف المطاعم والمقاهي هنا! 🍔",
-                "تصفح المراجع والمكتبة من هنا! 📚",
-                "تعرف على خطوط النقل والحافلات! 🚌",
-                "كل التوفيق في دراستك الهندسية! 🎓"
+                "أهلاً بك في موقعي! أنا صاحبة المكان 🐝👑",
+                "يسعدني جداً زيارتك لدليلي الشامل! ✨",
+                "هل تبحث عن مدرج أو مطعم؟ أنا هنا لمساعدتك! 🗺️",
+                "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓",
+                "اضغط عليّ وسأقوم بدورة ساحرة لأجلك! 💫"
             ],
             fr: [
-                "Bienvenue! Je vole partout sur le site 🐝",
-                "Découvrez les restaurants & cafés! 🍔",
-                "Consultez la bibliothèque ici! 📚",
-                "Trouvez les transports universitaires! 🚌",
-                "Bon courage pour vos études! 🎓"
+                "Bienvenue sur mon site ! Je suis votre hôte 🐝👑",
+                "Ravi de vous voir explorer mon guide ! ✨",
+                "Besoin d'aide pour trouver un amphi ? 🗺️",
+                "Je vous souhaite une excellente journée à l'ENSTP ! 🎓"
             ],
             en: [
-                "Welcome! I am flying everywhere! 🐝",
-                "Explore nearby restaurants! 🍔",
-                "Check out the library & books! 📚",
-                "Find transit and bus routes! 🚌",
-                "Best of luck with your studies! 🎓"
+                "Welcome to my website! I'm your host 🐝👑",
+                "So happy to have you here today! ✨",
+                "Looking for classrooms or food? I'm here! 🗺️",
+                "Wish you great success at ENSTP! 🎓"
             ]
         };
 
         function triggerBeeMessage(text) {
             beeBubble.innerText = text;
             beeBubble.classList.add('show');
-            clearTimeout(bubbleTimeout);
-            bubbleTimeout = setTimeout(() => {
+            clearTimeout(bubbleTimer);
+            bubbleTimer = setTimeout(() => {
                 beeBubble.classList.remove('show');
             }, 3800);
         }
 
-        function onBeeClicked() {
-            const list = beeMessages[currentLang] || beeMessages.ar;
-            const randomMsg = list[Math.floor(Math.random() * list.length)];
-            triggerBeeMessage(randomMsg);
+        function onHostBeeClicked() {
+            // Spin animation on click
+            beeWrapper.classList.add('bee-spin');
+            setTimeout(() => beeWrapper.classList.remove('bee-spin'), 800);
+
+            const dialogues = hostDialogues[currentLang] || hostDialogues.ar;
+            const randomDialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
+            triggerBeeMessage(randomDialogue);
         }
 
-        // Wander freely across the whole screen based on scroll & mouse movement
+        // Autonomous Random Roaming around the screen (النحلة تتجول بنفسها في الشاشة)
+        function autoRoamBee() {
+            const screenW = window.innerWidth - 120;
+            const screenH = window.innerHeight - 150;
+
+            const randomX = Math.max(40, Math.floor(Math.random() * screenW));
+            const randomY = Math.max(120, Math.floor(Math.random() * screenH));
+
+            hostBee.style.left = `${randomX}px`;
+            hostBee.style.top = `${randomY}px`;
+        }
+
+        // Move bee every 6 seconds automatically
+        setInterval(autoRoamBee, 6500);
+
+        // Talk every 9 seconds automatically
+        setInterval(() => {
+            const list = hostDialogues[currentLang] || hostDialogues.ar;
+            const autoText = list[Math.floor(Math.random() * list.length)];
+            triggerBeeMessage(autoText);
+        }, 9500);
+
+        // Scroll Reactions
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollY / (maxScroll || 1);
-
-            // Move horizontally across the screen width based on scroll percentage
-            const screenWidth = window.innerWidth - 100;
-            const wanderingX = 50 + Math.sin(scrollPercent * Math.PI * 6) * (screenWidth * 0.38) + (screenWidth * 0.1);
-
-            // Move vertically following the scroll smoothly with a sine offset to hover over cards
-            const wanderingY = 150 + (scrollPercent * (window.innerHeight * 0.6)) + Math.cos(scrollY / 80) * 40;
-
-            wanderingBee.style.left = `${Math.max(30, Math.min(wanderingX, window.innerWidth - 120))}px`;
-            wanderingBee.style.top = `${Math.max(100, Math.min(wanderingY, window.innerHeight - 100))}px`;
-
-            // Contextual triggers when passing sections
             const sections = document.querySelectorAll('section');
+            
             sections.forEach(sec => {
                 const rect = sec.getBoundingClientRect();
-                if (rect.top >= 0 && rect.top <= 250) {
-                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'خرائط ومباني الحرم الجامعي! 🗺️' : 'Campus map & buildings! 🗺️');
-                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'خدمات الحياة اليومية والمقاهي! ☕' : 'Daily life & food spots! ☕');
-                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'خطوط الحافلات والنقل هنا! 🚌' : 'Bus routes & transport! 🚌');
-                    else if (sec.id === 'entraide') triggerBeeMessage(currentLang === 'ar' ? 'شبكة التضامن والدعم الأكاديمي! 🤝' : 'Peer support & solidarity! 🤝');
+                if (rect.top >= 0 && rect.top <= 200) {
+                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'هذه خرائط حرمنا الجامعي الجميلة! 🗺️' : 'Our beautiful campus maps! 🗺️');
+                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'أفضل مطاعم ومقاهي الجوار بضمانتي! ☕' : 'Best nearby cafes! ☕');
+                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'دليل حافلات وخطوط النقل! 🚌' : 'Bus routes guide! 🚌');
+                    else if (sec.id === 'entraide') triggerBeeMessage(currentLang === 'ar' ? 'شبكة التضامن الأخوي بين الطلاب! 🤝' : 'Peer support network! 🤝');
                 }
             });
         });
@@ -1003,8 +1014,8 @@ footer p:last-child {
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('ar');
             setTimeout(() => {
-                triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك فوق البطاقات وفي كل مكان 🐝');
-            }, 1000);
+                triggerBeeMessage('أهلاً بك! أنا نحلة، صاحبة ومستضيفة هذا الموقع 🐝👑');
+            }, 1200);
         });
     </script>
 </body>
