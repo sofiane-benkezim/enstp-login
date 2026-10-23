@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة نحلة - دليل طالب ENSTP الشامل</title>
+    <title>منصة دليل طالب ENSTP الشامل</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -18,8 +18,7 @@
                         brand: {
                             50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a',
                         },
-                        accent: { 500: '#f59e0b', 600: '#d97706' },
-                        bee: { yellow: '#fbbf24', dark: '#1e1e1e', hive: '#fef3c7' }
+                        accent: { 500: '#f59e0b', 600: '#d97706' }
                     },
                     fontFamily: { 
                         cairo: ['Cairo', 'sans-serif'],
@@ -34,6 +33,8 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        .card-hover { transition: all 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); }
         
 /* ===== ENSTP PREMIUM DESIGN UPGRADE ===== */
 
@@ -65,10 +66,15 @@ header > div > div {
   min-height: 78px;
 }
 
-#txt-logo-title { letter-spacing: -.5px; }
-#txt-logo-sub { margin-top: 4px; }
+#txt-logo-title {
+  letter-spacing: -.5px;
+}
 
-/* Hero styling */
+#txt-logo-sub {
+  margin-top: 4px;
+}
+
+/* Hero: image background styling */
 #hero-section {
   isolation: isolate;
   position: relative;
@@ -126,12 +132,20 @@ header > div > div {
 
 #searchInput:focus {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 4px rgba(234,184,91,.22), 0 20px 55px rgba(0,0,0,.25);
+  box-shadow: 0 0 0 4px rgba(234,184,91,.22),
+              0 20px 55px rgba(0,0,0,.25);
 }
 
 /* Section headings */
-.section-block { position: relative; }
-.section-block h2 { letter-spacing: -.45px; line-height: 1.6; }
+.section-block {
+  position: relative;
+}
+
+.section-block h2 {
+  letter-spacing: -.45px;
+  line-height: 1.6;
+}
+
 .section-block > div:first-child > div:first-child {
   width: 50px;
   height: 50px;
@@ -139,77 +153,29 @@ header > div > div {
   box-shadow: 0 8px 20px rgba(15,23,42,.07);
 }
 
-/* ===== BEEHIVE CARDS DESIGN (بطاقات بيوت النحلة) ===== */
+/* Service cards (مع إبقاء اللون الأصفر الذهبي الجميل للبطاقات) */
 .search-card {
   position: relative;
   overflow: hidden;
   padding: 0 !important;
-  border-radius: 1.35rem !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.25) !important;
-  background: #ffffff !important;
-  box-shadow: 0 8px 28px rgba(7, 26, 51, .07) !important;
-  transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .3s ease, border-color .3s ease;
+  border-radius: 1.15rem !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.3) !important;
+  background: #fff;
+  box-shadow: 0 8px 28px rgba(7,26,51,.07) !important;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   min-width: 0;
-  cursor: pointer;
 }
-
-/* Honeycomb accent top border */
-.search-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #f59e0b, #fbbf24, #d97706);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform .35s ease;
-  z-index: 2;
-}
-
 .search-card:hover {
-  transform: translateY(-8px) scale(1.01) !important;
-  border-color: rgba(245, 158, 11, 0.8) !important;
-  box-shadow: 0 20px 40px rgba(245, 158, 11, 0.18) !important;
+  transform: translateY(-6px);
+  border-color: rgba(234,184,91,.9) !important;
+  box-shadow: 0 18px 38px rgba(245,158,11,.18) !important;
 }
-
-.search-card:hover::before { transform: scaleX(1); }
-
-/* Hive door badge on card */
-.hive-door-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  color: #d97706;
-  font-weight: 800;
-  font-size: 10px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-}
-
-.search-card:hover .hive-door-badge {
-  background: #f59e0b;
-  color: #ffffff;
-  border-color: #f59e0b;
-}
-
 .card-image-wrap {
   position: relative;
   height: 178px;
   overflow: hidden;
   background: linear-gradient(135deg,#0b2545,#1d5288);
 }
-
 .card-image {
   width: 100%;
   height: 100%;
@@ -217,9 +183,7 @@ header > div > div {
   display: block;
   transition: transform .55s ease;
 }
-
-.search-card:hover .card-image { transform: scale(1.06); }
-
+.search-card:hover .card-image { transform: scale(1.055); }
 .card-image-wrap::after {
   content: "";
   position: absolute;
@@ -227,7 +191,6 @@ header > div > div {
   background: linear-gradient(180deg,rgba(7,26,51,.02) 20%,rgba(7,26,51,.62) 100%);
   pointer-events: none;
 }
-
 .card-image-icon {
   position: absolute;
   z-index: 1;
@@ -242,7 +205,6 @@ header > div > div {
   background: rgba(234,184,91,.95);
   box-shadow: 0 5px 18px rgba(0,0,0,.16);
 }
-
 .card-content { padding: 1.1rem 1.1rem 1.15rem; display:flex; flex-direction:column; flex:1; }
 .card-meta { display:flex; justify-content:space-between; align-items:center; gap:.6rem; margin-bottom:.7rem; }
 .card-tag {
@@ -251,22 +213,23 @@ header > div > div {
 }
 .card-title { font-size:1rem !important; line-height:1.65; color:#0b2545 !important; }
 .card-desc { font-size:.82rem !important; line-height:1.9 !important; color:#5b6879 !important; }
-
 .card-action {
   display:flex; align-items:center; justify-content:center; gap:.55rem;
   width:100%; margin-top:auto; padding:.72rem .9rem; border-radius:.8rem;
-  border:1px solid #fde68a; background:#fef3c7; color:#b45309;
+  border:1px solid #e3eaf1; background:#f7f9fc; color:#123c68;
   font-size:.78rem; font-weight:800; text-decoration:none;
-  transition:all .25s ease;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
 }
-
-.search-card:hover .card-action {
-  background:#f59e0b; color:#fff; border-color:#f59e0b;
-}
+.card-action:hover { background:#0b2545; color:#fff; border-color:#0b2545; }
 
 /* Navigation */
-nav a { white-space: nowrap; }
-nav a:hover { box-shadow: 0 3px 12px rgba(15,35,65,.06); }
+nav a {
+  white-space: nowrap;
+}
+
+nav a:hover {
+  box-shadow: 0 3px 12px rgba(15,35,65,.06);
+}
 
 /* Footer */
 footer {
@@ -276,23 +239,25 @@ footer {
   border-top: 1px solid rgba(234,184,91,.25) !important;
 }
 
+footer p:first-child {
+  letter-spacing: .2px;
+  font-size: .9rem;
+}
+
+footer p:last-child {
+  line-height: 2;
+}
+
 /* ========================================================= */
-/* FLYING BEE & ENTERING HIVE ANIMATION STYLES */
+/* WANDERING ROAMING BEE STYLES (النحلة الجوالة في كل أنحاء الصفحة) */
 /* ========================================================= */
 #wandering-bee-container {
     position: fixed;
     top: 200px;
     left: 50vw;
-    z-index: 99999;
+    z-index: 9999;
     pointer-events: none;
-    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), top 0.7s cubic-bezier(0.25, 1, 0.5, 1), left 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
-}
-
-/* Entering Animation */
-#wandering-bee-container.entering-hive {
-    transition: all 0.65s cubic-bezier(0.5, 0, 0.75, 0) !important;
-    transform: scale(0.15) rotate(720deg) !important;
-    opacity: 0 !important;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s ease, left 0.8s ease;
 }
 
 .bee-wrapper {
@@ -304,27 +269,27 @@ footer {
 
 @keyframes beeFloat {
     0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-    50% { transform: translateY(-12px) rotate(4deg) scale(1.04); }
+    50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
 }
 
 .wing-left {
     transform-origin: bottom right;
-    animation: flapLeft 0.09s ease-in-out infinite alternate;
+    animation: flapLeft 0.1s ease-in-out infinite alternate;
 }
 
 .wing-right {
     transform-origin: bottom left;
-    animation: flapRight 0.09s ease-in-out infinite alternate;
+    animation: flapRight 0.1s ease-in-out infinite alternate;
 }
 
 @keyframes flapLeft {
     0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(-32deg) scale(0.85); }
+    100% { transform: rotate(-30deg) scale(0.85); }
 }
 
 @keyframes flapRight {
     0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(32deg) scale(0.85); }
+    100% { transform: rotate(30deg) scale(0.85); }
 }
 
 .bee-bubble {
@@ -363,9 +328,12 @@ footer {
     transform: translateY(0) scale(1);
 }
 
-/* Accessibility */
+/* Accessibility: respect reduced-motion settings */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
+
   *, *::before, *::after {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
@@ -374,51 +342,51 @@ footer {
 
 /* Mobile */
 @media (max-width: 640px) {
-  #hero-section { padding-top: 4rem; padding-bottom: 3.5rem; }
-  #hero-title { font-size: clamp(1.85rem, 8vw, 2.5rem); letter-spacing: -.5px; line-height: 1.55; }
-  #hero-desc { line-height: 2; }
-  #searchInput { min-height: 56px; font-size: 13px; }
+  #hero-section {
+    padding-top: 4rem;
+    padding-bottom: 3.5rem;
+  }
+
+  #hero-title {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    letter-spacing: -.5px;
+    line-height: 1.55;
+  }
+
+  #hero-desc {
+    line-height: 2;
+  }
+
+  #searchInput {
+    min-height: 56px;
+    font-size: 13px;
+  }
+
   .card-image-wrap { height:160px; }
   .card-content { padding:1rem; }
   .section-block h2 { font-size: 1.2rem; }
 }
+
 </style>
 </head>
 <body class="font-cairo bg-slate-50 text-slate-800 antialiased" id="bodyTag">
 
-    <!-- Header / Navbar -->
+  <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                
-                <!-- LEFT SIDE: NAHLA BEE LOGO (اللوغو في الجهة اليسرى) -->
-                <div class="flex items-center gap-3 order-1">
-                    <div class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 border border-amber-300/80 px-3.5 py-1.5 rounded-2xl shadow-sm transition cursor-pointer" onclick="triggerBeeMessage('أهلاً بك! اضغط على أي خلية لأدلك عليها 🐝')">
-                        <div class="relative w-9 h-9 flex items-center justify-center bg-amber-400 rounded-xl shadow-inner">
-                            <svg class="w-7 h-7" viewBox="0 0 64 64" fill="none">
-                                <ellipse cx="32" cy="38" rx="16" ry="18" fill="#FBBF24"/>
-                                <path d="M18 34C18 34 26 37 32 37C38 37 46 34 46 34" stroke="#1E1E1E" stroke-width="3.5" stroke-linecap="round"/>
-                                <path d="M20 42C20 42 27 45 32 45C37 45 44 42 44 42" stroke="#1E1E1E" stroke-width="3.5" stroke-linecap="round"/>
-                                <circle cx="32" cy="20" r="12" fill="#1E1E1E"/>
-                                <circle cx="27" cy="18" r="3.5" fill="#FFFFFF"/>
-                                <circle cx="37" cy="18" r="3.5" fill="#FFFFFF"/>
-                                <circle cx="28" cy="18" r="1.8" fill="#1E1E1E"/>
-                                <circle cx="38" cy="18" r="1.8" fill="#1E1E1E"/>
-                                <path d="M25 10C23 6 18 5 18 5" stroke="#1E1E1E" stroke-width="2.5" stroke-linecap="round"/>
-                                <path d="M39 10C41 6 46 5 46 5" stroke="#1E1E1E" stroke-width="2.5" stroke-linecap="round"/>
-                                <path d="M18 20C10 14 10 4 22 12" fill="#BAE6FD" opacity="0.8"/>
-                                <path d="M46 20C54 14 54 4 42 12" fill="#BAE6FD" opacity="0.8"/>
-                            </svg>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-base font-black text-slate-900 block leading-none font-cairo">نحلة <span class="text-xs font-bold text-amber-600">BEE</span></span>
-                            <span class="text-[10px] text-slate-500 font-bold block leading-tight">دليلك الساحر</span>
-                        </div>
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="p-1">
+                        <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-12 w-auto object-contain">
+                    </div>
+                    <div>
+                        <span class="text-xl font-black text-brand-900 block leading-tight" id="txt-logo-title">دليل ENSTP الشامل</span>
+                        <span class="hidden text-xs text-slate-500 font-bold" id="txt-logo-sub">المدرسة العليا للأشغال العمومية</span>
                     </div>
                 </div>
 
-                <!-- RIGHT SIDE: ENSTP Logo, Navigation & Lang Switcher -->
-                <div class="flex items-center gap-4 order-2">
+                <!-- Language Switcher & Navigation -->
+                <div class="flex items-center gap-3">
                     <nav class="hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
                         <a href="#cartographie" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-map">الخريطة والمباني</a>
                         <a href="#enseignants" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-teachers">الأساتذة والمواد</a>
@@ -433,23 +401,12 @@ footer {
                         <button onclick="changeLanguage('fr')" id="btn-fr" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition">Français</button>
                         <button onclick="changeLanguage('en')" id="btn-en" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition">English</button>
                     </div>
-
-                    <div class="flex items-center space-x-3 space-x-reverse border-r border-slate-200 pr-4">
-                        <div class="p-1">
-                            <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-11 w-auto object-contain">
-                        </div>
-                        <div class="hidden sm:block">
-                            <span class="text-lg font-black text-brand-900 block leading-tight" id="txt-logo-title">دليل ENSTP الشامل</span>
-                            <span class="text-[11px] text-slate-500 font-bold" id="txt-logo-sub">المدرسة العليا للأشغال العمومية</span>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
     </header>
 
-    <!-- WANDERING FLYING BEE (النحلة التفاعلية الجوالة) -->
+    <!-- WANDERING ROAMING BEE (النحلة الجوالة في كل أنحاء الصفحة) -->
     <div id="wandering-bee-container">
         <div class="bee-wrapper" onclick="onBeeClicked()">
             <div id="beeBubble" class="bee-bubble">
@@ -485,7 +442,7 @@ footer {
     <section id="hero-section" class="text-white py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(rgba(7, 20, 38, 0.75), rgba(7, 20, 38, 0.85)), url('photo11.jpg');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <span class="bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10 mb-4 inline-block" id="hero-badge">
-                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل - خلايا نحلة 🐝
+                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة
             </span>
             <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-6" id="hero-title">
                 <span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>
@@ -604,15 +561,14 @@ footer {
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-20">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
-            <p class="font-bold text-white" id="footer-title">منصة نحلة - خلايا دليل الطالب ENSTP 🐝</p>
+            <p class="font-bold text-white" id="footer-title">منصة دليل الطالب الموحد - ENSTP</p>
             <p id="footer-sub">مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية</p>
         </div>
     </footer>
 
-    <!-- Multilingual & Hive Interactive Bee JavaScript -->
+    <!-- Multilingual JavaScript Script -->
     <script>
         let currentLang = 'ar';
-        let isTransitioning = false;
 
         const translations = {
             ar: {
@@ -625,7 +581,7 @@ footer {
                 navDaily: 'الحياة اليومية',
                 navTransport: 'النقل والمواصلات',
                 navHelp: 'شبكة التضامن',
-                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> خلايا دليل الطالب الشامل - نحلة 🐝',
+                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة',
                 heroTitle: '<span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>',
                 heroDesc: 'منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.',
                 searchPlaceholder: 'ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم...',
@@ -645,20 +601,20 @@ footer {
                 sec7Desc: 'النوادي والمسابقات الرياضية، الخرجات الثقافية، المتاحف، والسينما',
                 sec8Title: 'شبكة التضامن والتعاون الأخوي',
                 sec8Desc: 'التنقل المشترك بين الولايات، تبادل المراجع، والدعم الأكاديمي',
-                detailsBtn: 'دخول الخلية',
-                hiveDoorText: 'خلية',
-                footerTitle: 'منصة نحلة - خلايا دليل الطالب ENSTP 🐝',
+                detailsBtn: 'عرض التفاصيل',
+                footerTitle: 'منصة دليل الطالب الموحد - ENSTP',
                 footerSub: 'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية',
                 
+                // Data (Original)
                 cartographie: [
                     { name: "المدرسة العليا للاشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
-                    { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
-                    { name: "الجدول الزمني ", desc: "مواعيد الحصص و القاعات و اسماء الاساتذة", icon: "fa-calendar", tag: "جدول توقيت", url: "temp.html" , img: "photo32.jpg"  }
+                     { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
+                     { name: "الجدول الزمني ", desc: "مواعيد الحصص و القاعات و اسماء الاساتذة", icon: "fa-calendar", tag: "جدول توقيت", url: "temp.html" , img: "photo32.jpg"  }
                 ],
                 enseignants: [
                     { name: "قسم المنشآت والجسور (Ouvrages)", desc: "رئيس القسم ومسؤول عن تخصص المنشآت الفنية والهندسة المدنية.", icon: "fa-bridge", tag: "قسم أكاديمي", url: "#" , img: "photo14.jpg"   },
                     { name: "قسم الطرقات والمرور (Infrastructures)", desc: "تصميم الطرق والتعبد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي", url: "#" , img: "photo15.jpg"   },
-                    { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "#" , img: "photo12.jpg" }, 
+                     { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "#" , img: "photo12.jpg" }, 
                     { name: "دليل البريد المؤسساتي للأساتذة", desc: "قائمة البريد الإلكتروني الرسمي لجميع أعضاء الهيئة التدريسية.", icon: "fa-at", tag: "تواصل", url: "professors.html" , img: "photo16.jpg"   }
                 ],
                 services: [
@@ -683,6 +639,7 @@ footer {
                 loisirs: [
                     { name: "النوادي والأنشطة الرياضية", desc: "دوري كرة القدم، بطولة الشطرنج، وقاعات كمال الأجسام المجاورة.", icon: "fa-trophy", tag: "رياضة", url: "#" , img: "photo28.jpg"   },
                     { name: "المعالم الثقافية والمتاحف بالعاصمة", desc: "مقام الشهيد، حديقة الحمة، والقصبة بزيارات مخصصة للطلبة.", icon: "fa-landmark", tag: "ثقافة", url: "alger.html" , img: "photo29.jpg" }
+                   
                 ],
                 entraide: [
                     { name: "تبادل الدروس والحلول الأكاديمية", desc: "منصة مشاركة الملخصات والامتحانات السابقة للسنوات الماضية.", icon: "fa-hands-holding-circle", tag: "دعم أكاديمي", url: "drives.html" , img: "photo30.jpg"   },
@@ -699,7 +656,7 @@ footer {
                 navDaily: 'Vie Quotidienne',
                 navTransport: 'Transport',
                 navHelp: 'Entraide',
-                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Ruches du Guide avec BEE 🐝',
+                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Guide sur le terrain pour les étudiants',
                 heroTitle: '<span class="text-accent-500">ENSTP Alger</span>',
                 heroDesc: 'Une plateforme numérique intégrée regroupant tout ce dont un étudiant de l\'ENSTP a besoin : orientation, communication académique, services, transport, résidence et entraide.',
                 searchPlaceholder: 'Rechercher un amphi, enseignant, bus, restaurant...',
@@ -719,9 +676,8 @@ footer {
                 sec7Desc: 'Clubs sportifs, visites culturelles, musées, cinéma et sorties',
                 sec8Title: 'Réseau d\'Entraide & Solidarité',
                 sec8Desc: 'Covoiturage inter-wilayas, partage de cours et soutien académique',
-                detailsBtn: 'Entrer dans la ruche',
-                hiveDoorText: 'Ruche',
-                footerTitle: 'Plateforme Nahla - Ruches ENSTP (BEE 🐝)',
+                detailsBtn: 'Voir détails',
+                footerTitle: 'Plateforme du Guide Unifié de l\'Étudiant - ENSTP',
                 footerSub: 'Projet interactif dédié aux nouveaux étudiants de l\'ENSTP',
 
                 cartographie: [
@@ -756,9 +712,11 @@ footer {
                 loisirs: [
                     { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#", img: "photo28.jpg"  },
                     { name: "Monuments Cultuels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"}
+                   
                 ],
                 entraide: [
                     { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien", url: "drives.html", img: "photo30.jpg"},
+                   
                     { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Entraide", url: "experience.html", img: "photo31.jpg"}
                 ]
             },
@@ -772,7 +730,7 @@ footer {
                 navDaily: 'Daily Life',
                 navTransport: 'Transport',
                 navHelp: 'Peer Support',
-                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Beehive Student Guide - BEE 🐝',
+                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Comprehensive Student Guide',
                 heroTitle: '<span class="text-accent-500">ENSTP Algiers</span>',
                 heroDesc: 'An integrated digital platform with everything an ENSTP student needs: campus navigation, faculty directory, daily services, transport, residence & peer support.',
                 searchPlaceholder: 'Search for lecture halls, professors, bus routes, food...',
@@ -792,9 +750,8 @@ footer {
                 sec7Desc: 'Sports clubs, tournaments, cultural sites, museums, and cinemas',
                 sec8Title: 'Peer Support & Community Network',
                 sec8Desc: 'Inter-wilaya carpooling, study materials exchange, and mentoring',
-                detailsBtn: 'Enter Hive',
-                hiveDoorText: 'Hive',
-                footerTitle: 'Nahla Platform - ENSTP Hives (BEE 🐝)',
+                detailsBtn: 'View Details',
+                footerTitle: 'ENSTP Unified Student Guide Platform',
                 footerSub: 'An interactive project built to support new ENSTP students',
 
                 cartographie: [
@@ -829,7 +786,7 @@ footer {
                 loisirs: [
                     { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports", url: "#", img: "photo28.jpg" },
                     { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"  }
-                ],
+                    ],
                 entraide: [
                     { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "drives.html", img: "photo30.jpg"  },
                     { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "experience.html", img: "photo31.jpg"  }
@@ -841,10 +798,12 @@ footer {
             currentLang = lang;
             const data = translations[lang];
 
+            // Direction & Fonts
             document.documentElement.dir = data.dir;
             document.documentElement.lang = lang;
             document.getElementById('bodyTag').className = lang === 'ar' ? 'font-cairo bg-slate-50 text-slate-800 antialiased' : 'font-inter bg-slate-50 text-slate-800 antialiased';
 
+            // Update UI Buttons
             ['ar', 'fr', 'en'].forEach(l => {
                 const btn = document.getElementById(`btn-${l}`);
                 if (l === lang) {
@@ -854,6 +813,7 @@ footer {
                 }
             });
 
+            // Update Header & Navigation
             document.getElementById('txt-logo-title').innerText = data.logoTitle;
             document.getElementById('txt-logo-sub').innerText = data.logoSub;
             document.getElementById('nav-map').innerText = data.navMap;
@@ -863,11 +823,13 @@ footer {
             document.getElementById('nav-transport').innerText = data.navTransport;
             document.getElementById('nav-help').innerText = data.navHelp;
 
+            // Update Hero
             document.getElementById('hero-badge').innerHTML = data.heroBadge;
             document.getElementById('hero-title').innerHTML = data.heroTitle;
             document.getElementById('hero-desc').innerText = data.heroDesc;
             document.getElementById('searchInput').placeholder = data.searchPlaceholder;
 
+            // Update Sections Title
             document.getElementById('sec-1-title').innerText = data.sec1Title;
             document.getElementById('sec-1-desc').innerText = data.sec1Desc;
             document.getElementById('sec-2-title').innerText = data.sec2Title;
@@ -885,69 +847,68 @@ footer {
             document.getElementById('sec-8-title').innerText = data.sec8Title;
             document.getElementById('sec-8-desc').innerText = data.sec8Desc;
 
+            // Update Footer
             document.getElementById('footer-title').innerText = data.footerTitle;
             document.getElementById('footer-sub').innerText = data.footerSub;
 
-            renderGrid("cartographie-grid", data.cartographie, data.detailsBtn, data.hiveDoorText);
-            renderGrid("enseignants-grid", data.enseignants, data.detailsBtn, data.hiveDoorText);
-            renderGrid("services-grid", data.services, data.detailsBtn, data.hiveDoorText);
-            renderGrid("quotidien-grid", data.quotidien, data.detailsBtn, data.hiveDoorText);
-            renderGrid("transport-grid", data.transport, data.detailsBtn, data.hiveDoorText);
-            renderGrid("cite-grid", data.cite, data.detailsBtn, data.hiveDoorText);
-            renderGrid("loisirs-grid", data.loisirs, data.detailsBtn, data.hiveDoorText);
-            renderGrid("entraide-grid", data.entraide, data.detailsBtn, data.hiveDoorText);
+            // Render All Grids
+            renderGrid("cartographie-grid", data.cartographie, data.detailsBtn);
+            renderGrid("enseignants-grid", data.enseignants, data.detailsBtn);
+            renderGrid("services-grid", data.services, data.detailsBtn);
+            renderGrid("quotidien-grid", data.quotidien, data.detailsBtn);
+            renderGrid("transport-grid", data.transport, data.detailsBtn);
+            renderGrid("cite-grid", data.cite, data.detailsBtn);
+            renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
+            renderGrid("entraide-grid", data.entraide, data.detailsBtn);
 
-            if(lang === 'ar') triggerBeeMessage('اضغط على أي خلية لأطير إليها وأدخلك إليها 🐝');
-            else if(lang === 'fr') triggerBeeMessage('Cliquez sur une ruche pour m\'y suivre 🐝');
-            else triggerBeeMessage('Click on any hive to enter with me 🐝');
+            if(lang === 'ar') triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك في كل أرجاء الموقع 🐝');
+            else if(lang === 'fr') triggerBeeMessage('Bienvenue! Je vous accompagne partout 🐝');
+            else triggerBeeMessage('Welcome! I am accompanying you everywhere 🐝');
         }
 
-        function renderGrid(containerId, dataList, btnText, hiveText) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
+  function renderGrid(containerId, dataList, btnText) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-            const isRtl = currentLang === 'ar';
-            const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
+    const isRtl = currentLang === 'ar';
+    const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
-            const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-            })[ch]);
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[ch]);
 
-            container.innerHTML = dataList.map(item => {
-                const targetUrl = item.url || '#';
-                const imageUrl = escapeHtml(item.img || 'default.jpg'); 
-                const icon = escapeHtml(item.icon || 'fa-compass');
-                const tag = escapeHtml(item.tag || '');
-                const name = escapeHtml(item.name || '');
-                const desc = escapeHtml(item.desc || '');
-                const url = escapeHtml(targetUrl);
-                const alt = escapeHtml(item.name || 'ENSTP Guide');
+    container.innerHTML = dataList.map(item => {
+        const targetUrl = item.url || '#';
+        const imageUrl = escapeHtml(item.img || 'default.jpg'); 
+        const icon = escapeHtml(item.icon || 'fa-compass');
+        const tag = escapeHtml(item.tag || '');
+        const name = escapeHtml(item.name || '');
+        const desc = escapeHtml(item.desc || '');
+        const url = escapeHtml(targetUrl);
+        const alt = escapeHtml(item.name || 'ENSTP Guide');
 
-                return `
-                    <article class="search-card flex flex-col" onclick="flyBeeToCard(this, '${url}')">
-                        <div class="hive-door-badge">
-                            <i class="fa-solid fa-kaaba text-[10px]"></i> ${escapeHtml(hiveText)}
-                        </div>
-                        <div class="card-image-wrap">
-                            <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
-                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
-                            <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-meta">
-                                <span class="card-tag">${tag}</span>
-                                <span class="text-xs text-amber-500 font-bold"><i class="fa-solid fa-angles-left"></i></span>
-                            </div>
-                            <h3 class="card-title font-bold mb-2">${name}</h3>
-                            <p class="card-desc mb-5">${desc}</p>
-                            <span class="card-action">
-                                ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
-                            </span>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
+        return `
+            <article class="search-card flex flex-col">
+                <div class="card-image-wrap">
+                    <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
+                    <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-tag">${tag}</span>
+                        <span class="text-xs text-slate-400"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                    <h3 class="card-title font-bold mb-2">${name}</h3>
+                    <p class="card-desc mb-5">${desc}</p>
+                    <a href="${url}" class="card-action">
+                        ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
+                    </a>
+                </div>
+            </article>
+        `;
+    }).join('');
+}
 
         function filterGuide() {
             const input = document.getElementById('searchInput').value.toLowerCase();
@@ -964,11 +925,35 @@ footer {
         }
 
         /* ========================================================= */
-        /* ENTERING HIVE FLYING SCRIPT (طيران وتداخل النحلة داخل الخلية) */
+        /* WANDERING ROAMING BEE SCRIPT (حركة تجوال النحلة في كل الشاشة) */
         /* ========================================================= */
         const wanderingBee = document.getElementById('wandering-bee-container');
         const beeBubble = document.getElementById('beeBubble');
         let bubbleTimeout;
+
+        const beeMessages = {
+            ar: [
+                "أهلاً بك! أنا نحلة أدور في كل الموقع 🐝",
+                "اكتشف المطاعم والمقاهي هنا! 🍔",
+                "تصفح المراجع والمكتبة من هنا! 📚",
+                "تعرف على خطوط النقل والحافلات! 🚌",
+                "كل التوفيق في دراستك الهندسية! 🎓"
+            ],
+            fr: [
+                "Bienvenue! Je vole partout sur le site 🐝",
+                "Découvrez les restaurants & cafés! 🍔",
+                "Consultez la bibliothèque ici! 📚",
+                "Trouvez les transports universitaires! 🚌",
+                "Bon courage pour vos études! 🎓"
+            ],
+            en: [
+                "Welcome! I am flying everywhere! 🐝",
+                "Explore nearby restaurants! 🍔",
+                "Check out the library & books! 📚",
+                "Find transit and bus routes! 🚌",
+                "Best of luck with your studies! 🎓"
+            ]
+        };
 
         function triggerBeeMessage(text) {
             beeBubble.innerText = text;
@@ -976,67 +961,50 @@ footer {
             clearTimeout(bubbleTimeout);
             bubbleTimeout = setTimeout(() => {
                 beeBubble.classList.remove('show');
-            }, 3500);
+            }, 3800);
         }
 
         function onBeeClicked() {
-            triggerBeeMessage(currentLang === 'ar' ? "اختر خلية وسأطير إليها معك! 🐝" : "Pick a hive and I'll fly with you! 🐝");
+            const list = beeMessages[currentLang] || beeMessages.ar;
+            const randomMsg = list[Math.floor(Math.random() * list.length)];
+            triggerBeeMessage(randomMsg);
         }
 
-        // FLY BEE INTO CLICKED CARD (HIVE)
-        function flyBeeToCard(cardElement, targetUrl) {
-            if (isTransitioning) return;
-            isTransitioning = true;
-
-            // Get exact coordinates of the clicked card center
-            const rect = cardElement.getBoundingClientRect();
-            const targetX = rect.left + (rect.width / 2) - 32; // center offsetting
-            const targetY = rect.top + (rect.height / 2) - 32;
-
-            // Show excited speech bubble
-            triggerBeeMessage(currentLang === 'ar' ? 'جاري دخول الخلية... 🍯' : 'Entering hive... 🍯');
-
-            // Move bee directly onto the card
-            wanderingBee.style.left = `${targetX}px`;
-            wanderingBee.style.top = `${targetY}px`;
-
-            // Trigger "Entering Hive" shrink & zoom animation
-            setTimeout(() => {
-                wanderingBee.classList.add('entering-hive');
-            }, 300);
-
-            // Redirect after bee enters the card
-            setTimeout(() => {
-                if (targetUrl && targetUrl !== '#') {
-                    window.location.href = targetUrl;
-                } else {
-                    // Reset bee if URL is empty or placeholder
-                    wanderingBee.classList.remove('entering-hive');
-                    isTransitioning = false;
-                    triggerBeeMessage(currentLang === 'ar' ? 'هذه الخلية قيد التحديث! 🐝' : 'Hive under maintenance! 🐝');
-                }
-            }, 850);
-        }
-
-        // Normal Wandering motion on Scroll
+        // Wander freely across the whole screen based on scroll & mouse movement
         window.addEventListener('scroll', () => {
-            if (isTransitioning) return; // Freeze roaming during hive-entry
-
             const scrollY = window.scrollY;
             const maxScroll = document.body.scrollHeight - window.innerHeight;
             const scrollPercent = scrollY / (maxScroll || 1);
 
+            // Move horizontally across the screen width based on scroll percentage
             const screenWidth = window.innerWidth - 100;
             const wanderingX = 50 + Math.sin(scrollPercent * Math.PI * 6) * (screenWidth * 0.38) + (screenWidth * 0.1);
+
+            // Move vertically following the scroll smoothly with a sine offset to hover over cards
             const wanderingY = 150 + (scrollPercent * (window.innerHeight * 0.6)) + Math.cos(scrollY / 80) * 40;
 
             wanderingBee.style.left = `${Math.max(30, Math.min(wanderingX, window.innerWidth - 120))}px`;
             wanderingBee.style.top = `${Math.max(100, Math.min(wanderingY, window.innerHeight - 100))}px`;
+
+            // Contextual triggers when passing sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top <= 250) {
+                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'خرائط ومباني الحرم الجامعي! 🗺️' : 'Campus map & buildings! 🗺️');
+                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'خدمات الحياة اليومية والمقاهي! ☕' : 'Daily life & food spots! ☕');
+                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'خطوط الحافلات والنقل هنا! 🚌' : 'Bus routes & transport! 🚌');
+                    else if (sec.id === 'entraide') triggerBeeMessage(currentLang === 'ar' ? 'شبكة التضامن والدعم الأكاديمي! 🤝' : 'Peer support & solidarity! 🤝');
+                }
+            });
         });
 
         // Initialize Arabic Language on Load
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('ar');
+            setTimeout(() => {
+                triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك فوق البطاقات وفي كل مكان 🐝');
+            }, 1000);
         });
     </script>
 </body>
