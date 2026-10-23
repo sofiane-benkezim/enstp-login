@@ -153,7 +153,7 @@ header > div > div {
   box-shadow: 0 8px 20px rgba(15,23,42,.07);
 }
 
-/* Service cards (اللون الأصفر الذهبي الأنيق للبطاقات) */
+/* Service cards */
 .search-card {
   position: relative;
   overflow: hidden;
@@ -223,13 +223,8 @@ header > div > div {
 .card-action:hover { background:#0b2545; color:#fff; border-color:#0b2545; }
 
 /* Navigation */
-nav a {
-  white-space: nowrap;
-}
-
-nav a:hover {
-  box-shadow: 0 3px 12px rgba(15,35,65,.06);
-}
+nav a { white-space: nowrap; }
+nav a:hover { box-shadow: 0 3px 12px rgba(15,35,65,.06); }
 
 /* Footer */
 footer {
@@ -239,17 +234,8 @@ footer {
   border-top: 1px solid rgba(234,184,91,.25) !important;
 }
 
-footer p:first-child {
-  letter-spacing: .2px;
-  font-size: .9rem;
-}
-
-footer p:last-child {
-  line-height: 2;
-}
-
 /* ========================================================= */
-/* MAGICAL HOST BEE (النحلة صاحبة الموقع التفاعلية) */
+/* SPEAKING VOICE HOST BEE STYLES (النحلة الناطقة والمتجولة) */
 /* ========================================================= */
 #host-bee-container {
     position: fixed;
@@ -257,7 +243,7 @@ footer p:last-child {
     left: 70vw;
     z-index: 99999;
     pointer-events: none;
-    transition: left 1.5s cubic-bezier(0.25, 1, 0.5, 1), top 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s ease;
+    transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s ease;
 }
 
 .bee-wrapper {
@@ -269,17 +255,7 @@ footer p:last-child {
 
 @keyframes beeHover {
     0% { transform: translateY(0px) rotate(-2deg); }
-    100% { transform: translateY(-16px) rotate(4deg); }
-}
-
-.bee-spin {
-    animation: beeSpin 0.8s ease-in-out !important;
-}
-
-@keyframes beeSpin {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.2); }
-    100% { transform: rotate(360deg) scale(1); }
+    100% { transform: translateY(-14px) rotate(4deg); }
 }
 
 .wing-left {
@@ -302,7 +278,6 @@ footer p:last-child {
     100% { transform: rotate(35deg); }
 }
 
-/* Bubble Message */
 .bee-bubble {
     position: absolute;
     bottom: 80px;
@@ -339,7 +314,6 @@ footer p:last-child {
     transform: translateY(0) scale(1);
 }
 
-/* Owner Crown Badge */
 .bee-crown {
     position: absolute;
     top: -12px;
@@ -347,15 +321,33 @@ footer p:last-child {
     font-size: 16px;
     color: #f59e0b;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    animation: crownGlow 1.5s ease-in-out infinite alternate;
 }
 
-@keyframes crownGlow {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-3px) scale(1.1); }
+/* Mute/Unmute Audio Toggle Button */
+.audio-toggle-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #1e293b;
+    color: #fbbf24;
+    border: 2px solid #fbbf24;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
 }
 
-/* Accessibility: respect reduced-motion settings */
+.audio-toggle-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -413,15 +405,19 @@ footer p:last-child {
         </div>
     </header>
 
-    <!-- MAGICAL HOST BEE (صاحبة الموقع التفاعلية) -->
+    <!-- SPEAKING TRILINGUAL HOST BEE (النحلة الناطقة التفاعلية) -->
     <div id="host-bee-container">
         <div class="bee-wrapper" id="beeWrapper" onclick="onHostBeeClicked()">
-            <!-- Crown icon for the Owner Bee -->
             <div class="bee-crown"><i class="fa-solid fa-crown"></i></div>
             
+            <!-- Audio Toggle Button -->
+            <button class="audio-toggle-btn" id="audioToggle" onclick="toggleBeeSound(event)" title="تفعيل/كتم صوت النحلة">
+                <i class="fa-solid fa-volume-high" id="audioIcon"></i>
+            </button>
+
             <!-- Speech Bubble -->
             <div id="beeBubble" class="bee-bubble">
-                أهلاً بك في موقعي! أنا نحلة 🐝
+                مرحباً بك! أنا صاحبة هذا الموقع 🐝
             </div>
 
             <!-- Bee Mascot SVG -->
@@ -579,9 +575,10 @@ footer p:last-child {
         </div>
     </footer>
 
-    <!-- Multilingual & Interactive Host Bee Script -->
+    <!-- Multilingual & Trilingual Speaking Bee JavaScript -->
     <script>
         let currentLang = 'ar';
+        let isAudioMuted = false;
 
         const translations = {
             ar: {
@@ -618,7 +615,6 @@ footer p:last-child {
                 footerTitle: 'منصة دليل الطالب الموحد - ENSTP',
                 footerSub: 'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية',
                 
-                // Original Data
                 cartographie: [
                     { name: "المدرسة العليا للاشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
                     { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
@@ -863,6 +859,10 @@ footer p:last-child {
             renderGrid("cite-grid", data.cite, data.detailsBtn);
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
+
+            if(lang === 'ar') triggerBeeSpeech('مرحباً بك! أنا "نحلة"، صاحبة هذا الموقع الساحر 🐝👑');
+            else if(lang === 'fr') triggerBeeSpeech('Bienvenue! Je suis BEE, l\'hôte de ce site 🐝👑');
+            else triggerBeeSpeech('Welcome! I am BEE, your host today 🐝👑');
         }
 
         function renderGrid(containerId, dataList, btnText) {
@@ -887,7 +887,7 @@ footer p:last-child {
                 const alt = escapeHtml(item.name || 'ENSTP Guide');
 
                 return `
-                    <article class="search-card flex flex-col">
+                    <article class="search-card flex flex-col" onmouseenter="flyBeeToCardHover(this, '${name}')">
                         <div class="card-image-wrap">
                             <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
                                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
@@ -924,26 +924,25 @@ footer p:last-child {
         }
 
         /* ========================================================= */
-        /* MAGICAL HOST BEE INTERACTIVE LOGIC (النحلة صاحبة الموقع) */
+        /* TRILINGUAL TEXT-TO-SPEECH & CARD HOVER FLYING (نطق وطيران) */
         /* ========================================================= */
         const hostBee = document.getElementById('host-bee-container');
-        const beeWrapper = document.getElementById('beeWrapper');
         const beeBubble = document.getElementById('beeBubble');
-        let bubbleTimer;
+        const audioIcon = document.getElementById('audioIcon');
+        let bubbleSpeechTimer;
 
         const hostDialogues = {
             ar: [
                 "أهلاً بك في موقعي! أنا صاحبة المكان 🐝👑",
                 "يسعدني جداً زيارتك لدليلي الشامل! ✨",
                 "هل تبحث عن مدرج أو مطعم؟ أنا هنا لمساعدتك! 🗺️",
-                "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓",
-                "اضغط عليّ وسأقوم بدورة ساحرة لأجلك! 💫"
+                "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓"
             ],
             fr: [
                 "Bienvenue sur mon site ! Je suis votre hôte 🐝👑",
                 "Ravi de vous voir explorer mon guide ! ✨",
                 "Besoin d'aide pour trouver un amphi ? 🗺️",
-                "Je vous souhaite une excellente journée à l'ENSTP ! 🎓"
+                "Je vous souhaite une excellente journée ! 🎓"
             ],
             en: [
                 "Welcome to my website! I'm your host 🐝👑",
@@ -953,59 +952,82 @@ footer p:last-child {
             ]
         };
 
-        function triggerBeeMessage(text) {
+        // Text-to-Speech Engine
+        function speakText(text) {
+            if (isAudioMuted || !('speechSynthesis' in window)) return;
+
+            window.speechSynthesis.cancel(); // Stop prior speech
+            const utterance = new SpeechSynthesisUtterance(text.replace(/[🐝👑✨🗺️🎓☕🚌🤝💫]/g, ''));
+            
+            if (currentLang === 'ar') {
+                utterance.lang = 'ar-SA';
+                utterance.pitch = 1.3; // Cute high pitch
+            } else if (currentLang === 'fr') {
+                utterance.lang = 'fr-FR';
+                utterance.pitch = 1.2;
+            } else {
+                utterance.lang = 'en-US';
+                utterance.pitch = 1.2;
+            }
+            utterance.rate = 1.0;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function toggleBeeSound(event) {
+            event.stopPropagation();
+            isAudioMuted = !isAudioMuted;
+            if (isAudioMuted) {
+                window.speechSynthesis.cancel();
+                audioIcon.className = 'fa-solid fa-volume-xmark text-rose-400';
+            } else {
+                audioIcon.className = 'fa-solid fa-volume-high text-amber-400';
+                triggerBeeSpeech(currentLang === 'ar' ? 'تم تفعيل الصوت! 🐝' : 'Audio enabled! 🐝');
+            }
+        }
+
+        function triggerBeeSpeech(text) {
             beeBubble.innerText = text;
             beeBubble.classList.add('show');
-            clearTimeout(bubbleTimer);
-            bubbleTimer = setTimeout(() => {
+            speakText(text);
+
+            clearTimeout(bubbleSpeechTimer);
+            bubbleSpeechTimer = setTimeout(() => {
                 beeBubble.classList.remove('show');
             }, 3800);
         }
 
         function onHostBeeClicked() {
-            // Spin animation on click
-            beeWrapper.classList.add('bee-spin');
-            setTimeout(() => beeWrapper.classList.remove('bee-spin'), 800);
-
             const dialogues = hostDialogues[currentLang] || hostDialogues.ar;
-            const randomDialogue = dialogues[Math.floor(Math.random() * dialogues.length)];
-            triggerBeeMessage(randomDialogue);
+            const randomMsg = dialogues[Math.floor(Math.random() * dialogues.length)];
+            triggerBeeSpeech(randomMsg);
         }
 
-        // Autonomous Random Roaming around the screen (النحلة تتجول بنفسها في الشاشة)
-        function autoRoamBee() {
-            const screenW = window.innerWidth - 120;
-            const screenH = window.innerHeight - 150;
+        // FLY BEE OVER CARD ON HOVER (تطير النحلة وتقف فوق البطاقة عند حوم الفأرة)
+        function flyBeeToCardHover(cardElement, cardTitle) {
+            const rect = cardElement.getBoundingClientRect();
+            const targetX = rect.left + (rect.width / 2) - 30;
+            const targetY = rect.top - 40;
 
-            const randomX = Math.max(40, Math.floor(Math.random() * screenW));
-            const randomY = Math.max(120, Math.floor(Math.random() * screenH));
+            hostBee.style.left = `${Math.max(20, Math.min(targetX, window.innerWidth - 80))}px`;
+            hostBee.style.top = `${Math.max(80, Math.min(targetY, window.innerHeight - 80))}px`;
 
-            hostBee.style.left = `${randomX}px`;
-            hostBee.style.top = `${randomY}px`;
-        }
-
-        // Move bee every 6 seconds automatically
-        setInterval(autoRoamBee, 6500);
-
-        // Talk every 9 seconds automatically
-        setInterval(() => {
-            const list = hostDialogues[currentLang] || hostDialogues.ar;
-            const autoText = list[Math.floor(Math.random() * list.length)];
-            triggerBeeMessage(autoText);
-        }, 9500);
-
-        // Scroll Reactions
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const sections = document.querySelectorAll('section');
+            const speakPhrase = currentLang === 'ar' ? `هنا قسم ${cardTitle} 🐝` : 
+                               (currentLang === 'fr' ? `Voici ${cardTitle} 🐝` : `Here is ${cardTitle} 🐝`);
             
+            triggerBeeSpeech(speakPhrase);
+        }
+
+        // Scroll listener: Contextual talking
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
             sections.forEach(sec => {
                 const rect = sec.getBoundingClientRect();
                 if (rect.top >= 0 && rect.top <= 200) {
-                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'هذه خرائط حرمنا الجامعي الجميلة! 🗺️' : 'Our beautiful campus maps! 🗺️');
-                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'أفضل مطاعم ومقاهي الجوار بضمانتي! ☕' : 'Best nearby cafes! ☕');
-                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'دليل حافلات وخطوط النقل! 🚌' : 'Bus routes guide! 🚌');
-                    else if (sec.id === 'entraide') triggerBeeMessage(currentLang === 'ar' ? 'شبكة التضامن الأخوي بين الطلاب! 🤝' : 'Peer support network! 🤝');
+                    if (sec.id === 'cartographie') triggerBeeSpeech(currentLang === 'ar' ? 'خرائط الحرم الجامعي! 🗺️' : 'Campus maps! 🗺️');
+                    else if (sec.id === 'quotidien') triggerBeeSpeech(currentLang === 'ar' ? 'المطاعم والمقاهي القريبة! ☕' : 'Nearby dining! ☕');
+                    else if (sec.id === 'transport') triggerBeeSpeech(currentLang === 'ar' ? 'محطات النقل والحافلات! 🚌' : 'Bus routes! 🚌');
+                    else if (sec.id === 'entraide') triggerBeeSpeech(currentLang === 'ar' ? 'شبكة التضامن الطلابي! 🤝' : 'Student support! 🤝');
                 }
             });
         });
@@ -1013,9 +1035,6 @@ footer p:last-child {
         // Initialize Arabic Language on Load
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('ar');
-            setTimeout(() => {
-                triggerBeeMessage('أهلاً بك! أنا نحلة، صاحبة ومستضيفة هذا الموقع 🐝👑');
-            }, 1200);
         });
     </script>
 </body>
