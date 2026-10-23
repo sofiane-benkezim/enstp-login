@@ -55,6 +55,7 @@ body {
   background:
     radial-gradient(ellipse at 5% 15%, rgba(219,234,254,.55), transparent 35%),
     #f5f7fb;
+  position: relative;
 }
 
 header {
@@ -274,47 +275,47 @@ footer p:last-child {
 }
 
 /* ========================================================= */
-/* ANIMATED FLYING BEE & SPEECH BUBBLE STYLES */
+/* WANDERING ROAMING BEE STYLES (النحلة الجوالة في كل أنحاء الصفحة) */
 /* ========================================================= */
-#interactive-bee-container {
+#wandering-bee-container {
     position: fixed;
-    top: 120px;
-    right: 25px;
+    top: 200px;
+    left: 50vw;
     z-index: 9999;
     pointer-events: none;
-    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), top 1.2s ease, right 1.2s ease;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s ease, left 0.8s ease;
 }
 
 .bee-wrapper {
     position: relative;
     pointer-events: auto;
     cursor: pointer;
-    animation: beeFloat 3s ease-in-out infinite;
+    animation: beeFloat 2.5s ease-in-out infinite;
 }
 
 @keyframes beeFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(3deg); }
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
 }
 
 .wing-left {
     transform-origin: bottom right;
-    animation: flapLeft 0.12s ease-in-out infinite alternate;
+    animation: flapLeft 0.1s ease-in-out infinite alternate;
 }
 
 .wing-right {
     transform-origin: bottom left;
-    animation: flapRight 0.12s ease-in-out infinite alternate;
+    animation: flapRight 0.1s ease-in-out infinite alternate;
 }
 
 @keyframes flapLeft {
     0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(-25deg) scale(0.9); }
+    100% { transform: rotate(-30deg) scale(0.85); }
 }
 
 @keyframes flapRight {
     0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(25deg) scale(0.9); }
+    100% { transform: rotate(30deg) scale(0.85); }
 }
 
 .bee-bubble {
@@ -378,7 +379,6 @@ footer p:last-child {
   .card-image-wrap { height:160px; }
   .card-content { padding:1rem; }
   .section-block h2 { font-size: 1.2rem; }
-  #interactive-bee-container { right: 10px; top: auto; bottom: 20px; }
 }
 </style>
 </head>
@@ -389,21 +389,9 @@ footer p:last-child {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
-                <!-- Right Side: ENSTP Main Logo -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="p-1">
-                        <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-12 w-auto object-contain">
-                    </div>
-                    <div>
-                        <span class="text-xl font-black text-brand-900 block leading-tight" id="txt-logo-title">دليل ENSTP الشامل</span>
-                        <span class="hidden sm:block text-xs text-slate-500 font-bold" id="txt-logo-sub">المدرسة العليا للأشغال العمومية</span>
-                    </div>
-                </div>
-
-                <!-- Left Side: NAHLA BEE LOGO (الجهة اليسرى في الأعلى) -->
-                <div class="flex items-center gap-4">
-                    <!-- Brand Bee Badge (Logo) -->
-                    <div class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 border border-amber-300/80 px-3 py-1.5 rounded-2xl shadow-sm transition cursor-pointer" onclick="triggerBeeMessage('أهلاً بك! أنا نحلة مرافقك في دليل ENSTP 🐝')">
+                <!-- LEFT SIDE: NAHLA BEE LOGO (اللوغو في الجهة اليسرى في الأعلى كما طلبتم تماماً) -->
+                <div class="flex items-center gap-3 order-1">
+                    <div class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 border border-amber-300/80 px-3.5 py-1.5 rounded-2xl shadow-sm transition cursor-pointer" onclick="triggerBeeMessage('أهلاً بك! أنا نحلة دليلك الذكي في كل مكان 🐝')">
                         <div class="relative w-9 h-9 flex items-center justify-center bg-amber-400 rounded-xl shadow-inner">
                             <svg class="w-7 h-7" viewBox="0 0 64 64" fill="none">
                                 <ellipse cx="32" cy="38" rx="16" ry="18" fill="#FBBF24"/>
@@ -422,10 +410,13 @@ footer p:last-child {
                         </div>
                         <div class="text-right">
                             <span class="text-base font-black text-slate-900 block leading-none font-cairo">نحلة <span class="text-xs font-bold text-amber-600">BEE</span></span>
-                            <span class="text-[10px] text-slate-500 font-bold block leading-tight">دليلك الذكي</span>
+                            <span class="text-[10px] text-slate-500 font-bold block leading-tight">دليلك الساحر</span>
                         </div>
                     </div>
+                </div>
 
+                <!-- RIGHT SIDE: ENSTP Logo, Navigation & Lang Switcher -->
+                <div class="flex items-center gap-4 order-2">
                     <!-- Navigation Links -->
                     <nav class="hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
                         <a href="#cartographie" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-map">الخريطة والمباني</a>
@@ -442,20 +433,32 @@ footer p:last-child {
                         <button onclick="changeLanguage('fr')" id="btn-fr" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition">Français</button>
                         <button onclick="changeLanguage('en')" id="btn-en" class="px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition">English</button>
                     </div>
+
+                    <!-- ENSTP Logo -->
+                    <div class="flex items-center space-x-3 space-x-reverse border-r border-slate-200 pr-4">
+                        <div class="p-1">
+                            <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-11 w-auto object-contain">
+                        </div>
+                        <div class="hidden sm:block">
+                            <span class="text-lg font-black text-brand-900 block leading-tight" id="txt-logo-title">دليل ENSTP الشامل</span>
+                            <span class="text-[11px] text-slate-500 font-bold" id="txt-logo-sub">المدرسة العليا للأشغال العمومية</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </header>
 
-    <!-- FLOATING INTERACTIVE BEE (النحلة التي تطير وترافقك) -->
-    <div id="interactive-bee-container">
+    <!-- WANDERING ROAMING BEE (النحلة التي تطير في كل أنحاء الصفحة وفوق البطاقات) -->
+    <div id="wandering-bee-container">
         <div class="bee-wrapper" onclick="onBeeClicked()">
             <!-- Bubble Message -->
             <div id="beeBubble" class="bee-bubble">
-                Let's find your way! 🐝
+                Let's explore ENSTP! 🐝
             </div>
             <!-- Bee SVG Mascot -->
-            <svg class="w-20 h-20 filter drop-shadow-xl" viewBox="0 0 100 100" fill="none">
+            <svg class="w-16 h-16 filter drop-shadow-2xl" viewBox="0 0 100 100" fill="none">
                 <!-- Wings -->
                 <path class="wing-left" d="M32 35C15 20 8 5 30 18C38 23 42 32 38 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
                 <path class="wing-right" d="M58 35C75 20 82 5 60 18C52 23 48 32 52 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
@@ -494,7 +497,7 @@ footer p:last-child {
     <section id="hero-section" class="text-white py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(rgba(7, 20, 38, 0.75), rgba(7, 20, 38, 0.85)), url('photo11.jpg');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <span class="bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10 mb-4 inline-block" id="hero-badge">
-                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة مع نحلة 🐝
+                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة برفقة نحلة 🐝
             </span>
             <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-6" id="hero-title">
                 <span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>
@@ -613,12 +616,12 @@ footer p:last-child {
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-20">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
-            <p class="font-bold text-white" id="footer-title">منصة دليل الطالب الموحد - ENSTP (نحلة 🐝)</p>
+            <p class="font-bold text-white" id="footer-title">منصة نحلة - دليل الطالب الموحد ENSTP 🐝</p>
             <p id="footer-sub">مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية</p>
         </div>
     </footer>
 
-    <!-- Multilingual & Interactive Bee JavaScript Script -->
+    <!-- Multilingual & Wandering Bee JavaScript Script -->
     <script>
         let currentLang = 'ar';
 
@@ -633,7 +636,7 @@ footer p:last-child {
                 navDaily: 'الحياة اليومية',
                 navTransport: 'النقل والمواصلات',
                 navHelp: 'شبكة التضامن',
-                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة مع نحلة 🐝',
+                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة برفقة نحلة 🐝',
                 heroTitle: '<span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>',
                 heroDesc: 'منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.',
                 searchPlaceholder: 'ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم...',
@@ -654,10 +657,9 @@ footer p:last-child {
                 sec8Title: 'شبكة التضامن والتعاون الأخوي',
                 sec8Desc: 'التنقل المشترك بين الولايات، تبادل المراجع، والدعم الأكاديمي',
                 detailsBtn: 'عرض التفاصيل',
-                footerTitle: 'منصة دليل الطالب الموحد - ENSTP (نحلة 🐝)',
+                footerTitle: 'منصة نحلة - دليل الطالب الموحد ENSTP 🐝',
                 footerSub: 'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية',
                 
-                // Data
                 cartographie: [
                     { name: "المدرسة العليا للاشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
                     { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
@@ -728,7 +730,7 @@ footer p:last-child {
                 sec8Title: 'Réseau d\'Entraide & Solidarité',
                 sec8Desc: 'Covoiturage inter-wilayas, partage de cours et soutien académique',
                 detailsBtn: 'Voir détails',
-                footerTitle: 'Plateforme du Guide Unifié de l\'Étudiant - ENSTP (BEE 🐝)',
+                footerTitle: 'Plateforme Nahla - Guide ENSTP (BEE 🐝)',
                 footerSub: 'Projet interactif dédié aux nouveaux étudiants de l\'ENSTP',
 
                 cartographie: [
@@ -800,7 +802,7 @@ footer p:last-child {
                 sec8Title: 'Peer Support & Community Network',
                 sec8Desc: 'Inter-wilaya carpooling, study materials exchange, and mentoring',
                 detailsBtn: 'View Details',
-                footerTitle: 'ENSTP Unified Student Guide Platform (BEE 🐝)',
+                footerTitle: 'Nahla Platform - ENSTP Guide (BEE 🐝)',
                 footerSub: 'An interactive project built to support new ENSTP students',
 
                 cartographie: [
@@ -910,10 +912,9 @@ footer p:last-child {
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
 
-            // Update Bee message according to language
-            if(lang === 'ar') triggerBeeMessage('مرحباً بك! أنا "نحلة" مرشدك في الحرم الجامعي 🐝');
-            else if(lang === 'fr') triggerBeeMessage('Bienvenue! Je suis BEE, votre guide à l\'ENSTP 🐝');
-            else triggerBeeMessage('Welcome! I am BEE, your guide at ENSTP 🐝');
+            if(lang === 'ar') triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك في كل أرجاء الموقع 🐝');
+            else if(lang === 'fr') triggerBeeMessage('Bienvenue! Je vous accompagne partout 🐝');
+            else triggerBeeMessage('Welcome! I am accompanying you everywhere 🐝');
         }
 
         function renderGrid(containerId, dataList, btnText) {
@@ -975,33 +976,33 @@ footer p:last-child {
         }
 
         /* ========================================================= */
-        /* INTERACTIVE FLYING BEE SCRIPT (النحلة التفاعلية الطائرة) */
+        /* WANDERING ROAMING BEE SCRIPT (حركة تجوال النحلة في كل الشاشة) */
         /* ========================================================= */
-        const beeContainer = document.getElementById('interactive-bee-container');
+        const wanderingBee = document.getElementById('wandering-bee-container');
         const beeBubble = document.getElementById('beeBubble');
         let bubbleTimeout;
 
         const beeMessages = {
             ar: [
-                "دعنا نكتشف طريقك في ENSTP! 🐝",
-                "إلى المطاعم والمقاهي المجاورة! 🍔",
-                "نحو المكتبة والبحث العلمي! 📚",
-                "إلى خطوط الحافلات والنقل! 🚌",
-                "نحو مستقبلك الهندسي الواعد! 🎓"
+                "أهلاً بك! أنا نحلة أدور في كل الموقع 🐝",
+                "اكتشف المطاعم والمقاهي هنا! 🍔",
+                "تصفح المراجع والمكتبة من هنا! 📚",
+                "تعرف على خطوط النقل والحافلات! 🚌",
+                "كل التوفيق في دراستك الهندسية! 🎓"
             ],
             fr: [
-                "Trouvons votre chemin à l'ENSTP ! 🐝",
-                "Vers les restaurants & cafés ! 🍔",
-                "Vers la bibliothèque centrale ! 📚",
-                "Vers les transports & bus ! 🚌",
-                "Vers votre avenir d'ingénieur ! 🎓"
+                "Bienvenue! Je vole partout sur le site 🐝",
+                "Découvrez les restaurants & cafés! 🍔",
+                "Consultez la bibliothèque ici! 📚",
+                "Trouvez les transports universitaires! 🚌",
+                "Bon courage pour vos études! 🎓"
             ],
             en: [
-                "Let's find your way at ENSTP! 🐝",
-                "To nearby restaurants & cafés! 🍔",
-                "To the central library! 📚",
-                "To public transport & buses! 🚌",
-                "To your bright engineering future! 🎓"
+                "Welcome! I am flying everywhere! 🐝",
+                "Explore nearby restaurants! 🍔",
+                "Check out the library & books! 📚",
+                "Find transit and bus routes! 🚌",
+                "Best of luck with your studies! 🎓"
             ]
         };
 
@@ -1020,34 +1021,31 @@ footer p:last-child {
             triggerBeeMessage(randomMsg);
         }
 
-        // Scroll listener: Move Bee along the page dynamically
+        // Wander freely across the whole screen based on scroll & mouse movement
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.body.clientHeight;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollY / (maxScroll || 1);
 
-            // Calculate vertical position (Top offset)
-            let topPosition = 120 + (scrollY * 0.35);
-            if (topPosition > (windowHeight - 150)) {
-                topPosition = windowHeight - 150;
-            }
+            // Move horizontally across the screen width based on scroll percentage
+            const screenWidth = window.innerWidth - 100;
+            const wanderingX = 50 + Math.sin(scrollPercent * Math.PI * 6) * (screenWidth * 0.38) + (screenWidth * 0.1);
 
-            // Horizontal Sine wave motion while flying
-            const horizontalOscillation = Math.sin(scrollY / 120) * 35;
-            
-            // Apply position to Bee container
-            beeContainer.style.top = `${Math.min(topPosition, window.innerHeight - 120)}px`;
-            beeContainer.style.transform = `translateX(${horizontalOscillation}px)`;
+            // Move vertically following the scroll smoothly with a sine offset to hover over cards
+            const wanderingY = 150 + (scrollPercent * (window.innerHeight * 0.6)) + Math.cos(scrollY / 80) * 40;
 
-            // Auto-trigger smart contextual messages when passing sections
+            wanderingBee.style.left = `${Math.max(30, Math.min(wanderingX, window.innerWidth - 120))}px`;
+            wanderingBee.style.top = `${Math.max(100, Math.min(wanderingY, window.innerHeight - 100))}px`;
+
+            // Contextual triggers when passing sections
             const sections = document.querySelectorAll('section');
             sections.forEach(sec => {
                 const rect = sec.getBoundingClientRect();
-                if (rect.top >= 0 && rect.top <= 300) {
-                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'هنا خرائط وتوجيه الحرم الجامعي! 🗺️' : 'Campus Map & Orientation! 🗺️');
-                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'وقت الاستراحة والأكل! ☕' : 'Food & Coffee time! ☕');
-                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'مواعيد الحافلات والنقل! 🚌' : 'Buses & Transport info! 🚌');
-                    else if (sec.id === 'services') triggerBeeMessage(currentLang === 'ar' ? 'المكتبة والخدمات المدرسية! 📖' : 'Library & Admin services! 📖');
+                if (rect.top >= 0 && rect.top <= 250) {
+                    if (sec.id === 'cartographie') triggerBeeMessage(currentLang === 'ar' ? 'خرائط ومباني الحرم الجامعي! 🗺️' : 'Campus map & buildings! 🗺️');
+                    else if (sec.id === 'quotidien') triggerBeeMessage(currentLang === 'ar' ? 'خدمات الحياة اليومية والمقاهي! ☕' : 'Daily life & food spots! ☕');
+                    else if (sec.id === 'transport') triggerBeeMessage(currentLang === 'ar' ? 'خطوط الحافلات والنقل هنا! 🚌' : 'Bus routes & transport! 🚌');
+                    else if (sec.id === 'entraide') triggerBeeMessage(currentLang === 'ar' ? 'شبكة التضامن والدعم الأكاديمي! 🤝' : 'Peer support & solidarity! 🤝');
                 }
             });
         });
@@ -1056,8 +1054,8 @@ footer p:last-child {
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('ar');
             setTimeout(() => {
-                triggerBeeMessage('أهلاً بك! أنا "نحلة" دليلك في الموقع 🐝');
-            }, 1200);
+                triggerBeeMessage('مرحباً بك! أنا "نحلة" أرافقك فوق البطاقات وفي كل مكان 🐝');
+            }, 1000);
         });
     </script>
 </body>
