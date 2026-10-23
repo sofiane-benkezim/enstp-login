@@ -844,48 +844,51 @@ footer p:last-child {
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
         }
 
-        function renderGrid(containerId, dataList, btnText) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
+  function renderGrid(containerId, dataList, btnText) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
-            const isRtl = currentLang === 'ar';
-            const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
+    const isRtl = currentLang === 'ar';
+    const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
-            const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-            })[ch]);
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[ch]);
 
-            container.innerHTML = dataList.map(item => {
-                const targetUrl = item.url || '#';
-                const icon = escapeHtml(item.icon || 'fa-compass');
-                const tag = escapeHtml(item.tag || '');
-                const name = escapeHtml(item.name || '');
-                const desc = escapeHtml(item.desc || '');
-                const url = escapeHtml(targetUrl);
-                const alt = escapeHtml(item.name || 'ENSTP Guide');
+    container.innerHTML = dataList.map(item => {
+        const targetUrl = item.url || '#';
+        // استخدام صورة البطاقة المحددة أو صورة افتراضية في حال لم تُحدد
+        const imageUrl = escapeHtml(item.img || 'default.jpg'); 
+        const icon = escapeHtml(item.icon || 'fa-compass');
+        const tag = escapeHtml(item.tag || '');
+        const name = escapeHtml(item.name || '');
+        const desc = escapeHtml(item.desc || '');
+        const url = escapeHtml(targetUrl);
+        const alt = escapeHtml(item.name || 'ENSTP Guide');
 
-                return `
-                    <article class="search-card flex flex-col">
-                        <div class="card-image-wrap">
-                            <img class="card-image" src="item.img" alt="${alt}" loading="lazy"
-                                 onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
-                            <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-meta">
-                                <span class="card-tag">${tag}</span>
-                                <span class="text-xs text-slate-400"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                            </div>
-                            <h3 class="card-title font-bold mb-2">${name}</h3>
-                            <p class="card-desc mb-5">${desc}</p>
-                            <a href="${url}" class="card-action">
-                                ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
-                            </a>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
+        return `
+            <article class="search-card flex flex-col">
+                <div class="card-image-wrap">
+                    <!-- تم وضع المتغير imageUrl هنا لكي تتغير الصورة حسب كل بطاقة -->
+                    <img class="card-image" src="${imageUrl}" alt="${alt}" loading="lazy"
+                         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80';">
+                    <div class="card-image-icon"><i class="fa-solid ${icon}"></i></div>
+                </div>
+                <div class="card-content">
+                    <div class="card-meta">
+                        <span class="card-tag">${tag}</span>
+                        <span class="text-xs text-slate-400"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>
+                    <h3 class="card-title font-bold mb-2">${name}</h3>
+                    <p class="card-desc mb-5">${desc}</p>
+                    <a href="${url}" class="card-action">
+                        ${escapeHtml(btnText)} <i class="fa-solid ${chevronIcon} text-[10px]"></i>
+                    </a>
+                </div>
+            </article>
+        `;
+    }).join('');
+}
 
         function filterGuide() {
             const input = document.getElementById('searchInput').value.toLowerCase();
