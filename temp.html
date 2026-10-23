@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول التوقيت - المدرسة العليا للأشغال العمومية | ENSTP Schedule</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        enstp: {
+                            blue: '#004B87',
+                            gold: '#D4AF37',
+                            accent: '#00838F',
+                            darkBg: '#0f172a',
+                            cardDark: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .time-badge {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        .dark ::webkit-scrollbar-thumb {
+            background: #475569;
+        }
+    </style>
+
+<style>
+body{background:radial-gradient(ellipse at 12% 0%,rgba(14,116,144,.13),transparent 32%),radial-gradient(ellipse at 90% 8%,rgba(212,175,55,.13),transparent 26%),#f4f7fb}
+.dark body{background:radial-gradient(ellipse at 12% 0%,rgba(14,116,144,.18),transparent 32%),#081321}
+header{border-bottom:1px solid rgba(215,180,90,.35)!important}
+header .bg-enstp-blue{background:linear-gradient(135deg,#06345c,#087e9b);box-shadow:0 10px 28px #004b8733}
+main{max-width:1440px!important}
+.glass-panel{border-radius:26px!important;box-shadow:0 18px 50px rgba(15,35,65,.07);border-color:rgba(148,163,184,.23)!important}
+section.glass-panel:first-child{background:linear-gradient(125deg,rgba(255,255,255,.96),rgba(239,247,252,.92));position:relative;overflow:hidden}
+.dark section.glass-panel:first-child{background:linear-gradient(125deg,rgba(18,37,59,.97),rgba(13,30,48,.95))}
+section.glass-panel:first-child:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#087e9b,#d7b45a,#087e9b)}
+select,input{min-height:48px!important;border-radius:15px!important}
+button,a{transition:all .22s ease}
+#daysTabContainer button{min-height:58px;border:1px solid rgba(148,163,184,.18)}
+#daysTabContainer button:hover{transform:translateY(-2px)}
+#timetableContainer>div{border-radius:24px!important;border-right:4px solid #0b7895!important;background:linear-gradient(120deg,rgba(255,255,255,.98),rgba(247,250,253,.94));box-shadow:0 12px 32px rgba(15,35,65,.07)!important}
+.dark #timetableContainer>div{background:linear-gradient(120deg,rgba(24,43,65,.98),rgba(15,31,49,.96))}
+#timetableContainer>div:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(15,35,65,.12)!important}
+#timetableContainer .bg-enstp-blue{background:linear-gradient(145deg,#06345c,#087e9b)!important;min-height:74px}
+#currentSelectionTitle{font-size:14px;line-height:1.8}
+footer{border-top:1px solid rgba(215,180,90,.5)!important}
+@media print{header,#daysTabContainer,#todayBtn,#downloadPdfBtn,#printBtn,footer{display:none!important}body{background:white!important}.glass-panel{box-shadow:none!important}}
+</style>
+
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & School Name -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="bg-enstp-blue text-white p-2.5 rounded-2xl shadow-md flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap text-2xl text-yellow-400"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-bold leading-tight text-slate-900 dark:text-white">
+                            المدرسة العليا للأشغال العمومية
+                        </h1>
+                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+                            École Nationale Supérieure des Travaux Publics - ENSTP
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="flex items-center gap-3">
+                    <!-- Current Time Pill -->
+                    <div class="hidden md:flex items-center gap-2 bg-slate-200/60 dark:bg-slate-800 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        <i class="fa-regular fa-clock text-enstp-blue dark:text-blue-400"></i>
+                        <span id="liveClock">00:00:00</span>
+                    </div>
+
+                    <!-- Room Guide Portal -->
+                    <a href="https://sofiane-benkezim.github.io/room_booking/" target="_blank" rel="noopener noreferrer" 
+                       class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>دليل القاعات</span>
+                    </a>
+
+                    <!-- Teachers Guide Portal -->
+                    <a href="https://sofiane-benkezim.github.io/enstp-guide/" target="_blank" rel="noopener noreferrer" 
+                       class="hidden sm:inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <span>دليل الأساتذة</span>
+                    </a>
+
+                    <select id="languageSelect" aria-label="Language / Langue / اللغة" class="bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-2 py-2 text-xs font-bold"><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option></select>
+                    <!-- Dark Mode Toggle -->
+                    <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- Selector Controls Box -->
+        <section class="glass-panel rounded-3xl p-5 sm:p-7 shadow-lg border border-slate-200/80 dark:border-slate-800 transition-all">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Year & Speciality Selection -->
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-enstp-blue dark:text-blue-400"></i>
+                        <span>المستوى والتخصص:</span>
+                    </label>
+                    <select id="levelSelect" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl px-4 py-3 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-enstp-blue transition-all cursor-pointer">
+                        <option value="PREPA1">السنة الأولى تحضيري (1st Year Preparatory)</option>
+                        <option value="PREPA2">السنة الثانية تحضيري (2nd Year Preparatory)</option>
+                        <option value="ENG1_DMS">السنة الأولى مهندسين - DMS</option>
+                        <option value="ENG1_DIB">السنة الأولى مهندسين - DIB</option>
+                        <option value="ENG2_DMS">السنة الثانية مهندسين - DMS</option>
+                        <option value="ENG2_DIB">السنة الثانية مهندسين - DIB</option>
+                        <option value="ENG3_DMS">السنة الثالثة مهندسين - DMS</option>
+                        <option value="ENG3_DIB">السنة الثالثة مهندسين - DIB</option>
+                    </select>
+                </div>
+
+                <!-- Sub-Group / Section Filter -->
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-users text-enstp-blue dark:text-blue-400"></i>
+                        <span>الفوج / القسم (Group / Section):</span>
+                    </label>
+                    <select id="groupSelect" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl px-4 py-3 font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-enstp-blue transition-all cursor-pointer">
+                        <!-- Populated Dynamic Options -->
+                    </select>
+                </div>
+
+                <!-- Search Input -->
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-enstp-blue dark:text-blue-400"></i>
+                        <span>بحث سريع (مادة / أستاذ / قاعة):</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="ابحث هنا..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl pr-10 pl-4 py-2.5 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-enstp-blue transition-all">
+                        <i class="fa-solid fa-search absolute right-3.5 top-3.5 text-slate-400 text-xs"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Days Quick Tabs Bar -->
+            <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <i class="fa-regular fa-calendar-days text-enstp-blue dark:text-blue-400"></i>
+                        <span>اختر اليوم المطلوب:</span>
+                    </span>
+                    <button id="todayBtn" class="text-xs font-bold text-enstp-blue dark:text-blue-400 hover:underline flex items-center gap-1">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>العودة لليوم الحالي</span>
+                    </button>
+                </div>
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2" id="daysTabContainer">
+                    <!-- Day Buttons will be rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Status & Schedule Actions Banner -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-slate-800/80 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                <div class="text-sm font-bold" id="currentSelectionTitle">
+                    جاري تحميل التوقيت...
+                </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+                <button id="downloadPdfBtn" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>تحميل الجدول PDF</span>
+                </button>
+                <button id="printBtn" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                    <i class="fa-solid fa-print"></i>
+                    <span>طباعة</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Schedule Timeline View Section -->
+        <section id="timetableContainer" class="space-y-4">
+            <!-- Timeline Cards generated here dynamically -->
+        </section>
+
+        <!-- Quick Links Mobile Drawer Bar -->
+        <div class="sm:hidden grid grid-cols-2 gap-3 pt-2">
+            <a href="https://sofiane-benkezim.github.io/room_booking/" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center justify-center gap-2 bg-emerald-600 text-white p-3 rounded-2xl text-xs font-bold shadow">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>دليل القاعات والمواقع</span>
+            </a>
+            <a href="https://sofiane-benkezim.github.io/enstp-guide/" target="_blank" rel="noopener noreferrer" 
+               class="flex items-center justify-center gap-2 bg-amber-600 text-white p-3 rounded-2xl text-xs font-bold shadow">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>دليل مواقع الأساتذة</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 bg-white dark:bg-slate-900 text-center text-xs text-slate-500 dark:text-slate-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="font-semibold">المدرسة العليا للأشغال العمومية - ENSTP Kouba © 2026/2027</p>
+            <p class="mt-1 text-slate-400 dark:text-slate-500">تم التطوير خصيصاً لتسهيل الوصول التفاعلي للجدول الدراسي والقاعات والأساتذة</p>
+        </div>
+    </footer>
+
+    <!-- Application Script Data & Logic -->
+    <script>
+        // Constants for External Links
+        const ROOM_GUIDE_BASE_URL = "https://sofiane-benkezim.github.io/room_booking/";
+        const PROF_GUIDE_BASE_URL = "https://sofiane-benkezim.github.io/enstp-guide/";
+
+        // Days Definition
+        const DAYS = [
+            { id: 'Saturday', nameAr: 'السبت' },
+            { id: 'Sunday', nameAr: 'الأحد' },
+            { id: 'Monday', nameAr: 'الإثنين' },
+            { id: 'Tuesday', nameAr: 'الثلاثاء' },
+            { id: 'Wednesday', nameAr: 'الأربعاء' },
+            { id: 'Thursday', nameAr: 'الخميس' }
+        ];
+
+        // Comprehensive Timetable Master Data extracted from official ENSTP documents
+        const TIMETABLE_DATA = {
+            PREPA1: {
+                title: "السنة الأولى تحضيري - Semester 1",
+                pdfUrl: "https://enstp.edu.dz/schedules/prepa1.pdf",
+                groups: Array.from({ length: 12 }, (_, i) => ({ id: `G${i+1}`, name: `الفوج ${i+1}` })),
+                schedule: {
+                    Saturday: [
+                        { time: '08h00 - 09h30', module: 'Physique 1', type: 'Cours', prof: 'M. Brahimi', room: 'Amphi A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '08h00 - 09h30', module: 'Chimie 1', type: 'Cours', prof: 'Mme Bounoura', room: 'Amphi B', groups: ['G7','G8','G9','G10','G11','G12'] },
+                        { time: '09h35 - 11h05', module: 'Calculus 1', type: 'TD', prof: 'M. Kaddour', room: 'Salle 1', groups: ['G1','G2'] },
+                        { time: '09h35 - 11h05', module: 'Lab (Chimie / Physique)', type: 'TP', prof: 'Equipe TP', room: 'Laboratoires', groups: ['G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'Informatique 1', type: 'TP', prof: 'M. Benazzouz', room: 'Labo Info', groups: ['G1','G2','G3'] },
+                        { time: '13h30 - 15h00', module: 'Algebra 1', type: 'Cours', prof: 'Mme Belhadj', room: 'Amphi A', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] }
+                    ],
+                    Sunday: [
+                        { time: '08h00 - 09h30', module: 'Proba-Stat', type: 'Cours', prof: 'Mme Maouche', room: 'Amphi B', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '09h35 - 11h05', module: 'Informatique 1', type: 'Cours', prof: 'Mme Torki', room: 'Amphi B', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] },
+                        { time: '11h10 - 12h40', module: 'Calculus 1', type: 'TD', prof: 'M. Kaddour', room: 'Salle 2', groups: ['G7','G8'] },
+                        { time: '13h30 - 15h00', module: 'Lab Physics / Tech Draw', type: 'TP', prof: 'M. Cherchali', room: 'Laboratoires', groups: ['G1','G2','G3','G4'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 09h30', module: 'Proba-Stat', type: 'TD', prof: 'Mme Maouche', room: 'Amphi B', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '09h35 - 11h05', module: 'Lab Chemistry / Tech Draw', type: 'TP', prof: 'Equipe TP', room: 'Laboratoires', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'Histoire de l\'Algérie', type: 'Cours', prof: 'M. Chergui', room: 'Amphi A', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] },
+                        { time: '13h30 - 15h00', module: 'Informatique 1', type: 'TD', prof: 'Mme Torki', room: 'Labo Info', groups: ['G7','G8','G9','G10'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'Lab Physics / Tech Draw', type: 'TP', prof: 'M. Cherchali', room: 'Laboratoires', groups: ['G1','G2','G3','G4'] },
+                        { time: '09h35 - 11h05', module: 'Calculus 1', type: 'Cours', prof: 'M. Kaddour', room: 'Amphi A', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] },
+                        { time: '11h10 - 12h40', module: 'Chimie 1', type: 'TD', prof: 'Mme Bounoura', room: 'Salle 3', groups: ['G1','G2','G3'] },
+                        { time: '13h30 - 15h00', module: 'Physique 1', type: 'TD', prof: 'M. Brahimi', room: 'Salle 4', groups: ['G4','G5','G6'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'English 1', type: 'Cours', prof: 'Mr. Yala', room: 'Amphi B', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '09h35 - 11h05', module: 'Lab Chemistry / Physics', type: 'TP', prof: 'Equipe TP', room: 'Laboratoires', groups: ['G7','G8','G9','G10'] },
+                        { time: '11h10 - 12h40', module: 'Calculus 1', type: 'TD', prof: 'Mrs. Kachiche', room: 'Salle 10', groups: ['G1','G2'] },
+                        { time: '13h30 - 15h00', module: 'French Engineering', type: 'Cours', prof: 'EAD Mme Messia', room: 'EAD Room', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'Histoire de l\'Algérie', type: 'TD', prof: 'M. Chergui', room: 'Salle 11', groups: ['G1','G2','G3'] },
+                        { time: '09h35 - 11h05', module: 'Calculus 1', type: 'TD', prof: 'M. Kaddour', room: 'Salle 12', groups: ['G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'English 1', type: 'TD', prof: 'Mr. Yala', room: 'Amphi A', groups: ['G7','G8','G9'] },
+                        { time: '13h30 - 15h00', module: 'Lab Chemistry / Tech Draw', type: 'TP', prof: 'Equipe TP', room: 'Laboratoires', groups: ['G1','G2','G3','G4','G5','G6'] }
+                    ]
+                }
+            },
+            PREPA2: {
+                title: "السنة الثانية تحضيري - Semester 2",
+                pdfUrl: "https://enstp.edu.dz/schedules/prepa2.pdf",
+                groups: Array.from({ length: 18 }, (_, i) => ({ id: `G${i+1}`, name: `الفوج ${i+1}` })),
+                schedule: {
+                    Saturday: [
+                        { time: '08h00 - 09h30', module: 'Calculus 3', type: 'Cours', prof: 'Mr. Brahimi', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] },
+                        { time: '08h00 - 09h30', module: 'Computer Science 3', type: 'Cours', prof: 'Mr. KADDOUR', room: 'Auditorium B', groups: ['G13','G14','G15','G16','G17','G18'] },
+                        { time: '09h35 - 11h05', module: 'Computer Science 3', type: 'TD', prof: 'Mr. OULD KADDOUR', room: 'Labo Info', groups: ['G1','G2','G3'] },
+                        { time: '09h35 - 11h05', module: 'Exp Tech', type: 'Cours', prof: 'Mr. Benyettou', room: 'Auditorium A', groups: ['G4','G5','G6','G7','G8'] },
+                        { time: '11h10 - 12h40', module: 'Exp Tech', type: 'TD', prof: 'Mr. Benyettou', room: 'Salle 5', groups: ['G1','G2'] },
+                        { time: '11h10 - 12h40', module: 'Calculus 3', type: 'TD', prof: 'Mr. Brahimi', room: 'Salle 6', groups: ['G3','G4'] },
+                        { time: '13h30 - 15h00', module: 'General Electricity', type: 'TD', prof: 'Mr. Rahoui', room: 'Salle 1', groups: ['G1','G2'] },
+                        { time: '13h30 - 15h00', module: 'Rational Mech 1', type: 'TD', prof: 'Mrs Zenati', room: 'Salle 2', groups: ['G3','G4'] },
+                        { time: '13h30 - 15h00', module: 'Fluid Mechanics', type: 'TD', prof: 'Mr Kellou', room: 'Salle 3', groups: ['G5','G6'] },
+                        { time: '13h30 - 15h00', module: 'Numerical Analysis 1', type: 'TD', prof: 'Mr. Hamadi', room: 'Salle 4', groups: ['G7','G8'] },
+                        { time: '15h05 - 16h35', module: 'Rational Mech 1', type: 'TD', prof: 'Mrs Zenati', room: 'Salle 1', groups: ['G1','G2'] },
+                        { time: '15h05 - 16h35', module: 'General Electricity', type: 'TD', prof: 'Mr. Rahoui', room: 'Salle 3', groups: ['G3','G4'] }
+                    ],
+                    Sunday: [
+                        { time: '08h00 - 09h30', module: 'Physics 3', type: 'Cours', prof: 'Mr. Bernardi', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '09h35 - 11h05', module: 'Engineering', type: 'Cours', prof: 'Mrs Oumoussa', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'Numerical Analysis 1', type: 'Cours', prof: 'Mr. Hamadi', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10'] },
+                        { time: '13h30 - 15h00', module: 'Engineering', type: 'TD', prof: 'Mrs Chiali', room: 'Auditorium A', groups: ['G7','G8','G9','G10','G11','G12'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 09h30', module: 'Physics 3', type: 'Cours', prof: 'Mr. Bernardi', room: 'Auditorium A', groups: ['G7','G8','G9','G10','G11','G12'] },
+                        { time: '09h35 - 11h05', module: 'Calculus 3', type: 'Cours', prof: 'Mr. Brahimi', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'Numerical Analysis 1', type: 'TD', prof: 'Mr. Hamadi', room: 'Salle 8', groups: ['G1','G2'] },
+                        { time: '13h30 - 15h00', module: 'Calculus 3', type: 'TD', prof: 'Mr. Brahimi', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '15h05 - 16h35', module: 'Fluid Mechanics', type: 'TD', prof: 'Mr Kellou', room: 'Salle 9', groups: ['G1','G2'] },
+                        { time: '15h05 - 16h35', module: 'General Electricity', type: 'TD', prof: 'Mr. Rahoui', room: 'Salle 10', groups: ['G3','G4'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'Chemistry 3', type: 'Cours', prof: 'Mme Bouhara', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '08h00 - 09h30', module: 'General Electricity', type: 'Cours', prof: 'Mr. Rahoui', room: 'Auditorium B', groups: ['G7','G8','G9','G10','G11','G12'] },
+                        { time: '09h35 - 11h05', module: 'Fluid Mechanics', type: 'Cours', prof: 'Mr Kellou', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'General Electricity', type: 'TD', prof: 'Mr. Rahoui', room: 'Salle 14', groups: ['G1','G2'] },
+                        { time: '11h10 - 12h40', module: 'Fluid Mechanics', type: 'TD', prof: 'Mr Kellou', room: 'Salle 15', groups: ['G3','G4'] },
+                        { time: '15h05 - 16h35', module: 'Chemistry 3', type: 'TD', prof: 'Mme Dib', room: 'Salle 16', groups: ['G1','G2','G3'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'Rational Mech 01', type: 'Cours', prof: 'Mrs Zenati', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '09h35 - 11h05', module: 'Chemistry 3', type: 'Cours', prof: 'Mme Bouhara', room: 'Auditorium B', groups: ['G7','G8','G9','G10','G11','G12'] },
+                        { time: '09h35 - 11h05', module: 'English 3', type: 'Cours', prof: 'Mr. Yala', room: 'Auditorium A', groups: ['G1','G2','G3','G4','G5','G6'] },
+                        { time: '11h10 - 12h40', module: 'English 3', type: 'TD', prof: 'Mr. Yala', room: 'Auditorium B', groups: ['G1','G2'] },
+                        { time: '11h10 - 12h40', module: 'Rational Mech 01', type: 'TD', prof: 'Mrs Zenati', room: 'Auditorium A', groups: ['G3','G4'] },
+                        { time: '13h30 - 15h00', module: 'English h3', type: 'TD', prof: 'Mr Azzi', room: 'Room 22', groups: ['G1','G2'] },
+                        { time: '13h30 - 15h00', module: 'English h3', type: 'TD', prof: 'Mr Omar', room: 'Room 5', groups: ['G3','G4'] },
+                        { time: '18h00 - 19h30', module: 'Engineering', type: 'Online (EAD)', prof: 'Mrs Chiali', room: 'EAD Virtual', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12','G13','G14','G15','G16','G17','G18'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 12h40', module: 'Lab (Chemistry / Physics General / Electronic / Fl-Mech)', type: 'TP', prof: 'Equipe TP Labo', room: 'Laboratories', groups: ['G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12'] }
+                    ]
+                }
+            },
+            ENG1_DMS: {
+                title: "السنة الأولى مهندسين - 1st Year Engineering (DMS)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng1_dms.pdf",
+                groups: [
+                    { id: 'SEC1', name: 'Section 1' },
+                    { id: 'SEC2', name: 'Section 2' },
+                    { id: 'SEC3', name: 'Section 3' },
+                    { id: 'SEC4', name: 'Section 4' }
+                ],
+                schedule: {
+                    Sunday: [
+                        { time: '08h00 - 09h30', module: 'SM 1', type: 'TD', prof: 'Mrs MLILI', room: 'SEC 1 (Room 14)', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'APP GEO', type: 'TD', prof: 'Mr HEBIB', room: 'SEC 2 (Room 16)', groups: ['SEC2'] },
+                        { time: '08h00 - 09h30', module: 'TPES', type: 'TD', prof: 'Mrs SAADI', room: 'SEC 3 (Room 17)', groups: ['SEC3'] },
+                        { time: '08h00 - 09h30', module: 'BM', type: 'TD', prof: 'Mr BENOUNAS', room: 'SEC 4 (Room 18)', groups: ['SEC4'] },
+                        { time: '09h35 - 11h05', module: 'APP GEO', type: 'TD', prof: 'Mr HEBIB', room: 'SEC 1 (Room 14)', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'SM 1', type: 'TD', prof: 'Mrs MLILI', room: 'SEC 2 (Room 16)', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'BM', type: 'TD', prof: 'Mr BENOUNAS', room: 'SEC 3 (Room 17)', groups: ['SEC3'] },
+                        { time: '09h35 - 11h05', module: 'TPES', type: 'TD', prof: 'Mrs SAADI', room: 'SEC 4 (Room 18)', groups: ['SEC4'] },
+                        { time: '13h00 - 14h30', module: 'BM', type: 'TD', prof: 'Mr GUEHLOUZ', room: 'SEC 1 (Room 14)', groups: ['SEC1'] },
+                        { time: '13h00 - 14h30', module: 'AI', type: 'TD', prof: 'Mr BAKROUCHE', room: 'SEC 2 (Room 16)', groups: ['SEC2'] },
+                        { time: '13h00 - 14h30', module: 'SM 1', type: 'TD', prof: 'Mr BERRICHE', room: 'SEC 3 (Room 17)', groups: ['SEC3'] },
+                        { time: '13h00 - 14h30', module: 'AI', type: 'TD', prof: 'Mr BALI', room: 'SEC 4 (Room 18)', groups: ['SEC4'] },
+                        { time: '14h35 - 16h05', module: 'AI', type: 'TD', prof: 'Mr BAKROUCHE', room: 'SEC 1 (Room 14)', groups: ['SEC1'] },
+                        { time: '14h35 - 16h05', module: 'BM', type: 'TD', prof: 'Mr GUEHLOUZ', room: 'SEC 2 (Room 16)', groups: ['SEC2'] },
+                        { time: '14h35 - 16h05', module: 'AI', type: 'TD', prof: 'Mr BALI', room: 'SEC 3 (Room 17)', groups: ['SEC3'] },
+                        { time: '14h35 - 16h05', module: 'SM 1', type: 'TD', prof: 'Mr BERRICHE', room: 'SEC 4 (Room 18)', groups: ['SEC4'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 09h30', module: 'SOM 1', type: 'TD', prof: 'Mr GASSIS', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'AH', type: 'TD', prof: 'Mr LEFKIR', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '08h00 - 09h30', module: 'SOM 1', type: 'TD', prof: 'Mr ANNAD', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '08h00 - 09h30', module: 'CM 1', type: 'TD', prof: 'Mr KEHLA', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '09h35 - 11h05', module: 'AH', type: 'TD', prof: 'Mr LEFKIR', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'SOM 1', type: 'TD', prof: 'Mr BENOUCHFOUN', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'CM 1', type: 'TD', prof: 'Mr KEHLA', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '09h35 - 11h05', module: 'SOM 1', type: 'TD', prof: 'Mr ANNAD', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '13h00 - 14h30', module: 'AH : Mrs CHENITI / BM : Mr BENOUNAS / TOPO : Mrs OULD RAMOUL / SOM : M. BOUKEZZI & M. MESSAOUDI / SM : Mr ZEFOUNI', type: 'Cours/TD', prof: 'Multi-Prof', room: 'Rooms 14-18', groups: ['SEC1','SEC2','SEC3','SEC4'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'SM 1', type: 'TD', prof: 'Mrs MLILI', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'T. ENGLISH 1', type: 'TD', prof: 'Mrs KHALFI', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '08h00 - 09h30', module: 'APP GEO', type: 'TD', prof: 'Mr OMRACI', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '08h00 - 09h30', module: 'NTI', type: 'TD', prof: 'Mr FAKEUR', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '09h35 - 11h05', module: 'T. ENGLISH 1', type: 'TD', prof: 'Mrs KHALFI', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'SM 1', type: 'TD', prof: 'Mrs MLILI', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'NTI', type: 'TD', prof: 'Mr FAKEUR', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '09h35 - 11h05', module: 'APP GEO', type: 'TD', prof: 'Mr OMRACI', room: 'SEC 4', groups: ['SEC4'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'APP GEO', type: 'TD', prof: 'Mr HEBIB', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'SOM 1', type: 'TD', prof: 'Mrs ZAHAFI', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '08h00 - 09h30', module: 'CM 1', type: 'TD', prof: 'Mr GASSIS', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '08h00 - 09h30', module: 'SOM 1', type: 'TD', prof: 'Mr ANNAD', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '09h35 - 11h05', module: 'CM 1', type: 'TD', prof: 'Mr GASSIS', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'NTI', type: 'TD', prof: 'Mr BENOUCHFOUN', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'AH', type: 'TD', prof: 'Mrs CHENITI', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '09h35 - 11h05', module: 'SOM 1', type: 'TD', prof: 'Mr ANNAD', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '13h00 - 16h05', module: 'NTI / ENTR / SM 1 / AI', type: 'TD/TP', prof: 'Mr ZEMOUR / Mr M-BAKHIT / Mr BERRICHE', room: 'SEC 1, 2, 3, 4', groups: ['SEC1','SEC2','SEC3','SEC4'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'AH', type: 'TD', prof: 'Mrs CHENITI', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'EGPD', type: 'TD', prof: 'Mrs BENOUNAS', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '08h00 - 09h30', module: 'TPES', type: 'TD', prof: 'Mrs SAADI', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '08h00 - 09h30', module: 'TOPO', type: 'TD', prof: 'Mrs OULD RAMOUL', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '09h35 - 11h05', module: 'EGPD', type: 'TD', prof: 'Mrs BENOUNAS', room: 'SEC 1', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'TPES', type: 'TD', prof: 'Mrs SAADI', room: 'SEC 2', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'TOPO', type: 'TD', prof: 'Mrs OULD RAMOUL', room: 'SEC 3', groups: ['SEC3'] },
+                        { time: '09h35 - 11h05', module: 'T. ENGLISH 1', type: 'TD', prof: 'Mr AZZI', room: 'SEC 4', groups: ['SEC4'] },
+                        { time: '13h00 - 16h05', module: 'SPECIALIZED SEMINARS 1', type: 'Seminar', prof: 'Mr GASSIS', room: 'Amphi B (PROMO)', groups: ['SEC1','SEC2','SEC3','SEC4'] }
+                    ]
+                }
+            },
+            ENG1_DIB: {
+                title: "السنة الأولى مهندسين - 1st Year Engineering (DIB)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng1_dib.pdf",
+                groups: [
+                    { id: 'CR7', name: 'الفوج 1 / Group 1 / Groupe 1' },
+                    { id: 'CR8', name: 'الفوج 2 / Group 2 / Groupe 2' },
+                    { id: 'CR9', name: 'الفوج 3 / Group 3 / Groupe 3' },
+                    { id: 'CR25', name: 'الفوج 4 / Group 4 / Groupe 4' }
+                ],
+                schedule: {
+                    Saturday: [
+                        { time: '09h35 - 11h05', module: 'Constr Mat', type: 'Cours (En ligne)', prof: 'BADAOUI', room: 'Online (En ligne)', groups: ['CR7','CR8','CR9','CR25'] }
+                    ],
+                    Sunday: [
+                        { time: '08h00 - 10h00', module: 'SOM', type: 'TD', prof: 'LAIB', room: 'Classroom 7', groups: ['CR7'] },
+                        { time: '08h00 - 10h00', module: 'Appl Hydr', type: 'TD', prof: 'BOUSSADI', room: 'Classroom 8', groups: ['CR8'] },
+                        { time: '08h00 - 10h00', module: 'MMC', type: 'TD', prof: 'MERDOUD', room: 'Classroom 9', groups: ['CR9'] },
+                        { time: '08h00 - 10h00', module: 'SOM', type: 'TD', prof: 'GASSIS', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '10h05 - 12h05', module: 'Appl Hydr', type: 'TD', prof: 'BOUSSADI', room: 'Classroom 7', groups: ['CR7'] },
+                        { time: '10h05 - 12h05', module: 'SOM', type: 'TD', prof: 'LAIB', room: 'Classroom 8', groups: ['CR8'] },
+                        { time: '10h05 - 12h05', module: 'SOM', type: 'TD', prof: 'GASSIS', room: 'Classroom 9', groups: ['CR9'] },
+                        { time: '10h05 - 12h05', module: 'MMC', type: 'TD', prof: 'MERDOUD', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '13h00 - 16h05', module: 'PRACTICAL (Topo, SM, CM, App Geo)', type: 'TP', prof: 'ALEM, BOUSSADI, MSILI, LAIB, BENOUMECHIARA, OMRACI', room: 'Laboratoires / Classrooms', groups: ['CR7','CR8','CR9','CR25'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 09h30', module: 'Soil Mech 1', type: 'TD', prof: 'Benoumechiara', room: 'Classroom 7', groups: ['CR7'] },
+                        { time: '08h00 - 09h30', module: 'Appl Geology', type: 'TD', prof: 'OMRACI', room: 'Classroom 8', groups: ['CR8'] },
+                        { time: '08h00 - 09h30', module: 'Soil Mech 1', type: 'TD', prof: 'BERRICHE', room: 'Classroom 9', groups: ['CR9'] },
+                        { time: '08h00 - 09h30', module: 'Topo', type: 'TD', prof: 'ALEM', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '09h35 - 11h05', module: 'Appl Geology', type: 'TD', prof: 'OMRACI', room: 'Classroom 7', groups: ['CR7'] },
+                        { time: '09h35 - 11h05', module: 'Soil Mech 1', type: 'TD', prof: 'Benoumechiara', room: 'Classroom 8', groups: ['CR8'] },
+                        { time: '09h35 - 11h05', module: 'Topo', type: 'TD', prof: 'ALEM', room: 'Classroom 9', groups: ['CR9'] },
+                        { time: '09h35 - 11h05', module: 'Soil Mech 1', type: 'TD', prof: 'BERRICHE', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '13h00 - 14h30', module: 'Topo / Techn English', type: 'TD', prof: 'ALEM / AMALOU', room: 'Classroom 7 & 8', groups: ['CR7','CR8'] },
+                        { time: '14h35 - 16h05', module: 'Techn English / Topo', type: 'TD', prof: 'AMALOU / ALEM', room: 'Classroom 7 & 8', groups: ['CR7','CR8'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 10h00', module: 'MMC', type: 'TD', prof: 'MERDOUD', room: 'Classroom 6', groups: ['CR7'] },
+                        { time: '08h00 - 10h00', module: 'SOM', type: 'TD', prof: 'LAIB', room: 'Classroom 7', groups: ['CR8'] },
+                        { time: '08h00 - 10h00', module: 'Appl Hydr', type: 'TD', prof: 'RAHMANI', room: 'Classroom 8', groups: ['CR9'] },
+                        { time: '08h00 - 10h00', module: 'SOM', type: 'TD', prof: 'GASSIS', room: 'Classroom 9', groups: ['CR25'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'Entrepreneurship', type: 'TD', prof: 'MOBARKI', room: 'Classroom CC', groups: ['CR7'] },
+                        { time: '08h00 - 09h30', module: 'Num Prog', type: 'TD', prof: 'CHAMI', room: 'Classroom 7', groups: ['CR8'] },
+                        { time: '08h00 - 09h30', module: 'Techn English', type: 'TD', prof: 'AMALOU', room: 'Classroom 8', groups: ['CR9'] },
+                        { time: '08h00 - 09h30', module: 'Ter Plan Env Sust', type: 'TD', prof: 'SAADI', room: 'Classroom 9', groups: ['CR25'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 11h00', module: 'PRACTICAL (Topo, SM, AH, Appl Geo)', type: 'TP', prof: 'ALEM, GUETTACHE, BENOUMECHIARA, OMRACI', room: 'Laboratoire', groups: ['CR7','CR8','CR9','CR25'] },
+                        { time: '13h00 - 16h05', module: 'Specialized Lectures', type: 'Cours', prof: 'Mrs CHIALI', room: 'Amphi A', groups: ['CR7','CR8','CR9','CR25'] }
+                    ]
+                }
+            },
+            ENG2_DMS: {
+                title: "السنة الثانية مهندسين - 2nd Year Engineering (DMS)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng2_dms.pdf",
+                groups: [
+                    { id: 'SEC1', name: 'Section 01 (Salle 14)' },
+                    { id: 'SEC2', name: 'Section 02 (Salle 15)' }
+                ],
+                schedule: {
+                    Sunday: [
+                        { time: '08h00 - 10h00', module: 'STRUCTURAL DYNAMICS 1', type: 'Cours', prof: 'M. HADID', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '08h00 - 10h00', module: 'REINFORCED CONCRETE 2', type: 'Cours', prof: 'M. BELAOURA', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '10h05 - 12h05', module: 'REINFORCED CONCRETE 2', type: 'TD', prof: 'M. BELAOURA', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '10h05 - 12h05', module: 'STRUCTURAL DYNAMICS 1', type: 'TD', prof: 'M. HADID', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '13h00 - 14h30', module: 'TUNNELS', type: 'TD', prof: 'M. HEBIB', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '13h00 - 14h30', module: 'HYDRAULIC STRUCTURES', type: 'TD', prof: 'M. LEFKIR', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '14h35 - 16h05', module: 'HYDRAULIC STRUCTURES', type: 'TD', prof: 'M. LEFKIR', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '14h35 - 16h05', module: 'TUNNELS', type: 'TD', prof: 'M. HEBIB', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 10h00', module: 'STEEL STRUCTURES 1', type: 'Cours', prof: 'Ms BOUKEZZI', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '08h00 - 10h00', module: 'STRUCTURAL MECHANICS 1', type: 'Cours', prof: 'Ms MESSAOUDI', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '10h05 - 12h05', module: 'STRUCTURAL MECHANICS 1', type: 'TD', prof: 'Ms MESSAOUDI', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '10h05 - 12h05', module: 'FINITE ELEMENTS METHOD 1', type: 'TD', prof: 'M. CHIKH', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '13h00 - 16h05', module: 'Site Visits (زيارات ميدانية)', type: 'Practical', prof: 'Equipe Pedag', room: 'Chantiers Extérieurs', groups: ['SEC1','SEC2'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 10h00', module: 'BRIDGES 1', type: 'Cours', prof: 'M. ZOURGUI', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '08h00 - 10h00', module: 'STEEL STRUCTURES 1', type: 'TD', prof: 'Ms BOUKEZZI', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '10h05 - 12h05', module: 'FINITE ELEMENTS METHOD 1', type: 'TD', prof: 'M. CHIKH', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '10h05 - 12h05', module: 'BRIDGES 1', type: 'TD', prof: 'M. ZOURGUI', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '13h00 - 14h30', module: 'INTRODUCTION TO BIM', type: 'Cours', prof: 'Mr TAFRAOUT', room: 'Promo Salle 25', groups: ['SEC1','SEC2'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'ROADS 2', type: 'Cours', prof: 'M. BAKHTI', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '08h00 - 09h30', module: 'PRESTRESSED CONCRETE 1', type: 'Cours', prof: 'M. BELAOURA', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '09h35 - 11h05', module: 'PRESTRESSED CONCRETE 1', type: 'TD', prof: 'M. BELAOURA', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'ROADS 2', type: 'TD', prof: 'M. BAKHTI', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '11h10 - 12h40', module: 'TP ROADS / TP SOIL MECH', type: 'TP', prof: 'Ms M\'SILI / Ms MEBAREK', room: 'Salle 24 & 25', groups: ['SEC1','SEC2'] },
+                        { time: '13h00 - 16h05', module: 'ROADS SKETCH', type: 'TD', prof: 'M. GUENAZI / M. BENBOUZID', room: 'Salle 24 / 25', groups: ['SEC1','SEC2'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'BUILDINGS 1', type: 'Cours', prof: 'M. LADJEL', room: 'Salle 14 (SEC 01)', groups: ['SEC1'] },
+                        { time: '09h35 - 11h05', module: 'SOIL MECHANICS 4', type: 'Cours', prof: 'M. GUEHLOUZ', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] },
+                        { time: '11h10 - 12h40', module: 'BUILDINGS 1', type: 'TD', prof: 'M. LADJEL', room: 'Salle 15 (SEC 02)', groups: ['SEC2'] }
+                    ]
+                }
+            },
+            ENG2_DIB: {
+                title: "السنة الثانية مهندسين - 2nd Year Engineering (DIB)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng2_dib.pdf",
+                groups: [
+                    { id: 'CR5', name: 'الفوج 1 / Group 1 / Groupe 1' },
+                    { id: 'CR22', name: 'الفوج 2 / Group 2 / Groupe 2' },
+                    { id: 'CR25', name: 'الفوج 4 / Group 4 / Groupe 4' }
+                ],
+                schedule: {
+                    Sunday: [
+                        { time: '08h00 - 10h00', module: 'ROAD GEOT', type: 'TD', prof: 'DERRICHE', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '08h00 - 10h00', module: 'SOIL MECH 4', type: 'TD', prof: 'HAMADI', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '10h05 - 12h05', module: 'RC', type: 'TD', prof: 'TAFRAOUT', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '10h05 - 12h05', module: 'FEM', type: 'TD', prof: 'MEHIAOUI', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '13h00 - 14h30', module: 'CM', type: 'Cours', prof: 'OUAKLI', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '13h00 - 14h30', module: 'CM', type: 'Cours', prof: 'OUMOUSSA', room: 'Classroom 22', groups: ['CR22'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 10h00', module: 'STRUCT DYN', type: 'TD', prof: 'LARBI', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '08h00 - 10h00', module: 'ROAD GEOT', type: 'TD', prof: 'DERRICHE', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '10h05 - 12h05', module: 'FEM', type: 'TD', prof: 'MEHIAOUI', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '10h05 - 12h05', module: 'SOIL MECHA', type: 'TD', prof: 'HAMADI', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '13h00 - 16h05', module: 'PRACTICAL ROADS', type: 'TP', prof: 'MAHIEDDINE, SM4 DALI, ROADS KHOUAS - DEKALI', room: 'Laboratoire', groups: ['CR5','CR22'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'ROAD SKETCH GOUMETTRE', type: 'TD', prof: 'HATRI/ASSAS', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '08h00 - 09h30', module: 'ROCK MECH', type: 'TD', prof: 'BENAMGHAR', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '09h35 - 11h05', module: 'ROCK SKETCH GOUMETTRE', type: 'TD', prof: 'HATRI/ASSAS', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '09h35 - 11h05', module: 'ROCK MECH', type: 'TD', prof: 'BENAMGHAR', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '11h10 - 12h40', module: 'BIM / % section', type: 'TD', prof: 'KERMICHE & TAFRAOUT', room: 'Classroom 25', groups: ['CR25'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'ADV STRUCT MECH', type: 'TD', prof: 'ASSAS', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '08h00 - 09h30', module: 'STRUCT DYN', type: 'TD', prof: 'LARBI', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '09h35 - 11h05', module: 'RC', type: 'TD', prof: 'BENREDOUANE', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '09h35 - 11h05', module: 'ADV STRUCT MECH', type: 'TD', prof: 'ASSAS', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '13h00 - 16h05', module: 'BRIDGE', type: 'TD', prof: 'AMIEUR', room: 'Amphi A', groups: ['CR5','CR22','CR25'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'PRES CONCR', type: 'TD', prof: 'AMIEUR', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '08h00 - 09h30', module: 'RAILWAY', type: 'TD', prof: 'GHEFFAR', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '09h35 - 11h05', module: 'RAILWAY', type: 'TD', prof: 'REMDANE', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '09h35 - 11h05', module: 'PRES CONCR', type: 'TD', prof: 'AMIEUR', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '11h10 - 12h40', module: 'ASS-URB', type: 'TD', prof: 'BOUSSADI', room: 'Classroom 5', groups: ['CR5'] },
+                        { time: '11h10 - 12h40', module: 'ASS-URB', type: 'TD', prof: 'RAHMANI', room: 'Classroom 24', groups: ['CR22'] },
+                        { time: '13h00 - 16h05', module: 'IN SITU VISIT', type: 'Practical Visit', prof: 'Equipe DIB', room: 'Visites Chantiers', groups: ['CR5','CR22','CR25'] }
+                    ]
+                }
+            },
+            ENG3_DMS: {
+                title: "السنة الثالثة مهندسين - 3rd Year Engineering (DMS)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng3_dms.pdf",
+                groups: [
+                    { id: 'TUN', name: 'Groupe TUN (Tunnels)' },
+                    { id: 'BAT', name: 'Groupe BAT (Bâtiments)' }
+                ],
+                schedule: {
+                    Saturday: [
+                        { time: '08h00 - 11h05', module: 'MIDAS', type: 'TP / TD', prof: 'Mr. GUERFI', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '11h10 - 12h40', module: 'Méthodes de Réalisation des OS', type: 'TD', prof: 'Mr HEBIB', room: 'Classroom 19', groups: ['TUN','BAT'] }
+                    ],
+                    Sunday: [
+                        { time: '08h00 - 09h30', module: 'Calcul Automatique des Structures', type: 'Cours', prof: 'Mr BENOUCHFOUN', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '09h35 - 11h05', module: 'MANAG de Projets', type: 'Cours', prof: 'Mme CHIALI', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '11h10 - 12h40', module: 'Calcul Economique des Projets', type: 'Cours', prof: 'Mme CHIALI', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '13h30 - 15h00', module: 'Calcul d\'Ouvrages / Dév. Dur. Amen. Territ', type: 'TD', prof: 'Mr. LADJEL / Mme SAADI', room: 'Salle 19 / 24', groups: ['TUN','BAT'] },
+                        { time: '15h05 - 16h40', module: 'Dév. Dur. Amen. Territ / Calcul d\'Ouvrages', type: 'TD', prof: 'Mme SAADI / Mme OUMOUSSA', room: 'Salle 19 / 24', groups: ['TUN','BAT'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 09h30', module: 'Pathologie et Réhabilitation des Ouvrages d\'Art', type: 'Cours', prof: 'Mr. FEDGHOUCHE', room: 'Classroom 11', groups: ['TUN','BAT'] },
+                        { time: '09h35 - 11h05', module: 'Optimisation dans le Génie Civil', type: 'TD', prof: 'Mr FEDGHOUCHE', room: 'Classroom 11', groups: ['TUN','BAT'] },
+                        { time: '11h10 - 12h40', module: 'Organisation de chantier', type: 'Cours', prof: 'Mr MOKHTAR', room: 'Classroom 11', groups: ['TUN','BAT'] },
+                        { time: '13h30 - 15h00', module: 'Thermique Bâtiment', type: 'TD', prof: 'M. ANNAD', room: 'Classroom 19', groups: ['BAT'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'MMC Approfondie', type: 'TD', prof: 'Mme ZAHAF', room: 'Salle 19', groups: ['TUN','BAT'] },
+                        { time: '09h35 - 11h05', module: 'Dynamique des Sols 2', type: 'TD', prof: 'Mr HADID', room: 'Salle 19', groups: ['TUN','BAT'] },
+                        { time: '11h10 - 12h40', module: 'TD DOSOILS / Dynamique des Sols 2', type: 'TD', prof: 'Mr TOUNSI / Mme ZAHAF', room: 'Salle 11 / 19', groups: ['TUN','BAT'] },
+                        { time: '13h00 - 16h05', module: 'Visites de Chantiers (زيارات ميدانية)', type: 'Practical', prof: 'Equipe Pedag', room: 'Chantiers Extérieurs', groups: ['TUN','BAT'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 09h30', module: 'Droit des TP', type: 'Cours', prof: 'Mr HAMADI', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '09h35 - 11h05', module: 'Matériaux Innovants', type: 'Cours', prof: 'Mme MAZI', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '11h10 - 12h40', module: 'Analyse Expérimentale', type: 'Cours', prof: 'Mr MAHREZ', room: 'Classroom 19', groups: ['TUN','BAT'] },
+                        { time: '13h30 - 16h40', module: 'Esq. Bâtiments / Esq. Tunnels', type: 'TD/Projet', prof: 'Mr AKNOUCHE / Mr CHERCHALI', room: 'Salle 15 / 17', groups: ['TUN','BAT'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'Lean Entrepreneuriat', type: 'Cours', prof: 'Promo', room: 'Salle 19', groups: ['TUN','BAT'] },
+                        { time: '09h35 - 12h40', module: 'Esquisse Ponts', type: 'TD', prof: 'Mr ZOURGUI / Mr KHELFI', room: 'Classroom 19 / 10', groups: ['TUN','BAT'] }
+                    ]
+                }
+            },
+            ENG3_DIB: {
+                title: "السنة الثالثة مهندسين - 3rd Year Engineering (DIB)",
+                pdfUrl: "https://enstp.edu.dz/schedules/eng3_dib.pdf",
+                groups: [
+                    { id: 'CR20', name: 'Classroom 20' },
+                    { id: 'CR22', name: 'الفوج 2 / Group 2 / Groupe 2' },
+                    { id: 'CR25', name: 'الفوج 4 / Group 4 / Groupe 4' }
+                ],
+                schedule: {
+                    Saturday: [
+                        { time: '08h00 - 11h05', module: 'ADDITIONAL TRAINING ON SOFTWARE', type: 'TP', prof: 'BOUDEMA / TOUHAMI / HENNA', room: 'Classroom 20', groups: ['CR20','CR22','CR25'] },
+                        { time: '13h30 - 16h35', module: 'CO TAFRAOUT', type: 'TD', prof: 'TAFRAOUT', room: 'Classroom 20', groups: ['CR20'] }
+                    ],
+                    Sunday: [
+                        { time: '08h00 - 09h30', module: 'SOIL DYN', type: 'TD', prof: 'MEHIAOUI', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '09h35 - 11h05', module: 'ROAD PATHO', type: 'TD', prof: 'BERRICHE', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '13h30 - 15h00', module: 'CO', type: 'TD', prof: 'BENREDOUANE', room: 'Classroom 25', groups: ['CR25'] },
+                        { time: '15h05 - 16h35', module: 'MDP CHOHRA', type: 'TD', prof: 'CHOHRA / BENAMGHAR', room: 'Classroom 20', groups: ['CR20'] }
+                    ],
+                    Monday: [
+                        { time: '08h00 - 11h05', module: 'SOIL DYN', type: 'TD', prof: 'MEHIAOUI', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '11h10 - 12h40', module: 'PATHO OA', type: 'TD', prof: 'FEDGHOUCHE', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '13h30 - 15h00', module: 'OS BENAMGHAR', type: 'TD', prof: 'BENAMGHAR / MOBARKI', room: 'Classroom 20 & 5', groups: ['CR20','CR22'] }
+                    ],
+                    Tuesday: [
+                        { time: '08h00 - 09h30', module: 'ODC/PGC KHOUAS', type: 'TD', prof: 'KHOUAS', room: 'Classroom 22', groups: ['CR22'] },
+                        { time: '09h35 - 11h05', module: 'ODC/PGC KHOUAS', type: 'TD', prof: 'KHOUAS', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '11h10 - 12h40', module: 'CLASSROOM 20 EDT CHIALI', type: 'TD', prof: 'CHIALI', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '15h05 - 16h35', module: '% SECTION AUTOM-C', type: 'TD', prof: 'BELHADJ', room: 'Classroom CC', groups: ['CR20','CR22'] }
+                    ],
+                    Wednesday: [
+                        { time: '08h00 - 11h05', module: 'RHEOL TAKI / ODC/PGC KHOUAS', type: 'TD', prof: 'TAKI / KHOUAS', room: 'Classroom 20 & 25', groups: ['CR20','CR25'] },
+                        { time: '11h10 - 12h40', module: 'CLASSROOM 20 ESQ PR AMIEUR', type: 'TD', prof: 'AMIEUR', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '13h30 - 15h00', module: 'SALLE 20 DDAT CHIALI', type: 'TD', prof: 'CHIALI', room: 'Classroom 20', groups: ['CR20'] }
+                    ],
+                    Thursday: [
+                        { time: '08h00 - 09h30', module: 'ESQ APD BAYASLI', type: 'TD', prof: 'BAYASLI', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '09h35 - 11h05', module: 'ESQ VF MORSILI', type: 'TD', prof: 'MORSILI', room: 'Classroom 20', groups: ['CR20'] },
+                        { time: '11h10 - 12h40', module: 'ESQ TM BOUHANNICHE / MDP CHOHRA', type: 'TD', prof: 'BOUHANNICHE / CHOHRA', room: 'Classroom 25 / 20', groups: ['CR20','CR25'] },
+                        { time: '13h00 - 16h05', module: 'IN SITU VISITS', type: 'Practical', prof: 'Equipe Pedag', room: 'Visites Chantiers', groups: ['CR20','CR22','CR25'] }
+                    ]
+                }
+            }
+        };
+
+        // DOM Element Selectors
+        const levelSelect = document.getElementById('levelSelect');
+        const groupSelect = document.getElementById('groupSelect');
+        const searchInput = document.getElementById('searchInput');
+        const daysTabContainer = document.getElementById('daysTabContainer');
+        const timetableContainer = document.getElementById('timetableContainer');
+        const currentSelectionTitle = document.getElementById('currentSelectionTitle');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+        const printBtn = document.getElementById('printBtn');
+        const todayBtn = document.getElementById('todayBtn');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const liveClock = document.getElementById('liveClock');
+
+        // Application State
+        let currentLevel = 'PREPA1';
+        let currentGroup = 'ALL';
+        let selectedDay = getCurrentDayName();
+
+        // Utility: Get Today Name in English matching dataset
+        function getCurrentDayName() {
+            const dayIndex = new Date().getDay(); // 0 is Sunday, 6 is Saturday
+            const map = {
+                6: 'Saturday',
+                0: 'Sunday',
+                1: 'Monday',
+                2: 'Tuesday',
+                3: 'Wednesday',
+                4: 'Thursday',
+                5: 'Friday'
+            };
+            return map[dayIndex] || 'Saturday';
+        }
+
+        // Live Clock Updater
+        function updateLiveClock() {
+            const now = new Date();
+            liveClock.textContent = now.toLocaleTimeString('ar-DZ', { hour12: false });
+        }
+        setInterval(updateLiveClock, 1000);
+        updateLiveClock();
+
+        // Dark Mode Toggle Setup
+        function initTheme() {
+            const isDark = localStorage.getItem('enstp_theme') === 'dark' || 
+                (!('enstp_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun text-lg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon text-lg';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('enstp_theme', isDark ? 'dark' : 'light');
+            themeIcon.className = isDark ? 'fa-solid fa-sun text-lg' : 'fa-solid fa-moon text-lg';
+        });
+
+        // Dynamic Group Select Options Renderer
+        function populateGroups() {
+            const levelData = TIMETABLE_DATA[currentLevel];
+            groupSelect.innerHTML = `<option value="ALL">${UI_TEXT[currentLanguage].all}</option>`;
+            
+            if (levelData && levelData.groups) {
+                levelData.groups.forEach(g => {
+                    const option = document.createElement('option');
+                    option.value = g.id;
+                    option.textContent = g.name;
+                    groupSelect.appendChild(option);
+                });
+            }
+            currentGroup = 'ALL';
+        }
+
+        // Days Buttons Renderer
+        function renderDaysTabs() {
+            daysTabContainer.innerHTML = '';
+            DAYS.forEach(day => {
+                const btn = document.createElement('button');
+                const isSelected = day.id === selectedDay;
+                
+                btn.className = `py-2.5 px-3 rounded-2xl text-xs font-bold transition-all duration-200 flex flex-col items-center justify-center gap-1 ${
+                    isSelected 
+                        ? 'bg-enstp-blue text-white shadow-md scale-[1.02]' 
+                        : 'bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700'
+                }`;
+
+                // Mark current actual day with indicator
+                const isActualToday = day.id === getCurrentDayName();
+                const names=currentLanguage==='fr'?['Samedi','Dimanche','Lundi','Mardi','Mercredi','Jeudi']:currentLanguage==='en'?['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday']:DAYS.map(d=>d.nameAr);
+                btn.innerHTML=`<span>${names[DAYS.indexOf(day)]}</span>${isActualToday?`<span class="text-[9px] bg-amber-400 text-slate-900 font-extrabold px-1.5 rounded-full">${UI_TEXT[currentLanguage].todayTag}</span>`:''}`;
+
+                btn.addEventListener('click', () => {
+                    selectedDay = day.id;
+                    renderDaysTabs();
+                    renderSchedule();
+                });
+
+                daysTabContainer.appendChild(btn);
+            });
+        }
+
+        // Render Timetable Schedule Cards
+        function renderSchedule() {
+            const levelData = TIMETABLE_DATA[currentLevel];
+            const rawDaySchedule = (levelData && levelData.schedule && levelData.schedule[selectedDay]) || [];
+            const searchKeyword = searchInput.value.trim().toLowerCase();
+
+            // Filter by selected Group and Search Keyword
+            let filtered = rawDaySchedule.filter(item => {
+                const matchGroup = (currentGroup === 'ALL') || (item.groups && item.groups.includes(currentGroup));
+                const matchSearch = !searchKeyword || 
+                    item.module.toLowerCase().includes(searchKeyword) || 
+                    item.prof.toLowerCase().includes(searchKeyword) || 
+                    item.room.toLowerCase().includes(searchKeyword);
+                return matchGroup && matchSearch;
+            });
+
+            // Update Header Title
+            const di=DAYS.findIndex(d=>d.id===selectedDay); const names=currentLanguage==='fr'?['Samedi','Dimanche','Lundi','Mardi','Mercredi','Jeudi']:currentLanguage==='en'?['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday']:DAYS.map(d=>d.nameAr); const currentDayAr=names[di]||'';
+            currentSelectionTitle.textContent = `${levelData.title} — ${currentLanguage==='fr'?'Emploi du temps du':currentLanguage==='en'?'Timetable for':'جدول يوم'} (${currentDayAr})`;
+
+            timetableContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                timetableContainer.innerHTML = `
+                    <div class="glass-panel rounded-3xl p-10 text-center space-y-3 border border-slate-200 dark:border-slate-800">
+                        <div class="w-16 h-16 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto text-slate-400 text-2xl">
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-700 dark:text-slate-300">${UI_TEXT[currentLanguage].none}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">${UI_TEXT[currentLanguage].hint}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render Schedule Cards
+            filtered.forEach(session => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-3xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-md hover:shadow-lg transition-all duration-200 relative overflow-hidden group";
+
+                // Room & Prof External Links Construction
+                const roomEncoded = encodeURIComponent(session.room);
+                const profEncoded = encodeURIComponent(session.prof);
+
+                const roomUrl = `${ROOM_GUIDE_BASE_URL}?query=${roomEncoded}`;
+                const profUrl = `${PROF_GUIDE_BASE_URL}?prof=${profEncoded}`;
+
+                // Class Type Badge Color Mapping
+                let typeColor = 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 border-blue-200';
+                if (session.type.includes('TP') || session.type.includes('Practical')) {
+                    typeColor = 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300 border-amber-200';
+                } else if (session.type.includes('TD')) {
+                    typeColor = 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border-emerald-200';
+                } else if (session.type.includes('Online')) {
+                    typeColor = 'bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300 border-purple-200';
+                }
+
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        
+                        <!-- Left Side: Time Badge & Module Name -->
+                        <div class="flex items-start gap-4">
+                            <!-- Time Badge -->
+                            <div class="bg-enstp-blue text-white dark:bg-blue-600 px-4 py-3 rounded-2xl text-center min-w-[110px] shadow-md flex flex-col justify-center">
+                                <span class="text-xs font-extrabold tracking-wider dir-ltr">${session.time}</span>
+                                <span class="text-[10px] opacity-80 mt-0.5"><i class="fa-regular fa-clock ml-1"></i>${UI_TEXT[currentLanguage].time}</span>
+                            </div>
+
+                            <!-- Subject Info -->
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${typeColor}">
+                                        ${session.type}
+                                    </span>
+                                    <span class="text-xs font-medium text-slate-500 dark:text-slate-400">
+                                        <i class="fa-solid fa-users text-slate-400 ml-1"></i>${session.groups.join(', ')}
+                                    </span>
+                                </div>
+                                <h3 class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white pt-1">
+                                    ${session.module}
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Clickable Links for Prof & Room -->
+                        <div class="flex items-center gap-2.5 pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-200 dark:border-slate-800">
+                            
+                            <!-- Interactive Room Link Button -->
+                            <a href="${roomUrl}" target="_blank" rel="noopener noreferrer" 
+                               title="انقر للانتقال إلى موقع القاعة وتحديد مكانها"
+                               class="flex-1 sm:flex-none flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 px-3.5 py-2.5 rounded-2xl hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all text-xs font-bold">
+                                <i class="fa-solid fa-location-dot text-sm"></i>
+                                <div class="text-right">
+                                    <div class="text-[10px] opacity-75 font-normal">${UI_TEXT[currentLanguage].room}</div>
+                                    <div>${session.room}</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60 mr-1"></i>
+                            </a>
+
+                            <!-- Interactive Teacher Link Button -->
+                            <a href="${profUrl}" target="_blank" rel="noopener noreferrer" 
+                               title="انقر للانتقال إلى موقع الأستاذ"
+                               class="flex-1 sm:flex-none flex items-center gap-2 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 px-3.5 py-2.5 rounded-2xl hover:bg-amber-600 hover:text-white dark:hover:bg-amber-600 dark:hover:text-white transition-all text-xs font-bold">
+                                <i class="fa-solid fa-user-tie text-sm"></i>
+                                <div class="text-right">
+                                    <div class="text-[10px] opacity-75 font-normal">${UI_TEXT[currentLanguage].prof}</div>
+                                    <div>${session.prof}</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60 mr-1"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+                `;
+
+                timetableContainer.appendChild(card);
+            });
+        }
+
+        // Event Listeners
+        levelSelect.addEventListener('change', (e) => {
+            currentLevel = e.target.value;
+            populateGroups();
+            renderSchedule();
+        });
+
+        groupSelect.addEventListener('change', (e) => {
+            currentGroup = e.target.value;
+            renderSchedule();
+        });
+
+        searchInput.addEventListener('input', () => {
+            renderSchedule();
+        });
+
+        todayBtn.addEventListener('click', () => {
+            selectedDay = getCurrentDayName();
+            renderDaysTabs();
+            renderSchedule();
+        });
+
+        // Download PDF Handler
+        downloadPdfBtn.addEventListener('click', () => {
+            const levelData = TIMETABLE_DATA[currentLevel];
+            if (levelData && levelData.pdfUrl) {
+                window.open(levelData.pdfUrl, '_blank');
+            } else {
+                alert('عذراً، ملحق PDF لهذا جدول غير متوفر حالياً.');
+            }
+        });
+
+        // Print Handler
+        printBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+
+        const UI_TEXT = {
+          ar:{all:'جميع الأفواج / الأقسام',level:'المستوى والتخصص:',group:'الفوج / القسم:',search:'بحث سريع (مادة / أستاذ / قاعة):',placeholder:'ابحث هنا...',today:'العودة لليوم الحالي',pdf:'تحميل الجدول PDF',print:'طباعة',time:'التوقيت',room:'القاعة',prof:'الأستاذ',none:'لا توجد حصص في هذا اليوم أو بهذا الاختيار',hint:'تأكد من اختيار الفوج أو جرب البحث عن مادة/أستاذ آخر.',todayTag:'اليوم'},
+          fr:{all:'Tous les groupes / sections',level:'Niveau et spécialité :',group:'Groupe / section :',search:'Recherche rapide (matière / enseignant / salle) :',placeholder:'Rechercher ici...',today:'Revenir au jour actuel',pdf:'Télécharger le PDF',print:'Imprimer',time:'Horaire',room:'Salle',prof:'Enseignant',none:'Aucun cours pour ce jour ou cette sélection',hint:'Choisissez un groupe ou recherchez une matière / un enseignant.',todayTag:'Aujourd’hui'},
+          en:{all:'All groups / sections',level:'Level and specialty:',group:'Group / section:',search:'Quick search (subject / teacher / room):',placeholder:'Search here...',today:'Return to today',pdf:'Download timetable PDF',print:'Print',time:'Time',room:'Room',prof:'Teacher',none:'No classes for this day or selection',hint:'Choose a group or search for another subject / teacher.',todayTag:'Today'}
+        };
+        let currentLanguage='ar';
+        function applyLanguage(lang){
+          currentLanguage=UI_TEXT[lang]?lang:'ar'; const t=UI_TEXT[currentLanguage];
+          document.documentElement.lang=currentLanguage; document.documentElement.dir=currentLanguage==='ar'?'rtl':'ltr';
+          const labels=document.querySelectorAll('label');
+          if(labels[0]) labels[0].lastElementChild.textContent=t.level;
+          if(labels[1]) labels[1].lastElementChild.textContent=t.group;
+          if(labels[2]) labels[2].lastElementChild.textContent=t.search;
+          searchInput.placeholder=t.placeholder; todayBtn.querySelector('span').textContent=t.today;
+          downloadPdfBtn.querySelector('span').textContent=t.pdf; printBtn.querySelector('span').textContent=t.print;
+          renderDaysTabs(); renderSchedule();
+        }
+        languageSelect.addEventListener('change',e=>applyLanguage(e.target.value));
+
+        // Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            applyLanguage('ar');
+            populateGroups();
+            renderDaysTabs();
+            renderSchedule();
+        });
+    </script>
+</body>
+</html>
