@@ -73,49 +73,20 @@ header > div > div {
   margin-top: 4px;
 }
 
-/* Hero: architectural, cinematic atmosphere */
-section.bg-gradient-to-b {
+/* Hero: image background styling */
+#hero-section {
   isolation: isolate;
-  background:
-    radial-gradient(ellipse at 80% 20%, rgba(59,130,246,.28), transparent 38%),
-    radial-gradient(ellipse at 10% 85%, rgba(234,184,91,.13), transparent 35%),
-    linear-gradient(135deg, #061326 0%, #0b2545 48%, #102f53 75%, #071426 100%) !important;
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   padding-top: clamp(4.5rem, 9vw, 7.5rem);
   padding-bottom: clamp(4.5rem, 8vw, 7rem);
 }
 
-section.bg-gradient-to-b::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: .2;
-  background-image:
-    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: linear-gradient(to bottom, black, transparent 95%);
-}
-
-section.bg-gradient-to-b::after {
-  content: "";
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border: 1px solid rgba(234,184,91,.18);
-  border-radius: 50%;
-  top: -180px;
-  left: -100px;
-  box-shadow:
-    0 0 0 35px rgba(234,184,91,.035),
-    0 0 0 75px rgba(234,184,91,.025);
-  pointer-events: none;
-}
-
 #hero-badge {
   color: #f5d58f !important;
-  background: rgba(255,255,255,.07) !important;
+  background: rgba(255,255,255,.1) !important;
   border: 1px solid rgba(234,184,91,.4) !important;
   backdrop-filter: blur(12px);
   padding: 10px 18px;
@@ -130,7 +101,7 @@ section.bg-gradient-to-b::after {
   line-height: 1.35;
   letter-spacing: -1.2px;
   text-wrap: balance;
-  text-shadow: 0 8px 35px rgba(0,0,0,.22);
+  text-shadow: 0 8px 35px rgba(0,0,0,.4);
 }
 
 #hero-title span {
@@ -144,9 +115,10 @@ section.bg-gradient-to-b::after {
 
 #hero-desc {
   max-width: 720px;
-  color: #d5e0ef;
+  color: #f1f5f9;
   line-height: 2.1;
   font-size: clamp(.9rem, 1.5vw, 1.05rem);
+  text-shadow: 0 2px 10px rgba(0,0,0,.5);
 }
 
 #searchInput {
@@ -297,7 +269,7 @@ footer p:last-child {
 
 /* Mobile */
 @media (max-width: 640px) {
-  section.bg-gradient-to-b {
+  #hero-section {
     padding-top: 4rem;
     padding-bottom: 3.5rem;
   }
@@ -444,23 +416,24 @@ footer p:last-child {
     </header>
 
     <!-- Hero Section -->
-<section class="relative text-white py-20 lg:py-28 overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(rgba(7, 26, 51, 0.82), rgba(7, 26, 51, 0.75)), url('watermarked_img_387094236583960554.jpg');">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <span class="bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10 mb-4 inline-block" id="hero-badge">
-            <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة
-        </span>
-        <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-6" id="hero-title">
-            <span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>
-        </h1> 
-        <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base mb-8" id="hero-desc">
-            منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.
-        </p>
-        <div class="max-w-xl mx-auto relative mb-6">
-            <input type="text" id="searchInput" onkeyup="filterGuide()" placeholder="ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم..." class="w-full pl-4 pr-12 py-3.5 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border border-slate-200 shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-500 text-sm">
-            <i class="fa-solid fa-magnifying-glass absolute right-4 top-4 text-slate-400 text-lg"></i>
+    <!-- ⬇️ ضغ رابط صورتك مكان YOUR_IMAGE_URL.jpg في السطر أدناه ⬇️ -->
+    <section id="hero-section" class="text-white py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(rgba(7, 20, 38, 0.75), rgba(7, 20, 38, 0.85)), url('photo11.jpg');">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10 mb-4 inline-block" id="hero-badge">
+                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-6" id="hero-title">
+                <span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>
+            </h1> 
+            <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base mb-8" id="hero-desc">
+                منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.
+            </p>
+            <div class="max-w-xl mx-auto relative mb-6">
+                <input type="text" id="searchInput" onkeyup="filterGuide()" placeholder="ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم..." class="w-full pl-4 pr-12 py-3.5 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border border-slate-200 shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-500 text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute right-4 top-4 text-slate-400 text-lg"></i>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- MAIN CONTENT CONTAINERS -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
@@ -878,29 +851,12 @@ footer p:last-child {
             const isRtl = currentLang === 'ar';
             const chevronIcon = isRtl ? 'fa-chevron-left' : 'fa-chevron-right';
 
-            // The cards use topic-matched Unsplash images; the original data, translations and URLs stay intact.
-            const imageFor = (item, groupId) => {
-                const text = `${item.name || ''} ${item.desc || ''} ${item.tag || ''} ${groupId || ''}`.toLowerCase();
-                let photo = 'photo-1497366754035-f200968a6e72'; // modern campus / study space
-                if (/bus|transport|taxi|station|route|مواصلات|حافل|نقل|transporte/.test(text)) photo = 'photo-1570125909232-eb263c188f7e';
-                else if (/professor|faculty|teacher|department|enseignant|أستاذ|أساتذ|قسم|faculty/.test(text)) photo = 'photo-1523580494863-6f3031224c94';
-                else if (/library|book|biblioth|مكتبة|كتاب/.test(text)) photo = 'photo-1507842217343-583bb7270b66';
-                else if (/food|café|cafe|restaurant|dining|pharmacy|pharmacie|print|طعام|مطعم|مقهى|صيدلي|طباعة/.test(text)) photo = 'photo-1517248135467-4c7edcad34c4';
-                else if (/dorm|residence|room|weekend|cite|سكن|إقامة|غرفة|داخلي/.test(text)) photo = 'photo-1555854877-bab0e564b8d5';
-                else if (/sport|tournament|cinema|museum|landmark|leisure|culture|رياض|ثقاف|متحف|سينما/.test(text)) photo = 'photo-1517649763962-0c623066013b';
-                else if (/carpool|mentorship|support|exchange|community|entraide|مساعدة|تبادل|توجيه/.test(text)) photo = 'photo-1523240795612-9a054b0db644';
-                else if (/map|pathway|building|campus|laboratory|lab|engineering|concrete|road|cartographie|مخطط|خريطة|مبنى|مخبر|هندسة/.test(text)) photo = 'photo-1562774053-701939374585';
-
-                return `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=900&q=80`;
-            };
-
             const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, ch => ({
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
             })[ch]);
 
             container.innerHTML = dataList.map(item => {
                 const targetUrl = item.url || '#';
-                const imageUrl = imageFor(item, containerId);
                 const icon = escapeHtml(item.icon || 'fa-compass');
                 const tag = escapeHtml(item.tag || '');
                 const name = escapeHtml(item.name || '');
@@ -952,6 +908,5 @@ footer p:last-child {
     </script>
 </body>
 </html>
-
 
 
