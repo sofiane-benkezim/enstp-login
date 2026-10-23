@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة دليل طالب ENSTP الشامل</title>
+    <title>منصة دليل طالب ENSTP الشامل - المساعد الذكي</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -127,13 +127,13 @@ header > div > div {
   border-radius: 20px;
   border-color: rgba(255,255,255,.45);
   box-shadow: 0 18px 50px rgba(0,0,0,.22);
-  transition: box-shadow .25s ease, transform .25s ease;
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
 }
 
 #searchInput:focus {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 4px rgba(234,184,91,.22),
-              0 20px 55px rgba(0,0,0,.25);
+  box-shadow: 0 0 0 4px rgba(234,184,91,.35),
+              0 20px 55px rgba(0,0,0,.3);
 }
 
 /* Section headings */
@@ -170,6 +170,16 @@ header > div > div {
   border-color: rgba(234,184,91,.9) !important;
   box-shadow: 0 18px 38px rgba(245,158,11,.2) !important;
 }
+.search-card.highlight-card {
+  animation: pulseHighlight 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: #f59e0b !important;
+}
+
+@keyframes pulseHighlight {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  50% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+}
+
 .card-image-wrap {
   position: relative;
   height: 178px;
@@ -222,6 +232,28 @@ header > div > div {
 }
 .card-action:hover { background:#0b2545; color:#fff; border-color:#0b2545; }
 
+/* Quick Action Chips */
+.chip-btn {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chip-btn:hover {
+  background: #f59e0b;
+  color: #0f172a;
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
 /* Navigation */
 nav a { white-space: nowrap; }
 nav a:hover { box-shadow: 0 3px 12px rgba(15,35,65,.06); }
@@ -235,7 +267,7 @@ footer {
 }
 
 /* ========================================================= */
-/* SILENT BEE MASCOT STYLES (النحلة الصامتة والمطابقة للصورة) */
+/* SILENT BEE MASCOT STYLES (النحلة التفاعلية والذكية) */
 /* ========================================================= */
 #host-bee-container {
     position: fixed;
@@ -284,17 +316,26 @@ footer {
     right: -20px;
     background: #ffffff;
     color: #0f172a;
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 800;
-    white-space: nowrap;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    max-width: 280px;
+    white-space: normal;
+    line-height: 1.6;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.22);
     border: 2px solid #f59e0b;
     opacity: 0;
     transform: translateY(10px) scale(0.9);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
+    text-align: right;
+}
+
+html[dir="ltr"] .bee-bubble {
+    text-align: left;
+    left: -20px;
+    right: auto;
 }
 
 .bee-bubble::after {
@@ -307,6 +348,11 @@ footer {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid #f59e0b;
+}
+
+html[dir="ltr"] .bee-bubble::after {
+    left: 35px;
+    right: auto;
 }
 
 .bee-bubble.show {
@@ -323,7 +369,7 @@ footer {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
-/* Mobile */
+/* Mobile responsive styles */
 @media (max-width: 640px) {
   #hero-section { padding-top: 4rem; padding-bottom: 3.5rem; }
   #hero-title { font-size: clamp(1.85rem, 8vw, 2.5rem); letter-spacing: -.5px; line-height: 1.55; }
@@ -332,6 +378,8 @@ footer {
   .card-image-wrap { height:160px; }
   .card-content { padding:1rem; }
   .section-block h2 { font-size: 1.2rem; }
+  .bee-bubble { max-width: 220px; font-size: 12px; }
+  #host-bee-container { left: 10px !important; top: 120px !important; }
 }
 </style>
 </head>
@@ -372,17 +420,17 @@ footer {
         </div>
     </header>
 
-    <!-- SILENT BEE MASCOT (SVG مطابق لصورتك تماماً وبدون صوت) -->
+    <!-- SILENT BEE MASCOT WITH SMART AI BUBBLE -->
     <div id="host-bee-container">
         <div class="bee-wrapper" id="beeWrapper" onclick="onHostBeeClicked()">
             <div class="bee-crown"><i class="fa-solid fa-crown"></i></div>
 
             <!-- Speech Bubble -->
             <div id="beeBubble" class="bee-bubble">
-                أهلاً بك! أنا نحلة، دليلك الشامل 🐝
+                أهلاً بك! أنا نحلة، دليلك الذكي الشامل 🐝👑
             </div>
 
-            <!-- Accurate 3D Mascot Bee SVG matching your image -->
+            <!-- 3D Mascot Bee SVG -->
             <svg class="w-20 h-20 filter drop-shadow-xl" viewBox="0 0 120 120" fill="none">
                 <!-- Wings -->
                 <path class="wing-left" d="M38 45C15 28 8 10 32 24C42 30 46 40 42 46" fill="#E2F1FF" opacity="0.8" stroke="#90CDF4" stroke-width="2"/>
@@ -399,14 +447,14 @@ footer {
                 <!-- Stinger -->
                 <path d="M56 96L60 106L50 99Z" fill="#1E293B"/>
 
-                <!-- Backpack (حقيبة الظهر الهندسية) -->
+                <!-- Backpack -->
                 <rect x="26" y="58" width="14" height="20" rx="4" fill="#0F172A" transform="rotate(-10 26 58)"/>
                 <path d="M30 62L36 62" stroke="#F59E0B" stroke-width="2"/>
 
                 <!-- Head -->
                 <circle cx="52" cy="38" r="21" fill="#1E293B"/>
                 
-                <!-- Cute Big Eyes (مطابقة للصورة) -->
+                <!-- Eyes -->
                 <ellipse cx="44" cy="36" rx="7" ry="9" fill="#FFFFFF"/>
                 <ellipse cx="45" cy="37" rx="4" fill="#0F172A"/>
                 <circle cx="46" cy="34" r="2" fill="#FFFFFF"/>
@@ -415,28 +463,28 @@ footer {
                 <ellipse cx="59" cy="37" rx="4" fill="#0F172A"/>
                 <circle cx="58" cy="34" r="2" fill="#FFFFFF"/>
 
-                <!-- Cute Cheeks -->
+                <!-- Cheeks -->
                 <ellipse cx="38" cy="42" rx="3.5" ry="2" fill="#F43F5E" opacity="0.4"/>
                 <ellipse cx="66" cy="42" rx="3.5" ry="2" fill="#F43F5E" opacity="0.4"/>
 
-                <!-- Yellow Antennae with Tips (قرون الاستشعار الصفراء بالنهايات) -->
+                <!-- Antennae -->
                 <path d="M44 20C40 10 32 6 30 6" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
                 <circle cx="29" cy="6" r="4" fill="#F59E0B"/>
 
                 <path d="M58 20C62 10 70 6 72 6" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
                 <circle cx="73" cy="6" r="4" fill="#F59E0B"/>
 
-                <!-- Happy Smile -->
+                <!-- Smile -->
                 <path d="M48 44C51 47 55 47 57 44" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section id="hero-section" class="text-white py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(rgba(7, 20, 38, 0.75), rgba(7, 20, 38, 0.85)), url('photo11.jpg');">
+    <!-- Hero Section with Integrated Smart Search Assistant -->
+    <section id="hero-section" class="text-white py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(rgba(7, 20, 38, 0.78), rgba(7, 20, 38, 0.88)), url('photo11.jpg');">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <span class="bg-white/10 text-accent-500 px-4 py-1.5 rounded-full text-xs font-bold border border-white/10 mb-4 inline-block" id="hero-badge">
-                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة
+                <i class="fa-solid fa-compass ml-1"></i> الدليل الميداني والمساعد الذكي للطلبة
             </span>
             <h1 class="text-3xl sm:text-5xl font-black leading-tight mb-6" id="hero-title">
                 <span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>
@@ -444,9 +492,25 @@ footer {
             <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base mb-8" id="hero-desc">
                 منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.
             </p>
-            <div class="max-w-xl mx-auto relative mb-6">
-                <input type="text" id="searchInput" onkeyup="filterGuide()" placeholder="ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم..." class="w-full pl-4 pr-12 py-3.5 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border border-slate-200 shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-500 text-sm">
-                <i class="fa-solid fa-magnifying-glass absolute right-4 top-4 text-slate-400 text-lg"></i>
+            
+            <!-- SMART ASSISTANT SEARCH BAR CONTAINER -->
+            <div class="max-w-2xl mx-auto relative mb-4">
+                <div class="relative flex items-center">
+                    <input type="text" id="searchInput" onkeyup="handleSearchKeyup(event)" placeholder="اسأل المساعد الذكي: أين أجد كشوف النقاط؟ أين يقع المطعم؟..." class="w-full pl-12 pr-12 py-4 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border-2 border-amber-400/50 shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/30 text-sm sm:text-base transition-all">
+                    
+                    <button onclick="executeSmartSearch()" class="absolute right-2 top-2 bottom-2 px-5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl font-bold flex items-center justify-center transition shadow-md group">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg group-hover:rotate-12 transition-transform"></i>
+                    </button>
+                    
+                    <span class="absolute left-4 text-amber-500 text-lg pointer-events-none">
+                        <i class="fa-solid fa-robot"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- DYNAMIC QUICK SUGGESTIONS CHIPS -->
+            <div class="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mt-3" id="quickChipsContainer">
+                <!-- Chips dynamically populated via JS -->
             </div>
         </div>
     </section>
@@ -560,10 +624,151 @@ footer {
         </div>
     </footer>
 
-    <!-- Multilingual Silent Mascot Bee JavaScript -->
+    <!-- Multilingual Interactive Logic & AI Search Assistant -->
     <script>
         let currentLang = 'ar';
-        let bubbleSpeechTimer;
+        let bubbleSpeechTimer = null;
+        let searchTimeout = null;
+
+        // SMART KNOWLEDGE BASE FOR AI ASSISTANT (AR, FR, EN)
+        const smartKnowledgeBase = [
+            {
+                keywords: ["مدرج", "قاعة", "خريطة", "مسار", "مبنى", "مكان", "اين اسرسيف", "amphi", "salle", "carte", "map", "building", "location", "hall"],
+                targetId: "cartographie",
+                responses: {
+                    ar: "📍 تجد الخرائط والمدرجات والقاعات والممرات الداخلية في قسم 'خرائط وتوجيه الحرم الجامعي'. لقد وجهتك إليه الآن!",
+                    fr: "📍 Vous trouverez les amphis, salles et cartes dans la section 'Cartographie & Orientation du Campus'.",
+                    en: "📍 Find all lecture halls, classrooms, and campus maps under the 'Campus Navigation & Maps' section."
+                }
+            },
+            {
+                keywords: ["توقيت", "جدول", "استعمال الزمن", "حصص", "برنامج", "emploi", "schedule", "timetable", "time"],
+                targetId: "cartographie",
+                responses: {
+                    ar: "📅 يمكنك الإطلاع على الجدول الزمني ومواعيد الحصص وأسماء القاعات في بطاقة 'الجدول الزمني' بقسم الخرائط.",
+                    fr: "📅 Consultez l'emploi du temps et les horaires dans la carte 'Emploi du temps' de la section Cartographie.",
+                    en: "📅 Check the schedule, lecture times, and room assignments in the 'Timetable' card under Campus Navigation."
+                }
+            },
+            {
+                keywords: ["استاذ", "اساتذة", "بريد", "ايميل", "قسم", "منشآت", "طرقات", "مخبر", "خرسانة", "prof", "enseignant", "email", "department", "ouvrage", "mecanique"],
+                targetId: "enseignants",
+                responses: {
+                    ar: "👨‍🏫 يحتوي قسم 'الأساتذة والأقسام الأكاديمية' على دليل البريد المؤسساتي للأستاذة وأقسام المنشآت والطرقات.",
+                    fr: "👨‍🏫 La section 'Enseignants' contient l'annuaire des e-mails institutionnels et les chefs de départements.",
+                    en: "👨‍🏫 The 'Faculty' section contains department details and the official email directory of professors."
+                }
+            },
+            {
+                keywords: ["شهادة", "كشف", "نقاط", "دراسة", "تسجيل", "طعن", "عطلة أكاديمية", "مصلحة", "إدارة", "scolarite", "releve", "notes", "inscription", "attestation", "transcript", "admin"],
+                targetId: "services",
+                responses: {
+                    ar: "📄 لاستخراج الشهادات وكشوف النقاط والإجراءات الإدارية، توجه إلى قسم 'الخدمات الإدارية والمدرسية (Scolarité)'.",
+                    fr: "📄 Pour les relevés de notes, attestations et démarches, consultez la section 'Services Administratifs & Scolarité'.",
+                    en: "📄 For grade transcripts, enrollment certificates, and administrative requests, check 'Scolarité Office'."
+                }
+            },
+            {
+                keywords: ["مكتبة", "كتاب", "مراجع", "مذكرة", "بحث", "مطالعة", "biblio", "bibliotheque", "library", "book", "thesis", "pfe"],
+                targetId: "services",
+                responses: {
+                    ar: "📚 المكتبة المركزية توفر المراجع الهندسية ومذكرات التخرج وقاعات المطالعة الرقمية.",
+                    fr: "📚 La bibliothèque centrale offre des ouvrages d'ingénierie, PFE et salles de lecture numériques.",
+                    en: "📚 Central Library offers engineering books, thesis archives (PFE), and study rooms."
+                }
+            },
+            {
+                keywords: ["أكل", "مطعم", "مقهى", "أكل سريع", "اكل", "وجبة", "food", "resto", "restaurant", "cafe", "fastfood", "lunch", "eat"],
+                targetId: "quotidien",
+                responses: {
+                    ar: "🍔 تجد قائمة أفضل المطاعم والمقاهي السريعة المجاورة لبوابة المدرسة في قسم 'الحياة اليومية'.",
+                    fr: "🍔 Retrouvez la liste des fast-foods et cafés près du portail dans la section 'Vie Quotidienne'.",
+                    en: "🍔 Browse the list of top recommended fast-food spots and cafés near campus gate in 'Daily Life'."
+                }
+            },
+            {
+                keywords: ["طباعة", "نسخ", "مخططات", "مذكرات", "تنعيم", "a0", "a1", "print", "tirage", "impression", "plotter", "copie"],
+                targetId: "quotidien",
+                responses: {
+                    ar: "🖨️ لطباعة المخططات الهندسية الكبيرة (A0/A1) ومذكرات الدروس، اختر 'مراكز النسخ والطباعة الهندسية'.",
+                    fr: "🖨️ Pour le tirage de plans A0/A1 et impression de cours, consultez 'Centres d'Impression'.",
+                    en: "🖨️ For large blueprint printing (A0/A1) and lecture notes, check the 'Engineering Printing' card."
+                }
+            },
+            {
+                keywords: ["دواء", "صيدلية", "طبيب", "عيادة", "مستشفى", "صحة", "pharma", "pharmacie", "sante", "clinic", "doctor", "health"],
+                targetId: "quotidien",
+                responses: {
+                    ar: "💊 دليل الصيدليات القريبة والخدمات الطبية والعيادات يقع في قسم 'الحياة اليومية والخدمات القريبة'.",
+                    fr: "💊 Le guide des pharmacies et services de santé à proximité se trouve dans 'Vie Quotidienne'.",
+                    en: "💊 Nearby pharmacies and medical clinic locations are listed under the 'Daily Life' section."
+                }
+            },
+            {
+                keywords: ["حافلة", "حافلات", "نقل", "مترو", "قطار", "تاكسي", "مواقف", "etusa", "bus", "transport", "metro", "train", "station"],
+                targetId: "transport",
+                responses: {
+                    ar: "🚌 حافلات ETUSA والخطوط الجامعية ومواقف النقل تجد تفاصيلها المحدثة في قسم 'شبكة النقل والمواصلات'.",
+                    fr: "🚌 Toutes les lignes de bus ETUSA et stations de transport sont détaillées dans la section 'Transport'.",
+                    en: "🚌 Public ETUSA bus lines, university shuttle points, and metro links are detailed in 'Transport'."
+                }
+            },
+            {
+                keywords: ["إقامة", "اقامة", "غرفة", "مطعم داخلي", "وجبات", "نهاية الأسبوع", "جمعة", "سبت", "عطلة", "residence", "cite", "dorm", "chambre", "weekend", "dormitory"],
+                targetId: "cite",
+                responses: {
+                    ar: "🏠 خدمات الإقامة الجامعية، الإطعام، برنامج نهاية الأسبوع ومستلزمات الغرفة متوفرة في قسم 'الإقامة الجامعية'.",
+                    fr: "🏠 Tous les détails sur la cité universitaire, restauration et week-end sont dans la section 'Cité Universitaire'.",
+                    en: "🏠 Dormitory living guide, meal ticket system, and weekend schedules are in 'University Residence'."
+                }
+            },
+            {
+                keywords: ["رياضة", "كرة", "شطرنج", "ملعب", "جيم", "ثقافة", "متحف", "مقام الشهيد", "حديقة", "sport", "football", "chess", "gym", "museum", "culture", "alger"],
+                targetId: "loisirs",
+                responses: {
+                    ar: "🏆 الأنشطة الرياضية والبطولات والمعالم الثقافية والسياحية بالعاصمة تجدها في قسم 'الأنشطة والرياضة'.",
+                    fr: "🏆 Clubs sportifs, tournois et visites culturelles à Alger sont réunis dans la section 'Loisirs & Sport'.",
+                    en: "🏆 Sports tournaments, fitness clubs, and Algiers cultural tours are listed in 'Activities & Sport'."
+                }
+            },
+            {
+                keywords: ["ملخصات", "دروس", "امتحانات", "درايف", "تضامن", "قدامى", "خبرة", "drive", "drives", "resume", "exam", "support", "cours", "mentorship"],
+                targetId: "entraide",
+                responses: {
+                    ar: "🤝 روابط الملخصات والامتحانات السابقة ومبادرات التوجيه الطلابي تجدها في قسم 'شبكة التضامن والتعاون'.",
+                    fr: "🤝 Partage de cours, anciens sujets et mentorat sont disponibles dans la section 'Réseau d'Entraide'.",
+                    en: "🤝 Study materials archive, past exams drive, and peer mentorship are in 'Peer Support'."
+                }
+            }
+        ];
+
+        // QUICK SUGGESTIONS LIST BY LANGUAGE
+        const quickSuggestions = {
+            ar: [
+                { label: "📄 أين أجد كشوف النقاط؟", query: "كشوف النقاط" },
+                { label: "📅 جدول التوقيت", query: "جدول التوقيت" },
+                { label: "🍔 أين يقع المطعم؟", query: "مطعم" },
+                { label: "🚌 حافلات ETUSA", query: "حافلات" },
+                { label: "📚 مكتبة المدرسة", query: "مكتبة" },
+                { label: "🤝 ملخصات وامتحانات", query: "ملخصات" }
+            ],
+            fr: [
+                { label: "📄 Relevés de notes?", query: "releve notes" },
+                { label: "📅 Emploi du temps", query: "emploi du temps" },
+                { label: "🍔 Restaurants proches?", query: "restaurant" },
+                { label: "🚌 Bus ETUSA", query: "bus" },
+                { label: "📚 Bibliothèque", query: "bibliotheque" },
+                { label: "🤝 Partage de cours", query: "cours drive" }
+            ],
+            en: [
+                { label: "📄 Where are transcripts?", query: "transcripts scolarite" },
+                { label: "📅 Class Schedule", query: "timetable schedule" },
+                { label: "🍔 Food & Dining", query: "food restaurant" },
+                { label: "🚌 ETUSA Bus Routes", query: "bus transport" },
+                { label: "📚 Central Library", query: "library books" },
+                { label: "🤝 Study Materials", query: "drive summaries" }
+            ]
+        };
 
         const translations = {
             ar: {
@@ -576,10 +781,10 @@ footer {
                 navDaily: 'الحياة اليومية',
                 navTransport: 'النقل والمواصلات',
                 navHelp: 'شبكة التضامن',
-                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> الدليل الميداني الشامل للطلبة',
+                heroBadge: '<i class="fa-solid fa-compass ml-1"></i> الدليل الميداني والمساعد الذكي للطلبة',
                 heroTitle: '<span class="text-accent-500">المدرسة العليا للأشغال العمومية</span>',
                 heroDesc: 'منصة رقمية متكاملة تجمع كل ما يحتاجه طالب ENSTP: التوجيه الميداني، التواصل الأكاديمي، الخدمات اليومية، النقل، الإقامة الجامعية، وشبكة التضامن الأخوي.',
-                searchPlaceholder: 'ابحث عن أي معلومة، مدرج، أستاذ، حافلة، مطعم...',
+                searchPlaceholder: 'اسأل المساعد الذكي: أين أجد كشوف النقاط؟ أين يقع المطعم؟...',
                 sec1Title: 'خرائط وتوجيه الحرم الجامعي',
                 sec1Desc: 'المدرجات، القاعات، المخابر، والمسارات الداخلية التفاعلية',
                 sec2Title: 'الأساتذة والأقسام الأكاديمية',
@@ -649,10 +854,10 @@ footer {
                 navDaily: 'Vie Quotidienne',
                 navTransport: 'Transport',
                 navHelp: 'Entraide',
-                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Guide sur le terrain pour les étudiants',
+                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Guide interactif & Assistant IA',
                 heroTitle: '<span class="text-accent-500">ENSTP Alger</span>',
                 heroDesc: 'Une plateforme numérique intégrée regroupant tout ce dont un étudiant de l\'ENSTP a besoin : orientation, communication académique, services, transport, résidence et entraide.',
-                searchPlaceholder: 'Rechercher un amphi, enseignant, bus, restaurant...',
+                searchPlaceholder: 'Posez votre question : Où trouver les relevés de notes ? Restaurants ?...',
                 sec1Title: 'Cartographie & Orientation du Campus',
                 sec1Desc: 'Amphithéâtres, salles de cours, laboratoires et itinéraires internes',
                 sec2Title: 'Enseignants & Départements Académiques',
@@ -675,12 +880,13 @@ footer {
 
                 cartographie: [
                     { name: "Bâtiment Académique Principal (A)", desc: "Comprend les grands amphis A1, A2 et les salles de cours théoriques 1ère/2ème année.", icon: "fa-building", tag: "Bâtiment", url: "ecole.html", img: "photo11.jpg"  },
-                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire", url: "#", img: "photo12.jpg"  },
-                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Itinéraire", url: "ecolemap.html", img: "photo13.jpg"  }
+                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Itinéraire", url: "ecolemap.html", img: "photo13.jpg"  },
+                    { name: "Emploi du Temps", desc: "Horaires des cours, salles attribuées et noms des enseignants.", icon: "fa-calendar", tag: "Planning", url: "temp.html", img: "photo32.jpg"  }
                 ],
                 enseignants: [
                     { name: "Département Ouvrages d'Art", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département", url: "#", img: "photo14.jpg"  },
                     { name: "Département Infrastructures Routières", desc: "Conception des routes, chaussées et gestion du trafic routier.", icon: "fa-road", tag: "Département", url: "#", img: "photo15.jpg"  },
+                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire", url: "#", img: "photo12.jpg"  },
                     { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg"  }
                 ],
                 services: [
@@ -691,7 +897,7 @@ footer {
                 quotidien: [
                     { name: "Restaurants & Cafés à Proximité", desc: "Sélection de 5 fast-foods et cafés très fréquentés près du portail.", icon: "fa-utensils", tag: "Restauration", url: "food.html", img: "photo20.jpg"  },
                     { name: "Centres d'Impression & Tirage A0/A1", desc: "Impression spécialisée pour plans d'ingénierie et cours à prix réduits.", icon: "fa-print", tag: "Impression", url: "print.html", img: "photo21.jpg" },
-                    { name: "Pharmacies & Commerces", desc: "Guide des pharmacies et des hopitales.", icon: "fa-capsules", tag: "Santé ", url: "pharma.html", img: "photo22.jpg"  }
+                    { name: "Pharmacies & Commerces", desc: "Guide des pharmacies et centres de santé à proximité.", icon: "fa-capsules", tag: "Santé", url: "pharma.html", img: "photo22.jpg"  }
                 ],
                 transport: [
                     { name: "Bus ETUSA & Lignes Universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
@@ -704,7 +910,7 @@ footer {
                 ],
                 loisirs: [
                     { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#", img: "photo28.jpg"  },
-                    { name: "Monuments Cultuels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"}
+                    { name: "Monuments Culturales & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"}
                 ],
                 entraide: [
                     { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien", url: "drives.html", img: "photo30.jpg"},
@@ -721,10 +927,10 @@ footer {
                 navDaily: 'Daily Life',
                 navTransport: 'Transport',
                 navHelp: 'Peer Support',
-                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Comprehensive Student Guide',
+                heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Interactive Student Guide & AI Assistant',
                 heroTitle: '<span class="text-accent-500">ENSTP Algiers</span>',
                 heroDesc: 'An integrated digital platform with everything an ENSTP student needs: campus navigation, faculty directory, daily services, transport, residence & peer support.',
-                searchPlaceholder: 'Search for lecture halls, professors, bus routes, food...',
+                searchPlaceholder: 'Ask AI Assistant: Where can I find transcripts? Nearby food?...',
                 sec1Title: 'Campus Navigation & Maps',
                 sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
                 sec2Title: 'Faculty & Academic Departments',
@@ -747,12 +953,13 @@ footer {
 
                 cartographie: [
                     { name: "Main Academic Building (A)", desc: "Houses main lecture halls A1, A2 and theoretical classrooms for 1st/2nd year.", icon: "fa-building", tag: "Main Building", url: "ecole.html", img: "photo11.jpg"  },
-                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory", url: "#", img: "photo12.jpg" },
-                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Pathways", url: "ecolemap.html", img: "photo13.jpg"  }
+                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Pathways", url: "ecolemap.html", img: "photo13.jpg"  },
+                    { name: "Class Timetable", desc: "Lecture schedules, assigned rooms, and professor names.", icon: "fa-calendar", tag: "Timetable", url: "temp.html", img: "photo32.jpg"  }
                 ],
                 enseignants: [
                     { name: "Department of Structural Engineering", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Department", url: "#", img: "photo14.jpg" },
                     { name: "Department of Highway Infrastructure", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Department", url: "#", img: "photo15.jpg"  },
+                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory", url: "#", img: "photo12.jpg" },
                     { name: "Faculty Email Directory", desc: "List of official institutional email addresses for all teaching staff.", icon: "fa-at", tag: "Contacts", url: "professors.html", img: "photo16.jpg" }
                 ],
                 services: [
@@ -763,11 +970,11 @@ footer {
                 quotidien: [
                     { name: "Nearby Fast Food & Cafés", desc: "A curated list of 5 popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining", url: "food.html", img: "photo20.jpg"  },
                     { name: "Engineering Printing Centers (A0/A1)", desc: "Specialized printing for large blueprints and course notes at student rates.", icon: "fa-print", tag: "Printing", url: "print.html", img: "photo21.jpg"  },
-                    { name: "Pharmacies & Convenience Stores", desc: "Guide to pharmacies and medical clinics .", icon: "fa-capsules", tag: "Health ", url: "pharma.html", img: "photo22.jpg" }
+                    { name: "Pharmacies & Convenience Stores", desc: "Guide to pharmacies and nearby medical clinics.", icon: "fa-capsules", tag: "Health", url: "pharma.html", img: "photo22.jpg" }
                 ],
                 transport: [
                     { name: "ETUSA & University Bus Routes", desc: "Bus lines connecting the school to metro and train stations.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
-                    { name: "Major parking and stations", desc: "Bus and public transport starting points", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg"  }
+                    { name: "Major Parking and Stations", desc: "Bus and public transport starting points", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg"  }
                 ],
                 cite: [
                     { name: "Dormitory Services & Dining", desc: "Room guide, internal dining hall hours, security, and meal tickets.", icon: "fa-bed", tag: "Dorms", url: "residence.html", img: "photo25.jpg" },
@@ -845,9 +1052,28 @@ footer {
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
 
-            if(lang === 'ar') triggerBeeBubbleText('أهلاً بك! أنا نحلة، دليلك الشامل 🐝👑');
-            else if(lang === 'fr') triggerBeeBubbleText('Bienvenue! Je suis BEE, votre guide 🐝👑');
-            else triggerBeeBubbleText('Welcome! I am BEE, your guide 🐝👑');
+            renderQuickChips();
+
+            if(lang === 'ar') triggerBeeBubbleText('أهلاً بك! أنا دليلك الذكي الشامل، اسألني في شريط البحث 🐝👑');
+            else if(lang === 'fr') triggerBeeBubbleText('Bienvenue ! Je suis votre assistant IA, posez-moi vos questions 🐝👑');
+            else triggerBeeBubbleText('Welcome! I am your AI assistant, ask me anything in the search bar 🐝👑');
+        }
+
+        function renderQuickChips() {
+            const container = document.getElementById('quickChipsContainer');
+            const chips = quickSuggestions[currentLang] || quickSuggestions.ar;
+            
+            container.innerHTML = chips.map(chip => `
+                <button type="button" onclick="selectQuickChip('${chip.query}')" class="chip-btn">
+                    ${chip.label}
+                </button>
+            `).join('');
+        }
+
+        function selectQuickChip(query) {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = query;
+            executeSmartSearch();
         }
 
         function renderGrid(containerId, dataList, btnText) {
@@ -894,43 +1120,129 @@ footer {
             }).join('');
         }
 
-        function filterGuide() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
+        /* ========================================================= */
+        /* SMART AI ASSISTANT & SEARCH LOGIC                         */
+        /* ========================================================= */
+
+        function handleSearchKeyup(event) {
+            if (event.key === 'Enter') {
+                executeSmartSearch();
+                return;
+            }
+
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                executeSmartSearch(false);
+            }, 350);
+        }
+
+        function executeSmartSearch(autoScroll = true) {
+            const rawQuery = document.getElementById('searchInput').value.trim();
+            const query = rawQuery.toLowerCase();
             const cards = document.querySelectorAll('.search-card');
+
+            // Reset highlight effects
+            cards.forEach(card => card.classList.remove('highlight-card'));
+
+            if (!query) {
+                cards.forEach(card => card.style.display = "flex");
+                triggerBeeBubbleText(
+                    currentLang === 'ar' ? 'أنا في الخدمة! اكتب سؤالك أو اختر أحد المقترحات 🐝' :
+                    (currentLang === 'fr' ? 'Je suis à votre service ! Posez une question 🐝' : 'I am at your service! Ask any question 🐝')
+                );
+                return;
+            }
+
+            // 1. Real-time Card Filtering
+            let matchCount = 0;
+            let matchedCard = null;
+
             cards.forEach(card => {
                 const title = card.querySelector('.card-title').innerText.toLowerCase();
                 const desc = card.querySelector('.card-desc').innerText.toLowerCase();
-                if (title.includes(input) || desc.includes(input)) {
+                const tag = card.querySelector('.card-tag').innerText.toLowerCase();
+
+                if (title.includes(query) || desc.includes(query) || tag.includes(query)) {
                     card.style.display = "flex";
+                    matchCount++;
+                    if (!matchedCard) matchedCard = card;
                 } else {
                     card.style.display = "none";
                 }
             });
+
+            // 2. Smart AI Intent Matching
+            let foundKnowledge = null;
+            for (let item of smartKnowledgeBase) {
+                for (let kw of item.keywords) {
+                    if (query.includes(kw)) {
+                        foundKnowledge = item;
+                        break;
+                    }
+                }
+                if (foundKnowledge) break;
+            }
+
+            // 3. Smart AI Response & Navigation Action
+            if (foundKnowledge) {
+                const responseMsg = foundKnowledge.responses[currentLang] || foundKnowledge.responses.ar;
+                triggerBeeBubbleText(responseMsg);
+
+                if (autoScroll && foundKnowledge.targetId) {
+                    setTimeout(() => {
+                        const targetSection = document.getElementById(foundKnowledge.targetId);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            
+                            // Highlight first card in target section
+                            const firstSectionCard = targetSection.querySelector('.search-card');
+                            if (firstSectionCard) {
+                                firstSectionCard.classList.add('highlight-card');
+                                setTimeout(() => firstSectionCard.classList.remove('highlight-card'), 3000);
+                            }
+                        }
+                    }, 400);
+                }
+            } else if (matchCount > 0) {
+                const msg = currentLang === 'ar' ? `🔍 وجدت ${matchCount} بطاقات مطابقة لبحثك!` :
+                            (currentLang === 'fr' ? `🔍 Trouvé ${matchCount} résultats pour votre recherche !` : `🔍 Found ${matchCount} matching results!`);
+                triggerBeeBubbleText(msg);
+
+                if (autoScroll && matchedCard) {
+                    matchedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    matchedCard.classList.add('highlight-card');
+                    setTimeout(() => matchedCard.classList.remove('highlight-card'), 2500);
+                }
+            } else {
+                const noResultMsg = currentLang === 'ar' ? 'لم أجد معلومات مطابقة تماماً، جرب استخدام كلمات مثل: مدرج، مطعم، أساتذة، حافلة 🐝' :
+                                    (currentLang === 'fr' ? 'Aucun résultat exact. Essayez des mots-clés comme : amphi, restaurant, bus 🐝' : 'No exact match found. Try keywords like: amphi, food, professors, bus 🐝');
+                triggerBeeBubbleText(noResultMsg);
+            }
         }
 
         /* ========================================================= */
-        /* SILENT BUBBLE DIALOGUE ENGINE (محرك الحوار النصي الصامت) */
+        /* SILENT BUBBLE DIALOGUE ENGINE & MASCOT LOGIC              */
         /* ========================================================= */
         const hostBee = document.getElementById('host-bee-container');
         const beeBubble = document.getElementById('beeBubble');
 
         const hostDialogues = {
             ar: [
-                "أهلاً بك في موقعنا! أنا نحلة 🐝👑",
-                "يسعدني جداً زيارتك لدليلي الشامل! ✨",
-                "هل تبحث عن مدرج أو مطعم؟ أنا هنا لمساعدتك! 🗺️",
+                "أهلاً بك في موقعنا! أنا نحلة، دليلك الذكي 🐝👑",
+                "يمكنك السؤال مباشرة في شريط البحث بالأعلى ✨",
+                "هل تبحث عن مدرج أو مطعم أو حافلة؟ أنا هنا لمساعدتك! 🗺️",
                 "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓"
             ],
             fr: [
                 "Bienvenue sur notre site ! Je suis BEE 🐝👑",
-                "Ravi de vous voir explorer notre guide ! ✨",
-                "Besoin d'aide pour trouver un amphi ? 🗺️",
+                "Posez vos questions dans la barre de recherche ! ✨",
+                "Besoin d'aide pour trouver un amphi ou le bus ? 🗺️",
                 "Excellente journée à l'ENSTP ! 🎓"
             ],
             en: [
-                "Welcome to our site! I am BEE 🐝👑",
-                "So happy to have you here today! ✨",
-                "Looking for classrooms or food? I'm here! 🗺️",
+                "Welcome to our site! I am BEE, your AI guide 🐝👑",
+                "Type any query into the top search bar! ✨",
+                "Looking for lecture halls, food, or bus routes? I'm here! 🗺️",
                 "Wish you great success at ENSTP! 🎓"
             ]
         };
@@ -942,7 +1254,7 @@ footer {
             clearTimeout(bubbleSpeechTimer);
             bubbleSpeechTimer = setTimeout(() => {
                 beeBubble.classList.remove('show');
-            }, 3800);
+            }, 6000);
         }
 
         function onHostBeeClicked() {
@@ -959,18 +1271,18 @@ footer {
             hostBee.style.left = `${Math.max(20, Math.min(targetX, window.innerWidth - 80))}px`;
             hostBee.style.top = `${Math.max(80, Math.min(targetY, window.innerHeight - 80))}px`;
 
-            const showPhrase = currentLang === 'ar' ? `قسم ${cardTitle} 🐝` : 
-                               (currentLang === 'fr' ? `Section: ${cardTitle} 🐝` : `Section: ${cardTitle} 🐝`);
+            const showPhrase = currentLang === 'ar' ? `قسم: ${cardTitle} 🐝` : 
+                               (currentLang === 'fr' ? `Section : ${cardTitle} 🐝` : `Section: ${cardTitle} 🐝`);
             
             triggerBeeBubbleText(showPhrase);
         }
 
-        // Scroll listener: Contextual Text Bubbles
+        // Contextual Scroll Listener
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             sections.forEach(sec => {
                 const rect = sec.getBoundingClientRect();
-                if (rect.top >= 0 && rect.top <= 200) {
+                if (rect.top >= 0 && rect.top <= 180) {
                     if (sec.id === 'cartographie') triggerBeeBubbleText(currentLang === 'ar' ? 'خرائط الحرم الجامعي! 🗺️' : 'Campus maps! 🗺️');
                     else if (sec.id === 'quotidien') triggerBeeBubbleText(currentLang === 'ar' ? 'المطاعم والمقاهي القريبة! ☕' : 'Nearby dining! ☕');
                     else if (sec.id === 'transport') triggerBeeBubbleText(currentLang === 'ar' ? 'محطات النقل والحافلات! 🚌' : 'Bus routes! 🚌');
@@ -979,7 +1291,7 @@ footer {
             });
         });
 
-        // Initialize Arabic Language on Load
+        // Initialize Application
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('ar');
         });
