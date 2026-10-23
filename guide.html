@@ -235,7 +235,7 @@ footer {
 }
 
 /* ========================================================= */
-/* SPEAKING VOICE HOST BEE STYLES (النحلة الناطقة والمتجولة) */
+/* CUTE GIRL VOICE HOST BEE STYLES (النحلة بصوت طفلة) */
 /* ========================================================= */
 #host-bee-container {
     position: fixed;
@@ -323,7 +323,6 @@ footer {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
-/* Mute/Unmute Audio Toggle Button */
 .audio-toggle-btn {
     position: absolute;
     top: -8px;
@@ -405,7 +404,7 @@ footer {
         </div>
     </header>
 
-    <!-- SPEAKING TRILINGUAL HOST BEE (النحلة الناطقة التفاعلية) -->
+    <!-- CUTE GIRL VOICE HOST BEE (النحلة الناطقة بصوت طفلة) -->
     <div id="host-bee-container">
         <div class="bee-wrapper" id="beeWrapper" onclick="onHostBeeClicked()">
             <div class="bee-crown"><i class="fa-solid fa-crown"></i></div>
@@ -417,7 +416,7 @@ footer {
 
             <!-- Speech Bubble -->
             <div id="beeBubble" class="bee-bubble">
-                مرحباً بك! أنا صاحبة هذا الموقع 🐝
+                أهلاً بك! أنا نحلة، صاحبة الموقع 🐝
             </div>
 
             <!-- Bee Mascot SVG -->
@@ -575,10 +574,22 @@ footer {
         </div>
     </footer>
 
-    <!-- Multilingual & Trilingual Speaking Bee JavaScript -->
+    <!-- Multilingual Cute Girl Voice Bee JavaScript -->
     <script>
         let currentLang = 'ar';
         let isAudioMuted = false;
+        let speechVoices = [];
+
+        // Load available system voices
+        function loadVoices() {
+            if ('speechSynthesis' in window) {
+                speechVoices = window.speechSynthesis.getVoices();
+            }
+        }
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+            loadVoices();
+        }
 
         const translations = {
             ar: {
@@ -860,7 +871,7 @@ footer {
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
 
-            if(lang === 'ar') triggerBeeSpeech('مرحباً بك! أنا "نحلة"، صاحبة هذا الموقع الساحر 🐝👑');
+            if(lang === 'ar') triggerBeeSpeech('أهلاً بك! أنا نحلة، صاحبة هذا الموقع الساحر 🐝👑');
             else if(lang === 'fr') triggerBeeSpeech('Bienvenue! Je suis BEE, l\'hôte de ce site 🐝👑');
             else triggerBeeSpeech('Welcome! I am BEE, your host today 🐝👑');
         }
@@ -924,7 +935,7 @@ footer {
         }
 
         /* ========================================================= */
-        /* TRILINGUAL TEXT-TO-SPEECH & CARD HOVER FLYING (نطق وطيران) */
+        /* CUTE GIRL VOICE ENGINE (محرك صوت الطفلة للنحلة) */
         /* ========================================================= */
         const hostBee = document.getElementById('host-bee-container');
         const beeBubble = document.getElementById('beeBubble');
@@ -933,7 +944,7 @@ footer {
 
         const hostDialogues = {
             ar: [
-                "أهلاً بك في موقعي! أنا صاحبة المكان 🐝👑",
+                "أهلاً بك في موقعي! أنا نحلة الملكة السعيدة 🐝👑",
                 "يسعدني جداً زيارتك لدليلي الشامل! ✨",
                 "هل تبحث عن مدرج أو مطعم؟ أنا هنا لمساعدتك! 🗺️",
                 "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓"
@@ -952,24 +963,34 @@ footer {
             ]
         };
 
-        // Text-to-Speech Engine
+        // Text-to-Speech Engine with Girl Voice Tuning
         function speakText(text) {
             if (isAudioMuted || !('speechSynthesis' in window)) return;
 
             window.speechSynthesis.cancel(); // Stop prior speech
-            const utterance = new SpeechSynthesisUtterance(text.replace(/[🐝👑✨🗺️🎓☕🚌🤝💫]/g, ''));
+            const cleanText = text.replace(/[🐝👑✨🗺️🎓☕🚌🤝💫]/g, '');
+            const utterance = new SpeechSynthesisUtterance(cleanText);
             
+            // Explicitly match voices and configure cute girl pitch
+            const voices = window.speechSynthesis.getVoices();
             if (currentLang === 'ar') {
                 utterance.lang = 'ar-SA';
-                utterance.pitch = 1.3; // Cute high pitch
+                const arVoice = voices.find(v => v.lang.includes('ar') || v.lang.includes('AR'));
+                if (arVoice) utterance.voice = arVoice;
+                utterance.pitch = 1.6; // High pitch for cute child voice
             } else if (currentLang === 'fr') {
                 utterance.lang = 'fr-FR';
-                utterance.pitch = 1.2;
+                const frVoice = voices.find(v => v.lang.includes('fr') || v.lang.includes('FR'));
+                if (frVoice) utterance.voice = frVoice;
+                utterance.pitch = 1.5;
             } else {
                 utterance.lang = 'en-US';
-                utterance.pitch = 1.2;
+                const enVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Google')));
+                if (enVoice) utterance.voice = enVoice;
+                utterance.pitch = 1.5;
             }
-            utterance.rate = 1.0;
+            
+            utterance.rate = 1.05; // Slightly lively speaking speed
 
             window.speechSynthesis.speak(utterance);
         }
@@ -1003,7 +1024,7 @@ footer {
             triggerBeeSpeech(randomMsg);
         }
 
-        // FLY BEE OVER CARD ON HOVER (تطير النحلة وتقف فوق البطاقة عند حوم الفأرة)
+        // Fly bee to card on hover and speak
         function flyBeeToCardHover(cardElement, cardTitle) {
             const rect = cardElement.getBoundingClientRect();
             const targetX = rect.left + (rect.width / 2) - 30;
