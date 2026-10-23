@@ -235,7 +235,7 @@ footer {
 }
 
 /* ========================================================= */
-/* CUTE GIRL VOICE HOST BEE STYLES (النحلة بصوت طفلة) */
+/* SILENT BEE MASCOT STYLES (النحلة الصامتة والمطابقة للصورة) */
 /* ========================================================= */
 #host-bee-container {
     position: fixed;
@@ -250,12 +250,12 @@ footer {
     position: relative;
     pointer-events: auto;
     cursor: pointer;
-    animation: beeHover 2.2s ease-in-out infinite alternate;
+    animation: beeHover 2.4s ease-in-out infinite alternate;
 }
 
 @keyframes beeHover {
     0% { transform: translateY(0px) rotate(-2deg); }
-    100% { transform: translateY(-14px) rotate(4deg); }
+    100% { transform: translateY(-15px) rotate(3deg); }
 }
 
 .wing-left {
@@ -270,29 +270,29 @@ footer {
 
 @keyframes flapLeft {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(-35deg); }
+    100% { transform: rotate(-30deg); }
 }
 
 @keyframes flapRight {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(35deg); }
+    100% { transform: rotate(30deg); }
 }
 
 .bee-bubble {
     position: absolute;
-    bottom: 80px;
-    right: -25px;
+    bottom: 85px;
+    right: -20px;
     background: #ffffff;
     color: #0f172a;
-    padding: 9px 16px;
+    padding: 8px 16px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 800;
     white-space: nowrap;
     box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-    border: 2px solid #fbbf24;
+    border: 2px solid #f59e0b;
     opacity: 0;
-    transform: translateY(12px) scale(0.9);
+    transform: translateY(10px) scale(0.9);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
 }
@@ -301,12 +301,12 @@ footer {
     content: '';
     position: absolute;
     bottom: -8px;
-    right: 40px;
+    right: 35px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #fbbf24;
+    border-top: 8px solid #f59e0b;
 }
 
 .bee-bubble.show {
@@ -316,43 +316,11 @@ footer {
 
 .bee-crown {
     position: absolute;
-    top: -12px;
-    left: 22px;
-    font-size: 16px;
+    top: -14px;
+    left: 26px;
+    font-size: 15px;
     color: #f59e0b;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-
-.audio-toggle-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #1e293b;
-    color: #fbbf24;
-    border: 2px solid #fbbf24;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-}
-
-.audio-toggle-btn:hover {
-    transform: scale(1.15);
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
 }
 
 /* Mobile */
@@ -404,44 +372,62 @@ footer {
         </div>
     </header>
 
-    <!-- CUTE GIRL VOICE HOST BEE (النحلة الناطقة بصوت طفلة) -->
+    <!-- SILENT BEE MASCOT (SVG مطابق لصورتك تماماً وبدون صوت) -->
     <div id="host-bee-container">
         <div class="bee-wrapper" id="beeWrapper" onclick="onHostBeeClicked()">
             <div class="bee-crown"><i class="fa-solid fa-crown"></i></div>
-            
-            <!-- Audio Toggle Button -->
-            <button class="audio-toggle-btn" id="audioToggle" onclick="toggleBeeSound(event)" title="تفعيل/كتم صوت النحلة">
-                <i class="fa-solid fa-volume-high" id="audioIcon"></i>
-            </button>
 
             <!-- Speech Bubble -->
             <div id="beeBubble" class="bee-bubble">
-                أهلاً بك! أنا نحلة، صاحبة الموقع 🐝
+                أهلاً بك! أنا نحلة، دليلك الشامل 🐝
             </div>
 
-            <!-- Bee Mascot SVG -->
-            <svg class="w-16 h-16 filter drop-shadow-2xl" viewBox="0 0 100 100" fill="none">
-                <path class="wing-left" d="M32 35C15 20 8 5 30 18C38 23 42 32 38 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
-                <path class="wing-right" d="M58 35C75 20 82 5 60 18C52 23 48 32 52 38" fill="#E0F2FE" opacity="0.85" stroke="#7DD3FC" stroke-width="1.5"/>
-                <ellipse cx="45" cy="58" rx="22" ry="26" transform="rotate(-15 45 58)" fill="#FBBF24"/>
-                <path d="M26 52C32 56 46 58 58 50" stroke="#1E1E1E" stroke-width="5" stroke-linecap="round"/>
-                <path d="M28 62C35 67 50 67 62 58" stroke="#1E1E1E" stroke-width="5" stroke-linecap="round"/>
-                <path d="M33 72C39 76 52 75 62 68" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round"/>
-                <path d="M48 83L52 92L43 86Z" fill="#1E1E1E"/>
-                <circle cx="42" cy="32" r="16" fill="#1E1E1E"/>
-                <path d="M36 18C32 10 24 8 24 8" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="23" cy="8" r="3" fill="#FBBF24"/>
-                <path d="M46 17C48 9 56 6 56 6" stroke="#1E1E1E" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="57" cy="6" r="3" fill="#FBBF24"/>
-                <circle cx="36" cy="30" r="5" fill="#FFFFFF"/>
-                <circle cx="37" cy="30" r="2.5" fill="#1E1E1E"/>
-                <circle cx="38" cy="29" r="1" fill="#FFFFFF"/>
-                <circle cx="48" cy="30" r="5" fill="#FFFFFF"/>
-                <circle cx="49" cy="30" r="2.5" fill="#1E1E1E"/>
-                <circle cx="50" cy="29" r="1" fill="#FFFFFF"/>
-                <circle cx="32" cy="36" r="3" fill="#F43F5E" opacity="0.5"/>
-                <circle cx="52" cy="36" r="3" fill="#F43F5E" opacity="0.5"/>
-                <path d="M40 37C42 40 45 40 46 37" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+            <!-- Accurate 3D Mascot Bee SVG matching your image -->
+            <svg class="w-20 h-20 filter drop-shadow-xl" viewBox="0 0 120 120" fill="none">
+                <!-- Wings -->
+                <path class="wing-left" d="M38 45C15 28 8 10 32 24C42 30 46 40 42 46" fill="#E2F1FF" opacity="0.8" stroke="#90CDF4" stroke-width="2"/>
+                <path class="wing-right" d="M68 45C91 28 98 10 74 24C64 30 60 40 64 46" fill="#E2F1FF" opacity="0.8" stroke="#90CDF4" stroke-width="2"/>
+                
+                <!-- Bee Body -->
+                <ellipse cx="53" cy="68" rx="24" ry="28" transform="rotate(-15 53 68)" fill="#F59E0B"/>
+                
+                <!-- Black Stripes -->
+                <path d="M32 62C38 67 55 69 69 60" stroke="#1E293B" stroke-width="6" stroke-linecap="round"/>
+                <path d="M35 74C42 80 58 80 72 70" stroke="#1E293B" stroke-width="6" stroke-linecap="round"/>
+                <path d="M40 85C47 90 60 88 71 80" stroke="#1E293B" stroke-width="5" stroke-linecap="round"/>
+                
+                <!-- Stinger -->
+                <path d="M56 96L60 106L50 99Z" fill="#1E293B"/>
+
+                <!-- Backpack (حقيبة الظهر الهندسية) -->
+                <rect x="26" y="58" width="14" height="20" rx="4" fill="#0F172A" transform="rotate(-10 26 58)"/>
+                <path d="M30 62L36 62" stroke="#F59E0B" stroke-width="2"/>
+
+                <!-- Head -->
+                <circle cx="52" cy="38" r="21" fill="#1E293B"/>
+                
+                <!-- Cute Big Eyes (مطابقة للصورة) -->
+                <ellipse cx="44" cy="36" rx="7" ry="9" fill="#FFFFFF"/>
+                <ellipse cx="45" cy="37" rx="4" fill="#0F172A"/>
+                <circle cx="46" cy="34" r="2" fill="#FFFFFF"/>
+
+                <ellipse cx="60" cy="36" rx="7" ry="9" fill="#FFFFFF"/>
+                <ellipse cx="59" cy="37" rx="4" fill="#0F172A"/>
+                <circle cx="58" cy="34" r="2" fill="#FFFFFF"/>
+
+                <!-- Cute Cheeks -->
+                <ellipse cx="38" cy="42" rx="3.5" ry="2" fill="#F43F5E" opacity="0.4"/>
+                <ellipse cx="66" cy="42" rx="3.5" ry="2" fill="#F43F5E" opacity="0.4"/>
+
+                <!-- Yellow Antennae with Tips (قرون الاستشعار الصفراء بالنهايات) -->
+                <path d="M44 20C40 10 32 6 30 6" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="29" cy="6" r="4" fill="#F59E0B"/>
+
+                <path d="M58 20C62 10 70 6 72 6" stroke="#1E293B" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="73" cy="6" r="4" fill="#F59E0B"/>
+
+                <!-- Happy Smile -->
+                <path d="M48 44C51 47 55 47 57 44" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </div>
     </div>
@@ -574,22 +560,10 @@ footer {
         </div>
     </footer>
 
-    <!-- Multilingual Cute Girl Voice Bee JavaScript -->
+    <!-- Multilingual Silent Mascot Bee JavaScript -->
     <script>
         let currentLang = 'ar';
-        let isAudioMuted = false;
-        let speechVoices = [];
-
-        // Load available system voices
-        function loadVoices() {
-            if ('speechSynthesis' in window) {
-                speechVoices = window.speechSynthesis.getVoices();
-            }
-        }
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.onvoiceschanged = loadVoices;
-            loadVoices();
-        }
+        let bubbleSpeechTimer;
 
         const translations = {
             ar: {
@@ -871,9 +845,9 @@ footer {
             renderGrid("loisirs-grid", data.loisirs, data.detailsBtn);
             renderGrid("entraide-grid", data.entraide, data.detailsBtn);
 
-            if(lang === 'ar') triggerBeeSpeech('أهلاً بك! أنا نحلة، صاحبة هذا الموقع الساحر 🐝👑');
-            else if(lang === 'fr') triggerBeeSpeech('Bienvenue! Je suis BEE, l\'hôte de ce site 🐝👑');
-            else triggerBeeSpeech('Welcome! I am BEE, your host today 🐝👑');
+            if(lang === 'ar') triggerBeeBubbleText('أهلاً بك! أنا نحلة، دليلك الشامل 🐝👑');
+            else if(lang === 'fr') triggerBeeBubbleText('Bienvenue! Je suis BEE, votre guide 🐝👑');
+            else triggerBeeBubbleText('Welcome! I am BEE, your guide 🐝👑');
         }
 
         function renderGrid(containerId, dataList, btnText) {
@@ -935,82 +909,35 @@ footer {
         }
 
         /* ========================================================= */
-        /* CUTE GIRL VOICE ENGINE (محرك صوت الطفلة للنحلة) */
+        /* SILENT BUBBLE DIALOGUE ENGINE (محرك الحوار النصي الصامت) */
         /* ========================================================= */
         const hostBee = document.getElementById('host-bee-container');
         const beeBubble = document.getElementById('beeBubble');
-        const audioIcon = document.getElementById('audioIcon');
-        let bubbleSpeechTimer;
 
         const hostDialogues = {
             ar: [
-                "أهلاً بك في موقعي! أنا نحلة الملكة السعيدة 🐝👑",
+                "أهلاً بك في موقعنا! أنا نحلة 🐝👑",
                 "يسعدني جداً زيارتك لدليلي الشامل! ✨",
                 "هل تبحث عن مدرج أو مطعم؟ أنا هنا لمساعدتك! 🗺️",
                 "أتمنى لك يوماً جميلاً ودراسة ممتعة في ENSTP! 🎓"
             ],
             fr: [
-                "Bienvenue sur mon site ! Je suis votre hôte 🐝👑",
-                "Ravi de vous voir explorer mon guide ! ✨",
+                "Bienvenue sur notre site ! Je suis BEE 🐝👑",
+                "Ravi de vous voir explorer notre guide ! ✨",
                 "Besoin d'aide pour trouver un amphi ? 🗺️",
-                "Je vous souhaite une excellente journée ! 🎓"
+                "Excellente journée à l'ENSTP ! 🎓"
             ],
             en: [
-                "Welcome to my website! I'm your host 🐝👑",
+                "Welcome to our site! I am BEE 🐝👑",
                 "So happy to have you here today! ✨",
                 "Looking for classrooms or food? I'm here! 🗺️",
                 "Wish you great success at ENSTP! 🎓"
             ]
         };
 
-        // Text-to-Speech Engine with Girl Voice Tuning
-        function speakText(text) {
-            if (isAudioMuted || !('speechSynthesis' in window)) return;
-
-            window.speechSynthesis.cancel(); // Stop prior speech
-            const cleanText = text.replace(/[🐝👑✨🗺️🎓☕🚌🤝💫]/g, '');
-            const utterance = new SpeechSynthesisUtterance(cleanText);
-            
-            // Explicitly match voices and configure cute girl pitch
-            const voices = window.speechSynthesis.getVoices();
-            if (currentLang === 'ar') {
-                utterance.lang = 'ar-SA';
-                const arVoice = voices.find(v => v.lang.includes('ar') || v.lang.includes('AR'));
-                if (arVoice) utterance.voice = arVoice;
-                utterance.pitch = 1.6; // High pitch for cute child voice
-            } else if (currentLang === 'fr') {
-                utterance.lang = 'fr-FR';
-                const frVoice = voices.find(v => v.lang.includes('fr') || v.lang.includes('FR'));
-                if (frVoice) utterance.voice = frVoice;
-                utterance.pitch = 1.5;
-            } else {
-                utterance.lang = 'en-US';
-                const enVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Google')));
-                if (enVoice) utterance.voice = enVoice;
-                utterance.pitch = 1.5;
-            }
-            
-            utterance.rate = 1.05; // Slightly lively speaking speed
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function toggleBeeSound(event) {
-            event.stopPropagation();
-            isAudioMuted = !isAudioMuted;
-            if (isAudioMuted) {
-                window.speechSynthesis.cancel();
-                audioIcon.className = 'fa-solid fa-volume-xmark text-rose-400';
-            } else {
-                audioIcon.className = 'fa-solid fa-volume-high text-amber-400';
-                triggerBeeSpeech(currentLang === 'ar' ? 'تم تفعيل الصوت! 🐝' : 'Audio enabled! 🐝');
-            }
-        }
-
-        function triggerBeeSpeech(text) {
+        function triggerBeeBubbleText(text) {
             beeBubble.innerText = text;
             beeBubble.classList.add('show');
-            speakText(text);
 
             clearTimeout(bubbleSpeechTimer);
             bubbleSpeechTimer = setTimeout(() => {
@@ -1021,10 +948,9 @@ footer {
         function onHostBeeClicked() {
             const dialogues = hostDialogues[currentLang] || hostDialogues.ar;
             const randomMsg = dialogues[Math.floor(Math.random() * dialogues.length)];
-            triggerBeeSpeech(randomMsg);
+            triggerBeeBubbleText(randomMsg);
         }
 
-        // Fly bee to card on hover and speak
         function flyBeeToCardHover(cardElement, cardTitle) {
             const rect = cardElement.getBoundingClientRect();
             const targetX = rect.left + (rect.width / 2) - 30;
@@ -1033,22 +959,22 @@ footer {
             hostBee.style.left = `${Math.max(20, Math.min(targetX, window.innerWidth - 80))}px`;
             hostBee.style.top = `${Math.max(80, Math.min(targetY, window.innerHeight - 80))}px`;
 
-            const speakPhrase = currentLang === 'ar' ? `هنا قسم ${cardTitle} 🐝` : 
-                               (currentLang === 'fr' ? `Voici ${cardTitle} 🐝` : `Here is ${cardTitle} 🐝`);
+            const showPhrase = currentLang === 'ar' ? `قسم ${cardTitle} 🐝` : 
+                               (currentLang === 'fr' ? `Section: ${cardTitle} 🐝` : `Section: ${cardTitle} 🐝`);
             
-            triggerBeeSpeech(speakPhrase);
+            triggerBeeBubbleText(showPhrase);
         }
 
-        // Scroll listener: Contextual talking
+        // Scroll listener: Contextual Text Bubbles
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             sections.forEach(sec => {
                 const rect = sec.getBoundingClientRect();
                 if (rect.top >= 0 && rect.top <= 200) {
-                    if (sec.id === 'cartographie') triggerBeeSpeech(currentLang === 'ar' ? 'خرائط الحرم الجامعي! 🗺️' : 'Campus maps! 🗺️');
-                    else if (sec.id === 'quotidien') triggerBeeSpeech(currentLang === 'ar' ? 'المطاعم والمقاهي القريبة! ☕' : 'Nearby dining! ☕');
-                    else if (sec.id === 'transport') triggerBeeSpeech(currentLang === 'ar' ? 'محطات النقل والحافلات! 🚌' : 'Bus routes! 🚌');
-                    else if (sec.id === 'entraide') triggerBeeSpeech(currentLang === 'ar' ? 'شبكة التضامن الطلابي! 🤝' : 'Student support! 🤝');
+                    if (sec.id === 'cartographie') triggerBeeBubbleText(currentLang === 'ar' ? 'خرائط الحرم الجامعي! 🗺️' : 'Campus maps! 🗺️');
+                    else if (sec.id === 'quotidien') triggerBeeBubbleText(currentLang === 'ar' ? 'المطاعم والمقاهي القريبة! ☕' : 'Nearby dining! ☕');
+                    else if (sec.id === 'transport') triggerBeeBubbleText(currentLang === 'ar' ? 'محطات النقل والحافلات! 🚌' : 'Bus routes! 🚌');
+                    else if (sec.id === 'entraide') triggerBeeBubbleText(currentLang === 'ar' ? 'شبكة التضامن الطلابي! 🤝' : 'Student support! 🤝');
                 }
             });
         });
