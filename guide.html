@@ -389,7 +389,7 @@ html[dir="ltr"] .bee-bubble::after {
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="flex items-center space-x-3 space-x-reverse" id="logoContainer">
                     <div class="p-1">
                         <img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="شعار ENSTP" class="h-12 w-auto object-contain">
                     </div>
@@ -401,7 +401,7 @@ html[dir="ltr"] .bee-bubble::after {
 
                 <!-- Language Switcher & Navigation -->
                 <div class="flex items-center gap-3">
-                    <nav class="hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
+                    <nav class="hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold" id="navContainer">
                         <a href="#cartographie" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-map">الخريطة والمباني</a>
                         <a href="#enseignants" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-teachers">الأساتذة والمواد</a>
                         <a href="#services" class="px-3 py-2 rounded-xl text-slate-700 hover:bg-white hover:text-brand-700 transition" id="nav-admin">الإدارة والخدمات</a>
@@ -495,14 +495,14 @@ html[dir="ltr"] .bee-bubble::after {
             
             <!-- SMART ASSISTANT SEARCH BAR CONTAINER -->
             <div class="max-w-2xl mx-auto relative mb-4">
-                <div class="relative flex items-center">
+                <div class="relative flex items-center" id="searchBarWrapper">
                     <input type="text" id="searchInput" onkeyup="handleSearchKeyup(event)" placeholder="اسأل المساعد الذكي: أين أجد كشوف النقاط؟ أين يقع المطعم؟..." class="w-full pl-12 pr-12 py-4 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border-2 border-amber-400/50 shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/30 text-sm sm:text-base transition-all">
                     
-                    <button onclick="executeSmartSearch()" class="absolute right-2 top-2 bottom-2 px-5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl font-bold flex items-center justify-center transition shadow-md group">
+                    <button onclick="executeSmartSearch()" id="searchBtn" class="absolute right-2 top-2 bottom-2 px-5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl font-bold flex items-center justify-center transition shadow-md group">
                         <i class="fa-solid fa-wand-magic-sparkles text-lg group-hover:rotate-12 transition-transform"></i>
                     </button>
                     
-                    <span class="absolute left-4 text-amber-500 text-lg pointer-events-none">
+                    <span class="absolute left-4 text-amber-500 text-lg pointer-events-none" id="searchIconSpan">
                         <i class="fa-solid fa-robot"></i>
                     </span>
                 </div>
@@ -520,7 +520,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 1: CARTOGRAPHIE -->
         <section id="cartographie" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-1-header">
                 <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-1-title">خرائط وتوجيه الحرم الجامعي</h2>
@@ -532,7 +532,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 2: ENSEIGNANTS -->
         <section id="enseignants" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-2-header">
                 <div class="w-10 h-10 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-2-title">الأساتذة والأقسام الأكاديمية</h2>
@@ -544,7 +544,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 3: SERVICES -->
         <section id="services" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-3-header">
                 <div class="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-building-columns"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-3-title">الخدمات الإدارية والمدرسية</h2>
@@ -556,7 +556,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 4: VIE QUOTIDIENNE -->
         <section id="quotidien" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-4-header">
                 <div class="w-10 h-10 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-store"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-4-title">الحياة اليومية والخدمات القريبة</h2>
@@ -568,7 +568,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 5: TRANSPORT -->
         <section id="transport" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-5-header">
                 <div class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-bus"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-5-title">شبكة النقل والمواصلات</h2>
@@ -580,7 +580,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 6: CITÉ UNIVERSITAIRE -->
         <section id="cite" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-6-header">
                 <div class="w-10 h-10 bg-rose-100 text-rose-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-house-user"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-6-title">الإقامة الجامعية والحياة الداخلية</h2>
@@ -592,7 +592,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 7: LOISIRS & SPORT -->
         <section id="loisirs" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-7-header">
                 <div class="w-10 h-10 bg-teal-100 text-teal-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-umbrella-beach"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-7-title">الأنشطة، الرياضة، والترفيه بالعاصمة</h2>
@@ -604,7 +604,7 @@ html[dir="ltr"] .bee-bubble::after {
 
         <!-- Section 8: RÉSEAU D'ENTRAIDE -->
         <section id="entraide" class="scroll-mt-24 section-block">
-            <div class="flex items-center space-x-3 space-x-reverse mb-6">
+            <div class="flex items-center space-x-3 space-x-reverse mb-6" id="sec-8-header">
                 <div class="w-10 h-10 bg-sky-100 text-sky-700 rounded-xl flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-hands-holding-child"></i></div>
                 <div>
                     <h2 class="text-2xl font-black text-slate-900" id="sec-8-title">شبكة التضامن والتعاون الأخوي</h2>
@@ -855,7 +855,7 @@ html[dir="ltr"] .bee-bubble::after {
                 navTransport: 'Transport',
                 navHelp: 'Entraide',
                 heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Guide interactif & Assistant IA',
-                heroTitle: '<span class="text-accent-500">ENSTP Alger</span>',
+                heroTitle: '<span class="text-accent-500">École Nationale Supérieure des Travaux Publics</span>',
                 heroDesc: 'Une plateforme numérique intégrée regroupant tout ce dont un étudiant de l\'ENSTP a besoin : orientation, communication académique, services, transport, résidence et entraide.',
                 searchPlaceholder: 'Posez votre question : Où trouver les relevés de notes ? Restaurants ?...',
                 sec1Title: 'Cartographie & Orientation du Campus',
@@ -879,42 +879,42 @@ html[dir="ltr"] .bee-bubble::after {
                 footerSub: 'Projet interactif dédié aux nouveaux étudiants de l\'ENSTP',
 
                 cartographie: [
-                    { name: "Bâtiment Académique Principal (A)", desc: "Comprend les grands amphis A1, A2 et les salles de cours théoriques 1ère/2ème année.", icon: "fa-building", tag: "Bâtiment", url: "ecole.html", img: "photo11.jpg"  },
-                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Itinéraire", url: "ecolemap.html", img: "photo13.jpg"  },
-                    { name: "Emploi du Temps", desc: "Horaires des cours, salles attribuées et noms des enseignants.", icon: "fa-calendar", tag: "Planning", url: "temp.html", img: "photo32.jpg"  }
+                    { name: "École Nationale Supérieure des TP", desc: "Aperçu de l'école, de ses salles et de ses amphithéâtres.", icon: "fa-building", tag: "École", url: "ecole.html", img: "photo11.jpg" },
+                    { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Orientation", url: "ecolemap.html", img: "photo13.jpg" },
+                    { name: "Emploi du Temps", desc: "Horaires des cours, salles attribuées et noms des enseignants.", icon: "fa-calendar", tag: "Planning", url: "temp.html", img: "photo32.jpg" }
                 ],
                 enseignants: [
-                    { name: "Département Ouvrages d'Art", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département", url: "#", img: "photo14.jpg"  },
-                    { name: "Département Infrastructures Routières", desc: "Conception des routes, chaussées et gestion du trafic routier.", icon: "fa-road", tag: "Département", url: "#", img: "photo15.jpg"  },
-                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire", url: "#", img: "photo12.jpg"  },
-                    { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg"  }
+                    { name: "Département Ouvrages d'Art", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département Académique", url: "#", img: "photo14.jpg" },
+                    { name: "Département Infrastructures Routières", desc: "Conception des routes, chaussées et gestion du trafic routier avec des experts.", icon: "fa-road", tag: "Département Académique", url: "#", img: "photo15.jpg" },
+                    { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire & Pratique", url: "#", img: "photo12.jpg" },
+                    { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg" }
                 ],
                 services: [
-                    { name: "Service Scolarité & Inscription", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions.", icon: "fa-id-card", tag: "Admin", url: "scolarite.html", img: "photo17.jpg"  },
-                    { name: "Bibliothèque Centrale", desc: "Ouvrages d'ingénierie, projets de fin d'études (PFE) et espace numérique.", icon: "fa-book-open", tag: "Bibliothèque", url: "bib.html", img: "photo18.jpg"  },
-                    { name: "Procédures & Recours Administratifs", desc: "Étapes de justification d'absence, congé académique et requêtes.", icon: "fa-file-signature", tag: "Procédures", url: "#", img: "photo19.jpg"  }
+                    { name: "Service Scolarité & Inscription", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions annuelles.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
+                    { name: "Bibliothèque Centrale", desc: "Ouvrages d'ingénierie, projets de fin d'études (PFE) et espace numérique.", icon: "fa-book-open", tag: "Bibliothèque", url: "bib.html", img: "photo18.jpg" },
+                    { name: "Procédures & Recours Administratifs", desc: "Étapes de justification d'absence, congé académique et requêtes scolaires.", icon: "fa-file-signature", tag: "Procédures", url: "#", img: "photo19.jpg" }
                 ],
                 quotidien: [
-                    { name: "Restaurants & Cafés à Proximité", desc: "Sélection de 5 fast-foods et cafés très fréquentés près du portail.", icon: "fa-utensils", tag: "Restauration", url: "food.html", img: "photo20.jpg"  },
-                    { name: "Centres d'Impression & Tirage A0/A1", desc: "Impression spécialisée pour plans d'ingénierie et cours à prix réduits.", icon: "fa-print", tag: "Impression", url: "print.html", img: "photo21.jpg" },
-                    { name: "Pharmacies & Commerces", desc: "Guide des pharmacies et centres de santé à proximité.", icon: "fa-capsules", tag: "Santé", url: "pharma.html", img: "photo22.jpg"  }
+                    { name: "Restaurants & Cafés à Proximité", desc: "Sélection de 5 fast-foods et cafés très fréquentés près du portail de l'école.", icon: "fa-utensils", tag: "Restauration", url: "food.html", img: "photo20.jpg" },
+                    { name: "Centres d'Impression & Tirage A0/A1", desc: "Impression spécialisée pour plans d'ingénierie et cours à prix réduits.", icon: "fa-print", tag: "Impression & Copie", url: "print.html", img: "photo21.jpg" },
+                    { name: "Pharmacies & Cliniques", desc: "Guide des pharmacies et des services de santé médicale à proximité.", icon: "fa-capsules", tag: "Santé", url: "pharma.html", img: "photo22.jpg" }
                 ],
                 transport: [
                     { name: "Bus ETUSA & Lignes Universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
-                    { name: "Positions et gares principales", desc: "Points de départ des bus et des transports en commun", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" }
+                    { name: "Positions et Gares Principales", desc: "Points de départ des bus et des transports en commun.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" }
                 ],
                 cite: [
-                    { name: "Services de la Résidence Universitaire", desc: "Guide des chambres, restauration interne, sécurité et tickets.", icon: "fa-bed", tag: "Résidence", url: "residence.html", img: "photo25.jpg" },
-                    { name: "Programme du Week-end", desc: "Horaires du restaurant, permanences et transports le vendredi/samedi.", icon: "fa-calendar-week", tag: "Week-end", url: "#", img: "photo26.jpg"  },
-                    { name: "Besoins & Équipement de Chambre", desc: "Liste des objets essentiels et conseils pour bien vivre en résidence.", icon: "fa-list-check", tag: "Conseils", url: "important.html", img: "photo27.jpg"  }
+                    { name: "Services de la Résidence Universitaire", desc: "Guide des chambres, restauration interne, sécurité et tickets de repas.", icon: "fa-bed", tag: "Hébergement", url: "residence.html", img: "photo25.jpg" },
+                    { name: "Programme du Week-end", desc: "Horaires du restaurant, permanences et transports les vendredi et samedi.", icon: "fa-calendar-week", tag: "Week-end", url: "#", img: "photo26.jpg" },
+                    { name: "Besoins & Équipement de Chambre", desc: "Liste des objets essentiels et conseils pour bien vivre en résidence.", icon: "fa-list-check", tag: "Conseils", url: "important.html", img: "photo27.jpg" }
                 ],
                 loisirs: [
-                    { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#", img: "photo28.jpg"  },
-                    { name: "Monuments Culturales & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"}
+                    { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "#", img: "photo28.jpg" },
+                    { name: "Monuments Culturels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
                 ],
                 entraide: [
-                    { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien", url: "drives.html", img: "photo30.jpg"},
-                    { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Entraide", url: "experience.html", img: "photo31.jpg"}
+                    { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien Académique", url: "drives.html", img: "photo30.jpg" },
+                    { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Solidarité", url: "experience.html", img: "photo31.jpg" }
                 ]
             },
             en: {
@@ -928,7 +928,7 @@ html[dir="ltr"] .bee-bubble::after {
                 navTransport: 'Transport',
                 navHelp: 'Peer Support',
                 heroBadge: '<i class="fa-solid fa-compass mr-1"></i> Interactive Student Guide & AI Assistant',
-                heroTitle: '<span class="text-accent-500">ENSTP Algiers</span>',
+                heroTitle: '<span class="text-accent-500">National Higher School of Public Works</span>',
                 heroDesc: 'An integrated digital platform with everything an ENSTP student needs: campus navigation, faculty directory, daily services, transport, residence & peer support.',
                 searchPlaceholder: 'Ask AI Assistant: Where can I find transcripts? Nearby food?...',
                 sec1Title: 'Campus Navigation & Maps',
@@ -952,42 +952,42 @@ html[dir="ltr"] .bee-bubble::after {
                 footerSub: 'An interactive project built to support new ENSTP students',
 
                 cartographie: [
-                    { name: "Main Academic Building (A)", desc: "Houses main lecture halls A1, A2 and theoretical classrooms for 1st/2nd year.", icon: "fa-building", tag: "Main Building", url: "ecole.html", img: "photo11.jpg"  },
-                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Pathways", url: "ecolemap.html", img: "photo13.jpg"  },
-                    { name: "Class Timetable", desc: "Lecture schedules, assigned rooms, and professor names.", icon: "fa-calendar", tag: "Timetable", url: "temp.html", img: "photo32.jpg"  }
+                    { name: "National Higher School of Public Works", desc: "Overview of the school, its halls, and lecture theaters.", icon: "fa-building", tag: "School", url: "ecole.html", img: "photo11.jpg" },
+                    { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Navigation", url: "ecolemap.html", img: "photo13.jpg" },
+                    { name: "Class Timetable", desc: "Lecture schedules, assigned rooms, and professor names.", icon: "fa-calendar", tag: "Timetable", url: "temp.html", img: "photo32.jpg" }
                 ],
                 enseignants: [
-                    { name: "Department of Structural Engineering", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Department", url: "#", img: "photo14.jpg" },
-                    { name: "Department of Highway Infrastructure", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Department", url: "#", img: "photo15.jpg"  },
-                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory", url: "#", img: "photo12.jpg" },
+                    { name: "Department of Structural Engineering", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Academic Department", url: "#", img: "photo14.jpg" },
+                    { name: "Department of Highway Infrastructure", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Academic Department", url: "#", img: "photo15.jpg" },
+                    { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory & Practice", url: "#", img: "photo12.jpg" },
                     { name: "Faculty Email Directory", desc: "List of official institutional email addresses for all teaching staff.", icon: "fa-at", tag: "Contacts", url: "professors.html", img: "photo16.jpg" }
                 ],
                 services: [
-                    { name: "Scolarité & Registration Office", desc: "Issuance of student certificates, transcripts, and annual registration.", icon: "fa-id-card", tag: "Admin", url: "scolarite.html", img: "photo17.jpg"  },
-                    { name: "Central Engineering Library", desc: "Engineering books, graduation theses (PFE), and digital reading rooms.", icon: "fa-book-open", tag: "Library", url: "bib.html", img: "photo18.jpg"  },
-                    { name: "Administrative Appeals & Procedures", desc: "Steps for absence justifications, academic leave, and requests.", icon: "fa-file-signature", tag: "Procedures", url: "#", img: "photo19.jpg"  }
+                    { name: "Scolarité & Registration Office", desc: "Issuance of student certificates, transcripts, and annual registration.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
+                    { name: "Central Engineering Library", desc: "Engineering books, graduation theses (PFE), and digital reading rooms.", icon: "fa-book-open", tag: "Library", url: "bib.html", img: "photo18.jpg" },
+                    { name: "Administrative Appeals & Procedures", desc: "Steps for absence justifications, academic leave, and requests.", icon: "fa-file-signature", tag: "Procedures", url: "#", img: "photo19.jpg" }
                 ],
                 quotidien: [
-                    { name: "Nearby Fast Food & Cafés", desc: "A curated list of 5 popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining", url: "food.html", img: "photo20.jpg"  },
-                    { name: "Engineering Printing Centers (A0/A1)", desc: "Specialized printing for large blueprints and course notes at student rates.", icon: "fa-print", tag: "Printing", url: "print.html", img: "photo21.jpg"  },
-                    { name: "Pharmacies & Convenience Stores", desc: "Guide to pharmacies and nearby medical clinics.", icon: "fa-capsules", tag: "Health", url: "pharma.html", img: "photo22.jpg" }
+                    { name: "Nearby Fast Food & Cafés", desc: "A curated list of 5 popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining", url: "food.html", img: "photo20.jpg" },
+                    { name: "Engineering Printing Centers (A0/A1)", desc: "Specialized printing for large blueprints and course notes at student rates.", icon: "fa-print", tag: "Printing & Copying", url: "print.html", img: "photo21.jpg" },
+                    { name: "Pharmacies & Clinics", desc: "Guide to pharmacies and nearby medical health clinic locations.", icon: "fa-capsules", tag: "Health", url: "pharma.html", img: "photo22.jpg" }
                 ],
                 transport: [
                     { name: "ETUSA & University Bus Routes", desc: "Bus lines connecting the school to metro and train stations.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
-                    { name: "Major Parking and Stations", desc: "Bus and public transport starting points", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg"  }
+                    { name: "Major Parking and Stations", desc: "Bus and public transport starting points.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" }
                 ],
                 cite: [
                     { name: "Dormitory Services & Dining", desc: "Room guide, internal dining hall hours, security, and meal tickets.", icon: "fa-bed", tag: "Dorms", url: "residence.html", img: "photo25.jpg" },
-                    { name: "Weekend Schedule", desc: "Dining hall hours, duty staff, and weekend transport availability.", icon: "fa-calendar-week", tag: "Weekend", url: "#", img: "photo26.jpg"  },
-                    { name: "Dorm Room Checklist & Tips", desc: "Essential items checklist and tips for comfortable dorm living.", icon: "fa-list-check", tag: "Tips", url: "important.html", img: "photo27.jpg"  }
+                    { name: "Weekend Schedule", desc: "Dining hall hours, duty staff, and weekend transport availability.", icon: "fa-calendar-week", tag: "Weekend", url: "#", img: "photo26.jpg" },
+                    { name: "Dorm Room Checklist & Tips", desc: "Essential items checklist and tips for comfortable dorm living.", icon: "fa-list-check", tag: "Tips", url: "important.html", img: "photo27.jpg" }
                 ],
                 loisirs: [
                     { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports", url: "#", img: "photo28.jpg" },
-                    { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg"  }
+                    { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
                 ],
                 entraide: [
-                    { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "drives.html", img: "photo30.jpg"  },
-                    { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "experience.html", img: "photo31.jpg"  }
+                    { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "drives.html", img: "photo30.jpg" },
+                    { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "experience.html", img: "photo31.jpg" }
                 ]
             }
         };
@@ -1008,6 +1008,25 @@ html[dir="ltr"] .bee-bubble::after {
                     btn.className = "px-2.5 py-1.5 rounded-lg text-slate-600 hover:text-brand-700 transition";
                 }
             });
+
+            // Adjust header flex spacing direction based on language
+            const logoContainer = document.getElementById('logoContainer');
+            const navContainer = document.getElementById('navContainer');
+            const searchBarWrapper = document.getElementById('searchBarWrapper');
+
+            if (lang === 'ar') {
+                logoContainer.className = "flex items-center space-x-3 space-x-reverse";
+                navContainer.className = "hidden xl:flex items-center space-x-1 space-x-reverse bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold";
+                searchBarWrapper.querySelector('input').className = "w-full pl-12 pr-12 py-4 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border-2 border-amber-400/50 shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/30 text-sm sm:text-base transition-all";
+                document.getElementById('searchBtn').className = "absolute right-2 top-2 bottom-2 px-5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl font-bold flex items-center justify-center transition shadow-md group";
+                document.getElementById('searchIconSpan').className = "absolute left-4 text-amber-500 text-lg pointer-events-none";
+            } else {
+                logoContainer.className = "flex items-center space-x-3";
+                navContainer.className = "hidden xl:flex items-center space-x-1 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold";
+                searchBarWrapper.querySelector('input').className = "w-full pr-12 pl-12 py-4 rounded-2xl bg-white text-slate-800 font-bold placeholder-slate-400 border-2 border-amber-400/50 shadow-2xl focus:outline-none focus:ring-4 focus:ring-accent-500/30 text-sm sm:text-base transition-all";
+                document.getElementById('searchBtn').className = "absolute left-2 top-2 bottom-2 px-5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-xl font-bold flex items-center justify-center transition shadow-md group";
+                document.getElementById('searchIconSpan').className = "absolute right-4 text-amber-500 text-lg pointer-events-none";
+            }
 
             document.getElementById('txt-logo-title').innerText = data.logoTitle;
             document.getElementById('txt-logo-sub').innerText = data.logoSub;
