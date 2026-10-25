@@ -70,7 +70,7 @@
             gap: 24px;
         }
 
-        /* تصميم البطاقات الاحترافي الجديد */
+        /* تصميم البطاقات */
         .profile-card {
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
@@ -112,17 +112,22 @@
             transition: background 0.2s;
         }
 
+        [dir="ltr"] .close-btn {
+            left: auto;
+            right: 12px;
+        }
+
         .close-btn:hover {
             background: rgba(0, 0, 0, 0.7);
         }
 
-        /* خلفية أعلى البطاقة بتدرج أنيق */
+        /* خلفية أعلى البطاقة */
         .card-header-bg {
             height: 80px;
             background: linear-gradient(135deg, #0a66c2 0%, #3b82f6 100%);
         }
 
-        /* الصورة الشخصية الدائرية مع تأثير ظل محيطي */
+        /* الصورة الشخصية */
         .avatar-container {
             position: relative;
             margin-top: -45px;
@@ -177,7 +182,7 @@
             overflow: hidden;
         }
 
-        /* التفاصيل المشتركة */
+        /* التفاصيل المشتركة / التخصص */
         .mutual-connections {
             display: flex;
             align-items: center;
@@ -221,7 +226,6 @@
             transition: all 0.2s ease;
         }
 
-        /* زر عرض المزيد */
         .more-btn {
             background-color: #f1f5f9;
             border: 1px solid #cbd5e1;
@@ -232,7 +236,6 @@
             color: #0f172a;
         }
 
-        /* زر الإيميل (تواصل) */
         .email-btn {
             background-color: #0a66c2;
             border: 1px solid #0a66c2;
@@ -255,81 +258,163 @@
             <button class="lang-btn" onclick="setLanguage('en')">English</button>
         </div>
 
-        <h1 id="main-heading">قائمة الأساتذة</h1>
+        <h1 id="main-heading">قائمة الأساتذة والباحثين</h1>
         
         <div class="grid-container" id="grid">
-            <!-- البطاقة الأولى: د. ريما بلال -->
-            <div class="profile-card" id="card-1">
-                <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-                <div class="card-header-bg"></div>
-                <div class="avatar-container">
-                    <img src="ryma.jpg" alt="د. ريما بلال" class="avatar">
-                </div>
-                <div class="card-body">
-                    <div class="name-container">
-                        <span class="name" data-translate="rima_name">د. ريما بلال</span>
-                        <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
-                    </div>
-                    <p class="bio" data-translate="rima_bio">أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)</p>
-                </div>
-                <div class="mutual-connections">
-                    <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
-                    <span data-translate="rima_mutual">باحثة في الأبحاث العلمية والهندسية</span>
-                </div>
-                <div class="card-footer">
-                    <!-- زر عرض المزيد يوجه لصفحة الأستاذة -->
-                    <a href="https://www.researchgate.net/profile/Rima-Bellal" target="_blank" class="btn-action more-btn">
-                        <i class="fa-solid fa-arrow-left"></i> <span data-translate="read_more">عرض المزيد</span>
-                    </a>
-                    <!-- زر التواصل يوجه لإرسال إيميل للأستاذة -->
-                    <a href="mailto:r.bellal@enstp.edu.dz" class="btn-action email-btn">
-                        <i class="fa-solid fa-envelope"></i> <span data-translate="connect">تواصل</span>
-                    </a>
-                </div>
-            </div>
+            <!-- سيتم توليد البطاقات ديناميكياً بواسطة الجافاسكربت -->
         </div>
     </div>
 
     <script>
-        // قواميس الترجمة للغات الثلاث
-        const translations = {
-            ar: {
-                title: "قائمة الأساتذة",
-                heading: "قائمة الأساتذة",
-                rima_name: "د. ريما بلال",
-                rima_bio: "أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)",
-                rima_mutual: "باحثة في الأبحاث العلمية والهندسية",
-                read_more: "عرض المزيد",
-                connect: "تواصل",
-                default_name: "اسم الأستاذ",
-                default_bio: "التخصص والدرجة العلمية للأستاذ...",
-                default_mutual: "معلومات إضافية / علاقات مشتركة"
+        // بيانات الأساتذة المضافة حديثاً مع الترجمات الثلاثية
+        const professorsData = [
+            {
+                id: "rima_bellal",
+                img: "ryma.jpg",
+                link: "https://www.researchgate.net/profile/Rima-Bellal",
+                email: "r.bellal@enstp.edu.dz",
+                ar: { name: "د. ريما بلال", bio: "أستاذة وباحثة بالمدرسة العليا للأشغال العمومية", tag: "باحثة في المواد والإنشاءات الهندسية" },
+                fr: { name: "Dr. Rima Bellal", bio: "Enseignante-chercheuse à l'ENSTP", tag: "Chercheuse en Matériaux et Structures" },
+                en: { name: "Dr. Rima Bellal", bio: "Professor & Researcher at ENSTP", tag: "Materials & Structures Researcher" }
             },
-            fr: {
-                title: "Liste des Professeurs",
-                heading: "Liste des Professeurs",
-                rima_name: "Dr. Rima Bellal",
-                rima_bio: "Enseignante et chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP)",
-                rima_mutual: "Chercheuse en recherche scientifique et ingénierie",
-                read_more: "En savoir plus",
-                connect: "Contacter",
-                default_name: "Nom du professeur",
-                default_bio: "Spécialité et diplôme académique...",
-                default_mutual: "Informations / Connexions"
+            {
+                id: "khodja_mea",
+                img: "https://ui-avatars.com/api/?name=Khodja+Mea&background=0D8ABC&color=fff",
+                link: "https://www.linkedin.com/in/khodjamea?trk=contact-info",
+                email: "khodja.mea@enstp.edu.dz",
+                ar: { name: "د. خوجة معمر", bio: "أستاذ وباحث بالمدرسة العليا للأشغال العمومية", tag: "خبير الهندسة المدنية والمنشآت" },
+                fr: { name: "Dr. Khodja Mea", bio: "Enseignant-chercheur à l'ENSTP", tag: "Spécialiste en Génie Civil" },
+                en: { name: "Dr. Khodja Mea", bio: "Professor & Researcher at ENSTP", tag: "Civil Engineering Expert" }
             },
-            en: {
-                title: "Professors List",
-                heading: "Professors List",
-                rima_name: "Dr. Rima Bellal",
-                rima_bio: "Professor and researcher at the National Higher School of Public Works (ENSTP)",
-                rima_mutual: "Researcher in scientific research & engineering",
-                read_more: "Read More",
-                connect: "Contact",
-                default_name: "Professor Name",
-                default_bio: "Specialty and academic degree...",
-                default_mutual: "Additional info / Connections"
+            {
+                id: "said_chami",
+                img: "https://ui-avatars.com/api/?name=Said+Chami&background=0284C7&color=fff",
+                link: "https://www.linkedin.com/in/sa%C3%AFd-chami-8b9438232?trk=contact-info",
+                email: "s.chami@enstp.edu.dz",
+                ar: { name: "سعيد شامي", bio: "باحث وطالب دكتوراه مخبر المواد والمنشآت (ENSTP)", tag: "هندسة المواد والمباني" },
+                fr: { name: "Saïd Chami", bio: "Doctorant & Chercheur au Laboratoire Matériaux et Structures (ENSTP)", tag: "Génie des Matériaux" },
+                en: { name: "Saïd Chami", bio: "PhD Student & Researcher at ENSTP", tag: "Materials & Structural Engineering" }
+            },
+            {
+                id: "rania_allalou",
+                img: "https://ui-avatars.com/api/?name=Rania+Allalou&background=0D8ABC&color=fff",
+                link: "https://www.linkedin.com/in/allalou-rania-65b71818b?trk=contact-info",
+                email: "r.allalou@enstp.edu.dz",
+                ar: { name: "مهندسة رانيا علالو", bio: "مهندسة وباحثة في المنشآت والجسور (ENSTP)", tag: "دراسات الجسور والخرسانة المسبقة الإجهاد" },
+                fr: { name: "Ing. Rania Allalou", bio: "Ingénieure & Chercheuse en Ouvrages d'Art (ENSTP)", tag: "Étude des Ponts et Béton Précontraint" },
+                en: { name: "Eng. Rania Allalou", bio: "Structural Engineer & Researcher at ENSTP", tag: "Bridge Engineering & Prestressed Concrete" }
+            },
+            {
+                id: "adel_rahoui",
+                img: "https://ui-avatars.com/api/?name=Adel+Rahoui&background=0369A1&color=fff",
+                link: "https://www.linkedin.com/in/adel-rahoui?trk=contact-info",
+                email: "a.rahoui@enstp.edu.dz",
+                ar: { name: "د. عادل رحوي", bio: "أستاذ محاضر بالمدرسة العليا للأشغال العمومية", tag: "الذكاء الاصطناعي والطاقات المتجددة" },
+                fr: { name: "Dr. Adel Rahoui", bio: "Enseignant-chercheur (Maître de Conférences) à l'ENSTP", tag: "IA et Énergies Renouvelables" },
+                en: { name: "Dr. Adel Rahoui", bio: "Associate Professor at ENSTP Algiers", tag: "Artificial Intelligence & Renewable Energy" }
+            },
+            {
+                id: "mahdia_mehiaoui",
+                img: "https://ui-avatars.com/api/?name=Mahdia+Mehiaoui&background=0F766E&color=fff",
+                link: "https://www.linkedin.com/in/mahdia-mehiaoui-88b510224?trk=contact-info",
+                email: "m.mehiaoui@enstp.edu.dz",
+                ar: { name: "د. مهدية محياوي", bio: "أستاذة وباحثة بالمدرسة العليا للأشغال العمومية", tag: "الهندسة الجيوتقنية والأساسات" },
+                fr: { name: "Dr. Mahdia Mehiaoui", bio: "Enseignante-chercheuse à l'ENSTP", tag: "Géotechnique et Fondations" },
+                en: { name: "Dr. Mahdia Mehiaoui", bio: "Professor & Researcher at ENSTP", tag: "Geotechnical Engineering" }
+            },
+            {
+                id: "nadjib_hemaidi",
+                img: "https://ui-avatars.com/api/?name=Nadjib+Hemaidi&background=1E3A8A&color=fff",
+                link: "https://www.linkedin.com/in/dr-nadjib-hemaidi-zourgui-03551a39?trk=contact-info",
+                email: "n.hemaidizourgui@enstp.edu.dz",
+                ar: { name: "د. نجيب حميدي زرقي", bio: "رئيس قسم المواد والمنشآت وخبير هندسة الجسور والزلزال (ENSTP)", tag: "هندسة الجسور والمقاومة الزلزالية" },
+                fr: { name: "Dr. Nadjib Hemaidi Zourgui", bio: "Chef de Département Matériaux & Structures à l'ENSTP", tag: "Génie Parasismique & Ponts" },
+                en: { name: "Dr. Nadjib Hemaidi Zourgui", bio: "Head of Materials & Structures Dept at ENSTP", tag: "Bridge & Earthquake Engineering" }
+            },
+            {
+                id: "benbokhari_abdellatif",
+                img: "https://ui-avatars.com/api/?name=Abdellatif+Benbokhari&background=0284C7&color=fff",
+                link: "https://www.linkedin.com/in/benbokhari-abdellatif-456559195?trk=contact-info",
+                email: "a.benbokhari@enstp.edu.dz",
+                ar: { name: "د. عبد اللطيف بن بوهالي", bio: "باحث في الذكاء الاصطناعي والتصميم الهيكلي الزلزالي (ENSTP)", tag: "التعلم الآلي والتحليل الهيكلي" },
+                fr: { name: "Dr. Abdellatif Benbokhari", bio: "Chercheur en IA appliquée au Design Structurel (ENSTP)", tag: "Machine Learning & Génie Parasismique" },
+                en: { name: "Dr. Abdellatif Benbokhari", bio: "Research Associate & PhD in AI for Structural Design", tag: "Machine Learning & Seismic Design" }
+            },
+            {
+                id: "salaheddine_laib",
+                img: "https://ui-avatars.com/api/?name=Salaheddine+Laib&background=0369A1&color=fff",
+                link: "https://www.linkedin.com/in/salaheddine-laib-670225210?trk=contact-info",
+                email: "s.laib@enstp.edu.dz",
+                ar: { name: "د. صلاح الدين العايب", bio: "أستاذ وباحث متخصص في النمذجة والمحاكاة الهندسية", tag: "الموجات والنمذجة الهندسية" },
+                fr: { name: "Dr. Salah Eddine Laib", bio: "Enseignant-chercheur spécialiste en Modélisation", tag: "Modélisation & Électromagnétisme" },
+                en: { name: "Dr. Salah Eddine Laib", bio: "Professor & Researcher in Numerical Modeling", tag: "Numerical Modeling & Simulation" }
+            },
+            {
+                id: "khaoula_dib",
+                img: "https://ui-avatars.com/api/?name=Khaoula+Dib&background=0F766E&color=fff",
+                link: "https://www.linkedin.com/in/khaoula-dib-58886099?trk=contact-info",
+                email: "k.dib@enstp.edu.dz",
+                ar: { name: "د. خولة ديب", bio: "أستاذة وباحثة بقسم الهياكل القاعدة (ENSTP)", tag: "البنية التحتية والأنفاق الطرقية" },
+                fr: { name: "Dr. Khaoula Dib", bio: "Enseignante-chercheuse au Département Infrastructures de Base", tag: "Infrastructures de Transport" },
+                en: { name: "Dr. Khaoula Dib", bio: "Professor & Researcher in Infrastructure Dept", tag: "Transport & Infrastructure Engineering" }
+            },
+            {
+                id: "ahmed_y",
+                img: "https://ui-avatars.com/api/?name=Ahmed+Y&background=1E3A8A&color=fff",
+                link: "https://www.linkedin.com/in/ahmed-y-802b4215a?trk=contact-info",
+                email: "a.yousfi@enstp.edu.dz",
+                ar: { name: "أحمد يوسفي", bio: "باحث ومهندس في الأشغال العمومية والمنشآت", tag: "إدارة المشاريع والأشغال العمومية" },
+                fr: { name: "Ahmed Yousfi", bio: "Ingénieur-chercheur en Travaux Publics", tag: "Gestion des Projets & Infrastructures" },
+                en: { name: "Ahmed Yousfi", bio: "Public Works Engineer & Researcher", tag: "Project Management & Civil Works" }
             }
+        ];
+
+        // العناوين المترجمة
+        const uiTranslations = {
+            ar: { title: "قائمة الأساتذة", heading: "قائمة الأساتذة والباحثين", read_more: "عرض الملف", connect: "تواصل" },
+            fr: { title: "Liste des Professeurs", heading: "Liste des Professeurs et Chercheurs", read_more: "Voir profil", connect: "Contacter" },
+            en: { title: "Professors List", heading: "Professors & Researchers Directory", read_more: "View Profile", connect: "Contact" }
         };
+
+        function renderCards(lang) {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+
+            const tUI = uiTranslations[lang];
+
+            professorsData.forEach((prof) => {
+                const data = prof[lang];
+                const cardHTML = `
+                    <div class="profile-card" id="card-${prof.id}">
+                        <button class="close-btn" onclick="this.parentElement.style.display='none'" title="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+                        <div class="card-header-bg"></div>
+                        <div class="avatar-container">
+                            <img src="${prof.img}" alt="${data.name}" class="avatar">
+                        </div>
+                        <div class="card-body">
+                            <div class="name-container">
+                                <span class="name">${data.name}</span>
+                                <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
+                            </div>
+                            <p class="bio">${data.bio}</p>
+                        </div>
+                        <div class="mutual-connections">
+                            <img src="https://via.placeholder.com/50/0a66c2/ffffff?text=+" alt="أيقونة" class="mutual-avatar">
+                            <span>${data.tag}</span>
+                        </div>
+                        <div class="card-footer">
+                            <a href="${prof.link}" target="_blank" class="btn-action more-btn">
+                                <i class="fa-solid fa-arrow-left"></i> <span>${tUI.read_more}</span>
+                            </a>
+                            <a href="mailto:${prof.email}" class="btn-action email-btn">
+                                <i class="fa-solid fa-envelope"></i> <span>${tUI.connect}</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
 
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
@@ -344,65 +429,14 @@
                 body.setAttribute('lang', lang);
             }
 
-            document.getElementById('page-title').innerText = translations[lang].title;
-            document.getElementById('main-heading').innerText = translations[lang].heading;
+            document.getElementById('page-title').innerText = uiTranslations[lang].title;
+            document.getElementById('main-heading').innerText = uiTranslations[lang].heading;
 
-            document.querySelector('[data-translate="rima_name"]').innerText = translations[lang].rima_name;
-            document.querySelector('[data-translate="rima_bio"]').innerText = translations[lang].rima_bio;
-            document.querySelector('[data-translate="rima_mutual"]').innerText = translations[lang].rima_mutual;
-            
-            // تحديث نصوص الأزرار للبطاقة الأولى
-            document.querySelector('.more-btn span').innerText = translations[lang].read_more;
-            document.querySelector('.email-btn span').innerText = translations[lang].connect;
-
-            window.currentLang = lang;
-            rebuildCards(lang);
+            renderCards(lang);
         }
 
-        // بناء البطاقات الباقية (من 2 إلى 20)
-        function rebuildCards(lang) {
-            const grid = document.getElementById('grid');
-            const card1HTML = grid.children[0].outerHTML;
-            grid.innerHTML = card1HTML;
-
-            const totalCards = 20;
-            const t = translations[lang];
-
-            for (let i = 2; i <= totalCards; i++) {
-                const cardHTML = `
-                    <div class="profile-card" id="card-${i}">
-                        <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="fa-solid fa-xmark"></i></button>
-                        <div class="card-header-bg"></div>
-                        <div class="avatar-container">
-                            <img src="https://via.placeholder.com/150/e0e0e0/888888?text=صورة" alt="صورة الأستاذ" class="avatar">
-                        </div>
-                        <div class="card-body">
-                            <div class="name-container">
-                                <span class="name">${t.default_name} ${i}</span>
-                                <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
-                            </div>
-                            <p class="bio">${t.default_bio}</p>
-                        </div>
-                        <div class="mutual-connections">
-                            <img src="https://via.placeholder.com/50/ccc/888888?text=+" alt="صورة" class="mutual-avatar">
-                            <span>${t.default_mutual}</span>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn-action more-btn">
-                                <i class="fa-solid fa-arrow-left"></i> <span>${t.read_more}</span>
-                            </a>
-                            <a href="mailto:professor${i}@enstp.dz" class="btn-action email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span>${t.connect}</span>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += cardHTML;
-            }
-        }
-
-        window.currentLang = 'ar';
-        rebuildCards('ar');
+        // تشغيل العرض الافتراضي باللغة العربية
+        renderCards('ar');
     </script>
 </body>
 </html>
