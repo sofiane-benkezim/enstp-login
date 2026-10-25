@@ -160,17 +160,37 @@
                     </div>
                 </div>
 
-                <!-- Visual Hero Banner -->
+                <!-- Visual Hero Banner (Auto-Playing Video Player) -->
                 <div class="lg:col-span-5">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-200 dark:border-slate-800 group">
-    <iframe class="w-full h-[420px] object-cover" src="video_dib.mp4" title="Infrastructure Construction" frameborder="0" allowfullscreen></iframe>
-</div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex items-end p-6">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-200 dark:border-slate-800 group bg-slate-950 aspect-video lg:h-[420px]">
+                        
+                        <!-- Video Component (Auto-play, Muted, Loop) -->
+                        <video id="heroVideo" class="w-full h-full object-cover" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=1200&q=80">
+                            <source src="video_dib.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل هذا الفيديو.
+                        </video>
+
+                        <!-- Subtle Top Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none"></div>
+
+                        <!-- Audio & Play Control Toggle -->
+                        <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+                            <button onclick="toggleHeroSound()" id="soundToggleBtn" class="p-2.5 rounded-full bg-slate-900/80 backdrop-blur-md text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-all shadow-md border border-amber-500/30" title="تشغيل/كتم الصوت">
+                                <i id="soundIcon" class="fa-solid fa-volume-xmark text-sm"></i>
+                            </button>
+                            <button onclick="toggleHeroPlay()" id="playToggleBtn" class="p-2.5 rounded-full bg-slate-900/80 backdrop-blur-md text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-all shadow-md border border-amber-500/30" title="إيقاف/تشغيل الفيديو">
+                                <i id="playIcon" class="fa-solid fa-pause text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Overlay Caption -->
+                        <div class="absolute inset-x-0 bottom-0 p-6 z-10 pointer-events-none">
                             <div class="text-white space-y-1">
-                                <span class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 text-xs font-black uppercase tracking-wider" data-i18n="hero_img_badge">البنية التحتية الأساسية</span>
-                                <h3 class="text-lg font-bold" data-i18n="hero_img_caption">ربط المدن والاقطاب الاقتصادية بالموانئ والمطارات</h3>
+                                <span class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 text-xs font-black uppercase tracking-wider inline-block" data-i18n="hero_img_badge">البنية التحتية الأساسية</span>
+                                <h3 class="text-lg font-bold drop-shadow" data-i18n="hero_img_caption">ربط المدن والأقطاب الاقتصادية بالموانئ والمطارات</h3>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -360,7 +380,7 @@
                     </div>
                     <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_4_title">هندسة المطارات (Aéroportuaire)</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_4_desc">
-                        تخطيـط المدرجات المطاربة (Runways)، ممرات الدوران (Taxiways)، حساب حمولات أسطول الطائرات، وأنظمة الإنارة والتصريف المائي للمطارات.
+                        تخطيط المدرجات المطاربة (Runways)، ممرات الدوران (Taxiways)، حساب حمولات أسطول الطائرات، وأنظمة الإنارة والتصريف المائي للمطارات.
                     </p>
                 </div>
 
@@ -551,7 +571,7 @@
         </div>
     </footer>
 
-    <!-- VIDEO MODAL -->
+    <!-- VIDEO MODAL FOR DIRECTOR'S SPEECH -->
     <div id="videoModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl relative">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center text-white">
@@ -562,7 +582,7 @@
                 <button onclick="closeVideoModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <div class="relative pt-[56.25%] bg-black">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Speech Video" frameborder="0" allowfullscreen></iframe>
+                <iframe id="modalIframe" class="absolute inset-0 w-full h-full" src="" title="Speech Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -576,7 +596,7 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT TRANSLATION ENGINE -->
+    <!-- JAVASCRIPT TRANSLATION & LOGIC -->
     <script>
         const translations = {
             ar: {
@@ -595,7 +615,7 @@
                 hero_btn_video: "شاهد كلمة رئيس القسم",
                 stat_jobs: "فرص إدماج مهني متقدمة",
                 stat_axes: "محاور كبرى (طرق، قطارات، موانئ، مطارات)",
-                stat_labs: "مختبرات وااختبارات حقلية",
+                stat_labs: "مختبرات واختبارات حقلية",
                 hero_img_badge: "البنية التحتية الأساسية",
                 hero_img_caption: "ربط المدن والأقطاب الاقتصادية بالموانئ والمطارات",
                 director_title: "كلمة رئيس القسم والمكتب",
@@ -803,12 +823,33 @@
             }
         };
 
-        let currentLang = 'ar';
+        // Hero Video Controls
+        function toggleHeroSound() {
+            const video = document.getElementById('heroVideo');
+            const icon = document.getElementById('soundIcon');
+            video.muted = !video.muted;
+            if (video.muted) {
+                icon.className = 'fa-solid fa-volume-xmark text-sm';
+            } else {
+                icon.className = 'fa-solid fa-volume-high text-sm';
+            }
+        }
 
+        function toggleHeroPlay() {
+            const video = document.getElementById('heroVideo');
+            const icon = document.getElementById('playIcon');
+            if (video.paused) {
+                video.play();
+                icon.className = 'fa-solid fa-pause text-sm';
+            } else {
+                video.pause();
+                icon.className = 'fa-solid fa-play text-sm';
+            }
+        }
+
+        // Language Switcher
         function changeLanguage(lang) {
-            currentLang = lang;
             const html = document.documentElement;
-
             if (lang === 'ar') {
                 html.dir = 'rtl';
                 html.lang = 'ar';
@@ -845,12 +886,16 @@
 
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1";
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
 
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = "";
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
@@ -876,10 +921,19 @@
             icon.classList.toggle('rotate-180');
         }
 
+        // Initialize Auto Play Check
         window.onload = function() {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 document.documentElement.classList.add('dark');
                 document.getElementById('themeIcon').className = 'fa-solid fa-sun text-lg';
+            }
+
+            // Ensure video auto-plays automatically on page load
+            const video = document.getElementById('heroVideo');
+            if (video) {
+                video.play().catch(error => {
+                    console.log("Autoplay was prevented by browser policy, user interaction needed:", error);
+                });
             }
         };
     </script>
