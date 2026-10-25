@@ -3,412 +3,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">قائمة الأساتذة</title>
-    <!-- استيراد الأيقونات والخطوط -->
+    <title id="page-title">دليل الأساتذة والباحثين | ENSTP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <!-- Google Font: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0a66c2',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-
         body {
-            background-color: #f8f9fa;
-            color: #2c3e50;
-            padding: 40px 20px;
-            transition: direction 0.3s ease;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* شريط أزرار اللغات */
-        .lang-switcher {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .lang-btn {
-            background-color: #ffffff;
-            border: 1px solid #cbd5e1;
-            color: #475569;
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            transition: all 0.2s ease;
-        }
-
-        .lang-btn:hover, .lang-btn.active {
-            background-color: #0a66c2;
-            border-color: #0a66c2;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(10, 102, 194, 0.2);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #1e293b;
-            font-size: 28px;
-            font-weight: 700;
-        }
-
-        /* شبكة عرض البطاقات */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        /* تصميم البطاقات */
-        .profile-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            position: relative;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-        }
-
-        .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #cbd5e1;
-        }
-
-        /* زر الإغلاق X */
-        .close-btn {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            z-index: 2;
-            transition: background 0.2s;
-        }
-
-        [dir="ltr"] .close-btn {
-            left: auto;
-            right: 12px;
-        }
-
-        .close-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        /* خلفية أعلى البطاقة */
-        .card-header-bg {
-            height: 80px;
-            background: linear-gradient(135deg, #0a66c2 0%, #3b82f6 100%);
-        }
-
-        /* الصورة الشخصية */
-        .avatar-container {
-            position: relative;
-            margin-top: -45px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 4px solid #ffffff;
-            object-fit: cover;
-            background-color: #f1f5f9;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* محتوى المعلومات */
-        .card-body {
-            padding: 16px 20px;
-            flex-grow: 1;
-        }
-
-        .name-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-bottom: 8px;
-        }
-
-        .name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .verified-icon {
-            color: #0a66c2;
-            font-size: 14px;
-        }
-
-        .bio {
-            font-size: 13px;
-            color: #64748b;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            min-height: 40px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* التفاصيل المشتركة / التخصص */
-        .mutual-connections {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #475569;
-            border-top: 1px solid #f1f5f9;
-            padding: 10px 16px;
+            font-family: 'Cairo', sans-serif;
             background-color: #f8fafc;
-        }
-
-        .mutual-avatar {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            object-fit: cover;
-            background-color: #e2e8f0;
-        }
-
-        /* أزرار البطاقة السفلى */
-        .card-footer {
-            padding: 14px 20px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .btn-action {
-            width: 100%;
-            border-radius: 10px;
-            padding: 8px 0;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .more-btn {
-            background-color: #f1f5f9;
-            border: 1px solid #cbd5e1;
-            color: #334155;
-        }
-        .more-btn:hover {
-            background-color: #e2e8f0;
             color: #0f172a;
         }
 
-        .email-btn {
-            background-color: #0a66c2;
-            border: 1px solid #0a66c2;
-            color: #ffffff;
-            box-shadow: 0 2px 4px rgba(10, 102, 194, 0.2);
+        /* Glassmorphism subtle effects */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
-        .email-btn:hover {
-            background-color: #004182;
-            border-color: #004182;
+
+        .glass-card {
+            background: #ffffff;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(10, 102, 194, 0.12), 0 8px 10px -6px rgba(10, 102, 194, 0.08);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0a66c2 0%, #0369a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at 50% 0%, rgba(10, 102, 194, 0.08) 0%, rgba(248, 250, 252, 0) 70%),
+                        linear-gradient(180deg, #f0f7ff 0%, #f8fafc 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body dir="rtl">
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <div class="container">
-        <!-- شريط تبديل اللغات -->
-        <div class="lang-switcher">
-            <button class="lang-btn active" onclick="setLanguage('ar')">العربية</button>
-            <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
-            <button class="lang-btn" onclick="setLanguage('en')">English</button>
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Institution Name -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 font-black text-xl">
+                        ENSTP
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800 leading-tight" id="logo-title">المدرسة العليا للأشغال العمومية</h2>
+                        <p class="text-xs text-slate-500 font-medium" id="logo-subtitle">دليل الهيئة التدريسية والباحثين</p>
+                    </div>
+                </div>
+
+                <!-- Language Switcher Buttons -->
+                <div class="flex items-center bg-slate-100 p-1.5 rounded-xl border border-slate-200/60 shadow-inner">
+                    <button onclick="setLanguage('ar')" id="btn-ar" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 active-lang bg-white text-brand-600 shadow-sm">
+                        العربية
+                    </button>
+                    <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900">
+                        Français
+                    </button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900">
+                        English
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section & Instant Search Banner -->
+    <section class="hero-bg pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-100 mb-4 shadow-sm">
+                <i class="fa-solid fa-graduation-cap text-sm"></i>
+                <span id="hero-badge">المنصة الأكاديمية الرسمية للأساتذة</span>
+            </span>
+            
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-none mb-4" id="hero-title">
+                ابحث عن <span class="gradient-text">الأساتذة والباحثين</span> بكل سهولة
+            </h1>
+            
+            <p class="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto mb-8" id="hero-desc">
+                استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.
+            </p>
+
+            <!-- Search Bar Component -->
+            <div class="relative max-w-2xl mx-auto">
+                <div class="relative flex items-center shadow-lg shadow-slate-200/60 rounded-2xl overflow-hidden bg-white border border-slate-200 focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-500/10 transition-all duration-200">
+                    <div class="ps-5 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        oninput="handleSearch()"
+                        placeholder="ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية..." 
+                        class="w-full py-4 px-4 text-sm sm:text-base text-slate-800 placeholder-slate-400 bg-transparent border-0 focus:outline-none font-medium"
+                    />
+                    <button 
+                        id="clear-btn"
+                        onclick="clearSearch()"
+                        class="hidden pe-5 text-slate-400 hover:text-slate-600 transition-colors"
+                        title="مسح البحث"
+                    >
+                        <i class="fa-solid fa-circle-xmark text-lg"></i>
+                    </button>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="flex items-center justify-center gap-6 mt-4 text-xs font-semibold text-slate-500">
+                    <span id="total-count-badge" class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-users text-brand-500"></i>
+                        <span>إجمالي الأساتذة: <strong class="text-slate-800 font-bold" id="prof-count">11</strong></span>
+                    </span>
+                    <span class="inline-block w-1 h-1 rounded-full bg-slate-300"></span>
+                    <span class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-amber-500"></i>
+                        <span id="quick-search-label">بحث لحظي وتفاعلي</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid Directory -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <!-- Results Grid Container -->
+        <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Cards generated dynamically via JavaScript -->
         </div>
 
-        <h1 id="main-heading">قائمة الأساتذة والباحثين</h1>
-        
-        <div class="grid-container" id="grid">
-            <!-- سيتم توليد البطاقات ديناميكياً بواسطة الجافاسكربت -->
+        <!-- No Results Fallback View -->
+        <div id="no-results" class="hidden text-center py-16 px-4">
+            <div class="w-20 h-20 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner">
+                <i class="fa-solid fa-user-slash"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-1" id="no-results-title">لم نتمكن من العثور على نتائج</h3>
+            <p class="text-sm text-slate-500 max-w-md mx-auto mb-6" id="no-results-desc">جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.</p>
+            <button onclick="clearSearch()" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition-colors shadow-md shadow-brand-500/20">
+                <i class="fa-solid fa-rotate-left me-2"></i><span id="reset-search-btn">إعادة ضبط البحث</span>
+            </button>
         </div>
-    </div>
+    </main>
 
+    <!-- Professional Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-700">ENSTP Algiers</span>
+                <span>•</span>
+                <span id="footer-rights">جميع الحقوق محفوظة © 2026</span>
+            </div>
+            <p id="footer-subtitle">المدرسة العليا للأشغال العمومية - القبة، الجزائر</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data Logic & Search Mechanics -->
     <script>
-        // بيانات الأساتذة المضافة حديثاً مع الترجمات الثلاثية
+        // Data Store of Professors with Multi-language support
         const professorsData = [
             {
                 id: "rima_bellal",
-                img: "ryma.jpg",
+                avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.researchgate.net/profile/Rima-Bellal",
                 email: "r.bellal@enstp.edu.dz",
-                ar: { name: "د. ريما بلال", bio: "أستاذة وباحثة بالمدرسة العليا للأشغال العمومية", tag: "باحثة في المواد والإنشاءات الهندسية" },
-                fr: { name: "Dr. Rima Bellal", bio: "Enseignante-chercheuse à l'ENSTP", tag: "Chercheuse en Matériaux et Structures" },
-                en: { name: "Dr. Rima Bellal", bio: "Professor & Researcher at ENSTP", tag: "Materials & Structures Researcher" }
+                badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
+                ar: { name: "د. ريما بلال", title: "أستاذة محاضرة وباحثة", bio: "أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)، تخصص هندسة المواد والمباني.", tag: "مواد البناء وهندسة الطرق" },
+                fr: { name: "Dr. Rima Bellal", title: "Enseignante-Chercheuse", bio: "Enseignante-chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP).", tag: "Matériaux de Construction" },
+                en: { name: "Dr. Rima Bellal", title: "Associate Professor & Researcher", bio: "Professor and researcher at the National Higher School of Public Works (ENSTP).", tag: "Construction Materials & Roads" }
             },
             {
                 id: "khodja_mea",
-                img: "https://ui-avatars.com/api/?name=Khodja+Mea&background=0D8ABC&color=fff",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/khodjamea?trk=contact-info",
                 email: "khodja.mea@enstp.edu.dz",
-                ar: { name: "د. خوجة معمر", bio: "أستاذ وباحث بالمدرسة العليا للأشغال العمومية", tag: "خبير الهندسة المدنية والمنشآت" },
-                fr: { name: "Dr. Khodja Mea", bio: "Enseignant-chercheur à l'ENSTP", tag: "Spécialiste en Génie Civil" },
-                en: { name: "Dr. Khodja Mea", bio: "Professor & Researcher at ENSTP", tag: "Civil Engineering Expert" }
+                badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+                ar: { name: "د. خوجة معمر", title: "أستاذ عالي وباحث", bio: "خبير ومستشار في الهندسة المدنية والمنشآت الكبرى وتصميم الخرسانة عالية الأداء.", tag: "الهندسة المدنية والمنشآت" },
+                fr: { name: "Dr. Khodja Mea", title: "Professeur & Chercheur", bio: "Expert en Génie Civil, structures complexes et étude du béton à haute performance.", tag: "Génie Civil & Structures" },
+                en: { name: "Dr. Khodja Mea", title: "Full Professor & Researcher", bio: "Expert in Civil Engineering, structural design and advanced concrete technology.", tag: "Civil & Structural Eng." }
             },
             {
                 id: "said_chami",
-                img: "https://ui-avatars.com/api/?name=Said+Chami&background=0284C7&color=fff",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/sa%C3%AFd-chami-8b9438232?trk=contact-info",
                 email: "s.chami@enstp.edu.dz",
-                ar: { name: "سعيد شامي", bio: "باحث وطالب دكتوراه مخبر المواد والمنشآت (ENSTP)", tag: "هندسة المواد والمباني" },
-                fr: { name: "Saïd Chami", bio: "Doctorant & Chercheur au Laboratoire Matériaux et Structures (ENSTP)", tag: "Génie des Matériaux" },
-                en: { name: "Saïd Chami", bio: "PhD Student & Researcher at ENSTP", tag: "Materials & Structural Engineering" }
+                badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
+                ar: { name: "سعيد شامي", title: "باحث وطالب دكتوراه", bio: "باحث بمخبر المواد والمنشآت (ENSTP) متمرس في سلوك الهياكل تحت تأثير الإجهاد.", tag: "مخبر المواد والمنشآت" },
+                fr: { name: "Saïd Chami", title: "Doctorant & Chercheur", bio: "Chercheur au Laboratoire Matériaux et Structures, spécialiste du comportement des structures.", tag: "Labo Matériaux & Structures" },
+                en: { name: "Saïd Chami", title: "PhD Researcher", bio: "Researcher at Materials & Structures Lab (ENSTP), focusing on structural behavior.", tag: "Materials & Structures Lab" }
             },
             {
                 id: "rania_allalou",
-                img: "https://ui-avatars.com/api/?name=Rania+Allalou&background=0D8ABC&color=fff",
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/allalou-rania-65b71818b?trk=contact-info",
                 email: "r.allalou@enstp.edu.dz",
-                ar: { name: "مهندسة رانيا علالو", bio: "مهندسة وباحثة في المنشآت والجسور (ENSTP)", tag: "دراسات الجسور والخرسانة المسبقة الإجهاد" },
-                fr: { name: "Ing. Rania Allalou", bio: "Ingénieure & Chercheuse en Ouvrages d'Art (ENSTP)", tag: "Étude des Ponts et Béton Précontraint" },
-                en: { name: "Eng. Rania Allalou", bio: "Structural Engineer & Researcher at ENSTP", tag: "Bridge Engineering & Prestressed Concrete" }
+                badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+                ar: { name: "مهندسة رانيا علالو", title: "مهندسة وباحثة في الجسور", bio: "متخصصة في دراسات الجسور والمنشآت الفنية والخرسانة المسبقة الإجهاد.", tag: "الجسور والمنشآت الفنية" },
+                fr: { name: "Ing. Rania Allalou", title: "Ingénieure Chercheuse", bio: "Spécialisée dans l'étude des ponts, ouvrages d'art et béton précontraint.", tag: "Ovrages d'Art & Ponts" },
+                en: { name: "Eng. Rania Allalou", title: "Structural Bridge Engineer", bio: "Specialized in bridge engineering, art structures, and prestressed concrete design.", tag: "Bridges & Art Structures" }
             },
             {
                 id: "adel_rahoui",
-                img: "https://ui-avatars.com/api/?name=Adel+Rahoui&background=0369A1&color=fff",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/adel-rahoui?trk=contact-info",
                 email: "a.rahoui@enstp.edu.dz",
-                ar: { name: "د. عادل رحوي", bio: "أستاذ محاضر بالمدرسة العليا للأشغال العمومية", tag: "الذكاء الاصطناعي والطاقات المتجددة" },
-                fr: { name: "Dr. Adel Rahoui", bio: "Enseignant-chercheur (Maître de Conférences) à l'ENSTP", tag: "IA et Énergies Renouvelables" },
-                en: { name: "Dr. Adel Rahoui", bio: "Associate Professor at ENSTP Algiers", tag: "Artificial Intelligence & Renewable Energy" }
+                badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
+                ar: { name: "د. عادل رحوي", title: "أستاذ محاضر قسم أ", bio: "باحث متخصص في تطبيقات الذكاء الاصطناعي، الأنظمة الذكية والطاقات المتجددة.", tag: "الذكاء الاصطناعي والأنظمة" },
+                fr: { name: "Dr. Adel Rahoui", title: "Maître de Conférences", bio: "Chercheur spécialisé dans les applications de l'IA et les systèmes énergétiques.", tag: "IA & Énergies Renouvelables" },
+                en: { name: "Dr. Adel Rahoui", title: "Associate Professor", bio: "Researcher specialized in AI applications, smart systems and renewable energy.", tag: "Artificial Intelligence & Energy" }
             },
             {
                 id: "mahdia_mehiaoui",
-                img: "https://ui-avatars.com/api/?name=Mahdia+Mehiaoui&background=0F766E&color=fff",
+                avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/mahdia-mehiaoui-88b510224?trk=contact-info",
                 email: "m.mehiaoui@enstp.edu.dz",
-                ar: { name: "د. مهدية محياوي", bio: "أستاذة وباحثة بالمدرسة العليا للأشغال العمومية", tag: "الهندسة الجيوتقنية والأساسات" },
-                fr: { name: "Dr. Mahdia Mehiaoui", bio: "Enseignante-chercheuse à l'ENSTP", tag: "Géotechnique et Fondations" },
-                en: { name: "Dr. Mahdia Mehiaoui", bio: "Professor & Researcher at ENSTP", tag: "Geotechnical Engineering" }
+                badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
+                ar: { name: "د. مهدية محياوي", title: "أستاذة وباحثة في الجيوتقنيك", bio: "متخصصة في ميكانيكا التربة، استقرار المنحدرات والأساسات العميق للمنشآت.", tag: "الجيوتقنيك والأساسات" },
+                fr: { name: "Dr. Mahdia Mehiaoui", title: "Enseignante-Chercheuse", bio: "Spécialiste en mécanique des sols, stabilité des pentes et fondations profondes.", tag: "Géotechnique & Fondations" },
+                en: { name: "Dr. Mahdia Mehiaoui", title: "Geotechnical Professor", bio: "Specialist in soil mechanics, slope stability and deep foundations.", tag: "Geotechnics & Foundations" }
             },
             {
                 id: "nadjib_hemaidi",
-                img: "https://ui-avatars.com/api/?name=Nadjib+Hemaidi&background=1E3A8A&color=fff",
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/dr-nadjib-hemaidi-zourgui-03551a39?trk=contact-info",
                 email: "n.hemaidizourgui@enstp.edu.dz",
-                ar: { name: "د. نجيب حميدي زرقي", bio: "رئيس قسم المواد والمنشآت وخبير هندسة الجسور والزلزال (ENSTP)", tag: "هندسة الجسور والمقاومة الزلزالية" },
-                fr: { name: "Dr. Nadjib Hemaidi Zourgui", bio: "Chef de Département Matériaux & Structures à l'ENSTP", tag: "Génie Parasismique & Ponts" },
-                en: { name: "Dr. Nadjib Hemaidi Zourgui", bio: "Head of Materials & Structures Dept at ENSTP", tag: "Bridge & Earthquake Engineering" }
+                badgeColor: "bg-rose-50 text-rose-700 border-rose-200",
+                ar: { name: "د. نجيب حميدي زرقي", title: "رئيس قسم المواد والمنشآت", bio: "خبير دولي في الهندسة الزلزالية، تصميم الجسور وتحليل استجابة المنشآت.", tag: "الهندسة الزلزالية والجسور" },
+                fr: { name: "Dr. Nadjib Hemaidi Zourgui", title: "Chef de Département", bio: "Expert en génie parasismique, conception des ponts et dynamique des structures.", tag: "Génie Parasismique" },
+                en: { name: "Dr. Nadjib Hemaidi Zourgui", title: "Head of Materials Dept", bio: "International expert in earthquake engineering, bridge design and structural dynamics.", tag: "Earthquake & Bridge Eng." }
             },
             {
                 id: "benbokhari_abdellatif",
-                img: "https://ui-avatars.com/api/?name=Abdellatif+Benbokhari&background=0284C7&color=fff",
+                avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/benbokhari-abdellatif-456559195?trk=contact-info",
                 email: "a.benbokhari@enstp.edu.dz",
-                ar: { name: "د. عبد اللطيف بن بوهالي", bio: "باحث في الذكاء الاصطناعي والتصميم الهيكلي الزلزالي (ENSTP)", tag: "التعلم الآلي والتحليل الهيكلي" },
-                fr: { name: "Dr. Abdellatif Benbokhari", bio: "Chercheur en IA appliquée au Design Structurel (ENSTP)", tag: "Machine Learning & Génie Parasismique" },
-                en: { name: "Dr. Abdellatif Benbokhari", bio: "Research Associate & PhD in AI for Structural Design", tag: "Machine Learning & Seismic Design" }
+                badgeColor: "bg-cyan-50 text-cyan-700 border-cyan-200",
+                ar: { name: "د. عبد اللطيف بن بوهالي", title: "دكتور وباحث في الذكاء الاصطناعي", bio: "باحث دكتوراه يدمج تقنيات التعلم الآلي والذكاء الاصطناعي في تصميم الهياكل الزلزالية.", tag: "الذكاء الاصطناعي في الهندسة" },
+                fr: { name: "Dr. Abdellatif Benbokhari", bio: "Chercheur intégrant le Machine Learning au design structural parasismique.", title: "Chercheur Post-Doc", tag: "IA & Design Parasismique" },
+                en: { name: "Dr. Abdellatif Benbokhari", title: "Postdoc AI Researcher", bio: "Researcher integrating Machine Learning with seismic structural design optimization.", tag: "AI in Structural Engineering" }
             },
             {
                 id: "salaheddine_laib",
-                img: "https://ui-avatars.com/api/?name=Salaheddine+Laib&background=0369A1&color=fff",
+                avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/salaheddine-laib-670225210?trk=contact-info",
                 email: "s.laib@enstp.edu.dz",
-                ar: { name: "د. صلاح الدين العايب", bio: "أستاذ وباحث متخصص في النمذجة والمحاكاة الهندسية", tag: "الموجات والنمذجة الهندسية" },
-                fr: { name: "Dr. Salah Eddine Laib", bio: "Enseignant-chercheur spécialiste en Modélisation", tag: "Modélisation & Électromagnétisme" },
-                en: { name: "Dr. Salah Eddine Laib", bio: "Professor & Researcher in Numerical Modeling", tag: "Numerical Modeling & Simulation" }
+                badgeColor: "bg-sky-50 text-sky-700 border-sky-200",
+                ar: { name: "د. صلاح الدين العايب", title: "أستاذ وباحث محاكاة", bio: "متخصص في النمذجة الرقمية والمحاكاة الحاسوبية المتقدمة للظواهر الفيزيائية والهندسية.", tag: "النمذجة والمحاكاة الرقمية" },
+                fr: { name: "Dr. Salah Eddine Laib", title: "Enseignant-Chercheur", bio: "Spécialiste en modélisation numérique et simulation avancée des phénomènes physiques.", tag: "Modélisation Numérique" },
+                en: { name: "Dr. Salah Eddine Laib", title: "Simulation & Modeling Professor", bio: "Specialized in numerical modeling and advanced computational simulation of physical phenomena.", tag: "Numerical Simulation" }
             },
             {
                 id: "khaoula_dib",
-                img: "https://ui-avatars.com/api/?name=Khaoula+Dib&background=0F766E&color=fff",
+                avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/khaoula-dib-58886099?trk=contact-info",
                 email: "k.dib@enstp.edu.dz",
-                ar: { name: "د. خولة ديب", bio: "أستاذة وباحثة بقسم الهياكل القاعدة (ENSTP)", tag: "البنية التحتية والأنفاق الطرقية" },
-                fr: { name: "Dr. Khaoula Dib", bio: "Enseignante-chercheuse au Département Infrastructures de Base", tag: "Infrastructures de Transport" },
-                en: { name: "Dr. Khaoula Dib", bio: "Professor & Researcher in Infrastructure Dept", tag: "Transport & Infrastructure Engineering" }
+                badgeColor: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",
+                ar: { name: "د. خولة ديب", title: "أستاذة وباحثة في الهياكل القاعدة", bio: "متخصصة في هندسة البنية التحتية، الطرق والأنفاق والانزلاقات الأرضية.", tag: "البنية التحتية والطرق" },
+                fr: { name: "Dr. Khaoula Dib", title: "Enseignante-Chercheuse", bio: "Spécialiste en infrastructures de transport, routes, tunnels et géotechnique.", tag: "Infrastructures Routières" },
+                en: { name: "Dr. Khaoula Dib", title: "Infrastructure Professor", bio: "Specialized in transport infrastructure, highways, tunneling and geotechnical engineering.", tag: "Infrastructure & Transport" }
             },
             {
                 id: "ahmed_y",
-                img: "https://ui-avatars.com/api/?name=Ahmed+Y&background=1E3A8A&color=fff",
+                avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300",
                 link: "https://www.linkedin.com/in/ahmed-y-802b4215a?trk=contact-info",
                 email: "a.yousfi@enstp.edu.dz",
-                ar: { name: "أحمد يوسفي", bio: "باحث ومهندس في الأشغال العمومية والمنشآت", tag: "إدارة المشاريع والأشغال العمومية" },
-                fr: { name: "Ahmed Yousfi", bio: "Ingénieur-chercheur en Travaux Publics", tag: "Gestion des Projets & Infrastructures" },
-                en: { name: "Ahmed Yousfi", bio: "Public Works Engineer & Researcher", tag: "Project Management & Civil Works" }
+                badgeColor: "bg-slate-100 text-slate-700 border-slate-200",
+                ar: { name: "أحمد يعلى", title: "مهندس وباحث أداء", bio: "باحث ومهندس مدني متخصص في إدارة مشاريع الأشغال العمومية والجودة الهندسية.", tag: "إدارة مشاريع الأشغال" },
+                fr: { name: "Ahmed Yala", title: "Ingénieur Chercheur", bio: "Chercheur et ingénieur civil spécialisé en gestion des projets de travaux publics.", tag: "Gestion des Projets" },
+                en: { name: "Ahmed Yala", title: "Civil Project Researcher", bio: "Researcher and civil engineer specialized in public works project management.", tag: "Public Works Management" }
             }
         ];
 
-        // العناوين المترجمة
-        const uiTranslations = {
-            ar: { title: "قائمة الأساتذة", heading: "قائمة الأساتذة والباحثين", read_more: "عرض الملف", connect: "تواصل" },
-            fr: { title: "Liste des Professeurs", heading: "Liste des Professeurs et Chercheurs", read_more: "Voir profil", connect: "Contacter" },
-            en: { title: "Professors List", heading: "Professors & Researchers Directory", read_more: "View Profile", connect: "Contact" }
+        // UI Language Translations Object
+        const uiText = {
+            ar: {
+                title: "دليل الأساتذة والباحثين | ENSTP",
+                logoTitle: "المدرسة العليا للأشغال العمومية",
+                logoSubtitle: "دليل الهيئة التدريسية والباحثين",
+                heroBadge: "المنصة الأكاديمية الرسمية للأساتذة",
+                heroTitle: "ابحث عن <span class='gradient-text'>الأساتذة والباحثين</span> بكل سهولة",
+                heroDesc: "استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.",
+                placeholder: "ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية...",
+                quickSearch: "بحث لحظي وتفاعلي",
+                profCountLabel: "إجمالي الأساتذة: ",
+                viewProfile: "عرض الملف الشخصي",
+                contactBtn: "تواصل عبر البريد",
+                noResultsTitle: "لم نتمكن من العثور على نتائج",
+                noResultsDesc: "جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.",
+                resetBtn: "إعادة ضبط البحث",
+                footerRights: "جميع الحقوق محفوظة © 2026",
+                footerSubtitle: "المدرسة العليا للأشغال العمومية - القبة، الجزائر"
+            },
+            fr: {
+                title: "Annuaire Enseignants & Chercheurs | ENSTP",
+                logoTitle: "École Nationale Supérieure des Travaux Publics",
+                logoSubtitle: "Annuaire du Corps Enseignant et Chercheurs",
+                heroBadge: "Plateforme Académique Officielle",
+                heroTitle: "Recherchez les <span class='gradient-text'>Professeurs & Chercheurs</span>",
+                heroDesc: "Découvrez le corps professoral de l'ENSTP, leurs domaines de recherche et contactez-les directement.",
+                placeholder: "Rechercher par nom, spécialité ou mot-clé...",
+                quickSearch: "Recherche instantanée",
+                profCountLabel: "Total Professeurs: ",
+                viewProfile: "Voir Profil",
+                contactBtn: "Envoyer un e-mail",
+                noResultsTitle: "Aucun résultat trouvé",
+                noResultsDesc: "Essayez de rechercher avec d'autres termes ou vérifiez l'orthographe du nom ou de la spécialité.",
+                resetBtn: "Réinitialiser la recherche",
+                footerRights: "Tous droits réservés © 2026",
+                footerSubtitle: "École Nationale Supérieure des Travaux Publics - Alger"
+            },
+            en: {
+                title: "Faculty & Researchers Directory | ENSTP",
+                logoTitle: "National Higher School of Public Works",
+                logoSubtitle: "Faculty & Researcher Directory",
+                heroBadge: "Official Academic Directory",
+                heroTitle: "Search for <span class='gradient-text'>Professors & Researchers</span>",
+                heroDesc: "Explore the academic staff of ENSTP, discover research domains, and connect with faculty directly.",
+                placeholder: "Search by professor name, specialty, or keywords...",
+                quickSearch: "Instant Real-time Search",
+                profCountLabel: "Total Professors: ",
+                viewProfile: "View Profile",
+                contactBtn: "Send Email",
+                noResultsTitle: "No results found",
+                noResultsDesc: "Try searching with different terms or check the spelling of the professor's name or specialty.",
+                resetBtn: "Reset Search",
+                footerRights: "All Rights Reserved © 2026",
+                footerSubtitle: "National Higher School of Public Works - Algiers"
+            }
         };
 
-        function renderCards(lang) {
-            const grid = document.getElementById('grid');
+        let currentLanguage = 'ar';
+
+        // Render Directory Cards dynamically
+        function renderCards(filteredData) {
+            const grid = document.getElementById('grid-container');
+            const noResults = document.getElementById('no-results');
+            const t = uiText[currentLanguage];
+
             grid.innerHTML = '';
 
-            const tUI = uiTranslations[lang];
+            if (!filteredData || filteredData.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
 
-            professorsData.forEach((prof) => {
-                const data = prof[lang];
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            filteredData.forEach(prof => {
+                const data = prof[currentLanguage];
+                const isRtl = currentLanguage === 'ar';
+                const arrowIcon = isRtl ? 'fa-arrow-left' : 'fa-arrow-right';
+
                 const cardHTML = `
-                    <div class="profile-card" id="card-${prof.id}">
-                        <button class="close-btn" onclick="this.parentElement.style.display='none'" title="إغلاق"><i class="fa-solid fa-xmark"></i></button>
-                        <div class="card-header-bg"></div>
-                        <div class="avatar-container">
-                            <img src="${prof.img}" alt="${data.name}" class="avatar">
-                        </div>
-                        <div class="card-body">
-                            <div class="name-container">
-                                <span class="name">${data.name}</span>
-                                <i class="fa-solid fa-circle-check verified-icon" title="موثق"></i>
+                    <div class="glass-card rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between relative group shadow-sm hover:border-brand-200">
+                        <!-- Top Accent Pattern -->
+                        <div class="h-24 bg-gradient-to-r from-brand-700 via-brand-600 to-sky-500 relative p-4 flex justify-between items-start">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${prof.badgeColor} shadow-sm backdrop-blur-md">
+                                ${data.tag}
+                            </span>
+                            <div class="w-7 h-7 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xs">
+                                <i class="fa-solid fa-circle-check"></i>
                             </div>
-                            <p class="bio">${data.bio}</p>
                         </div>
-                        <div class="mutual-connections">
-                            <img src="https://via.placeholder.com/50/0a66c2/ffffff?text=+" alt="أيقونة" class="mutual-avatar">
-                            <span>${data.tag}</span>
+
+                        <!-- Avatar Profile Floating -->
+                        <div class="px-6 -mt-12 flex justify-between items-end relative z-10">
+                            <div class="relative">
+                                <img src="${prof.avatar}" alt="${data.name}" class="w-20 h-20 rounded-2xl object-cover ring-4 ring-white shadow-md bg-slate-100">
+                                <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 ring-2 ring-white rounded-full" title="نشط أسرع"></span>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <a href="${prof.link}" target="_blank" class="btn-action more-btn">
-                                <i class="fa-solid fa-arrow-left"></i> <span>${tUI.read_more}</span>
-                            </a>
-                            <a href="mailto:${prof.email}" class="btn-action email-btn">
-                                <i class="fa-solid fa-envelope"></i> <span>${tUI.connect}</span>
-                            </a>
+
+                        <!-- Card Information Body -->
+                        <div class="p-6 pt-4 flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">${data.name}</h3>
+                                </div>
+                                <p class="text-xs font-semibold text-brand-600 mb-3">${data.title}</p>
+                                <p class="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">${data.bio}</p>
+                            </div>
+
+                            <!-- Buttons Actions -->
+                            <div class="space-y-2 pt-3 border-t border-slate-100">
+                                <a href="${prof.link}" target="_blank" rel="noopener noreferrer" 
+                                   class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-900 hover:bg-brand-600 text-white flex items-center justify-center gap-2 transition-all duration-200 shadow-sm">
+                                    <span>${t.viewProfile}</span>
+                                    <i class="fa-solid ${arrowIcon} text-[10px]"></i>
+                                </a>
+                                
+                                <a href="mailto:${prof.email}" 
+                                   class="w-full py-2 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center gap-2 transition-colors">
+                                    <i class="fa-solid fa-envelope text-slate-500"></i>
+                                    <span>${t.contactBtn}</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -416,27 +455,77 @@
             });
         }
 
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // Instant Real-time Search Handler
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-btn');
 
-            const body = document.body;
-            if (lang === 'ar') {
-                body.setAttribute('dir', 'rtl');
-                body.setAttribute('lang', 'ar');
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
             } else {
-                body.setAttribute('dir', 'ltr');
-                body.setAttribute('lang', lang);
+                clearBtn.classList.add('hidden');
             }
 
-            document.getElementById('page-title').innerText = uiTranslations[lang].title;
-            document.getElementById('main-heading').innerText = uiTranslations[lang].heading;
+            const filtered = professorsData.filter(prof => {
+                const langData = prof[currentLanguage];
+                const searchPool = `${langData.name} ${langData.title} ${langData.bio} ${langData.tag} ${prof.email}`.toLowerCase();
+                return searchPool.includes(query);
+            });
 
-            renderCards(lang);
+            renderCards(filtered);
+            document.getElementById('prof-count').innerText = filtered.length;
         }
 
-        // تشغيل العرض الافتراضي باللغة العربية
-        renderCards('ar');
+        // Clear Search Query
+        function clearSearch() {
+            const input = document.getElementById('search-input');
+            input.value = '';
+            handleSearch();
+            input.focus();
+        }
+
+        // Language Switcher Logic
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            const t = uiText[lang];
+
+            // Update Direction and HTML Lang
+            const body = document.body;
+            body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            body.setAttribute('lang', lang);
+
+            // Update Active Language Button UI
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-brand-600', 'shadow-sm');
+                btn.classList.add('text-slate-600');
+            });
+            const activeBtn = document.getElementById(`btn-${lang}`);
+            activeBtn.classList.add('bg-white', 'text-brand-600', 'shadow-sm');
+            activeBtn.classList.remove('text-slate-600');
+
+            // Update Page Static Labels
+            document.getElementById('page-title').innerText = t.title;
+            document.getElementById('logo-title').innerText = t.logoTitle;
+            document.getElementById('logo-subtitle').innerText = t.logoSubtitle;
+            document.getElementById('hero-badge').innerText = t.heroBadge;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('search-input').placeholder = t.placeholder;
+            document.getElementById('quick-search-label').innerText = t.quickSearch;
+            document.getElementById('no-results-title').innerText = t.noResultsTitle;
+            document.getElementById('no-results-desc').innerText = t.noResultsDesc;
+            document.getElementById('reset-search-btn').innerText = t.resetBtn;
+            document.getElementById('footer-rights').innerText = t.footerRights;
+            document.getElementById('footer-subtitle').innerText = t.footerSubtitle;
+
+            // Re-apply search filter for current view
+            handleSearch();
+        }
+
+        // Initial App Load
+        window.onload = function() {
+            setLanguage('ar');
+        };
     </script>
 </body>
 </html>
