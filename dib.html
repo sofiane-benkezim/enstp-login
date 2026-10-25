@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIB: Infrastructure des Bases - ENSTP Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#090d16',
+                            950: '#030712'
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        },
+                        emerald: {
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Tajawal for Arabic, Inter for Latin -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(245, 158, 11, 0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .dark .bg-grid-pattern {
+            background-image: radial-gradient(rgba(245, 158, 11, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-900 to-amber-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-road-bridge"></i>
+                </div>
+                <div>
+                    <span class="block text-xl font-black text-slate-900 dark:text-white tracking-tight">ENSTP - DIB</span>
+                    <span id="nav-subtitle" class="block text-xs font-semibold text-amber-600 dark:text-amber-400" data-i18n="nav_subtitle">Infrastructure des Bases (تخصص البنية التحتية الأساسية)</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6 space-x-reverse text-sm font-bold">
+                <a href="#about" class="hover:text-amber-500 transition-colors" data-i18n="nav_about">عن التخصص</a>
+                <a href="#director" class="hover:text-amber-500 transition-colors" data-i18n="nav_director">رئيس القسم</a>
+                <a href="#gallery" class="hover:text-amber-500 transition-colors" data-i18n="nav_gallery">المعرض والمختبرات</a>
+                <a href="#domains" class="hover:text-amber-500 transition-colors" data-i18n="nav_domains">المجالات الهندسية</a>
+                <a href="#curriculum" class="hover:text-amber-500 transition-colors" data-i18n="nav_software">البرامج والمواد</a>
+                <a href="#faq" class="hover:text-amber-500 transition-colors" data-i18n="nav_faq">الأسئلة الشائعة</a>
+            </nav>
+
+            <!-- Controls: Language Selector & Theme Toggle -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <!-- Language Selector -->
+                <select id="langSwitcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-bold px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 cursor-pointer">
+                    <option value="ar">العربية (AR)</option>
+                    <option value="fr">Français (FR)</option>
+                    <option value="en">English (EN)</option>
+                </select>
+
+                <!-- Dark Mode Button -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2 font-bold text-sm">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_about">عن التخصص</a>
+            <a href="#director" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_director">رئيس القسم</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_gallery">المعرض والمختبرات</a>
+            <a href="#domains" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_domains">المجالات الهندسية</a>
+            <a href="#curriculum" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_software">البرامج والمواد</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 hover:text-amber-500" data-i18n="nav_faq">الأسئلة الشائعة</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="about" class="relative py-16 sm:py-24 overflow-hidden bg-grid-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 space-x-reverse px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs sm:text-sm font-bold">
+                        <i class="fa-solid fa-plane-arrival"></i>
+                        <span data-i18n="hero_badge">تخصص DIB - المدرسة العليا للأشغال العمومية ENSTP</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+                        <span data-i18n="hero_title_1">هندسة البنية التحتية الأساسية</span>
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-amber-600 to-amber-700 dark:from-amber-400 dark:to-amber-500 mt-1" data-i18n="hero_title_2">DIB: Infrastructure des Bases</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium" data-i18n="hero_description">
+                        يختص قسم DIB بتكوين مهندسي دولة متخصصين في دراسة وتصميم وتنفيذ وإدارة شبكات النقل والمنشآت الكبرى: الطرق السريعة، السكك الحديدية، الموانئ والمنشآت البحرية، ومدرجات المطارات الدولية باستخدام أحدث نماذج الجيوتقنية ومواد الحساب الإنشائي.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-4">
+                        <a href="#domains" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold transition-all shadow-lg shadow-amber-500/25 flex items-center gap-2">
+                            <span data-i18n="hero_btn_explore">استكشف مجالات التخصص</span>
+                            <i class="fa-solid fa-arrow-left text-sm" id="heroArrow"></i>
+                        </a>
+                        <button onclick="openVideoModal()" class="px-6 py-3.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-amber-500 text-lg"></i>
+                            <span data-i18n="hero_btn_video">شاهد كلمة رئيس القسم</span>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Stats Bar -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+                        <div class="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+                            <div class="text-2xl font-black text-amber-500">100%</div>
+                            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_jobs">فرص إدماج مهني متقدمة</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+                            <div class="text-2xl font-black text-slate-800 dark:text-white">4+</div>
+                            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_axes">محاور كبرى (طرق، قطارات، موانئ، مطارات)</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+                            <div class="text-2xl font-black text-amber-500">6</div>
+                            <div class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_labs">مختبرات واختبارات حقلية</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Hero Banner -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-200 dark:border-slate-800 group">
+                        <video src="####" alt="Infrastructure Construction" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex items-end p-6">
+                            <div class="text-white space-y-1">
+                                <span class="px-2.5 py-1 rounded bg-amber-500 text-slate-950 text-xs font-black uppercase tracking-wider" data-i18n="hero_img_badge">البنية التحتية الأساسية</span>
+                                <h3 class="text-lg font-bold" data-i18n="hero_img_caption">ربط المدن والاقطاب الاقتصادية بالموانئ والمطارات</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPARTMENT & BUREAU PRESIDENT SECTION -->
+    <section id="director" class="py-16 bg-white dark:bg-slate-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white" data-i18n="director_title">كلمة رئيس القسم والمكتب</h2>
+                <div class="w-20 h-1 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- President Photo & Controls -->
+                    <div class="md:col-span-4 flex flex-col items-center text-center">
+                        <div class="relative group">
+                            <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-500 shadow-xl ring-4 ring-amber-500/20">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Department President" class="w-full h-full object-cover">
+                            </div>
+                            <button onclick="openVideoModal()" class="absolute bottom-1 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 font-black text-xs px-4 py-2 rounded-full shadow-lg hover:bg-amber-400 transition-all flex items-center gap-1.5 whitespace-nowrap">
+                                <i class="fa-solid fa-play text-xs"></i>
+                                <span data-i18n="director_btn_speech">فيديو كلمة رئيس القسم</span>
+                            </button>
+                        </div>
+                        <h3 class="text-xl font-black mt-5 text-slate-900 dark:text-white" data-i18n="director_name">د. رشيد براهيمي</h3>
+                        <p class="text-xs font-bold text-amber-600 dark:text-amber-400 mt-0.5" data-i18n="director_role">رئيس قسم Infrastructure des Bases (DIB)</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="director_rank">أستاذ محاضر وخبير المنشآت البحرية والطرق السريعة</p>
+                    </div>
+
+                    <!-- Statement -->
+                    <div class="md:col-span-8 space-y-4">
+                        <div class="text-amber-500 text-5xl font-serif leading-none">“</div>
+                        <p class="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-semibold italic -mt-6" data-i18n="director_message">
+                            "يُعد تخصص Infrastructure des Bases العصب الشرياني للاقتصاد الوطني. يتلقى طلابنا في قسم DIB تدريباً تقنياً وتطبيقياً معمقاً حول هندسة شبكات الطرق، ومدرجات المطارات الكبرى، والهياكل المينائية ومسارات السكك الحديدية الحديثة. نحن نعد المهندس ليكون قادراً فور تخرجه على إدارة وتصميم أعقد مشاريع الأشغال العمومية."
+                        </p>
+                        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs font-bold text-slate-500 dark:text-slate-400">
+                            <div><i class="fa-solid fa-envelope text-amber-500 ml-1"></i> dib.base@enstp.dz</div>
+                            <div><i class="fa-solid fa-location-dot text-amber-500 ml-1"></i> المدرسة العليا للأشغال العمومية - القبة</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE PHOTO GALLERY SECTION -->
+    <section id="gallery" class="py-16 bg-slate-100 dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white" data-i18n="gallery_title">معرض صور المكتب والمختبرات والميدان</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2" data-i18n="gallery_subtitle">استكشف تجهيزات مختبرات DIB والزيارات الميدانية لمشاريع الطرق والموانئ والمطارات</p>
+                <div class="w-20 h-1 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Gallery 1: Pavement Lab -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80', 'مختبر اختبارات الأسفلت ومواد الطرق')">
+                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80" alt="Pavement Testing Lab" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_1_title">مختبر مواد الطرق والخرسانة الأسفلتية</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_1_desc">قياس الثبات والتشوه لمواد الرصف</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 2: Port & Maritime Field -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=80', 'معاينة ميدانية لمنشآت الحماية البحرية وأرصفة الموانئ')">
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=600&q=80" alt="Port Engineering" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_2_title">منشآت الموانئ والأرصفة البحرية</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_2_desc">دراسة كواسر الأمواج والأرصفة العائمة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 3: Airport Runway Engineering -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80', 'مدرجات المطارات وهندسة الملاحة الجوية')">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Airport Runway" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_3_title">هندسة المطارات والمدرجات</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_3_desc">تصميم طبقات الرصف الثقيل للطائرات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 4: Railway Track Field -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1200&q=80', 'مشروع خطوط السكك الحديدية السريعة')">
+                    <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80" alt="Railway Track" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_4_title">مسارات السكك الحديدية والسكة الحجرية</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_4_desc">حسابات الإجهاد والحصى السككي (Ballast)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 5: Soil Mechanics & Geotechnics -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80', 'مختبر ميكانيكا التربة واستقرار السدود والردميات')">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Geotechnical Lab" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_5_title">مختبر الجيوتقنية والأساسات</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_5_desc">فحص قدرة تحمل التربة والردميات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery 6: Bureau Work & Civil 3D Design -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80', 'ورشة التصميم والتخطيط الهندسي ثلاثي الأبعاد')">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="CAD Studio" class="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-amber-400 text-3xl mb-2"></i>
+                            <h4 class="text-white font-bold text-base" data-i18n="gal_6_title">مكتب النمذجة والتصميم الهندسي</h4>
+                            <p class="text-slate-300 text-xs" data-i18n="gal_6_desc">محاكاة حركة المرور والتصميم الهيدروليكي</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE DOMAINS OF DIB SPECIALIZATION -->
+    <section id="domains" class="py-16 bg-white dark:bg-slate-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white" data-i18n="domains_title">المجالات الهندسية الرئيسية لتخصص DIB</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2" data-i18n="domains_subtitle">تغطية هندسية شاملة لكافة المنشآت والشبكات الحيوية للبنية التحتية</p>
+                <div class="w-20 h-1 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Domain 1: Highways -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_1_title">هندسة الطرق والسريع (Autoroutes)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_1_desc">
+                        تخطيط المسارات الهندسي، حسابات الحفر والردم (Terrassement)، المحولات الحضرية، ودراسات السلامة المرورية على شبكات الطرق الكبرى.
+                    </p>
+                </div>
+
+                <!-- Domain 2: Railways -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-train"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_2_title">السكك الحديدية والترامواي (Ferroviaire)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_2_desc">
+                        تصميم المسارات الحديدية عالية السرعة، تفاصيل السكة الحجرية (Ballast)، أنظمة التثبيت، والمنشآت الخاصة بالمترو والترامواي.
+                    </p>
+                </div>
+
+                <!-- Domain 3: Ports & Harbors -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-anchor"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_3_title">الموانئ والمنشآت البحرية (Portuaire)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_3_desc">
+                        تصميم كواسر الأمواج (Digues)، الأرصفة البحرية، التجريف العميق، وتأثير الأمواج والديناميكية المائية على الحماية الساحلية.
+                    </p>
+                </div>
+
+                <!-- Domain 4: Airports -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-plane-up"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_4_title">هندسة المطارات (Aéroportuaire)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_4_desc">
+                        تخطيـط المدرجات المطاربة (Runways)، ممرات الدوران (Taxiways)، حساب حمولات أسطول الطائرات، وأنظمة الإنارة والتصريف المائي للمطارات.
+                    </p>
+                </div>
+
+                <!-- Domain 5: Geotechnics & Pavements -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-mountain-city"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_5_title">الجيوتقنية وطبقات الأرض (Géotechnique)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_5_desc">
+                        دراسات استقرار المنحدرات (Pentes)، تصميم طبقات رصف الطرق (Chaussées)، وتدعيم التربة الضعيفة والمستنقعية.
+                    </p>
+                </div>
+
+                <!-- Domain 6: Pavement Materials & Asphalt -->
+                <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all shadow-md group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl mb-4 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        <i class="fa-solid fa-vial-virus"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="dom_6_title">تكنولوجيا الأسفلت والمواد (Matériaux)</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-i18n="dom_6_desc">
+                        تطوير الخرسانة الأسفلتية الحارة والباردة، اختبارات المارشال والدوام، وإعادة تدوير مواد الرصف للحفاظ على البيئة.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOFTWARE SHOWCASE & CURRICULUM -->
+    <section id="curriculum" class="py-16 bg-slate-100 dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Modules Curriculum -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <span class="text-amber-500 text-xs font-black uppercase tracking-wider" data-i18n="curr_badge">التكوين الهندسي</span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white mt-1" data-i18n="curr_title">المواد والمقاييس الرئيسية</h2>
+                    </div>
+
+                    <div class="space-y-3 font-bold text-sm">
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-slate-800 dark:text-slate-200" data-i18n="m_1">تعديل وميكانيكا طبقات الطرق</span>
+                            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs">Dimensionnement des Chaussées</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-slate-800 dark:text-slate-200" data-i18n="m_2">الهندسة والمنشآت البحرية</span>
+                            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs">Ouvrages Maritimes & Portuaires</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-slate-800 dark:text-slate-200" data-i18n="m_3">مسارات وهندسة السكك الحديدية</span>
+                            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs">Voies Ferrées & Traction</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-slate-800 dark:text-slate-200" data-i18n="m_4">تخطيط المطارات والديناميكية الجوية</span>
+                            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs">Infrastructures Aéroportuaires</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-slate-800 dark:text-slate-200" data-i18n="m_5">الجيوتقنية المتقدمة واستقرار التراب</span>
+                            <span class="px-2.5 py-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs">Géotechnique Routière</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Tools Card -->
+                <div class="lg:col-span-6 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2" data-i18n="soft_title">البرمجيات والتطبيقات التخصصية</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-6 font-semibold" data-i18n="soft_subtitle">يتدرب مهندس DIB على البرمجيات الرائدة عالمياً في تصميم شبكات النقل والجيوتقنية:</p>
+
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <i class="fa-solid fa-compass-drafting text-3xl text-amber-500 mb-2"></i>
+                            <div class="font-black text-slate-900 dark:text-white">Autodesk Civil 3D</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Road & Rail Corridor</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <i class="fa-solid fa-layer-group text-3xl text-amber-500 mb-2"></i>
+                            <div class="font-black text-slate-900 dark:text-white">Alize-LCPC</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Pavement Design</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <i class="fa-solid fa-earth-africa text-3xl text-amber-500 mb-2"></i>
+                            <div class="font-black text-slate-900 dark:text-white">PLAXIS 2D/3D</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Geotechnical FEM</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                            <i class="fa-solid fa-map-location-dot text-3xl text-amber-500 mb-2"></i>
+                            <div class="font-black text-slate-900 dark:text-white">Covadis & AutoTURN</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Topography & Swept Path</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16 bg-white dark:bg-slate-900 transition-colors">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white" data-i18n="faq_title">الأسئلة الشائعة حول تخصص DIB</h2>
+                <div class="w-20 h-1 bg-amber-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq1')" class="w-full text-right p-4 font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-950 flex justify-between items-center">
+                        <span data-i18n="faq_q1">ما هي مجالات العمل المتاحة لمهندس DIB بعد التخرج؟</span>
+                        <i id="faq1-icon" class="fa-solid fa-chevron-down text-amber-500 transition-transform"></i>
+                    </button>
+                    <div id="faq1" class="hidden p-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800" data-i18n="faq_a1">
+                        يعمل خريج DIB في مكاتب الدراسات الكبرى، شركات الإنجاز الوطنية والدولية، مديريات الأشغال العمومية (DTP)، المؤسسات المينائية، شركات إدارة المطارات، والشركة الوطنية للسكك الحديدية (SNTF).
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq2')" class="w-full text-right p-4 font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-950 flex justify-between items-center">
+                        <span data-i18n="faq_q2">ما الفرق بين تخصص DIB وتخصص DMS بالمدرسة؟</span>
+                        <i id="faq2-icon" class="fa-solid fa-chevron-down text-amber-500 transition-transform"></i>
+                    </button>
+                    <div id="faq2" class="hidden p-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800" data-i18n="faq_a2">
+                        يركز تخصص DIB (Infrastructure des Bases) على المنشآت والشبكات الأفريقية والسطحية والبحرية والمطاربة والمواد والجيوتقنية، بينما يركز تخصص DMS على المنشآت الفنية والجسور والمباني والخرسانة المسلحة.
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq('faq3')" class="w-full text-right p-4 font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-950 flex justify-between items-center">
+                        <span data-i18n="faq_q3">هل تتضمن الدراسة تربصات ميدانية في الموانئ والمطارات؟</span>
+                        <i id="faq3-icon" class="fa-solid fa-chevron-down text-amber-500 transition-transform"></i>
+                    </button>
+                    <div id="faq3" class="hidden p-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800" data-i18n="faq_a3">
+                        نعم، يلتزم القسم بتنظيم زيارات ميدانية دورية وتربصات نهاية الدراسة (PFE) في مشاريع التوسع المينائي، مدرجات المطارات، وورشات الطرق السريعة بالتعاون مع الشركاء الميدانيين.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-black text-lg">
+                            <i class="fa-solid fa-road-bridge"></i>
+                        </div>
+                        <span class="text-xl font-black text-white">ENSTP - DIB</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm" data-i18n="footer_about">
+                        المدرسة العليا للأشغال العمومية - القبة، الجزائر. قسم DIB: Infrastructure des Bases مكرس لإعداد مهندسي المستقبل لتطوير البنية التحتية للنقل والموانئ والمطارات.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-white font-bold text-sm" data-i18n="footer_links">روابط سريعة</h4>
+                    <ul class="space-y-2 text-xs font-semibold text-slate-400">
+                        <li><a href="#about" class="hover:text-amber-400" data-i18n="nav_about">عن التخصص</a></li>
+                        <li><a href="#director" class="hover:text-amber-400" data-i18n="nav_director">رئيس القسم</a></li>
+                        <li><a href="#domains" class="hover:text-amber-400" data-i18n="nav_domains">المجالات الهندسية</a></li>
+                        <li><a href="#curriculum" class="hover:text-amber-400" data-i18n="nav_software">البرامج والمواد</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-white font-bold text-sm" data-i18n="footer_contact">الاتصال</h4>
+                    <ul class="space-y-2 text-xs text-slate-400 font-semibold">
+                        <li><i class="fa-solid fa-location-dot text-amber-500 ml-1"></i> ENSTP, BP 32, Garidi, Kouba, Algiers</li>
+                        <li><i class="fa-solid fa-phone text-amber-500 ml-1"></i> +213 (0) 23 70 82 00</li>
+                        <li><i class="fa-solid fa-envelope text-amber-500 ml-1"></i> contact@enstp.dz</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-800 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; 2026 ENSTP DIB - Infrastructure des Bases. All rights reserved.</p>
+                <div class="flex space-x-4 space-x-reverse mt-2 sm:mt-0">
+                    <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-facebook text-base"></i></a>
+                    <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-linkedin text-base"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl relative">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center text-white">
+                <h3 class="font-bold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-circle-play text-amber-500"></i>
+                    <span data-i18n="video_modal_title">كلمة رئيس قسم DIB - Infrastructure des Bases</span>
+                </h3>
+                <button onclick="closeVideoModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="relative pt-[56.25%] bg-black">
+                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Speech Video" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full text-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl hover:text-amber-400"><i class="fa-solid fa-xmark"></i></button>
+            <img id="lightboxImg" src="" alt="Enlarged preview" class="max-h-[80vh] mx-auto rounded-xl shadow-2xl border border-slate-800">
+            <p id="lightboxCaption" class="text-white text-sm font-bold mt-4"></p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TRANSLATION ENGINE -->
+    <script>
+        const translations = {
+            ar: {
+                nav_subtitle: "Infrastructure des Bases (تخصص البنية التحتية الأساسية)",
+                nav_about: "عن التخصص",
+                nav_director: "رئيس القسم",
+                nav_gallery: "المعرض والمختبرات",
+                nav_domains: "المجالات الهندسية",
+                nav_software: "البرامج والمواد",
+                nav_faq: "الأسئلة الشائعة",
+                hero_badge: "تخصص DIB - المدرسة العليا للأشغال العمومية ENSTP",
+                hero_title_1: "هندسة البنية التحتية الأساسية",
+                hero_title_2: "DIB: Infrastructure des Bases",
+                hero_description: "يختص قسم DIB بتكوين مهندسي دولة متخصصين في دراسة وتصميم وتنفيذ وإدارة شبكات النقل والمنشآت الكبرى: الطرق السريعة، السكك الحديدية، الموانئ والمنشآت البحرية، ومدرجات المطارات الدولية باستخدام أحدث نماذج الجيوتقنية ومواد الحساب الإنشائي.",
+                hero_btn_explore: "استكشف مجالات التخصص",
+                hero_btn_video: "شاهد كلمة رئيس القسم",
+                stat_jobs: "فرص إدماج مهني متقدمة",
+                stat_axes: "محاور كبرى (طرق، قطارات، موانئ، مطارات)",
+                stat_labs: "مختبرات وااختبارات حقلية",
+                hero_img_badge: "البنية التحتية الأساسية",
+                hero_img_caption: "ربط المدن والأقطاب الاقتصادية بالموانئ والمطارات",
+                director_title: "كلمة رئيس القسم والمكتب",
+                director_name: "د. رشيد براهيمي",
+                director_role: "رئيس قسم Infrastructure des Bases (DIB)",
+                director_rank: "أستاذ محاضر وخبير المنشآت البحرية والطرق السريعة",
+                director_btn_speech: "فيديو كلمة رئيس القسم",
+                director_message: "\"يُعد تخصص Infrastructure des Bases العصب الشرياني للاقتصاد الوطني. يتلقى طلابنا في قسم DIB تدريباً تقنياً وتطبيقياً معمقاً حول هندسة شبكات الطرق، ومدرجات المطارات الكبرى، والهياكل المينائية ومسارات السكك الحديدية الحديثة. نحن نعد المهندس ليكون قادراً فور تخرجه على إدارة وتصميم أعقد مشاريع الأشغال العمومية.\"",
+                gallery_title: "معرض صور المكتب والمختبرات والميدان",
+                gallery_subtitle: "استكشف تجهيزات مختبرات DIB والزيارات الميدانية لمشاريع الطرق والموانئ والمطارات",
+                gal_1_title: "مختبر مواد الطرق والخرسانة الأسفلتية",
+                gal_1_desc: "قياس الثبات والتشوه لمواد الرصف",
+                gal_2_title: "منشآت الموانئ والأرصفة البحرية",
+                gal_2_desc: "دراسة كواسر الأمواج والأرصفة العائمة",
+                gal_3_title: "هندسة المطارات والمدرجات",
+                gal_3_desc: "تصميم طبقات الرصف الثقيل للطائرات",
+                gal_4_title: "مسارات السكك الحديدية والسكة الحجرية",
+                gal_4_desc: "حسابات الإجهاد والحصى السككي (Ballast)",
+                gal_5_title: "مختبر الجيوتقنية والأساسات",
+                gal_5_desc: "فحص قدرة تحمل التربة والردميات",
+                gal_6_title: "مكتب النمذجة والتصميم الهندسي",
+                gal_6_desc: "محاكاة حركة المرور والتصميم الهيدروليكي",
+                domains_title: "المجالات الهندسية الرئيسية لتخصص DIB",
+                domains_subtitle: "تغطية هندسية شاملة لكافة المنشآت والشبكات الحيوية للبنية التحتية",
+                dom_1_title: "هندسة الطرق والسريع (Autoroutes)",
+                dom_1_desc: "تخطيط المسارات الهندسي، حسابات الحفر والردم (Terrassement)، المحولات الحضرية، ودراسات السلامة المرورية على شبكات الطرق الكبرى.",
+                dom_2_title: "السكك الحديدية والترامواي (Ferroviaire)",
+                dom_2_desc: "تصميم المسارات الحديدية عالية السرعة، تفاصيل السكة الحجرية (Ballast)، أنظمة التثبيت، والمنشآت الخاصة بالمترو والترامواي.",
+                dom_3_title: "الموانئ والمنشآت البحرية (Portuaire)",
+                dom_3_desc: "تصميم كواسر الأمواج (Digues)، الأرصفة البحرية، التجريف العميق، وتأثير الأمواج والديناميكية المائية على الحماية الساحلية.",
+                dom_4_title: "هندسة المطارات (Aéroportuaire)",
+                dom_4_desc: "تخطيط المدرجات المطاربة (Runways)، ممرات الدوران (Taxiways)، حساب حمولات أسطول الطائرات، وأنظمة الإنارة والتصريف المائي للمطارات.",
+                dom_5_title: "الجيوتقنية وطبقات الأرض (Géotechnique)",
+                dom_5_desc: "دراسات استقرار المنحدرات (Pentes)، تصميم طبقات رصف الطرق (Chaussées)، وتدعيم التربة الضعيفة والمستنقعية.",
+                dom_6_title: "تكنولوجيا الأسفلت والمواد (Matériaux)",
+                dom_6_desc: "تطوير الخرسانة الأسفلتية الحارة والباردة، اختبارات المارشال والدوام، وإعادة تدوير مواد الرصف للحفاظ على البيئة.",
+                curr_badge: "التكوين الهندسي",
+                curr_title: "المواد والمقاييس الرئيسية",
+                m_1: "تعديل وميكانيكا طبقات الطرق",
+                m_2: "الهندسة والمنشآت البحرية",
+                m_3: "مسارات وهندسة السكك الحديدية",
+                m_4: "تخطيط المطارات والديناميكية الجوية",
+                m_5: "الجيوتقنية المتقدمة واستقرار التراب",
+                soft_title: "البرمجيات والتطبيقات التخصصية",
+                soft_subtitle: "يتدرب مهندس DIB على البرمجيات الرائدة عالمياً في تصميم شبكات النقل والجيوتقنية:",
+                faq_title: "الأسئلة الشائعة حول تخصص DIB",
+                faq_q1: "ما هي مجالات العمل المتاحة لمهندس DIB بعد التخرج؟",
+                faq_a1: "يعمل خريج DIB في مكاتب الدراسات الكبرى، شركات الإنجاز الوطنية والدولية، مديريات الأشغال العمومية (DTP)، المؤسسات المينائية، شركات إدارة المطارات، والشركة الوطنية للسكك الحديدية (SNTF).",
+                faq_q2: "ما الفرق بين تخصص DIB وتخصص DMS بالمدرسة؟",
+                faq_a2: "يركز تخصص DIB (Infrastructure des Bases) على المنشآت والشبكات الأفريقية والسطحية والبحرية والمطاربة والمواد والجيوتقنية، بينما يركز تخصص DMS على المنشآت الفنية والجسور والمباني والخرسانة المسلحة.",
+                faq_q3: "هل تتضمن الدراسة تربصات ميدانية في الموانئ والمطارات؟",
+                faq_a3: "نعم، يلتزم القسم بتنظيم زيارات ميدانية دورية وتربصات نهاية الدراسة (PFE) في مشاريع التوسع المينائي، مدرجات المطارات، وورشات الطرق السريعة بالتعاون مع الشركاء الميدانيين.",
+                footer_about: "المدرسة العليا للأشغال العمومية - القبة، الجزائر. قسم DIB: Infrastructure des Bases مكرس لإعداد مهندسي المستقبل لتطوير البنية التحتية للنقل والموانئ والمطارات.",
+                footer_links: "روابط سريعة",
+                footer_contact: "الاتصال",
+                video_modal_title: "كلمة رئيس قسم DIB - Infrastructure des Bases"
+            },
+            fr: {
+                nav_subtitle: "Spécialité Infrastructure des Bases",
+                nav_about: "À propos",
+                nav_director: "Chef de Dépt",
+                nav_gallery: "Galerie & Labos",
+                nav_domains: "Domaines",
+                nav_software: "Logiciels & Cursus",
+                nav_faq: "FAQ",
+                hero_badge: "Spécialité DIB - ENSTP Kouba",
+                hero_title_1: "Génie des Infrastructures de Transport",
+                hero_title_2: "DIB: Infrastructure des Bases",
+                hero_description: "Le département DIB forme des ingénieurs d'État spécialisés dans la conception, le dimensionnement, la réalisation et la gestion des réseaux routiers, ferroviaires, maritimes et aéroportuaires.",
+                hero_btn_explore: "Explorer les domaines",
+                hero_btn_video: "Mot du Chef de Dépt",
+                stat_jobs: "Inclusion professionnelle élevée",
+                stat_axes: "Grands axes (Routes, Rails, Ports, Aéroports)",
+                stat_labs: "Laboratoires d'essais géotechniques",
+                hero_img_badge: "Infrastructure des Bases",
+                hero_img_caption: "Reliure des pôles économiques aux ports et aéroports",
+                director_title: "Mot du Chef de Département",
+                director_name: "Dr. Rachid Brahimi",
+                director_role: "Chef du Département DIB (Infrastructure des Bases)",
+                director_rank: "Enseignant-chercheur & Expert Maritime et Routier",
+                director_btn_speech: "Vidéo du Chef de Dépt",
+                director_message: "\"La spécialité Infrastructure des Bases constitue l'épine dorsale de l'économie nationale. Nos étudiants bénéficient d'une formation technique avancée en conception routière, pistes d'atterrissage, ouvrages portuaires et voies ferrées modernes.\"",
+                gallery_title: "Galerie Photos des Laboratoires et Chantiers",
+                gallery_subtitle: "Aperçu des équipements d'essais et des visites de chantiers maritimes, routiers et aéroportuaires",
+                gal_1_title: "Labo Matériaux Routiers & Bitumes",
+                gal_1_desc: "Essais Marshall et stabilité des enrobés",
+                gal_2_title: "Infrastructures Portuaires & Quais",
+                gal_2_desc: "Étude des digues et protection côtière",
+                gal_3_title: "Ingénierie Aéroportuaire",
+                gal_3_desc: "Dimensionnement des chaussées d'aéroports",
+                gal_4_title: "Voies Ferrées & Ballast",
+                gal_4_desc: "Calcul des contraintes et de la superstructure",
+                gal_5_title: "Laboratoire de Géotechnique",
+                gal_5_desc: "Portance des sols et terrassements",
+                gal_6_title: "Studio de Conception & CAO",
+                gal_6_desc: "Modélisation 3D et trafic routier",
+                domains_title: "Domaines d'Expertise DIB",
+                domains_subtitle: "Couverture intégrale des grands réseaux d'infrastructures",
+                dom_1_title: "Infrastructures Routières & Autoroutes",
+                dom_1_desc: "Tracé géométrique, calcul des terrassements, échangeurs urbains et sécurité routière.",
+                dom_2_title: "Infrastructures Ferroviaires & Tramway",
+                dom_2_desc: "Conception des lignes à grande vitesse, ballast, appareillages de voie et réseaux urbains.",
+                dom_3_title: "Infrastructures Portuaires & Maritimes",
+                dom_3_desc: "Digues de protection, quais maritimes, dragage et dynamique houle-structure.",
+                dom_4_title: "Infrastructures Aéroportuaires",
+                dom_4_desc: "Pistes d'atterrissage, voies de circulation (Taxiways) et assainissement aéroportuaire.",
+                dom_5_title: "Géotechnique Routière & Chaussées",
+                dom_5_desc: "Stabilité des pentes, mécanique des chaussées et traitement des sols difficiles.",
+                dom_6_title: "Matériaux & Technologie des Bitumes",
+                dom_6_desc: "Enrobés à chaud/froid, recyclage des chaussées et durabilité des matériaux.",
+                curr_badge: "Cursus Académique",
+                curr_title: "Modules Majeurs",
+                m_1: "Dimensionnement des Chaussées",
+                m_2: "Ouvrages Maritimes & Portuaires",
+                m_3: "Voies Ferrées & Traction",
+                m_4: "Infrastructures Aéroportuaires",
+                m_5: "Géotechnique Routière",
+                soft_title: "Logiciels & Outils Métiers",
+                soft_subtitle: "Apprentissage des logiciels de référence internationale :",
+                faq_title: "Foire Aux Questions (FAQ)",
+                faq_q1: "Quels sont les débouchés professionnels des ingénieurs DIB ?",
+                faq_a1: "Les ingénieurs DIB travaillent dans les grands bureaux d'études, les entreprises de BTPH, les DTP, les autorités portuaires, les sociétés de gestion d'aéroports et la SNTF.",
+                faq_q2: "Quelle est la différence entre DIB et DMS à l'ENSTP ?",
+                faq_a2: "Le DIB se concentre sur les infrastructures linaires, routières, ferroviaires, maritimes, aéroportuaires et la géotechnique. Le DMS se spécialise dans les ponts, bâtiments et structures en béton.",
+                faq_q3: "Y a-t-il des stages pratiques sur le terrain ?",
+                faq_a3: "Oui, le département organise des visites de chantiers régulières et des stages PFE au sein des projets d'extension portuaire, pistes aéroportuaires et autoroutes.",
+                footer_about: "École Nationale Supérieure des Travaux Publics - Kouba, Alger. Département DIB: Infrastructure des Bases.",
+                footer_links: "Liens Rapides",
+                footer_contact: "Contact",
+                video_modal_title: "Présentation du DIB - ENSTP"
+            },
+            en: {
+                nav_subtitle: "Infrastructure des Bases Specialization",
+                nav_about: "About DIB",
+                nav_director: "Dept. Head",
+                nav_gallery: "Gallery & Labs",
+                nav_domains: "Domains",
+                nav_software: "Software & Curriculum",
+                nav_faq: "FAQ",
+                hero_badge: "DIB Department - ENSTP Kouba",
+                hero_title_1: "Base Infrastructure Engineering",
+                hero_title_2: "DIB: Infrastructure des Bases",
+                hero_description: "The DIB department trains state engineers specialized in designing, sizing, constructing, and managing highways, railways, ports, harbors, and airport runways using advanced geotechnical modeling.",
+                hero_btn_explore: "Explore Domains",
+                hero_btn_video: "Watch Department Head",
+                stat_jobs: "High Employability Rate",
+                stat_axes: "Major Infrastructure Axes",
+                stat_labs: "Geotechnical Testing Labs",
+                hero_img_badge: "Base Infrastructure",
+                hero_img_caption: "Connecting economic hubs with sea ports and international airports",
+                director_title: "Message from the Head of Department",
+                director_name: "Dr. Rachid Brahimi",
+                director_role: "Head of DIB Department (Infrastructure des Bases)",
+                director_rank: "Associate Professor & Maritime/Highway Expert",
+                director_btn_speech: "Watch Video Message",
+                director_message: "\"The Base Infrastructure specialization is the backbone of national development. Our engineers receive hands-on training in highway corridor design, runway pavements, maritime harbors, and high-speed rail tracks.\"",
+                gallery_title: "Office, Lab & Field Trip Gallery",
+                gallery_subtitle: "Explore DIB testing facilities, asphalt labs, and site visits to port and airport projects",
+                gal_1_title: "Pavement & Asphalt Materials Lab",
+                gal_1_desc: "Marshall tests and pavement stability Analysis",
+                gal_2_title: "Port Structures & Breakwaters",
+                gal_2_desc: "Study of quay walls and coastal protection",
+                gal_3_title: "Airport Runway Engineering",
+                gal_3_desc: "Heavy airfield pavement design",
+                gal_4_title: "Railway Track & Ballast",
+                gal_4_desc: "Track stress distribution and geometry",
+                gal_5_title: "Geotechnical & Soil Mechanics Lab",
+                gal_5_desc: "Soil bearing capacity and earthworks",
+                gal_6_title: "CAD & BIM Design Studio",
+                gal_6_desc: "3D corridor modeling and traffic simulation",
+                domains_title: "DIB Core Engineering Domains",
+                domains_subtitle: "Comprehensive coverage of heavy civil and transport infrastructure networks",
+                dom_1_title: "Highway & Road Engineering",
+                dom_1_desc: "Geometric alignment, earthwork calculations, urban interchanges, and road safety.",
+                dom_2_title: "Railway & Track Engineering",
+                dom_2_desc: "High-speed rail design, ballast mechanics, track switches, and urban light rail networks.",
+                dom_3_title: "Port & Coastal Infrastructure",
+                dom_3_desc: "Breakwaters, quay structures, deep dredging, and wave hydrodynamics.",
+                dom_4_title: "Airport & Runway Engineering",
+                dom_4_desc: "Runway geometric design, taxiway layout, airfield pavement thickness, and drainage.",
+                dom_5_title: "Geotechnics & Pavements",
+                dom_5_desc: "Slope stability analysis, pavement mechanics, and soft ground improvement.",
+                dom_6_title: "Asphalt & Material Technology",
+                dom_6_desc: "Hot/cold asphalt mix design, pavement recycling, and material durability.",
+                curr_badge: "Academic Curriculum",
+                curr_title: "Core Curriculum Modules",
+                m_1: "Pavement Design & Mechanics",
+                m_2: "Maritime & Port Structures",
+                m_3: "Railway Tracks & Traction",
+                m_4: "Airport Infrastructure",
+                m_5: "Highway Geotechnics",
+                soft_title: "Engineering Software Toolbox",
+                soft_subtitle: "Students master industry-standard software suite:",
+                faq_title: "Frequently Asked Questions",
+                faq_q1: "What are the career prospects for DIB graduates?",
+                faq_a1: "DIB graduates work in engineering design firms, general contracting firms, public works directorates (DTP), port authorities, airport management companies, and national railway agencies.",
+                faq_q2: "What is the difference between DIB and DMS at ENSTP?",
+                faq_a2: "DIB focuses on linear transportation networks, highways, railways, ports, airports, and geotechnics. DMS specializes in structural engineering, bridges, and buildings.",
+                faq_q3: "Are there site visits and field internships?",
+                faq_a3: "Yes, the department schedules regular field visits and graduation internships (PFE) at port expansion projects, airport runways, and highway construction sites.",
+                footer_about: "National Higher School of Public Works - Kouba, Algiers. DIB Department.",
+                footer_links: "Quick Links",
+                footer_contact: "Contact",
+                video_modal_title: "DIB Presentation - ENSTP"
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const html = document.documentElement;
+
+            if (lang === 'ar') {
+                html.dir = 'rtl';
+                html.lang = 'ar';
+                document.getElementById('heroArrow').className = 'fa-solid fa-arrow-left text-sm';
+            } else {
+                html.dir = 'ltr';
+                html.lang = lang;
+                document.getElementById('heroArrow').className = 'fa-solid fa-arrow-right text-sm';
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.className = 'fa-solid fa-moon text-lg';
+            } else {
+                html.classList.add('dark');
+                icon.className = 'fa-solid fa-sun text-lg';
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openLightbox(imgUrl, caption) {
+            const modal = document.getElementById('lightboxModal');
+            document.getElementById('lightboxImg').src = imgUrl;
+            document.getElementById('lightboxCaption').textContent = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        window.onload = function() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun text-lg';
+            }
+        };
+    </script>
+</body>
+</html>
