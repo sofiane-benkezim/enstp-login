@@ -565,7 +565,7 @@
         </div>
     </footer>
 
-    <!-- VIDEO MODAL -->
+    <!-- VIDEO MODAL (محدث بالفيديو المحلي الخاص بك) -->
     <div id="videoModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl relative">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center text-white">
@@ -573,10 +573,13 @@
                     <i class="fa-solid fa-circle-play text-amber-500"></i>
                     <span data-i18n="video_modal_title">كلمة رئيس قسم DIB - Infrastructure des Bases</span>
                 </h3>
-                <button onclick="closeVideoModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeVideoModal()" class="text-slate-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-            <div class="relative pt-[56.25%] bg-black">
-                <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Speech Video" frameborder="0" allowfullscreen></iframe>
+            <div class="relative aspect-video bg-black">
+                <video id="modalVideo" class="w-full h-full object-contain" controls>
+                    <source src="video_dib.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
             </div>
         </div>
     </div>
@@ -592,7 +595,7 @@
 
     <!-- JAVASCRIPT ENGINE -->
     <script>
-        // دالة تفعيل/كتم الصوت
+        // دالة تفعيل/كتم الصوت للفيديو الرئيسي
         function toggleSound() {
             const video = document.getElementById('heroVideo');
             const icon = document.getElementById('soundIcon');
@@ -605,7 +608,7 @@
             }
         }
 
-        // دالة تشغيل/إيقاف الفيديو
+        // دالة تشغيل/إيقاف الفيديو الرئيسي
         function togglePlay() {
             const video = document.getElementById('heroVideo');
             const icon = document.getElementById('playIcon');
@@ -635,7 +638,7 @@
                 hero_btn_video: "شاهد كلمة رئيس القسم",
                 stat_jobs: "فرص إدماج مهني متقدمة",
                 stat_axes: "محاور كبرى (طرق، قطارات، موانئ، مطارات)",
-                stat_labs: "مختبرات وااختبارات حقلية",
+                stat_labs: "مختبرات واختبارات حقلية",
                 hero_img_badge: "البنية التحتية الأساسية",
                 hero_img_caption: "ربط المدن والأقطاب الاقتصادية بالموانئ والمطارات",
                 director_title: "كلمة رئيس القسم والمكتب",
@@ -883,17 +886,30 @@
             document.getElementById('mobileMenu').classList.toggle('hidden');
         }
 
+        // دوال فتح وإغلاق النافذة المنبثقة للفيديو مع التحكم في التشغيل
         function openVideoModal() {
             const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            video.play();
         }
 
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.pause();
+            video.currentTime = 0;
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
+
+        // إغلاق النافذة عند النقر خارج صندوق الفيديو
+        document.getElementById('videoModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'videoModal') {
+                closeVideoModal();
+            }
+        });
 
         function openLightbox(imgUrl, caption) {
             const modal = document.getElementById('lightboxModal');
