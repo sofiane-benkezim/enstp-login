@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المخابر العلمية والتقنية - المدرسة العليا للأشغال العمومية ENSTP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        enstp: {
+                            blue: '#003366',
+                            navy: '#001F3F',
+                            lightBlue: '#0066CC',
+                            gold: '#D4AF37',
+                            gray: '#F4F6F9',
+                            darkGray: '#1E293B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font: Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header & Navigation -->
+    <header class="bg-enstp-navy text-white shadow-lg sticky top-0 z-40 border-b-4 border-enstp-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="bg-white p-2 rounded-lg shadow-md flex items-center justify-center">
+                        <i class="fa-solid me-0 fa-compass-drafting text-enstp-blue text-3xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-white">
+                            المدرسة العليا للأشغال العمومية
+                        </h1>
+                        <p class="text-xs sm:text-sm text-amber-300 font-medium tracking-wide">
+                            École Nationale Supérieure des Travaux Publics (ENSTP)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg border border-slate-600 bg-enstp-blue hover:bg-enstp-lightBlue text-xs sm:text-sm font-semibold transition duration-200 flex items-center space-x-1.5 space-x-reverse">
+                        <i class="fa-solid fa-globe"></i>
+                        <span id="langText">Français</span>
+                    </button>
+                   
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-r from-enstp-navy via-enstp-blue to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute -right-10 -top-10 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
+            <div class="absolute -left-10 -bottom-10 w-96 h-96 rounded-full bg-amber-400 blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <span class="inline-block px-3 py-1 mb-3 bg-amber-400/20 text-amber-300 rounded-full text-xs font-bold uppercase tracking-wider border border-amber-400/30">
+                <i class="fa-solid fa-flask me-1"></i> البنية التحتية والمنشآت العلمية
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold mb-4 leading-tight" id="heroTitle">
+                المخابر العلمية والتقنية الحديثة
+            </h2>
+            <p class="text-sm sm:text-lg text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed" id="heroSubtitle">
+                منظومة متكاملة من 7 مخابر متخصصة ومجهزة بأحدث التجهيزات والتقنيات لإجراء التجارب العلمية والأبحاث الهندسية في مجال الأشغال العمومية.
+            </p>
+
+            <!-- Search and Filter Bar -->
+            <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-2xl border border-white/20">
+                <div class="flex flex-col md:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 right-4 text-slate-400"></i>
+                        <input type="text" id="searchInput" oninput="filterLabs()" placeholder="ابحث عن مخبر أو أداة أو تجربة..." class="w-full pr-11 pl-4 py-3 bg-white text-slate-800 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner text-sm font-medium">
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="categoryFilter" onchange="filterLabs()" class="px-4 py-3 bg-white text-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner text-sm font-semibold cursor-pointer">
+                            <option value="all">جميع التخصصات</option>
+                            <option value="materials">مواد وتربة (MDS / MDC / RDM)</option>
+                            <option value="fluids_physics">فيزياء وموائع (MDF / Physique)</option>
+                            <option value="applied">علوم تطبيقية (Chimie / Électricité)</option>
+                        </select>
+                        <button onclick="resetFilters()" class="px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition text-sm font-semibold flex items-center justify-center">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <!-- Stats / Quick Info -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                <div class="text-enstp-blue text-2xl font-black mb-1">7</div>
+                <div class="text-xs sm:text-sm text-slate-600 font-medium">مخابر متخصصة</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                <div class="text-amber-600 text-2xl font-black mb-1">35+</div>
+                <div class="text-xs sm:text-sm text-slate-600 font-medium">معدة وجهاز حديث</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                <div class="text-emerald-600 text-2xl font-black mb-1">100%</div>
+                <div class="text-xs sm:text-sm text-slate-600 font-medium">تجارب عملية وتطبيقية</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
+                <div class="text-indigo-600 text-2xl font-black mb-1">ENSTP</div>
+                <div class="text-xs sm:text-sm text-slate-600 font-medium">التميز الهندسي</div>
+            </div>
+        </div>
+
+        <!-- Section Title -->
+        <div class="flex items-center justify-between mb-8 pb-3 border-b-2 border-slate-200">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-enstp-navy flex items-center gap-2" id="sectionTitle">
+                    <i class="fa-solid fa-microscope text-enstp-gold"></i> قائمة المخابر المتاحة
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1" id="sectionSubtitle">انقر على أي مخبر لاستعراض المعدات والتفاصيل والصور المتاحة</p>
+            </div>
+            <div class="text-xs font-bold text-slate-500 bg-slate-200 px-3 py-1.5 rounded-lg">
+                <span id="visibleLabsCount">7</span> / 7 مخابر
+            </div>
+        </div>
+
+        <!-- Labs Grid Container -->
+        <div id="labsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic JavaScript Content Here -->
+        </div>
+
+        <!-- Empty Search Result Alert -->
+        <div id="noResults" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm border border-slate-200">
+            <i class="fa-solid fa-flask-vial text-5xl text-slate-300 mb-4"></i>
+            <h4 class="text-lg font-bold text-slate-700 mb-1">لم يتم العثور على أي نتائج</h4>
+            <p class="text-sm text-slate-500 mb-4">يرجى التأكد من كلمة البحث أو تعديل الفلتر المختارة.</p>
+            <button onclick="resetFilters()" class="px-4 py-2 bg-enstp-blue text-white rounded-lg text-sm font-semibold hover:bg-enstp-lightBlue transition">
+                إعادة ضبط البحث
+            </button>
+        </div>
+    </main>
+
+    <!-- Lab Detail Modal (Interactive Lightbox & Equipment Viewer) -->
+    <div id="labModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200 border border-slate-200">
+            
+            <!-- Modal Header -->
+            <div class="bg-enstp-navy text-white px-6 py-4 flex items-center justify-between border-b border-slate-700">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div id="modalIconContainer" class="w-10 h-10 rounded-lg bg-enstp-blue flex items-center justify-center text-amber-400 text-xl shadow">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <div>
+                        <h3 id="modalTitleAr" class="text-lg sm:text-xl font-bold leading-tight">اسم المخبر</h3>
+                        <p id="modalTitleFr" class="text-xs text-amber-300 font-medium">Nom du Laboratoire</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar flex-grow space-y-6">
+                
+                <!-- Main Lab Image Banner & Controls -->
+                <div class="relative group rounded-xl overflow-hidden bg-slate-900 shadow-md">
+                    <img id="modalMainImg" src="" alt="Lab Main" class="w-full h-56 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div>
+                                <span class="bg-amber-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-md mb-1 inline-block">صورة المخبر الرئيسية</span>
+                                <p id="modalLabDesc" class="text-xs sm:text-sm text-slate-200 line-clamp-2">الوصف المختصر للمخبر ووظائفه الرئيسية.</p>
+                            </div>
+                            
+                            <!-- Local Upload Button for Preview -->
+                            <label class="cursor-pointer bg-white/20 hover:bg-white/30 backdrop-blur-md text-white text-xs px-3 py-2 rounded-lg font-semibold flex items-center justify-center space-x-1.5 space-x-reverse transition border border-white/30 self-start sm:self-auto">
+                                <i class="fa-solid fa-upload"></i>
+                                <span>رفع صورة معاينة</span>
+                                <input type="file" accept="image/*" class="hidden" onchange="uploadMainLabImage(event)">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Description -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="text-sm font-bold text-enstp-navy mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-enstp-lightBlue"></i>
+                        <span id="modalAboutTitle">عن المخبر والأبحاث</span>
+                    </h4>
+                    <p id="modalFullDesc" class="text-sm text-slate-600 leading-relaxed">
+                        التفاصيل الكاملة للمخبر والتخصصات المتعلقة بالأشغال العمومية.
+                    </p>
+                </div>
+
+                <!-- Equipment & Tools Gallery Header -->
+                <div class="flex items-center justify-between pt-2">
+                    <h4 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-screwdriver-wrench text-amber-500"></i>
+                        <span id="modalEquipTitle">المعدات والأدوات العلمية</span>
+                    </h4>
+                    
+                    <!-- Upload Tool Image Button -->
+                    <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1 border border-slate-300">
+                        <i class="fa-solid fa-plus text-amber-600"></i>
+                        <span>إضافة صورة أداة معاينة</span>
+                        <input type="file" accept="image/*" class="hidden" onchange="uploadEquipmentImage(event)">
+                    </label>
+                </div>
+
+                <!-- Equipment Grid -->
+                <div id="equipmentGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Dynamic Equipment Cards Generated by JS -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 flex items-center justify-between">
+                <span class="text-xs text-slate-500 font-medium">ENSTP - M'Sila / Kouba</span>
+                <button onclick="closeModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-sm font-bold transition">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox for Full Image View -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
+            <img id="lightboxImg" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl border-2 border-slate-700 object-contain">
+            <p id="lightboxCaption" class="text-white text-sm font-medium mt-3 bg-slate-900/80 px-4 py-2 rounded-full border border-slate-700 text-center"></p>
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-400 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-enstp-navy text-slate-300 py-8 border-t-4 border-enstp-gold mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <div class="flex items-center justify-center space-x-2 space-x-reverse text-amber-400 font-bold">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>المدرسة العليا للأشغال العمومية - قاريدي القبة</span>
+            </div>
+            <p class="text-xs text-slate-400 max-w-xl mx-auto">
+                جميع الحقوق محفوظة © 2026 - بوابة عرض المخابر التقنية والهندسية (ENSTP)
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Interactivity -->
+    <script>
+        // Current Active Language (ar / fr)
+        let currentLang = 'ar';
+        let currentLabId = null;
+
+        // Labs Primary Master Data
+        const labsData = [
+            {
+                id: 'physique',
+                code: 'Physique',
+                category: 'fluids_physics',
+                icon: 'fa-atom',
+                titleAr: 'مخبر الفيزياء',
+                titleFr: 'Laboratoire de Physique',
+                shortDescAr: 'دراسة ظواهر الطبيعة والمواضيع الفيزيائية الأساسية المرتبطة بالهندسة والقياسات الدقيقة.',
+                shortDescFr: 'Étude des phénomènes physiques fondamentaux appliqués à l\'ingénierie et aux mesures de précision.',
+                fullDescAr: 'يهدف مخبر الفيزياء بالمدرسة العليا للأشغال العمومية إلى تعزيز الفهم العملي للقوانين الفيزيائية الأساسية، مثل الميكانيكا الكلاسيكية، الضوء، والحرارة، والتي تشكل الحجر الأساس للتحليلات الهندسية وتصميم المنشآت.',
+                fullDescFr: 'Le laboratoire de physique de l\'ENSTP vise à renforcer la compréhension pratique des lois physiques fondamentales pour la modélisation et l\'ingénierie.',
+                mainImage: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'جهاز الأندول المركب والسيطرة',
+                        nameFr: 'Pendule Composé et Oscillation',
+                        descAr: 'قياس تسارع الجاذبية ودراسة الاهتزازات الميكانيكية.',
+                        descFr: 'Mesure de l\'accélération de la pesanteur et étude des oscillations.',
+                        image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'مقاييس الضوء والليزر البصري',
+                        nameFr: 'Banc d\'Optique et Laser',
+                        descAr: 'دراسة التداخل والحيود والعدسات البصرية للقياسات.',
+                        descFr: 'Étude de l\'interférence, la diffraction et la métrologie optique.',
+                        image: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز التمدد الحراري للمعادن',
+                        nameFr: 'Appareil de Dilatation Thermique',
+                        descAr: 'حساب معاملات التمدد الخطي للمواد البنائية عند قياس الحرارة.',
+                        descFr: 'Mesure des coefficients de dilatation thermique des matériaux.',
+                        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'chimie',
+                code: 'Chimie',
+                category: 'applied',
+                icon: 'fa-vial-virus',
+                titleAr: 'مخبر الكيمياء',
+                titleFr: 'Laboratoire de Chimie',
+                shortDescAr: 'تحليل الخواص الكيميائية للمواد، معالجة المياه، والوقاية من التآكل في المنشآت.',
+                shortDescFr: 'Analyse des propriétés chimiques des matériaux, traitement des eaux et prévention de la corrosion.',
+                fullDescAr: 'يوفر مخبر الكيمياء البيئة المناسبة لتجارب الكيمياء العامة والتطبيقية، مع التركيز على التحليل التفاعلي للخرسانة والمعادن وتأثير العوامل البيئية والكيميائية على ديمومة المنشآت الهندسية.',
+                fullDescFr: 'Dédié aux essais chimiques appliqués au génie civil, étudie l\'impact de l\'environnement sur la durabilité des ouvrages.',
+                mainImage: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'مقياس الطيف الضوئي',
+                        nameFr: 'Spectrophotomètre UV-Visible',
+                        descAr: 'تحليل التراكيز الكيميائية والمعادن في المحاليل المائية.',
+                        descFr: 'Dosage spectrophotométrique des ions et éléments chimiques.',
+                        image: 'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز القياس الأس الهيدروجيني pH والناقلية',
+                        nameFr: 'pH-mètre et Conductimètre',
+                        descAr: 'فحص درجات حموضة ونقاء المياه المستخدمة في خلط الخرسانة.',
+                        descFr: 'Contrôle de la qualité de l\'eau de gâchage et des sols.',
+                        image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'حمام مائي حراري منظم',
+                        nameFr: 'Bain Marie Thermostaté',
+                        descAr: 'تسخين وتثبيت حرارة العينات الكيميائية بدقة.',
+                        descFr: 'Maintien en température précise des réactifs et échantillons.',
+                        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'mdf',
+                code: 'MDF',
+                category: 'fluids_physics',
+                icon: 'fa-water',
+                titleAr: 'مخبر ميكانيك الموائع',
+                titleFr: 'Laboratoire de Mécanique des Fluides',
+                shortDescAr: 'دراسة جريان السوائل، الهيدروليكا، وضغوط المياه في الشبكات والقنوات المفتوحة.',
+                shortDescFr: 'Étude de l\'écoulement des fluides, de l\'hydraulique et des réseaux sous pression.',
+                fullDescAr: 'يختص مخبر ميكانيك الموائع (MDF) بإجراء التجارب المتعلقة بحركة السوائل، قياس ضغط وزوجة السوائل، ودراسة الضياع في الشحنة في الأنابيب والقنوات المفتوحة لبناء جسور وسدود ومشاريع ري ناجحة.',
+                fullDescFr: 'Analyse expérimentale des écoulements, des pertes de charge et du comportement des fluides en génie hydraulique.',
+                mainImage: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'قناة جريان ماء مائية شفافة',
+                        nameFr: 'Canal Hydraulique Pédagogique',
+                        descAr: 'محاكاة حركة الجريان في القنوات المفتوحة والمهابات.',
+                        descFr: 'Simulation des écoulements à surface libre et des déversoirs.',
+                        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز دراسة ضياع الشحنة في الأنابيب',
+                        nameFr: 'Banc de Perte de Charge',
+                        descAr: 'قياس الفقدان في الضغط الناجم عن الاحتكاك وتغير القطر.',
+                        descFr: 'Mesure des pertes de charge linéaires et singulières.',
+                        image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'مقياس الجاذبية واللزوجة (أنبوب رينولدز)',
+                        nameFr: 'Appareil de Reynolds',
+                        descAr: 'تحديد نظام الجريان (صفائحي أو مضطرب) للسوائل.',
+                        descFr: 'Visualisation du régime d\'écoulement (laminaire ou turbulent).',
+                        image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'mds',
+                code: 'MDS',
+                category: 'materials',
+                icon: 'fa-mountain',
+                titleAr: 'مخبر ميكانيك التربة',
+                titleFr: 'Laboratoire de Mécanique des Sols',
+                shortDescAr: 'فحص الخواص الفيزيائية والميكانيكية للتربة ودراسة قدرة تحمل الأساسات.',
+                shortDescFr: 'Essais géotechniques, étude de la capacité portante des sols et des fondations.',
+                fullDescAr: 'يعتبر مخبر ميكانيك التربة (MDS) ركيزة أساسية في هندسة الطرق والأنفاق والجسور. يتم فيه تحديد صواب التربة، معامل الانضغاط، مقاييس أتربرغ، ومقاومة القص لضمان ثبات المنشآت.',
+                fullDescFr: 'Essentiel pour la géotechnique routière et les fondations : limite d\'Atterberg, cisaillement, odomètre et Proctor.',
+                mainImage: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'جهاز القص المباشر (Casagrande)',
+                        nameFr: 'Boîte de Cisaillement Direct',
+                        descAr: 'تحديد زاوية الاحتكاك الداخلي والتماسك للتربة.',
+                        descFr: 'Détermination des paramètres de résistance au cisaillement (c, φ).',
+                        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز الأودوميتر (Inclinometer / Oedometer)',
+                        nameFr: 'Odomètre de Tassement',
+                        descAr: 'قياس مدى انضغاط التربة والهبوط الزمني تحت الأحمال.',
+                        descFr: 'Essai de compressibilité et de tassement des sols.',
+                        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز بروكتور و CBR الطرقات',
+                        nameFr: 'Appareil Proctor & Essai CBR',
+                        descAr: 'تحديد نسبة الرطوبة المثالية لدمك تربة الطرق.',
+                        descFr: 'Essai de compactage et capacité portante des couches de forme.',
+                        image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'rdm',
+                code: 'RDM',
+                category: 'materials',
+                icon: 'fa-cubes-stacked',
+                titleAr: 'مخبر مقاومة المواد',
+                titleFr: 'Laboratoire de Résistance des Matériaux',
+                shortDescAr: 'اختبار الإجهادات، الشد، الضغط، والانحناء على المعادن والعينات الهندسية.',
+                shortDescFr: 'Essais de traction, compression, flexion et torsion sur les matériaux de structure.',
+                fullDescAr: 'يختص مخبر RDM بدراسة سلوك المواد الإنشائية (كالصلب، الألومنيوم، الخشب) تحت تأثير القوى الخارجية المخففة، لتحديد حدود المرونة ومقاومة الانكسار والانحناء لضمان السلامة الهيكلية.',
+                fullDescFr: 'Étude expérimentale de la déformation et de la rupture des matériaux soumis à divers sollicitations mécaniques.',
+                mainImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'آلة الاختباك العالمية للشد والضغط',
+                        nameFr: 'Machine Universelle de Traction',
+                        descAr: 'إجراء اختبارات الشد للحديد ومنحنى الإجهاد والانفعال.',
+                        descFr: 'Essai de traction universel pour déterminer la limite élastique.',
+                        image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز اختبار الانحناء والتواء الكمرات',
+                        nameFr: 'Banc d\'Essai de Flexion et Torsion',
+                        descAr: 'تحليل السهم والانحراف في العوارض الهندسية.',
+                        descFr: 'Étude de la flèche et de la déformation des poutres.',
+                        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'مطرقة الشاربي للصدمات (Charpy)',
+                        nameFr: 'Mouton Charpy',
+                        descAr: 'قياس متانة الصلب وقدرته على امتصاص الصدمات.',
+                        descFr: 'Mesure de la résilience et résistance aux chocs.',
+                        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'electricite',
+                code: 'Électricité',
+                category: 'applied',
+                icon: 'fa-bolt',
+                titleAr: 'مخبر الكهرباء',
+                titleFr: 'Laboratoire d\'Électricité',
+                shortDescAr: 'دراسة الدوائر الكهربائية، القياسات الإلكترونية، والآلات والمحركات الكهربائية.',
+                shortDescFr: 'Étude des circuits électriques, de la mesure électronique et des machines électriques.',
+                fullDescAr: 'يهتم مخبر الكهرباء بتدريب الطلبة على أسس الدوارات الكهربائية المستمرة والمتناوبة، معالجة الإشارات، والمحركات المطبقة في ورش ومحطات الأشغال العمومية والأنفاق.',
+                fullDescFr: 'Formation pratique sur les circuits AC/DC, la sécurité électrique et les équipements électromécaniques.',
+                mainImage: 'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'راسم الأشعة الإشاري (Oscilloscope)',
+                        nameFr: 'Oscilloscope Numérique',
+                        descAr: 'معاينة وتردد الإشارات الكهربائية والجهد.',
+                        descFr: 'Visualisation et analyse des signaux électriques.',
+                        image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'مولد الوظائف الترددية (GBF Generator)',
+                        nameFr: 'Générateur de Basses Fréquences',
+                        descAr: 'توليد موجات كهربائية مربعة وجيبية للتجارب.',
+                        descFr: 'Génération de signaux sinusoïdaux, carrés et triangulaires.',
+                        image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'لوحة التوصيل واختبار الدوائر ثلاثية الأطوار',
+                        nameFr: 'Tableau d\'Essai Triphasé',
+                        descAr: 'دراسة المولدات والمحركات ثلاثية الأطوار industrial.',
+                        descFr: 'Étude des réseaux triphasés et des machines industrielles.',
+                        image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            },
+            {
+                id: 'mdc',
+                code: 'MDC',
+                category: 'materials',
+                icon: 'fa-trowel-bricks',
+                titleAr: 'مخبر مواد البناء',
+                titleFr: 'Laboratoire des Matériaux de Construction',
+                shortDescAr: 'اختبار الخرسانة، الإسمنت، الحصى، والخرسانة الأسفلتية للطرق والجسور.',
+                shortDescFr: 'Analyse et caractérisation du béton, du ciment, des granulats et des enrobés routiers.',
+                fullDescAr: 'يُعد مخبر MDC القلب النابض للهندسة المدنية والأشغال العمومية، حيث يتم فيه صياغة خلطات الخرسانة، اختبار مقاومتها للضغط في 28 يوماً، وتحليل مكونات الطريق لضمان جودة الجسور والمباني.',
+                fullDescFr: 'Infrastructures centrales pour tester la formulation du béton, la résistance à la compression et la caractérisation des granulats.',
+                mainImage: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    {
+                        nameAr: 'مكبس الضغط الهيدروليكي للخرسانة',
+                        nameFr: 'Presse Hydraulique à Béton',
+                        descAr: 'كسر مكعبات واسطوانات الخرسانة لقياس قوة المقاومة.',
+                        descFr: 'Essai de rupture à la compression sur éprouvettes béton.',
+                        image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'جهاز الغربلة الميكانيكية للركام',
+                        nameFr: 'Tamiseuse Électrique pour Granulats',
+                        descAr: 'التوزيع الحبيبي للرمل والحصى المستعمل في الخرسانة.',
+                        descFr: 'Analyse granulométrique des sables et graviers.',
+                        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80'
+                    },
+                    {
+                        nameAr: 'مخروط أبرامز لقوام الخرسانة (Slump Test)',
+                        nameFr: 'Cône d\'Abrams (Affaissement)',
+                        descAr: 'قياس درجة تشغيلية وانسيابية الخرسانة الطازجة.',
+                        descFr: 'Mesure de la maniabilité du béton frais sur chantier.',
+                        image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80'
+                    }
+                ]
+            }
+        ];
+
+        // Initialize App UI
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLabs(labsData);
+        });
+
+        // Render Lab Cards Grid
+        function renderLabs(data) {
+            const grid = document.getElementById('labsGrid');
+            const noResults = document.getElementById('noResults');
+            const visibleCount = document.getElementById('visibleLabsCount');
+            
+            grid.innerHTML = '';
+            visibleCount.innerText = data.length;
+
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            data.forEach(lab => {
+                const title = currentLang === 'ar' ? lab.titleAr : lab.titleFr;
+                const shortDesc = currentLang === 'ar' ? lab.shortDescAr : lab.shortDescFr;
+                const btnText = currentLang === 'ar' ? 'استعراض الأدوات والتفاصيل' : 'Voir Équipements & Détails';
+
+                const cardHtml = `
+                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 overflow-hidden flex flex-col group transform hover:-translate-y-1">
+                        <!-- Lab Image Header -->
+                        <div class="relative h-48 overflow-hidden bg-slate-800">
+                            <img src="${lab.mainImage}" alt="${title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-3 right-3 bg-enstp-navy/90 backdrop-blur-md text-amber-400 font-extrabold text-xs px-3 py-1.5 rounded-lg shadow-md border border-amber-500/30 flex items-center gap-1.5">
+                                <i class="fa-solid ${lab.icon}"></i>
+                                <span>${lab.code}</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 right-3 left-3">
+                                <h3 class="text-lg font-bold text-white leading-snug drop-shadow">${title}</h3>
+                                <p class="text-xs text-amber-300 font-medium">${lab.titleFr}</p>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${shortDesc}</p>
+                            
+                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                                <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
+                                    <i class="fa-solid fa-microscope text-enstp-lightBlue"></i>
+                                    ${lab.equipment.length} ${currentLang === 'ar' ? 'أجهزة رئيسية' : 'équipements'}
+                                </span>
+                                
+                                <button onclick="openModal('${lab.id}')" class="px-3.5 py-2 bg-enstp-blue hover:bg-enstp-lightBlue text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-lg flex items-center space-x-1.5 space-x-reverse">
+                                    <span>${btnText}</span>
+                                    <i class="fa-solid ${currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right'} text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // Open Detail Modal
+        function openModal(labId) {
+            currentLabId = labId;
+            const lab = labsData.find(l => l.id === labId);
+            if (!lab) return;
+
+            // Set Header & Icon
+            document.getElementById('modalTitleAr').innerText = lab.titleAr;
+            document.getElementById('modalTitleFr').innerText = lab.titleFr;
+            
+            const iconContainer = document.getElementById('modalIconContainer');
+            iconContainer.innerHTML = `<i class="fa-solid ${lab.icon}"></i>`;
+
+            // Set Main Image & Description
+            document.getElementById('modalMainImg').src = lab.mainImage;
+            document.getElementById('modalLabDesc').innerText = currentLang === 'ar' ? lab.shortDescAr : lab.shortDescFr;
+            document.getElementById('modalFullDesc').innerText = currentLang === 'ar' ? lab.fullDescAr : lab.fullDescFr;
+
+            // Render Equipment Grid inside Modal
+            renderModalEquipment(lab.equipment);
+
+            // Show Modal
+            document.getElementById('labModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Render Modal Equipment Cards
+        function renderModalEquipment(equipmentList) {
+            const grid = document.getElementById('equipmentGrid');
+            grid.innerHTML = '';
+
+            equipmentList.forEach((item, index) => {
+                const name = currentLang === 'ar' ? item.nameAr : item.nameFr;
+                const desc = currentLang === 'ar' ? item.descAr : item.descFr;
+
+                const equipHtml = `
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group">
+                        <div class="relative h-36 bg-slate-100 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image}', '${name}')">
+                            <img src="${item.image}" alt="${name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xl">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </div>
+                        </div>
+                        <div class="p-3 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h5 class="text-xs sm:text-sm font-bold text-slate-800 leading-tight mb-1">${name}</h5>
+                                <p class="text-xs text-slate-500 leading-snug">${desc}</p>
+                            </div>
+                            <div class="mt-2 text-left">
+                                <button onclick="openLightbox('${item.image}', '${name}')" class="text-[11px] text-enstp-lightBlue font-semibold hover:underline">
+                                    <i class="fa-regular fa-image me-1"></i> ${currentLang === 'ar' ? 'تكبير الصورة' : 'Agrandir'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', equipHtml);
+            });
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('labModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Lightbox Functions
+        function openLightbox(imgSrc, caption) {
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Local Image Preview Upload for Main Lab Image
+        function uploadMainLabImage(event) {
+            const file = event.target.files[0];
+            if (file && currentLabId) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newUrl = e.target.result;
+                    // Update current lab in memory
+                    const lab = labsData.find(l => l.id === currentLabId);
+                    if (lab) {
+                        lab.mainImage = newUrl;
+                        document.getElementById('modalMainImg').src = newUrl;
+                        renderLabs(labsData); // Refresh grid
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Local Image Preview Upload for Adding Equipment
+        function uploadEquipmentImage(event) {
+            const file = event.target.files[0];
+            if (file && currentLabId) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newUrl = e.target.result;
+                    const lab = labsData.find(l => l.id === currentLabId);
+                    if (lab) {
+                        lab.equipment.unshift({
+                            nameAr: 'أداة جديدة تمت إضافتها',
+                            nameFr: 'Nouvel Équipement Ajouté',
+                            descAr: 'معاينة الصورة المرفوعة من الجهاز المحلي.',
+                            descFr: 'Aperçu de l\'image téléchargée localement.',
+                            image: newUrl
+                        });
+                        renderModalEquipment(lab.equipment);
+                        renderLabs(labsData); // Refresh background
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Search & Filter Logic
+        function filterLabs() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+            const catVal = document.getElementById('categoryFilter').value;
+
+            const filtered = labsData.filter(lab => {
+                // Category match
+                const matchCategory = catVal === 'all' || lab.category === catVal;
+
+                // Search query match (in name, french name, or equipment)
+                const matchSearch = 
+                    lab.titleAr.toLowerCase().includes(searchVal) ||
+                    lab.titleFr.toLowerCase().includes(searchVal) ||
+                    lab.code.toLowerCase().includes(searchVal) ||
+                    lab.shortDescAr.toLowerCase().includes(searchVal) ||
+                    lab.equipment.some(e => e.nameAr.toLowerCase().includes(searchVal) || e.nameFr.toLowerCase().includes(searchVal));
+
+                return matchCategory && matchSearch;
+            });
+
+            renderLabs(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = 'all';
+            renderLabs(labsData);
+        }
+
+        // Language Toggle Handler (AR / FR)
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'fr' : 'ar';
+            const htmlTag = document.documentElement;
+            const langText = document.getElementById('langText');
+
+            if (currentLang === 'fr') {
+                htmlTag.setAttribute('dir', 'ltr');
+                htmlTag.setAttribute('lang', 'fr');
+                langText.innerText = 'العربية';
+
+                // Static Content Strings (FR)
+                document.getElementById('heroTitle').innerText = 'Laboratoires Scientifiques & Techniques Modernes';
+                document.getElementById('heroSubtitle').innerText = 'Système intégré de 7 laboratoires spécialisés équipés des dernières technologies pour la recherche et l\'expérimentation à l\'ENSTP.';
+                document.getElementById('searchInput').placeholder = 'Rechercher un labo, un équipement, un essai...';
+                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-microscope text-enstp-gold"></i> Liste des Laboratoires';
+                document.getElementById('sectionSubtitle').innerText = 'Cliquez sur un laboratoire pour explorer ses équipements et détails.';
+                document.getElementById('modalAboutTitle').innerText = 'À propos du laboratoire';
+                document.getElementById('modalEquipTitle').innerText = 'Équipements et Appareils';
+            } else {
+                htmlTag.setAttribute('dir', 'rtl');
+                htmlTag.setAttribute('lang', 'ar');
+                langText.innerText = 'Français';
+
+                // Static Content Strings (AR)
+                document.getElementById('heroTitle').innerText = 'المخابر العلمية والتقنية الحديثة';
+                document.getElementById('heroSubtitle').innerText = 'منظومة متكاملة من 7 مخابر متخصصة ومجهزة بأحدث التجهيزات والتقنيات لإجراء التجارب العلمية والأبحاث الهندسية في مجال الأشغال العمومية.';
+                document.getElementById('searchInput').placeholder = 'ابحث عن مخبر أو أداة أو تجربة...';
+                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-microscope text-enstp-gold"></i> قائمة المخابر المتاحة';
+                document.getElementById('sectionSubtitle').innerText = 'انقر على أي مخبر لاستعراض المعدات والتفاصيل والصور المتاحة';
+                document.getElementById('modalAboutTitle').innerText = 'عن المخبر والأبحاث';
+                document.getElementById('modalEquipTitle').innerText = 'المعدات والأدوات العلمية';
+            }
+
+            // Re-render UI Elements
+            filterLabs();
+            if (currentLabId && !document.getElementById('labModal').classList.contains('hidden')) {
+                openModal(currentLabId);
+            }
+        }
+    </script>
+</body>
+</html>
