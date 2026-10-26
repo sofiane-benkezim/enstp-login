@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENSTP Student Planner - منظم مدرسة الأشغال العمومية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo (Arabic) & Inter (English/French) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        ar: ['Cairo', 'sans-serif'],
+                        en: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        enstp: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.lang-ar { font-family: 'Cairo', sans-serif; }
+        body.lang-fr, body.lang-en { font-family: 'Inter', sans-serif; }
+
+        /* Scrollbar styling */
+        html.light ::-webkit-scrollbar { width: 6px; height: 6px; }
+        html.light ::-webkit-scrollbar-track { background: #f1f5f9; }
+        html.light ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        html.dark ::-webkit-scrollbar { width: 6px; height: 6px; }
+        html.dark ::-webkit-scrollbar-track { background: #0f172a; }
+        html.dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #1e40af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 flex flex-col justify-between selection:bg-sky-500 selection:text-white lang-ar">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-30 glass-card shadow-sm border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 gap-2">
+                
+                <!-- Logo & School Branding -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-blue-800 flex items-center justify-center shadow-md text-white font-bold text-lg shrink-0">
+                        <i class="fa-solid fa-bridge text-lg"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-base sm:text-lg font-extrabold gradient-text leading-tight" id="app-title">المدرسة العليا للأشغال العمومية</h1>
+                            <span class="hidden md:inline-block px-2 py-0.5 text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300 rounded border border-sky-200 dark:border-sky-700">ENSTP Kouba</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block" id="app-subtitle">مُخطط ومُذكر طالب الهندسة المدنية والأشغال العمومية</p>
+                    </div>
+                </div>
+
+                <!-- Right Action Controls -->
+                <div class="flex items-center space-x-2 space-x-reverse sm:space-x-3">
+
+                    <!-- Trilingual Switcher Dropdown -->
+                    <div class="relative">
+                        <select id="lang-select" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs rounded-xl px-2.5 py-1.5 font-semibold focus:outline-none focus:ring-2 focus:ring-sky-500 transition cursor-pointer">
+                            <option value="ar">العربية 🇩🇿</option>
+                            <option value="fr">Français 🇫🇷</option>
+                            <option value="en">English 🇬🇧</option>
+                        </select>
+                    </div>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition" title="Toggle Theme">
+                        <i class="fa-solid fa-moon text-base dark:hidden"></i>
+                        <i class="fa-solid fa-sun text-base hidden dark:block text-amber-400"></i>
+                    </button>
+
+                    <!-- Notification Bell -->
+                    <div class="relative">
+                        <button id="notif-btn" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition relative">
+                            <i class="fa-regular fa-bell text-base"></i>
+                            <span id="notif-badge" class="hidden absolute top-1 right-1 w-2.5 h-2.5 bg-rose-500 rounded-full animate-ping"></span>
+                            <span id="notif-badge-count" class="hidden absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+                        </button>
+
+                        <!-- Notification Dropdown Panel -->
+                        <div id="notif-panel" class="hidden absolute left-0 mt-3 w-80 sm:w-96 glass-card bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-50 overflow-hidden">
+                            <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                                <h3 class="font-bold text-xs flex items-center gap-2" id="notif-header-title">
+                                    <i class="fa-solid fa-bell text-sky-500"></i>
+                                    مركز التنبيهات والتذكيرات
+                                </h3>
+                                <button id="clear-notifs" class="text-[11px] text-slate-400 hover:text-rose-500 transition">مسح الكل</button>
+                            </div>
+                            <div id="notif-list" class="max-h-80 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
+                                <div class="p-6 text-center text-slate-400 text-xs">
+                                    <i class="fa-regular fa-bell-slash text-2xl mb-2 opacity-50 block"></i>
+                                    لا توجد تذكيرات نشطة حالياً
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Task Main Button -->
+                    <button id="open-add-modal" class="px-3 sm:px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs sm:text-sm rounded-xl shadow-md shadow-sky-600/20 flex items-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span id="btn-add-task">إضافة مهمة</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+        
+        <!-- ENSTP Stats Bar -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="glass-card p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400" id="stat-lbl-total">إجمالي المهام</p>
+                    <p id="stat-total" class="text-2xl font-bold text-slate-900 dark:text-white mt-1">0</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center">
+                    <i class="fa-solid fa-compass-drafting text-lg"></i>
+                </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400" id="stat-lbl-pending">المتبقية</p>
+                    <p id="stat-pending" class="text-2xl font-bold text-amber-600 dark:text-amber-400 mt-1">0</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                    <i class="fa-regular fa-clock text-lg"></i>
+                </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold text-slate-500 dark:text-slate-400" id="stat-lbl-completed">المكتملة</p>
+                    <p id="stat-completed" class="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">0</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                    <i class="fa-solid fa-circle-check text-lg"></i>
+                </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl flex items-center justify-between border border-rose-500/30">
+                <div>
+                    <p class="text-xs font-semibold text-rose-500 dark:text-rose-400" id="stat-lbl-next">أقرب تسليم قادم</p>
+                    <p id="stat-next-due" class="text-xs sm:text-sm font-bold text-slate-800 dark:text-rose-300 mt-1 truncate max-w-[130px]">لا يوجد</p>
+                    <p id="stat-next-timer" class="text-[11px] font-mono text-slate-500 dark:text-slate-400">--:--:--</p>
+                </div>
+                <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-hourglass-half text-lg animate-pulse"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Workspace Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Calendar View Section -->
+            <div class="lg:col-span-7 space-y-4">
+                <div class="glass-card p-4 sm:p-5 rounded-3xl">
+                    
+                    <!-- Navigation & Controls -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                        <div class="flex items-center gap-2">
+                            <h2 id="current-month-year" class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white"></h2>
+                            <span id="view-mode-badge" class="px-2 py-0.5 text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300 rounded-lg">شهر</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <!-- View Selector Buttons -->
+                            <div class="bg-slate-200 dark:bg-slate-800 p-1 rounded-xl flex gap-1 text-xs">
+                                <button id="view-month-btn" class="px-2.5 py-1 rounded-lg font-bold bg-sky-600 text-white shadow">شهر</button>
+                                <button id="view-week-btn" class="px-2.5 py-1 rounded-lg font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">أسبوع</button>
+                                <button id="view-day-btn" class="px-2.5 py-1 rounded-lg font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">يوم</button>
+                            </div>
+
+                            <!-- Nav Arrows -->
+                            <div class="flex items-center bg-slate-200 dark:bg-slate-800 rounded-xl p-1 text-xs">
+                                <button id="prev-btn" class="p-1.5 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg transition">
+                                    <i class="fa-solid fa-chevron-right rtl:rotate-0 ltr:rotate-180"></i>
+                                </button>
+                                <button id="today-btn" class="px-2 py-1 text-slate-700 dark:text-slate-300 font-semibold">اليوم</button>
+                                <button id="next-btn" class="p-1.5 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 rounded-lg transition">
+                                    <i class="fa-solid fa-chevron-left rtl:rotate-0 ltr:rotate-180"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Render Container -->
+                    <div id="calendar-container"></div>
+
+                    <!-- ENSTP Domain Categories Legend -->
+                    <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-center gap-3 text-[11px] text-slate-600 dark:text-slate-300">
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span><span id="leg-pfe">مشروع التخرج PFE</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span><span id="leg-be">مكتب دراسات BE</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span><span id="leg-tp">أعمال تطبيقية TP</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span><span id="leg-topo">طبوغرافيا Topo</span></div>
+                        <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span><span id="leg-exam">امتحانات</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task List Sidebar Section -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="glass-card p-4 sm:p-5 rounded-3xl h-full flex flex-col justify-between">
+                    <div>
+                        <!-- Header -->
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-list-check text-sky-600 dark:text-sky-400"></i>
+                                <span id="selected-date-title">جدول الأعمال</span>
+                            </h2>
+                            <span id="selected-date-badge" class="text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2.5 py-1 rounded-full">0</span>
+                        </div>
+
+                        <!-- Filters & Search -->
+                        <div class="flex flex-col gap-2.5 mb-4">
+                            <div class="relative">
+                                <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-slate-400 text-xs rtl:right-3 ltr:left-3 ltr:right-auto"></i>
+                                <input type="text" id="search-input" placeholder="بحث في الدروس والمهام والمشاريع..." class="w-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pr-9 pl-3 rtl:pr-9 rtl:pl-3 ltr:pl-9 ltr:pr-3 py-2 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+                            </div>
+
+                            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="filter-chips">
+                                <button data-filter="all" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-sky-600 text-white shrink-0">الكل</button>
+                                <button data-filter="pfe" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">PFE</button>
+                                <button data-filter="tp" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">TP</button>
+                                <button data-filter="be" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">Bureau d'Études</button>
+                                <button data-filter="topo" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">Topo</button>
+                                <button data-filter="exam" class="filter-btn px-3 py-1.5 rounded-xl font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0">Exams</button>
+                            </div>
+                        </div>
+
+                        <!-- Rendered Task Cards -->
+                        <div id="tasks-list" class="space-y-3 max-h-[420px] overflow-y-auto pr-1"></div>
+                    </div>
+
+                    <!-- ENSTP Information Note -->
+                    <div class="mt-4 p-3 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-100 dark:border-sky-800/40 flex items-start gap-2.5">
+                        <i class="fa-solid fa-hard-hat text-sky-600 dark:text-sky-400 text-sm mt-0.5 shrink-0"></i>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed" id="enstp-info-banner">
+                            نظام التذكير يتابع مواعيد تسليم تقارير الأشغال التطبيقية (TP) واختبارات المكاتب الدراسية وتنبيهك تلقائياً قبل <strong>24 ساعة</strong> و <strong>12 ساعة</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-4 text-center text-xs text-slate-500 dark:text-slate-400">
+        <p id="footer-text">المدرسة العليا للأشغال العمومية - ENSTP Kouba © 2026</p>
+    </footer>
+
+    <!-- Task Modal (Add/Edit) -->
+    <div id="task-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="glass-card bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl transition-all">
+            
+            <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 id="modal-title" class="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-sky-600 dark:text-sky-400"></i>
+                    <span id="modal-title-text">إضافة مهمة جديدة</span>
+                </h3>
+                <button type="button" id="close-modal-btn" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1 rounded-lg transition cursor-pointer">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form id="task-form" class="p-5 space-y-4">
+                <input type="hidden" id="task-id">
+
+                <!-- Title Input -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-task-title">عنوان المهمة / التكليف *</label>
+                    <input type="text" id="task-title-input" required placeholder="مثال: Compte rendu TP Béton Armé" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <!-- Category & Priority -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-cat">التصنيف الأكاديمي</label>
+                        <select id="task-category-input" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="pfe">مشروع التخرج (PFE)</option>
+                            <option value="tp">أعمال تطبيقية (TP Lab)</option>
+                            <option value="be">مكتب دراسات (Bureau d'Études)</option>
+                            <option value="topo">طبوغرافيا ورسم (Topo / Dessin)</option>
+                            <option value="exam">امتحانات (Contrôles / Examens)</option>
+                            <option value="cours">محاضرات ودروس (Cours)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-priority">درجة الأهمية</label>
+                        <select id="task-priority-input" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="high">عالية جداً 🔴</option>
+                            <option value="medium" selected>متوسطة 🟡</option>
+                            <option value="low">عادية 🟢</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Date & Time -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-date">الموعد النهائي *</label>
+                        <input type="date" id="task-date-input" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-time">التوقيت *</label>
+                        <input type="time" id="task-time-input" required class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                </div>
+
+                <!-- Reminder Rule Selection -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-reminder">نظام التذكير التلقائي</label>
+                    <select id="task-reminder-input" class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        <option value="24h">تذكير قبل 24 ساعة و 12 ساعة</option>
+                        <option value="12h">تذكير قبل 12 ساعة فقط</option>
+                        <option value="1h">تذكير قبل ساعة واحدة</option>
+                        <option value="exact">عند التوقيت المحدد تماماً</option>
+                    </select>
+                </div>
+
+                <!-- Notes / Details -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" id="lbl-modal-notes">ملاحظات وتعليمات إضافية</label>
+                    <textarea id="task-notes-input" rows="3" placeholder="أضف تفاصيل المخبر، اسم الأستاذ، أو المراجع..." class="w-full bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+                    <button type="button" id="cancel-modal-btn" class="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-white transition cursor-pointer">إلغاء</button>
+                    <button type="submit" id="btn-save-task" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs rounded-xl shadow-md transition cursor-pointer">حفظ التكليف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 max-w-sm"></div>
+
+    <!-- Main Logic Script -->
+    <script>
+        // LocalStorage Keys
+        const STORAGE_KEY = 'enstp_tasks_v3';
+        const NOTIF_KEY = 'enstp_notifs_v3';
+        const THEME_KEY = 'enstp_theme_pref';
+        const LANG_KEY = 'enstp_lang_pref';
+
+        // Translation Dictionary
+        const TRANSLATIONS = {
+            ar: {
+                appTitle: "المدرسة العليا للأشغال العمومية",
+                appSubtitle: "مُخطط ومُذكر طالب الهندسة المدنية والأشغال العمومية (ENSTP)",
+                btnAddTask: "إضافة مهمة",
+                statTotal: "إجمالي المهام",
+                statPending: "المتبقية",
+                statCompleted: "المكتملة",
+                statNext: "أقرب تسليم قادم",
+                noNextDue: "لا يوجد تسليم",
+                today: "اليوم",
+                viewMonth: "شهر",
+                viewWeek: "أسبوع",
+                viewDay: "يوم",
+                legPfe: "مشروع التخرج PFE",
+                legBe: "مكتب دراسات BE",
+                legTp: "أعمال تطبيقية TP",
+                legTopo: "طبوغرافيا Topo",
+                legExam: "امتحانات",
+                taskAgendaTitle: "جدول الأعمال",
+                searchPlaceholder: "بحث في الدروس والمهام والمشاريع...",
+                enstpInfoBanner: "نظام التذكير يتابع مواعيد تسليم تقارير الأشغال التطبيقية (TP) واختبارات المكاتب الدراسية وتنبيهك تلقائياً قبل 24 ساعة و 12 ساعة.",
+                footerText: "المدرسة العليا للأشغال العمومية - ENSTP Kouba © 2026",
+                modalAddTitle: "إضافة مهمة جديدة",
+                modalEditTitle: "تعديل المهمة",
+                lblTaskTitle: "عنوان المهمة / التكليف *",
+                lblCat: "التصنيف الأكاديمي",
+                lblPriority: "درجة الأهمية",
+                lblDate: "الموعد النهائي (Date) *",
+                lblTime: "التوقيت (Time) *",
+                lblReminder: "نظام التذكير التلقائي",
+                lblNotes: "ملاحظات وتعليمات إضافية",
+                btnCancel: "إلغاء",
+                btnSave: "حفظ التكليف",
+                notifTitle: "مركز التنبيهات والتذكيرات",
+                notifClear: "مسح الكل",
+                notifEmpty: "لا توجد تذكيرات نشطة حالياً",
+                rem24h: "قبل 24س و 12س",
+                rem12h: "قبل 12س",
+                rem1h: "قبل 1س",
+                remExact: "في الموعد",
+                catPfe: "مشروع التخرج PFE",
+                catTp: "أعمال تطبيقية TP",
+                catBe: "مكتب دراسات BE",
+                catTopo: "طبوغرافيا Topo",
+                catExam: "امتحان / اختبار",
+                catCours: "محاضرة / الدرس",
+                priHigh: "عالية جداً 🔴",
+                priMed: "متوسطة 🟡",
+                priLow: "عادية 🟢",
+                toastSaved: "تم حفظ المهمة بنجاح",
+                toastDeleted: "تم حذف المهمة",
+            },
+            fr: {
+                appTitle: "École Nationale Supérieure des Travaux Publics",
+                appSubtitle: "Planificateur & Agenda d'Étudiant en Génie Civil (ENSTP)",
+                btnAddTask: "Ajouter une tâche",
+                statTotal: "Total Tâches",
+                statPending: "En Attente",
+                statCompleted: "Terminées",
+                statNext: "Prochaine Échéance",
+                noNextDue: "Aucune",
+                today: "Aujourd'hui",
+                viewMonth: "Mois",
+                viewWeek: "Semaine",
+                viewDay: "Jour",
+                legPfe: "Projet PFE",
+                legBe: "Bureau d'Études",
+                legTp: "Travaux Pratiques TP",
+                legTopo: "Topographie Topo",
+                legExam: "Examens",
+                taskAgendaTitle: "Agenda des Tâches",
+                searchPlaceholder: "Rechercher un TP, cours ou PFE...",
+                enstpInfoBanner: "Rappels automatiques activés pour les comptes rendus de TP, projets BE et contrôles (notifications à H-24 et H-12).",
+                footerText: "École Nationale Supérieure des Travaux Publics - ENSTP Kouba © 2026",
+                modalAddTitle: "Ajouter une Nouvelle Tâche",
+                modalEditTitle: "Modifier la Tâche",
+                lblTaskTitle: "Titre du Devoir / TP *",
+                lblCat: "Catégorie Académique",
+                lblPriority: "Priorité",
+                lblDate: "Date Limite *",
+                lblTime: "Heure *",
+                lblReminder: "Rappel Automatique",
+                lblNotes: "Notes & Instructions",
+                btnCancel: "Annuler",
+                btnSave: "Enregistrer",
+                notifTitle: "Centre de Notifications",
+                notifClear: "Effacer tout",
+                notifEmpty: "Aucune notification active",
+                rem24h: "24h & 12h avant",
+                rem12h: "12h avant",
+                rem1h: "1h avant",
+                remExact: "À l'heure exacte",
+                catPfe: "Projet PFE",
+                catTp: "Travaux Pratiques TP",
+                catBe: "Bureau d'Études",
+                catTopo: "Topographie Topo",
+                catExam: "Examen / Contrôle",
+                catCours: "Cours / Mégours",
+                priHigh: "Haute 🔴",
+                priMed: "Moyenne 🟡",
+                priLow: "Basse 🟢",
+                toastSaved: "Tâche enregistrée avec succès",
+                toastDeleted: "Tâche supprimée",
+            },
+            en: {
+                appTitle: "National Higher School of Public Works",
+                appSubtitle: "Civil Engineering Student Daily Planner & Reminders (ENSTP)",
+                btnAddTask: "Add Task",
+                statTotal: "Total Tasks",
+                statPending: "Pending",
+                statCompleted: "Completed",
+                statNext: "Next Deadline",
+                noNextDue: "None",
+                today: "Today",
+                viewMonth: "Month",
+                viewWeek: "Week",
+                viewDay: "Day",
+                legPfe: "PFE Graduation Project",
+                legBe: "Design Office (BE)",
+                legTp: "Lab Work (TP)",
+                legTopo: "Topography (Topo)",
+                legExam: "Exams",
+                taskAgendaTitle: "Task Agenda",
+                searchPlaceholder: "Search courses, TPs, PFE...",
+                enstpInfoBanner: "The reminder engine tracks lab reports (TP), design projects, and exam deadlines with automated alerts at 24h & 12h milestones.",
+                footerText: "National Higher School of Public Works - ENSTP Kouba © 2026",
+                modalAddTitle: "Add New Task",
+                modalEditTitle: "Edit Task",
+                lblTaskTitle: "Task Title / Subject *",
+                lblCat: "Academic Category",
+                lblPriority: "Priority Level",
+                lblDate: "Target Date *",
+                lblTime: "Time *",
+                lblReminder: "Automated Reminder",
+                lblNotes: "Notes & Details",
+                btnCancel: "Cancel",
+                btnSave: "Save Task",
+                notifTitle: "Notification Center",
+                notifClear: "Clear All",
+                notifEmpty: "No active notifications right now",
+                rem24h: "24h & 12h before",
+                rem12h: "12h before",
+                rem1h: "1h before",
+                remExact: "Exact time",
+                catPfe: "PFE Project",
+                catTp: "Lab Work (TP)",
+                catBe: "Design Office (BE)",
+                catTopo: "Topography (Topo)",
+                catExam: "Exams & Tests",
+                catCours: "Lecture / Course",
+                priHigh: "High 🔴",
+                priMed: "Medium 🟡",
+                priLow: "Low 🟢",
+                toastSaved: "Task saved successfully",
+                toastDeleted: "Task deleted",
+            }
+        };
+
+        // State Management Variables
+        let currentLang = localStorage.getItem(LANG_KEY) || 'ar';
+        let currentTheme = localStorage.getItem(THEME_KEY) || 'light';
+        let tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || getENSTPSampleTasks();
+        let notifications = JSON.parse(localStorage.getItem(NOTIF_KEY)) || [];
+        let currentDate = new Date();
+        let selectedDateStr = formatDateKey(new Date());
+        let currentView = 'month';
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Category Styles
+        const CATEGORIES = {
+            pfe: { color: 'bg-purple-600', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-500/40', bgLight: 'bg-purple-50 dark:bg-purple-900/30' },
+            tp: { color: 'bg-emerald-600', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-500/40', bgLight: 'bg-emerald-50 dark:bg-emerald-900/30' },
+            be: { color: 'bg-blue-600', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-500/40', bgLight: 'bg-blue-50 dark:bg-blue-900/30' },
+            topo: { color: 'bg-indigo-600', text: 'text-indigo-600 dark:text-indigo-400', border: 'border-indigo-500/40', bgLight: 'bg-indigo-50 dark:bg-indigo-900/30' },
+            exam: { color: 'bg-rose-600', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-500/40', bgLight: 'bg-rose-50 dark:bg-rose-900/30' },
+            cours: { color: 'bg-sky-600', text: 'text-sky-600 dark:text-sky-400', border: 'border-sky-500/40', bgLight: 'bg-sky-50 dark:bg-sky-900/30' }
+        };
+
+        // Sample ENSTP Tasks
+        function getENSTPSampleTasks() {
+            const now = new Date();
+            const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+            const in3Days = new Date(now); in3Days.setDate(in3Days.getDate() + 3);
+
+            return [
+                {
+                    id: 'enstp-1',
+                    title: 'Compte Rendu TP Géotechnique (Essai Triaxial)',
+                    category: 'tp',
+                    priority: 'high',
+                    date: formatDateKey(tomorrow),
+                    time: '14:00',
+                    reminderRule: '24h',
+                    notes: 'Analyse des paramètres de cisaillement (C, phi). Laboratoire Sol ENSTP Kouba.',
+                    completed: false,
+                    notified24h: false,
+                    notified12h: false
+                },
+                {
+                    id: 'enstp-2',
+                    title: 'Projet BE Dimensionnement Pont Dalle',
+                    category: 'be',
+                    priority: 'high',
+                    date: formatDateKey(in3Days),
+                    time: '23:59',
+                    reminderRule: '24h',
+                    notes: 'Calcul des armatures en Béton Armé selon Eurocode 2.',
+                    completed: false,
+                    notified24h: false,
+                    notified12h: false
+                }
+            ];
+        }
+
+        // Helper Date Formatter
+        function formatDateKey(d) {
+            const date = new Date(d);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Storage Functions
+        function saveTasks() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+            updateStats();
+        }
+
+        function saveNotifications() {
+            localStorage.setItem(NOTIF_KEY, JSON.stringify(notifications));
+            renderNotifications();
+        }
+
+        // Initialize Application
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTheme(currentTheme);
+            applyLanguage(currentLang);
+            initEventListeners();
+            saveTasks();
+            renderCalendar();
+            renderTaskList();
+            updateStats();
+            renderNotifications();
+
+            // Background scanning intervals
+            setInterval(checkNotificationsAndCountdowns, 10000);
+            setInterval(updateUrgentTimerUI, 1000);
+            checkNotificationsAndCountdowns();
+        });
+
+        // Event Listener Initialization
+        function initEventListeners() {
+            // Language selector
+            const langSelect = document.getElementById('lang-select');
+            if (langSelect) {
+                langSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
+            }
+
+            // Theme toggle
+            const themeBtn = document.getElementById('theme-toggle-btn');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => applyTheme(currentTheme === 'light' ? 'dark' : 'light'));
+            }
+
+            // Calendar Navigation
+            document.getElementById('prev-btn').addEventListener('click', () => navigateCalendar(-1));
+            document.getElementById('next-btn').addEventListener('click', () => navigateCalendar(1));
+            document.getElementById('today-btn').addEventListener('click', () => {
+                currentDate = new Date();
+                selectedDateStr = formatDateKey(currentDate);
+                renderCalendar();
+                renderTaskList();
+            });
+
+            // View Mode Toggles
+            document.getElementById('view-month-btn').addEventListener('click', (e) => switchView('month', e.currentTarget));
+            document.getElementById('view-week-btn').addEventListener('click', (e) => switchView('week', e.currentTarget));
+            document.getElementById('view-day-btn').addEventListener('click', (e) => switchView('day', e.currentTarget));
+
+            // Modal Trigger Buttons
+            const openModalBtn = document.getElementById('open-add-modal');
+            if (openModalBtn) {
+                openModalBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
+
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            const cancelModalBtn = document.getElementById('cancel-modal-btn');
+            if (cancelModalBtn) {
+                cancelModalBtn.addEventListener('click', closeModal);
+            }
+
+            // Task Form Submission
+            const taskForm = document.getElementById('task-form');
+            if (taskForm) {
+                taskForm.addEventListener('submit', handleTaskSubmit);
+            }
+
+            // Category Filter Chips
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('bg-sky-600', 'text-white');
+                        b.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                    });
+                    const target = e.currentTarget;
+                    target.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                    target.classList.add('bg-sky-600', 'text-white');
+                    currentFilter = target.dataset.filter;
+                    renderTaskList();
+                });
+            });
+
+            // Search Bar Input
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                renderTaskList();
+            });
+
+            // Notifications Dropdown
+            const notifBtn = document.getElementById('notif-btn');
+            const notifPanel = document.getElementById('notif-panel');
+            if (notifBtn && notifPanel) {
+                notifBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    notifPanel.classList.toggle('hidden');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!notifPanel.contains(e.target) && !notifBtn.contains(e.target)) {
+                        notifPanel.classList.add('hidden');
+                    }
+                });
+            }
+
+            document.getElementById('clear-notifs').addEventListener('click', () => {
+                notifications = [];
+                saveNotifications();
+            });
+        }
+
+        // Theme Engine
+        function applyTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem(THEME_KEY, theme);
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
+        }
+
+        // Language Engine
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem(LANG_KEY, lang);
+            const t = TRANSLATIONS[lang] || TRANSLATIONS.ar;
+
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.className = document.body.className.replace(/lang-\w+/g, '') + ` lang-${lang}`;
+
+            document.getElementById('app-title').textContent = t.appTitle;
+            document.getElementById('app-subtitle').textContent = t.appSubtitle;
+            document.getElementById('btn-add-task').textContent = t.btnAddTask;
+            document.getElementById('stat-lbl-total').textContent = t.statTotal;
+            document.getElementById('stat-lbl-pending').textContent = t.statPending;
+            document.getElementById('stat-lbl-completed').textContent = t.statCompleted;
+            document.getElementById('stat-lbl-next').textContent = t.statNext;
+            document.getElementById('today-btn').textContent = t.today;
+
+            document.getElementById('leg-pfe').textContent = t.legPfe;
+            document.getElementById('leg-be').textContent = t.legBe;
+            document.getElementById('leg-tp').textContent = t.legTp;
+            document.getElementById('leg-topo').textContent = t.legTopo;
+            document.getElementById('leg-exam').textContent = t.legExam;
+
+            document.getElementById('selected-date-title').textContent = t.taskAgendaTitle;
+            document.getElementById('search-input').placeholder = t.searchPlaceholder;
+            document.getElementById('enstp-info-banner').innerHTML = t.enstpInfoBanner;
+            document.getElementById('footer-text').textContent = t.footerText;
+
+            // Modal Labels
+            document.getElementById('lbl-modal-task-title').textContent = t.lblTaskTitle;
+            document.getElementById('lbl-modal-cat').textContent = t.lblCat;
+            document.getElementById('lbl-modal-priority').textContent = t.lblPriority;
+            document.getElementById('lbl-modal-date').textContent = t.lblDate;
+            document.getElementById('lbl-modal-time').textContent = t.lblTime;
+            document.getElementById('lbl-modal-reminder').textContent = t.lblReminder;
+            document.getElementById('lbl-modal-notes').textContent = t.lblNotes;
+            document.getElementById('cancel-modal-btn').textContent = t.btnCancel;
+            document.getElementById('btn-save-task').textContent = t.btnSave;
+
+            document.getElementById('lang-select').value = lang;
+
+            renderCalendar();
+            renderTaskList();
+        }
+
+        // Modal Open / Close Handler
+        function openModal(targetDateKey = null) {
+            const t = TRANSLATIONS[currentLang];
+            const modal = document.getElementById('task-modal');
+            const form = document.getElementById('task-form');
+
+            form.reset();
+            document.getElementById('task-id').value = '';
+            document.getElementById('modal-title-text').textContent = t.modalAddTitle;
+
+            // Set default date & time
+            const dateVal = targetDateKey || selectedDateStr || formatDateKey(new Date());
+            document.getElementById('task-date-input').value = dateVal;
+            document.getElementById('task-time-input').value = '10:00';
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('task-modal').classList.add('hidden');
+        }
+
+        function editTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (!task) return;
+
+            const t = TRANSLATIONS[currentLang];
+            document.getElementById('task-id').value = task.id;
+            document.getElementById('modal-title-text').textContent = t.modalEditTitle;
+            document.getElementById('task-title-input').value = task.title;
+            document.getElementById('task-category-input').value = task.category || 'tp';
+            document.getElementById('task-priority-input').value = task.priority || 'medium';
+            document.getElementById('task-date-input').value = task.date;
+            document.getElementById('task-time-input').value = task.time;
+            document.getElementById('task-reminder-input').value = task.reminderRule || '24h';
+            document.getElementById('task-notes-input').value = task.notes || '';
+
+            document.getElementById('task-modal').classList.remove('hidden');
+        }
+
+        function handleTaskSubmit(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('task-id').value;
+            const title = document.getElementById('task-title-input').value.trim();
+            const category = document.getElementById('task-category-input').value;
+            const priority = document.getElementById('task-priority-input').value;
+            const date = document.getElementById('task-date-input').value;
+            const time = document.getElementById('task-time-input').value;
+            const reminderRule = document.getElementById('task-reminder-input').value;
+            const notes = document.getElementById('task-notes-input').value.trim();
+
+            if (!title || !date || !time) {
+                showToast('الرجاء إدخال الحقول المطلوبة', 'warning');
+                return;
+            }
+
+            if (id) {
+                tasks = tasks.map(t => t.id === id ? { ...t, title, category, priority, date, time, reminderRule, notes } : t);
+            } else {
+                const newTask = {
+                    id: 'enstp-' + Date.now(),
+                    title, category, priority, date, time, reminderRule, notes,
+                    completed: false,
+                    notified24h: false,
+                    notified12h: false
+                };
+                tasks.push(newTask);
+            }
+
+            saveTasks();
+            closeModal();
+            renderCalendar();
+            renderTaskList();
+            checkNotificationsAndCountdowns();
+            showToast(TRANSLATIONS[currentLang].toastSaved, 'success');
+        }
+
+        // Calendar Switch & Navigation Logic
+        function switchView(view, btnElement) {
+            currentView = view;
+            const t = TRANSLATIONS[currentLang];
+            document.querySelectorAll('#view-month-btn, #view-week-btn, #view-day-btn').forEach(b => {
+                b.classList.remove('bg-sky-600', 'text-white', 'shadow');
+                b.classList.add('text-slate-600', 'dark:text-slate-400');
+            });
+            btnElement.classList.add('bg-sky-600', 'text-white', 'shadow');
+            btnElement.classList.remove('text-slate-600', 'dark:text-slate-400');
+
+            const badgeLabels = { month: t.viewMonth, week: t.viewWeek, day: t.viewDay };
+            document.getElementById('view-mode-badge').textContent = badgeLabels[view];
+
+            renderCalendar();
+        }
+
+        function navigateCalendar(dir) {
+            if (currentView === 'month') {
+                currentDate.setMonth(currentDate.getMonth() + dir);
+            } else if (currentView === 'week') {
+                currentDate.setDate(currentDate.getDate() + (dir * 7));
+            } else if (currentView === 'day') {
+                currentDate.setDate(currentDate.getDate() + dir);
+                selectedDateStr = formatDateKey(currentDate);
+                renderTaskList();
+            }
+            renderCalendar();
+        }
+
+        // Render Calendar Grid Engine
+        function renderCalendar() {
+            const container = document.getElementById('calendar-container');
+            container.innerHTML = '';
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const locale = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US';
+            const monthName = currentDate.toLocaleDateString(locale, { month: 'long', year: 'numeric' });
+            document.getElementById('current-month-year').textContent = monthName;
+
+            if (currentView === 'month') {
+                renderMonthView(container, year, month);
+            } else if (currentView === 'week') {
+                renderWeekView(container);
+            } else if (currentView === 'day') {
+                renderDayView(container);
+            }
+        }
+
+        function renderMonthView(container, year, month) {
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const totalDays = new Date(year, month + 1, 0).getDate();
+            const prevMonthDays = new Date(year, month, 0).getDate();
+
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-7 gap-1.5 text-center text-xs font-bold';
+
+            const locale = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US';
+            const weekDays = [];
+            for (let d = 0; d < 7; d++) {
+                const tempDate = new Date(2026, 0, 4 + d);
+                weekDays.push(tempDate.toLocaleDateString(locale, { weekday: 'short' }));
+            }
+
+            weekDays.forEach(day => {
+                const dHeader = document.createElement('div');
+                dHeader.className = 'py-1.5 text-slate-400 dark:text-slate-500 font-bold';
+                dHeader.textContent = day;
+                grid.appendChild(dHeader);
+            });
+
+            for (let i = firstDayIndex; i > 0; i--) {
+                const cell = document.createElement('div');
+                cell.className = 'h-24 sm:h-28 p-1.5 rounded-2xl bg-slate-100/50 dark:bg-slate-900/30 text-slate-400 dark:text-slate-600 opacity-30 select-none';
+                cell.innerHTML = `<span class="text-xs">${prevMonthDays - i + 1}</span>`;
+                grid.appendChild(cell);
+            }
+
+            const todayStr = formatDateKey(new Date());
+
+            for (let day = 1; day <= totalDays; day++) {
+                const thisDate = new Date(year, month, day);
+                const dateKey = formatDateKey(thisDate);
+                const dayTasks = tasks.filter(t => t.date === dateKey);
+                const isToday = dateKey === todayStr;
+                const isSelected = dateKey === selectedDateStr;
+
+                const cell = document.createElement('div');
+                cell.className = `h-24 sm:h-28 p-1.5 rounded-2xl border transition duration-200 cursor-pointer flex flex-col justify-between ${
+                    isSelected 
+                    ? 'bg-sky-50 dark:bg-sky-950/60 border-sky-500 shadow-md ring-2 ring-sky-500/20' 
+                    : isToday 
+                    ? 'bg-white dark:bg-slate-800 border-sky-400' 
+                    : 'bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                }`;
+
+                cell.onclick = () => {
+                    selectedDateStr = dateKey;
+                    renderCalendar();
+                    renderTaskList();
+                };
+
+                let cellHeader = `
+                    <div class="flex items-center justify-between">
+                        <span class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${
+                            isToday ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-700 dark:text-slate-300'
+                        }">${day}</span>
+                        ${dayTasks.length > 0 ? `<span class="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-1.5 py-0.5 rounded-md font-mono">${dayTasks.length}</span>` : ''}
+                    </div>
+                `;
+
+                let miniPills = '<div class="space-y-1 overflow-hidden mt-1">';
+                dayTasks.slice(0, 2).forEach(t => {
+                    const cat = CATEGORIES[t.category] || CATEGORIES.cours;
+                    miniPills += `
+                        <div class="text-[10px] px-1.5 py-0.5 rounded-lg truncate ${cat.bgLight} ${cat.text} font-semibold flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full ${cat.color} shrink-0"></span>
+                            <span class="truncate ${t.completed ? 'line-through opacity-60' : ''}">${t.title}</span>
+                        </div>
+                    `;
+                });
+                if (dayTasks.length > 2) {
+                    miniPills += `<div class="text-[9px] text-slate-400 font-semibold px-1">+${dayTasks.length - 2}</div>`;
+                }
+                miniPills += '</div>';
+
+                cell.innerHTML = cellHeader + miniPills;
+                grid.appendChild(cell);
+            }
+
+            container.appendChild(grid);
+        }
+
+        function renderWeekView(container) {
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-7 gap-2';
+
+            const startOfWeek = new Date(currentDate);
+            startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
+            const todayStr = formatDateKey(new Date());
+
+            for (let i = 0; i < 7; i++) {
+                const dayDate = new Date(startOfWeek);
+                dayDate.setDate(startOfWeek.getDate() + i);
+                const dateKey = formatDateKey(dayDate);
+                const dayTasks = tasks.filter(t => t.date === dateKey);
+                const isSelected = dateKey === selectedDateStr;
+                const isToday = dateKey === todayStr;
+
+                const col = document.createElement('div');
+                col.className = `p-2.5 rounded-2xl border transition min-h-[220px] flex flex-col cursor-pointer ${
+                    isSelected ? 'bg-sky-50 dark:bg-sky-950/60 border-sky-500' : isToday ? 'bg-white dark:bg-slate-800 border-sky-400' : 'bg-white/80 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800'
+                }`;
+
+                col.onclick = () => {
+                    selectedDateStr = dateKey;
+                    renderCalendar();
+                    renderTaskList();
+                };
+
+                const locale = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US';
+                const dayName = dayDate.toLocaleDateString(locale, { weekday: 'short' });
+
+                col.innerHTML = `
+                    <div class="text-center pb-2 border-b border-slate-200 dark:border-slate-800 mb-2">
+                        <p class="text-[11px] text-slate-400 font-semibold">${dayName}</p>
+                        <p class="text-base font-bold text-slate-800 dark:text-white">${dayDate.getDate()}</p>
+                    </div>
+                    <div class="space-y-1.5 flex-grow overflow-y-auto max-h-[180px]">
+                        ${dayTasks.map(t => {
+                            const cat = CATEGORIES[t.category] || CATEGORIES.cours;
+                            return `
+                                <div class="p-1.5 rounded-xl text-[11px] ${cat.bgLight} ${cat.border} border">
+                                    <p class="font-bold ${cat.text} truncate">${t.title}</p>
+                                    <p class="text-[9px] text-slate-500 mt-0.5">${t.time}</p>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                grid.appendChild(col);
+            }
+
+            container.appendChild(grid);
+        }
+
+        function renderDayView(container) {
+            const dayTasks = tasks.filter(t => t.date === selectedDateStr);
+            const wrapper = document.createElement('div');
+            wrapper.className = 'space-y-3';
+
+            const t = TRANSLATIONS[currentLang];
+            const locale = currentLang === 'ar' ? 'ar-EG' : currentLang === 'fr' ? 'fr-FR' : 'en-US';
+            const dateObj = new Date(selectedDateStr + 'T00:00:00');
+            const formatted = dateObj.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+            wrapper.innerHTML = `
+                <div class="p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/40 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${formatted}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">${t.statTotal}: ${dayTasks.length}</p>
+                    </div>
+                    <button onclick="openModal('${selectedDateStr}')" class="px-3 py-1.5 text-xs bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-xl shadow transition flex items-center gap-1 cursor-pointer">
+                        <i class="fa-solid fa-plus"></i> ${t.btnAddTask}
+                    </button>
+                </div>
+            `;
+
+            if (dayTasks.length === 0) {
+                wrapper.innerHTML += `
+                    <div class="p-8 text-center text-slate-400 text-xs glass-card rounded-2xl">
+                        <i class="fa-regular fa-calendar-xmark text-3xl mb-2 opacity-40 block"></i>
+                        <p>${t.notifEmpty}</p>
+                    </div>
+                `;
+            } else {
+                dayTasks.forEach(tk => {
+                    const cat = CATEGORIES[tk.category] || CATEGORIES.cours;
+                    const card = document.createElement('div');
+                    card.className = `p-3.5 rounded-2xl border bg-white dark:bg-slate-900/80 ${cat.border} flex items-center justify-between gap-3`;
+                    card.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full ${cat.color} shrink-0"></div>
+                            <div>
+                                <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white ${tk.completed ? 'line-through text-slate-400' : ''}">${tk.title}</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5"><i class="fa-regular fa-clock ml-1"></i>${tk.time}</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full ${tk.priority === 'high' ? 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'}">
+                            ${tk.priority === 'high' ? t.priHigh : t.priMed}
+                        </span>
+                    `;
+                    wrapper.appendChild(card);
+                });
+            }
+
+            container.appendChild(wrapper);
+        }
+
+        // Render Task List (Sidebar)
+        function renderTaskList() {
+            const listEl = document.getElementById('tasks-list');
+            listEl.innerHTML = '';
+            const t = TRANSLATIONS[currentLang];
+
+            let filtered = tasks.filter(tk => {
+                const matchesDate = tk.date === selectedDateStr;
+                const matchesCategory = currentFilter === 'all' || tk.category === currentFilter;
+                const matchesSearch = tk.title.toLowerCase().includes(searchQuery) || (tk.notes && tk.notes.toLowerCase().includes(searchQuery));
+                return matchesCategory && matchesSearch && (currentView === 'day' ? true : matchesDate);
+            });
+
+            document.getElementById('selected-date-badge').textContent = `${filtered.length}`;
+
+            if (filtered.length === 0) {
+                listEl.innerHTML = `
+                    <div class="p-8 text-center text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
+                        <i class="fa-solid fa-clipboard-check text-3xl mb-2 opacity-40 block"></i>
+                        <p class="text-xs font-semibold">${t.notifEmpty}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.sort((a, b) => a.time.localeCompare(b.time)).forEach(task => {
+                const cat = CATEGORIES[task.category] || CATEGORIES.cours;
+                const card = document.createElement('div');
+                card.className = `p-3.5 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition flex items-start justify-between gap-3 group shadow-sm`;
+
+                const catLabel = t[`cat${task.category.charAt(0).toUpperCase() + task.category.slice(1)}`] || task.category;
+
+                card.innerHTML = `
+                    <div class="flex items-start gap-3 flex-grow min-w-0">
+                        <button onclick="toggleTaskComplete('${task.id}')" class="mt-0.5 w-5 h-5 rounded-lg border flex items-center justify-center transition shrink-0 cursor-pointer ${
+                            task.completed ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300 dark:border-slate-600 hover:border-sky-500'
+                        }">
+                            ${task.completed ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+                        </button>
+                        <div class="min-w-0 flex-grow">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate ${task.completed ? 'line-through text-slate-400 dark:text-slate-500' : ''}">${task.title}</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full ${cat.bgLight} ${cat.text} font-bold">${catLabel}</span>
+                            </div>
+                            
+                            ${task.notes ? `<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${task.notes}</p>` : ''}
+                            
+                            <div class="flex items-center gap-3 mt-2 text-[11px] text-slate-400">
+                                <span><i class="fa-regular fa-clock ml-1"></i>${task.time}</span>
+                                <span class="flex items-center gap-1">
+                                    <i class="fa-solid fa-bell text-sky-500"></i> 
+                                    ${t[`rem${task.reminderRule}`] || task.reminderRule}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition shrink-0">
+                        <button onclick="editTask('${task.id}')" class="p-1.5 text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer">
+                            <i class="fa-solid fa-pen text-xs"></i>
+                        </button>
+                        <button onclick="deleteTask('${task.id}')" class="p-1.5 text-slate-400 hover:text-rose-500 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                `;
+
+                listEl.appendChild(card);
+            });
+        }
+
+        // Action Handlers
+        function toggleTaskComplete(id) {
+            tasks = tasks.map(t => t.id === id ? { ...t, completed: !t.completed } : t);
+            saveTasks();
+            renderCalendar();
+            renderTaskList();
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderCalendar();
+            renderTaskList();
+            showToast(TRANSLATIONS[currentLang].toastDeleted, 'info');
+        }
+
+        // Notification Scanner
+        function checkNotificationsAndCountdowns() {
+            const now = new Date();
+            tasks.forEach(task => {
+                if (task.completed) return;
+                const taskDateTime = new Date(`${task.date}T${task.time}:00`);
+                const diffHours = (taskDateTime - now) / (1000 * 60 * 60);
+
+                if ((task.reminderRule === '24h') && diffHours > 11.9 && diffHours <= 24 && !task.notified24h) {
+                    triggerNotification(task, `H-24 Alert: ${task.title}`);
+                    task.notified24h = true;
+                    saveTasks();
+                }
+
+                if ((task.reminderRule === '24h' || task.reminderRule === '12h') && diffHours > 0 && diffHours <= 12 && !task.notified12h) {
+                    triggerNotification(task, `H-12 Alert: ${task.title}`);
+                    task.notified12h = true;
+                    saveTasks();
+                }
+            });
+        }
+
+        function triggerNotification(task, message) {
+            const newNotif = {
+                id: 'notif-' + Date.now(),
+                taskId: task.id,
+                message: message,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+            notifications.unshift(newNotif);
+            saveNotifications();
+            showToast(message, 'warning');
+        }
+
+        function renderNotifications() {
+            const list = document.getElementById('notif-list');
+            const badge = document.getElementById('notif-badge');
+            const badgeCount = document.getElementById('notif-badge-count');
+            const t = TRANSLATIONS[currentLang];
+
+            list.innerHTML = '';
+            if (notifications.length === 0) {
+                badge.classList.add('hidden');
+                badgeCount.classList.add('hidden');
+                list.innerHTML = `
+                    <div class="p-6 text-center text-slate-400 text-xs">
+                        <i class="fa-regular fa-bell-slash text-2xl mb-2 opacity-50 block"></i>
+                        ${t.notifEmpty}
+                    </div>
+                `;
+                return;
+            }
+
+            badge.classList.remove('hidden');
+            badgeCount.classList.remove('hidden');
+            badgeCount.textContent = notifications.length;
+
+            notifications.forEach(n => {
+                const item = document.createElement('div');
+                item.className = 'p-3 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition flex items-start gap-2.5';
+                item.innerHTML = `
+                    <div class="w-2 h-2 rounded-full bg-sky-500 mt-1.5 shrink-0"></div>
+                    <div class="flex-grow text-xs">
+                        <p class="font-bold text-slate-800 dark:text-slate-200">${n.message}</p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">${n.time}</p>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        // Stats & Countdown Engine
+        function updateStats() {
+            document.getElementById('stat-total').textContent = tasks.length;
+            document.getElementById('stat-pending').textContent = tasks.filter(t => !t.completed).length;
+            document.getElementById('stat-completed').textContent = tasks.filter(t => t.completed).length;
+        }
+
+        function updateUrgentTimerUI() {
+            const now = new Date();
+            const pendingTasks = tasks.filter(t => !t.completed).map(t => {
+                return { ...t, dateTime: new Date(`${t.date}T${t.time}:00`) };
+            }).filter(t => t.dateTime > now).sort((a, b) => a.dateTime - b.dateTime);
+
+            const nextDueEl = document.getElementById('stat-next-due');
+            const timerEl = document.getElementById('stat-next-timer');
+            const t = TRANSLATIONS[currentLang];
+
+            if (pendingTasks.length === 0) {
+                nextDueEl.textContent = t.noNextDue;
+                timerEl.textContent = '--:--:--';
+                return;
+            }
+
+            const closest = pendingTasks[0];
+            nextDueEl.textContent = closest.title;
+
+            const diff = closest.dateTime - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            timerEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Toast Messages
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const bgColors = { success: 'bg-emerald-600', warning: 'bg-amber-600', info: 'bg-sky-600' };
+
+            toast.className = `${bgColors[type]} text-white px-4 py-3 rounded-2xl shadow-xl text-xs font-bold flex items-center gap-2 transition duration-300 transform translate-y-5 opacity-0`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-info"></i><span>${msg}</span>`;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('translate-y-5', 'opacity-0'), 50);
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
