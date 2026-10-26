@@ -1,686 +1,377 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <title>دليل الجزائر العاصمة السياحي - ENSTP</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --primary: #6366f1;
-  --primary-glow: rgba(99, 102, 241, 0.35);
-  --accent: #f59e0b;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --radius: 20px;
-  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
 }
-
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  background: #0f172a;
-  background-image: var(--bg-gradient);
-  background-attachment: fixed;
-  color: var(--text-main);
-  font-family: var(--font);
-  min-height: 100vh;
-  padding-bottom: 60px;
+html[data-theme="dark"]{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-.wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 24px 20px;
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
+
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
+
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
+
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
+
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
 }
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
 
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 28px;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 32px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.brand-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), #a855f7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 20px var(--primary-glow);
-}
-
-.brand-icon svg { width: 26px; height: 26px; stroke: #fff; }
-
-.brand-title {
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  background: linear-gradient(to right, #fff, var(--text-muted));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.lg-btn-group {
-  display: flex;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px;
-  border-radius: 30px;
-  border: 1px solid var(--card-border);
-}
-
-.lg-btn-group button {
-  border: none;
-  background: transparent;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.lg-btn-group button[aria-pressed="true"] {
-  background: var(--primary);
-  color: #fff;
-  box-shadow: 0 0 15px var(--primary-glow);
-}
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.hero h1 {
-  font-size: clamp(28px, 5vw, 44px);
-  font-weight: 900;
-  margin: 0 0 12px;
-  background: linear-gradient(to right, #ffffff, #cbd5e1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-  color: var(--text-muted);
-  font-size: 16px;
-  max-width: 600px;
-  margin: 0 auto 24px;
-}
-
-.stats-bar {
-  display: inline-flex;
-  gap: 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--card-border);
-  padding: 12px 28px;
-  border-radius: 40px;
-  backdrop-filter: blur(10px);
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.stat-item span { color: var(--accent); font-weight: 900; }
-
-/* Search Box */
-.search-container {
-  max-width: 500px;
-  margin: 24px auto 0;
-  position: relative;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 16px 24px;
-  border-radius: 30px;
-  border: 1px solid var(--card-border);
-  background: rgba(15, 23, 42, 0.8);
-  color: #fff;
-  font-family: var(--font);
-  font-size: 15px;
-  outline: none;
-  transition: all 0.3s;
-  box-shadow: var(--shadow);
-}
-
-.search-container input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 25px var(--primary-glow);
-}
-
-/* Places Grid */
-.places-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 24px;
-}
-
-/* Touristic Card */
-.card {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px var(--primary-glow);
-}
-
-.card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.badge-num {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #a855f7);
-  color: #fff;
-  font-weight: 800;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 4px 12px var(--primary-glow);
-}
-
-.title-area h3 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #fff;
-}
-
-.place-type {
-  margin: 4px 0 0;
-  font-size: 13px;
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.dist-badge {
-  text-align: left;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 800;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.dist-badge small {
-  display: block;
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.info-group {
-  margin: 16px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.info-item {
-  font-size: 13px;
-  color: #cbd5e1;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.info-item b { color: var(--text-muted); font-weight: 600; }
-
-.review-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  padding: 12px 14px;
-  font-size: 13px;
-  color: #e2e8f0;
-  border-right: 3px solid var(--primary);
-  margin-top: 8px;
-  line-height: 1.6;
-}
-
-.note-card {
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  color: #fbbf24;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-.card-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn {
-  flex: 1;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 13px;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.3s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), #4f46e5);
-  color: #fff;
-  box-shadow: 0 4px 15px var(--primary-glow);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px var(--primary-glow);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  border: 1px solid var(--card-border);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 768px) {
-  .places-grid { grid-template-columns: 1fr; }
-  .header { flex-direction: column; text-align: center; }
-}
+.hero{min-height:56svh}
+.hidden{display:none!important}
+.stats-bar{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:22px;padding:12px 26px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);font-weight:700;font-size:.86rem;color:#c9d6ea}
+.stats-bar span span{color:var(--gold);font-weight:900;margin-inline-start:6px}
+.search-box{max-width:560px;margin:24px auto 0;display:flex;align-items:center;border-radius:20px;background:var(--bar-s);border:1px solid var(--glass-b);backdrop-filter:blur(16px);box-shadow:var(--bar-shadow);transition:.3s}
+.search-box:focus-within{border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,184,65,.22),var(--bar-shadow)}
+.search-box i{padding-inline:20px;color:var(--muted)}
+.search-box input{flex:1;min-width:0;padding:16px 4px;background:transparent;border:0;outline:0;font:inherit;font-size:.95rem;font-weight:600;color:var(--head)}
+.search-box input::placeholder{color:var(--muted);font-weight:500}
+.places{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:26px}
+.place{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:var(--radius);padding:26px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.place:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.p-id{display:flex;gap:12px;align-items:center;min-width:0}
+.badge-num{flex-shrink:0;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;font-family:'Inter',sans-serif;font-weight:900;font-size:.95rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 8px 20px rgba(245,184,65,.4)}
+.p-id h3{font-size:1.08rem;font-weight:900;color:var(--head);line-height:1.5}
+.p-type{font-size:.78rem;font-weight:800;color:var(--tag-c)}
+.dist{flex-shrink:0;text-align:center;padding:7px 12px;border-radius:14px;font-size:.84rem;font-weight:900;color:var(--head);background:var(--soft);border:1px solid var(--card-b);white-space:nowrap}
+.dist small{display:block;font-size:.66rem;font-weight:600;color:var(--muted)}
+.info{display:grid;gap:8px;margin:14px 0}
+.info div{font-size:.82rem;color:var(--desc);line-height:1.8}
+.info b{color:var(--muted);font-weight:800;margin-inline-end:6px}
+.review{margin-top:8px;padding:12px 14px;border-radius:14px;font-size:.82rem;line-height:1.9;color:var(--ink);background:var(--soft);border-inline-start:3px solid var(--gold)}
+.review b{display:block;color:var(--muted);font-size:.74rem;margin-bottom:2px}
+.note{margin-top:10px;padding:10px 13px;border-radius:12px;font-size:.78rem;line-height:1.8;color:#92400e;background:rgba(245,184,65,.16);border:1px solid rgba(245,184,65,.35)}
+html[data-theme="dark"] .note{color:var(--gold-2)}
+.p-act{display:flex;gap:10px;margin-top:20px}
+.p-act .btn,.p-act .btn2{flex:1;margin:0;padding:12px 10px;font-size:.8rem;border-radius:14px}
+.btn2{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;color:var(--btn-c);background:var(--soft);border:1px solid var(--glass-b);transition:.3s var(--ease)}
+.btn2:hover{color:#14100a;border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.none{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);font-weight:800}
+main{padding-top:60px}
 </style>
 </head>
-<body>
-
-<div class="wrap">
-  <!-- Header Bar -->
-  <header class="header">
-    <div class="brand">
-      <div class="brand-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 21h16M6 21v-8M18 21v-8M6 13a6 6 0 0 1 12 0M12 4v3M9 21v-5a3 3 0 0 1 6 0v5"/>
-        </svg>
-      </div>
-      <div class="brand-title" id="app-title">دليل الجزائر السياحي - ENSTP</div>
-    </div>
-    <div class="lg-btn-group" id="lg">
-      <button type="button" data-l="ar" aria-pressed="true">عربي</button>
-      <button type="button" data-l="fr">FR</button>
-      <button type="button" data-l="en">EN</button>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1 id="hero-title">استكشف أفضل المعالم السياحية في الجزائر العاصمة</h1>
-    <p id="hero-subtitle">دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالقرب من المدرسة الوطنية العليا للمشاريع الكبرى.</p>
-    
-    <div class="stats-bar">
-      <div class="stat-item">المعالم السياحية: <span id="stat-count">14</span></div>
-      <div class="stat-item">• الانطلاق: <span>ENSTP القبة</span></div>
-    </div>
-
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="ابحث عن متحف، حديقة، أو معلم سياحي...">
-    </div>
-  </section>
-
-  <!-- Main Places List -->
-  <main class="places-grid" id="places-container"></main>
+<body data-lang="ar">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
+<header>
+<div class="bar">
+<div class="logo">
+<div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div>
+<span id="app-title">دليل الجزائر السياحي - ENSTP</span>
 </div>
-
+<div class="tools">
+<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span id="back-txt">العودة للرئيسية</span></a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang" id="lg">
+<button type="button" data-l="ar" class="on">AR</button>
+<button type="button" data-l="fr">FR</button>
+<button type="button" data-l="en">EN</button>
+</div>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-mosque"></i> Alger</span>
+<h1 id="hero-title">استكشف أفضل المعالم السياحية في الجزائر العاصمة</h1>
+<p id="hero-subtitle">دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالجزائر العاصمة.</p>
+<div class="stats-bar"><span><span id="st-count-l">المعالم السياحية:</span><span id="stat-count">14</span></span><span><span id="st-start-l">الانطلاق:</span><span id="st-start-v">ENSTP القبة</span></span></div>
+<div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="search-input" placeholder="ابحث عن متحف، حديقة، أو معلم سياحي..." autocomplete="off"></div>
+</div>
+</section>
+<main><div class="places" id="places-container"></div></main>
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title">ENSTP</p>
+<p id="footer-sub">Alger · Kouba</p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
-const O = { lat: 36.7255818, lng: 3.0695956 }; // ENSTP Coordinates
-let LG = "ar";
-
+const O = { lat: 36.7255818, lng: 3.0695956 }; // ENSTP
 const I = {
-  fr: {
-    app: "Guide Touristique ENSTP",
-    heroT: "Explorez les meilleurs lieux touristiques d'Alger",
-    heroS: "Guide complet des 14 principaux sites touristiques et culturels.",
-    rT: "En voiture",
-    maps: "Voir sur Maps",
-    hrs: "Horaires :",
-    nohrs: "Non renseignés",
-    rat: "Note :",
-    rvw: "avis",
-    rvl: "Avis des visiteurs :",
-    bird: "à vol d'oiseau",
-    search: "Rechercher un musée, jardin ou monument...",
-    tel: "Tél :"
-  },
-  en: {
-    app: "ENSTP Tourist Guide",
-    heroT: "Explore the Best Tourist Spots in Algiers",
-    heroS: "Comprehensive guide to 14 top historical and cultural landmarks.",
-    rT: "Drive route",
-    maps: "View on Maps",
-    hrs: "Hours:",
-    nohrs: "N/A",
-    rat: "Rating:",
-    rvw: "reviews",
-    rvl: "Visitor Review:",
-    bird: "as the crow flies",
-    search: "Search museum, garden or monument...",
-    tel: "Phone:"
-  },
-  ar: {
-    app: "دليل الجزائر السياحي - ENSTP",
-    heroT: "استكشف أفضل المعالم السياحية في الجزائر العاصمة",
-    heroS: "دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالجزائر العاصمة.",
-    rT: "طريق السيارة",
-    maps: "عرض في الخريطة",
-    hrs: "الأوقات:",
-    nohrs: "غير متوفرة",
-    rat: "التقييم:",
-    rvw: "تقييمًا",
-    rvl: "رأي الزوار:",
-    bird: "خط مستقيم",
-    search: "ابحث عن متحف، حديقة، أو معلم سياحي...",
-    tel: "الهاتف:"
-  }
+fr:{app:"Guide Touristique ENSTP",heroT:"Explorez les meilleurs lieux touristiques d'Alger",heroS:"Guide complet des 14 principaux sites touristiques et culturels.",rT:"En voiture",maps:"Voir sur Maps",hrs:"Horaires :",nohrs:"Non renseignés",rat:"Note :",rvw:"avis",rvl:"Avis des visiteurs :",bird:"à vol d'oiseau",search:"Rechercher un musée, jardin ou monument...",tel:"Tél :",stCount:"Sites touristiques :",stStart:"Départ :",stFrom:"ENSTP Kouba",none:"Aucun résultat trouvé",back:"Retour à l'accueil",m:"m",km:"km"},
+en:{app:"ENSTP Tourist Guide",heroT:"Explore the Best Tourist Spots in Algiers",heroS:"Comprehensive guide to 14 top historical and cultural landmarks.",rT:"Drive route",maps:"View on Maps",hrs:"Hours:",nohrs:"N/A",rat:"Rating:",rvw:"reviews",rvl:"Visitor Review:",bird:"as the crow flies",search:"Search museum, garden or monument...",tel:"Phone:",stCount:"Landmarks:",stStart:"Start:",stFrom:"ENSTP Kouba",none:"No matching results found",back:"Back to Home",m:"m",km:"km"},
+ar:{app:"دليل الجزائر السياحي - ENSTP",heroT:"استكشف أفضل المعالم السياحية في الجزائر العاصمة",heroS:"دليل شامل لأبرز 14 موقعاً سياحياً وتاريخياً وثقافياً بالجزائر العاصمة.",rT:"طريق السيارة",maps:"عرض في الخريطة",hrs:"الأوقات:",nohrs:"غير متوفرة",rat:"التقييم:",rvw:"تقييمًا",rvl:"رأي الزوار:",bird:"خط مستقيم",search:"ابحث عن متحف، حديقة، أو معلم سياحي...",tel:"الهاتف:",stCount:"المعالم السياحية:",stStart:"الانطلاق:",stFrom:"ENSTP القبة",none:"لم يتم العثور على أي نتائج مطابقة للبحث",back:"العودة للرئيسية",m:"م",km:"كم"}
 };
-
-// ONLY Tourist Places Dataset (14 Locations)
 const TOURIST_PLACES = [
-  {
-    n: { ar: "المتحف الوطني باردو", fr: "Musée national du Bardo", en: "Bardo National Museum" },
-    t: { ar: "ما قبل التاريخ والإثنوغرافيا", fr: "Préhistoire et ethnographie", en: "Prehistory and ethnography" },
-    h: { ar: "9:00 - 17:00 (الجمعة: 14:00 - 17:00)، مغلق الأحد", fr: "9h-17h (vendredi : 14h-17h), fermé le dimanche", en: "9:00-17:00 (Fri: 14:00-17:00), closed Sun" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJBb3owGiyjxIRaOCcMbN-ZNg",
-    lat: 36.7607172, lng: 3.0471926,
-    note: { ar: "فن الطاسيلي الصخري والتطريز التقليدي في قصر مغاربي قديم.", fr: "Art rupestre du Tassili et broderies traditionnelles dans un ancien palais.", en: "Tassili rock art and traditional embroidery in a neo-Moorish palace." },
-    ph: "+213 21 64 76 41", rt: [4.5, 1496],
-    rv: { ar: "مجموعة مبهرة من الآثار والأعمال الفنية في قصر قديم بطراز ممتاز.", fr: "Collection impressionnante dans un ancien palais néo-mauresque.", en: "Impressive collection in a former neo-Moorish palace." }
-  },
-  {
-    n: { ar: "المتحف الوطني للفنون الجميلة", fr: "Musée national des Beaux-Arts", en: "National Museum of Fine Arts" },
-    t: { ar: "متحف فني", fr: "Musée d'art", en: "Art museum" },
-    h: { ar: "9:00 - 17:00 (الجمعة والسبت: من 10:00)، مغلق الأحد", fr: "9h-17h (vendredi et samedi : dès 10h), fermé le dimanche", en: "9:00-17:00 (Fri & Sat: from 10:00), closed Sun" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJbzZuJJyyjxIRSEWBr_Y6jhk",
-    lat: 36.7461003, lng: 3.0722615,
-    note: { ar: "الدخول نحو 200 دج. شرفة تطل بشكل إيقوني على حديقة التجارب.", fr: "Entrée ~200 DA. Terrasse avec vue sur le Jardin d'Essai.", en: "Entry ~200 DA. Terrace with view of the Botanical Garden." },
-    ph: "+213 551 40 20 70", rt: [4.6, 885],
-    rv: { ar: "رحلة رائعة عبر الفنون مع إطلالة بانورامية لا تُنسى.", fr: "Un voyage à travers les arts, avec une vue panoramique.", en: "A journey through the arts with a panoramic view." }
-  },
-  {
-    n: { ar: "حديقة التجارب بالحامة", fr: "Jardin d'Essai du Hamma", en: "Jardin d'Essai (Botanical Garden)" },
-    t: { ar: "حديقة نباتية تاريخية", fr: "Jardin botanique", en: "Botanical garden" },
-    h: { ar: "10:00 - 19:00 يوميًا", fr: "10h-19h tous les jours", en: "10:00-19:00 daily" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJ8du20ZiyjxIRLqnQ7p7GxYA",
-    lat: 36.7484043, lng: 3.075778,
-    note: { ar: "الدخول 150 دج للشخص. محطة المترو متوفرة عند المدخل مباشرة.", fr: "Entrée ~150 DA. Station de métro à l'entrée.", en: "Entry ~150 DA. Metro station right at the entrance." },
-    rt: [4.5, 7501],
-    rv: { ar: "أفضل وأجمل مكان طبيعي في العاصمة، طبيعة خلابة وأشجار نادرة.", fr: "Meilleur endroit d'Alger, verdure superbe.", en: "Best spot in Algiers, fantastic greenery." }
-  },
-  {
-    n: { ar: "ساحة الشهداء", fr: "Place des Martyrs", en: "Martyrs' Square" },
-    t: { ar: "ساحة تاريخية ومدخل القصبة", fr: "Place historique, entrée de la Casbah", en: "Historic square & Casbah entrance" },
-    h: { ar: "24/24 ساعة", fr: "24h/24", en: "24/7" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJ0aNHCv6yjxIRwOCawOfbpo0",
-    lat: 36.78458, lng: 3.0624425,
-    note: { ar: "ينصح بالزيارة نهارًا للاستمتاع بأسواق واكتشافات القصبة.", fr: "Conseillé d'y aller de jour.", en: "Recommended to visit during daylight." },
-    ph: "+213 21 08 19 62", rt: [4.5, 6410],
-    rv: { ar: "مكان مليء بالتاريخ في قلب العاصمة ونقطة انطلاق لزيارة القصبة.", fr: "Lieu plein d'histoire au cœur d'Alger.", en: "Historic spot in the heart of Algiers." }
-  },
-  {
-    n: { ar: "كنيسة السيدة الإفريقية", fr: "Basilique Notre-Dame d'Afrique", en: "Notre-Dame d'Afrique Basilica" },
-    t: { ar: "معلم تاريخي وإطلالة ساحرة", fr: "Basilique avec vue sur la baie", en: "Basilica with bay view" },
-    h: { ar: "11:00-12:30 و 15:00-17:30 (الجمعة: 10:30-12:30)", fr: "11h-12h30 et 15h-17h30", en: "11:00-12:30 & 15:00-17:30" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJu0874LuzjxIRZw7ZrxzdAz8",
-    lat: 36.8010025, lng: 3.0425614,
-    note: { ar: "الوصول بالتلفريك أو بالسيارة. إطلالة ممتازة على البحر.", fr: "Accès en téléphérique ou en voiture.", en: "Access by cable car or car." },
-    ph: "+213 23 15 40 19", rt: [4.5, 4245],
-    rv: { ar: "أجمل إطلالة panoramique على البحر والعاصمة.", fr: "Les plus belles vues de la ville.", en: "The best views over the bay." }
-  },
-  {
-    n: { ar: "البريد المركزي", fr: "Grande Poste d'Alger", en: "Algiers Grand Post Office" },
-    t: { ar: "معلم معماري بالطراز المغاربي الجديد", fr: "Monument néo-mauresque", en: "Neo-Moorish landmark" },
-    h: { ar: "8:00 - 18:00 (الخميس: حتى 16:00)، مغلق الجمعة", fr: "8h-18h, fermé le vendredi", en: "8:00-18:00, closed Friday" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJVdH_r_eyjxIRL-Nwynfanx8",
-    lat: 36.7728754, lng: 3.0593893,
-    note: { ar: "تحفة هندسية ومحاط بمقاهٍ ومحلات تجارية نشطة.", fr: "Cafés et boutiques autour.", en: "Surrounded by cafés and shops." },
-    ph: "+213 23 92 32 00", rt: [4.5, 1619],
-    rv: { ar: "تحفة معمارية في وسط العاصمة تم الحفاظ عليها ببراعة.", fr: "Chef-d'œuvre néo-mauresque très bien entretenu.", en: "A neo-Moorish masterpiece in central Algiers." }
-  },
-  {
-    n: { ar: "جامع كتشاوة", fr: "Mosquée Ketchaoua", en: "Ketchaoua Mosque" },
-    t: { ar: "جامع تاريخي عند سفح القصبة", fr: "Mosquée historique", en: "Historic mosque" },
-    h: { ar: "24/24 ساعة", fr: "24h/24", en: "24/7" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJgXehOv6yjxIRRwuxjEdaDvU",
-    lat: 36.7850182, lng: 3.0608303,
-    note: { ar: "يعكس مزيجاً رائعاً بين العمارة البيزنطية والمغاربية.", fr: "Mélange byzantin et mauresque.", en: "Unique Byzantine and Moorish architecture." },
-    rt: [4.7, 1472],
-    rv: { ar: "عمارة فريدة ومكان هادئ ونظيف ومفعم بالروحانيات والتاريخ.", fr: "Architecture unique, lieu paisible et très propre.", en: "Unique architecture, peaceful and clean." }
-  },
-  {
-    n: { ar: "منتزه الصابلات (Les Sablettes)", fr: "Sablette (Les Sablettes)", en: "Les Sablettes Seafront" },
-    t: { ar: "شاطئ وممشى سياحي", fr: "Plage et promenade", en: "Beach & seafront walk" },
-    h: { ar: "مفتوح 24/24 ساعة", fr: "Ouvert 24h/24", en: "Open 24/7" },
-    u: "https://maps.app.goo.gl/EJkWugRLghbLCmWX7",
-    lat: 36.7422222, lng: 3.1180556,
-    note: { ar: "ملاذ عائلي ممتاز للمشي والأنشطة الترفيهية ومقابلة البحر.", fr: "Parfait pour les promenades en famille.", en: "Great for family walks along the sea." }
-  },
-  {
-    n: { ar: "متنزه دريم بارك (Dream Park)", fr: "Dream Park", en: "Dream Park Amusement Park" },
-    t: { ar: "مدينة ألعاب وترفيه", fr: "Parc d'attractions", en: "Amusement park" },
-    h: { ar: "10:00 - 22:00 يوميًا", fr: "10h-22h tous les jours", en: "10:00-22:00 daily" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJvSi1eQtSjhIR7SM16aDoKhg",
-    lat: 36.7358131, lng: 3.1602967,
-    rt: [3.7, 1865],
-    rv: { ar: "منتزه ألعاب كبير مناسب للعائلات والأطفال وبأسعار معقولة.", fr: "Grand parc pour adultes et enfants.", en: "Big amusement park for families." }
-  },
-  {
-    n: { ar: "ساحة الأمير عبد القادر", fr: "Place Emir Abdelkader", en: "Emir Abdelkader Square" },
-    t: { ar: "ساحة تاريخية بوسط المدينة", fr: "Place du centre-ville", en: "Downtown historic square" },
-    h: { ar: "مفتوح دائماً", fr: "Toujours ouvert", en: "Always open" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJ1bpbEviyjxIRvbgRMigeGz0",
-    lat: 36.7761654, lng: 3.0581681,
-    note: { ar: "يتوسطها تمثال الأمير عبد القادر وتحيط بها المقاهي الكلاسيكية.", fr: "Statue historique au cœur de la ville.", en: "Historic statue in central Algiers." }
-  },
-  {
-    n: { ar: "دار مصطفى باشا", fr: "Dar Mustapha Pacha", en: "Dar Mustapha Pacha Palace" },
-    t: { ar: "قصر ومتحف للمنمنمات والخط العربي", fr: "Palais-musée", en: "Palace museum" },
-    h: { ar: "9:00 - 16:00 (الجمعة: 9:00 - 12:00)", fr: "9h-16h (vendredi : 9h-12h)", en: "9:00-16:00 (Fri: 9:00-12:00)" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJtxG6J_6yjxIRLf-sqIsln-U",
-    lat: 36.7856078, lng: 3.0609762,
-    ph: "+213 23 40 74 46", rt: [4.7, 297],
-    rv: { ar: "قصر مغاربي يعود لعام 1798، فناء أندلسي فاخر ومعروضات خط رائعة.", fr: "Palais mauresque de 1798 abritant des miniatures.", en: "Moorish palace from 1798 with fine miniatures." }
-  },
-  {
-    n: { ar: "مركز باب الزوار التجاري", fr: "Bab Ezzouar Mall", en: "Bab Ezzouar Shopping Mall" },
-    t: { ar: "مركز تجاري وترفيلي", fr: "Centre commercial", en: "Shopping mall" },
-    h: { ar: "9:00 - 23:00 يومياً", fr: "9h-23h tous les jours", en: "9:00-23:00 daily" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJP_5q4JVRjhIRa3CUt0DeRSM",
-    lat: 36.7120829, lng: 3.1973789,
-    rt: [4.1, 7814],
-    rv: { ar: "مول ضخم يتوفر على محلات تجارية عالمية ومطاعم وسينما.", fr: "Grand centre avec marques et restaurants.", en: "Large mall with international brands & food court." }
-  },
-  {
-    n: { ar: "مركز غاردن سيتي (Garden City)", fr: "Garden City Mall", en: "Garden City Mall" },
-    t: { ar: "مركز تجاري عصري مفتوح", fr: "Centre commercial", en: "Shopping & Lifestyle Mall" },
-    h: { ar: "10:00 - 22:00 (الجمعة والسبت حتى 23:00)", fr: "10h-22h (vendredi et samedi : 11h-23h)", en: "10:00-22:00 (Fri & Sat: 11:00-23:00)" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJyzHJhdmxjxIRQq2LGtxdcYY",
-    lat: 36.7505504, lng: 2.9517546,
-    ph: "+213 23 38 59 58", rt: [4.2, 6227],
-    rv: { ar: "تصميم عصري راقٍ بمساحات مفتوحة ومطاعم متنوعة ممتازة.", fr: "Centre magnifique et immense.", en: "Beautiful modern outdoor shopping center." }
-  },
-  {
-    n: { ar: "جامع الجزائر الكبير", fr: "Grande Mosquée d'Algérie", en: "Great Mosque of Algiers" },
-    t: { ar: "صرح إسلامي ومعلم حضاري عالمي", fr: "Grande mosquée", en: "Grand Mosque" },
-    h: { ar: "مفتوح 24/24 ساعة", fr: "Ouvert 24h/24", en: "Open 24/7" },
-    u: "https://www.google.com/maps/place/?q=place_id:ChIJbcKe3X1SjhIRBoSa6JtXOrE",
-    lat: 36.7350028, lng: 3.1402217,
-    note: { ar: "أكبر مسجد في إفريقيا وثالث أكبر مسجد في العالم بمئذنة شاهقة.", fr: "Plus grande mosquée d'Afrique.", en: "Largest mosque in Africa with the tallest minaret." },
-    ph: "+213 33 33 33 33", rt: [4.7, 9323],
-    rv: { ar: "جامع مهيب ونظيف وهادئ جدًا ومئذنة تحفة في المعمار.", fr: "Mosquée majestueuse, très propre et paisible.", en: "Majestic, peaceful mosque with impressive minaret." }
-  }
+{ n:{ar:"المتحف الوطني باردو",fr:"Musée national du Bardo",en:"Bardo National Museum"}, t:{ar:"ما قبل التاريخ والإثنوغرافيا",fr:"Préhistoire et ethnographie",en:"Prehistory and ethnography"},
+ h:{ar:"9:00 - 17:00 (الجمعة: 14:00 - 17:00)، مغلق الأحد",fr:"9h-17h (vendredi : 14h-17h), fermé le dimanche",en:"9:00-17:00 (Fri: 14:00-17:00), closed Sun"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJBb3owGiyjxIRaOCcMbN-ZNg", lat:36.7607172, lng:3.0471926,
+ note:{ar:"فن الطاسيلي الصخري والتطريز التقليدي في قصر مغاربي قديم.",fr:"Art rupestre du Tassili et broderies traditionnelles dans un ancien palais.",en:"Tassili rock art and traditional embroidery in a neo-Moorish palace."},
+ ph:"+213 21 64 76 41", rt:[4.5,1496], rv:{ar:"مجموعة مبهرة من الآثار والأعمال الفنية في قصر قديم بطراز ممتاز.",fr:"Collection impressionnante dans un ancien palais néo-mauresque.",en:"Impressive collection in a former neo-Moorish palace."} },
+{ n:{ar:"المتحف الوطني للفنون الجميلة",fr:"Musée national des Beaux-Arts",en:"National Museum of Fine Arts"}, t:{ar:"متحف فني",fr:"Musée d'art",en:"Art museum"},
+ h:{ar:"9:00 - 17:00 (الجمعة والسبت: من 10:00)، مغلق الأحد",fr:"9h-17h (vendredi et samedi : dès 10h), fermé le dimanche",en:"9:00-17:00 (Fri & Sat: from 10:00), closed Sun"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJbzZuJJyyjxIRSEWBr_Y6jhk", lat:36.7461003, lng:3.0722615,
+ note:{ar:"الدخول نحو 200 دج. شرفة تطل بشكل إيقوني على حديقة التجارب.",fr:"Entrée ~200 DA. Terrasse avec vue sur le Jardin d'Essai.",en:"Entry ~200 DA. Terrace with view of the Botanical Garden."},
+ ph:"+213 551 40 20 70", rt:[4.6,885], rv:{ar:"رحلة رائعة عبر الفنون مع إطلالة بانورامية لا تُنسى.",fr:"Un voyage à travers les arts, avec une vue panoramique.",en:"A journey through the arts with a panoramic view."} },
+{ n:{ar:"حديقة التجارب بالحامة",fr:"Jardin d'Essai du Hamma",en:"Jardin d'Essai (Botanical Garden)"}, t:{ar:"حديقة نباتية تاريخية",fr:"Jardin botanique",en:"Botanical garden"},
+ h:{ar:"10:00 - 19:00 يوميًا",fr:"10h-19h tous les jours",en:"10:00-19:00 daily"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJ8du20ZiyjxIRLqnQ7p7GxYA", lat:36.7484043, lng:3.075778,
+ note:{ar:"الدخول 150 دج للشخص. محطة المترو متوفرة عند المدخل مباشرة.",fr:"Entrée ~150 DA. Station de métro à l'entrée.",en:"Entry ~150 DA. Metro station right at the entrance."},
+ rt:[4.5,7501], rv:{ar:"أفضل وأجمل مكان طبيعي في العاصمة، طبيعة خلابة وأشجار نادرة.",fr:"Meilleur endroit d'Alger, verdure superbe.",en:"Best spot in Algiers, fantastic greenery."} },
+{ n:{ar:"ساحة الشهداء",fr:"Place des Martyrs",en:"Martyrs' Square"}, t:{ar:"ساحة تاريخية ومدخل القصبة",fr:"Place historique, entrée de la Casbah",en:"Historic square & Casbah entrance"},
+ h:{ar:"24/24 ساعة",fr:"24h/24",en:"24/7"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJ0aNHCv6yjxIRwOCawOfbpo0", lat:36.78458, lng:3.0624425,
+ note:{ar:"ينصح بالزيارة نهارًا للاستمتاع بأسواق واكتشافات القصبة.",fr:"Conseillé d'y aller de jour.",en:"Recommended to visit during daylight."},
+ ph:"+213 21 08 19 62", rt:[4.5,6410], rv:{ar:"مكان مليء بالتاريخ في قلب العاصمة ونقطة انطلاق لزيارة القصبة.",fr:"Lieu plein d'histoire au cœur d'Alger.",en:"Historic spot in the heart of Algiers."} },
+{ n:{ar:"كنيسة السيدة الإفريقية",fr:"Basilique Notre-Dame d'Afrique",en:"Notre-Dame d'Afrique Basilica"}, t:{ar:"معلم تاريخي وإطلالة ساحرة",fr:"Basilique avec vue sur la baie",en:"Basilica with bay view"},
+ h:{ar:"11:00-12:30 و 15:00-17:30 (الجمعة: 10:30-12:30)",fr:"11h-12h30 et 15h-17h30",en:"11:00-12:30 & 15:00-17:30"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJu0874LuzjxIRZw7ZrxzdAz8", lat:36.8010025, lng:3.0425614,
+ note:{ar:"الوصول بالتلفريك أو بالسيارة. إطلالة ممتازة على البحر.",fr:"Accès en téléphérique ou en voiture.",en:"Access by cable car or car."},
+ ph:"+213 23 15 40 19", rt:[4.5,4245], rv:{ar:"أجمل إطلالة بانورامية على البحر والعاصمة.",fr:"Les plus belles vues de la ville.",en:"The best views over the bay."} },
+{ n:{ar:"البريد المركزي",fr:"Grande Poste d'Alger",en:"Algiers Grand Post Office"}, t:{ar:"معلم معماري بالطراز المغاربي الجديد",fr:"Monument néo-mauresque",en:"Neo-Moorish landmark"},
+ h:{ar:"8:00 - 18:00 (الخميس: حتى 16:00)، مغلق الجمعة",fr:"8h-18h, fermé le vendredi",en:"8:00-18:00, closed Friday"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJVdH_r_eyjxIRL-Nwynfanx8", lat:36.7728754, lng:3.0593893,
+ note:{ar:"تحفة هندسية ومحاط بمقاهٍ ومحلات تجارية نشطة.",fr:"Cafés et boutiques autour.",en:"Surrounded by cafés and shops."},
+ ph:"+213 23 92 32 00", rt:[4.5,1619], rv:{ar:"تحفة معمارية في وسط العاصمة تم الحفاظ عليها ببراعة.",fr:"Chef-d'œuvre néo-mauresque très bien entretenu.",en:"A neo-Moorish masterpiece in central Algiers."} },
+{ n:{ar:"جامع كتشاوة",fr:"Mosquée Ketchaoua",en:"Ketchaoua Mosque"}, t:{ar:"جامع تاريخي عند سفح القصبة",fr:"Mosquée historique",en:"Historic mosque"},
+ h:{ar:"24/24 ساعة",fr:"24h/24",en:"24/7"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJgXehOv6yjxIRRwuxjEdaDvU", lat:36.7850182, lng:3.0608303,
+ note:{ar:"يعكس مزيجاً رائعاً بين العمارة البيزنطية والمغاربية.",fr:"Mélange byzantin et mauresque.",en:"Unique Byzantine and Moorish architecture."},
+ rt:[4.7,1472], rv:{ar:"عمارة فريدة ومكان هادئ ونظيف ومفعم بالروحانيات والتاريخ.",fr:"Architecture unique, lieu paisible et très propre.",en:"Unique architecture, peaceful and clean."} },
+{ n:{ar:"منتزه الصابلات (Les Sablettes)",fr:"Sablette (Les Sablettes)",en:"Les Sablettes Seafront"}, t:{ar:"شاطئ وممشى سياحي",fr:"Plage et promenade",en:"Beach & seafront walk"},
+ h:{ar:"مفتوح 24/24 ساعة",fr:"Ouvert 24h/24",en:"Open 24/7"},
+ u:"https://maps.app.goo.gl/EJkWugRLghbLCmWX7", lat:36.7422222, lng:3.1180556,
+ note:{ar:"ملاذ عائلي ممتاز للمشي والأنشطة الترفيهية ومقابلة البحر.",fr:"Parfait pour les promenades en famille.",en:"Great for family walks along the sea."} },
+{ n:{ar:"متنزه دريم بارك (Dream Park)",fr:"Dream Park",en:"Dream Park Amusement Park"}, t:{ar:"مدينة ألعاب وترفيه",fr:"Parc d'attractions",en:"Amusement park"},
+ h:{ar:"10:00 - 22:00 يوميًا",fr:"10h-22h tous les jours",en:"10:00-22:00 daily"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJvSi1eQtSjhIR7SM16aDoKhg", lat:36.7358131, lng:3.1602967,
+ rt:[3.7,1865], rv:{ar:"منتزه ألعاب كبير مناسب للعائلات والأطفال وبأسعار معقولة.",fr:"Grand parc pour adultes et enfants.",en:"Big amusement park for families."} },
+{ n:{ar:"ساحة الأمير عبد القادر",fr:"Place Emir Abdelkader",en:"Emir Abdelkader Square"}, t:{ar:"ساحة تاريخية بوسط المدينة",fr:"Place du centre-ville",en:"Downtown historic square"},
+ h:{ar:"مفتوح دائماً",fr:"Toujours ouvert",en:"Always open"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJ1bpbEviyjxIRvbgRMigeGz0", lat:36.7761654, lng:3.0581681,
+ note:{ar:"يتوسطها تمثال الأمير عبد القادر وتحيط بها المقاهي الكلاسيكية.",fr:"Statue historique au cœur de la ville.",en:"Historic statue in central Algiers."} },
+{ n:{ar:"دار مصطفى باشا",fr:"Dar Mustapha Pacha",en:"Dar Mustapha Pacha Palace"}, t:{ar:"قصر ومتحف للمنمنمات والخط العربي",fr:"Palais-musée",en:"Palace museum"},
+ h:{ar:"9:00 - 16:00 (الجمعة: 9:00 - 12:00)",fr:"9h-16h (vendredi : 9h-12h)",en:"9:00-16:00 (Fri: 9:00-12:00)"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJtxG6J_6yjxIRLf-sqIsln-U", lat:36.7856078, lng:3.0609762,
+ ph:"+213 23 40 74 46", rt:[4.7,297], rv:{ar:"قصر مغاربي يعود لعام 1798، فناء أندلسي فاخر ومعروضات خط رائعة.",fr:"Palais mauresque de 1798 abritant des miniatures.",en:"Moorish palace from 1798 with fine miniatures."} },
+{ n:{ar:"مركز باب الزوار التجاري",fr:"Bab Ezzouar Mall",en:"Bab Ezzouar Shopping Mall"}, t:{ar:"مركز تجاري وترفيهي",fr:"Centre commercial",en:"Shopping mall"},
+ h:{ar:"9:00 - 23:00 يومياً",fr:"9h-23h tous les jours",en:"9:00-23:00 daily"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJP_5q4JVRjhIRa3CUt0DeRSM", lat:36.7120829, lng:3.1973789,
+ rt:[4.1,7814], rv:{ar:"مول ضخم يتوفر على محلات تجارية عالمية ومطاعم وسينما.",fr:"Grand centre avec marques et restaurants.",en:"Large mall with international brands & food court."} },
+{ n:{ar:"مركز غاردن سيتي (Garden City)",fr:"Garden City Mall",en:"Garden City Mall"}, t:{ar:"مركز تجاري عصري مفتوح",fr:"Centre commercial",en:"Shopping & Lifestyle Mall"},
+ h:{ar:"10:00 - 22:00 (الجمعة والسبت حتى 23:00)",fr:"10h-22h (vendredi et samedi : 11h-23h)",en:"10:00-22:00 (Fri & Sat: 11:00-23:00)"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJyzHJhdmxjxIRQq2LGtxdcYY", lat:36.7505504, lng:2.9517546,
+ ph:"+213 23 38 59 58", rt:[4.2,6227], rv:{ar:"تصميم عصري راقٍ بمساحات مفتوحة ومطاعم متنوعة ممتازة.",fr:"Centre magnifique et immense.",en:"Beautiful modern outdoor shopping center."} },
+{ n:{ar:"جامع الجزائر الكبير",fr:"Grande Mosquée d'Algérie",en:"Great Mosque of Algiers"}, t:{ar:"صرح إسلامي ومعلم حضاري عالمي",fr:"Grande mosquée",en:"Grand Mosque"},
+ h:{ar:"مفتوح 24/24 ساعة",fr:"Ouvert 24h/24",en:"Open 24/7"},
+ u:"https://www.google.com/maps/place/?q=place_id:ChIJbcKe3X1SjhIRBoSa6JtXOrE", lat:36.7350028, lng:3.1402217,
+ note:{ar:"أكبر مسجد في إفريقيا وثالث أكبر مسجد في العالم بمئذنة شاهقة.",fr:"Plus grande mosquée d'Afrique.",en:"Largest mosque in Africa with the tallest minaret."},
+ ph:"+213 33 33 33 33", rt:[4.7,9323], rv:{ar:"جامع مهيب ونظيف وهادئ جدًا ومئذنة تحفة في المعمار.",fr:"Mosquée majestueuse, très propre et paisible.",en:"Majestic, peaceful mosque with impressive minaret."} }
 ];
-
-// Calculate Distance from ENSTP
 TOURIST_PLACES.forEach((p, idx) => {
-  const dx = (p.lng - O.lng) * 89200;
-  const dy = (p.lat - O.lat) * 111000;
-  p.d = Math.hypot(dx, dy);
-  p.id = idx + 1;
+  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
+  p.d = Math.hypot(dx, dy); p.id = idx + 1;
 });
 
-function distFormat(d) {
-  if (d < 1000) return Math.round(d) + " م";
-  return (d / 1000).toFixed(1) + " كم";
-}
-
-function renderPlaces() {
-  const u = I[LG];
-  const query = document.getElementById("search-input").value.toLowerCase();
-  
-  const filtered = TOURIST_PLACES.filter(p => {
-    const name = p.n[LG] || p.n.ar;
-    const type = p.t[LG] || p.t.ar;
-    return name.toLowerCase().includes(query) || type.toLowerCase().includes(query);
-  });
-
-  const container = document.getElementById("places-container");
-  
-  if (filtered.length === 0) {
-    container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding: 60px 20px; color: var(--text-muted);">
-      <h3>لم يتم العثور على أي نتائج مطابقة للبحث</h3>
-    </div>`;
-    return;
-  }
-
-  container.innerHTML = filtered.map(p => {
-    const name = p.n[LG] || p.n.ar;
-    const type = p.t[LG] || p.t.ar;
-    const hours = p.h ? (p.h[LG] || p.h.ar) : u.nohrs;
-    const note = p.note ? (p.note[LG] || p.note.ar) : "";
-    const review = p.rv ? (p.rv[LG] || p.rv.ar) : "";
-
-    return `
-      <article class="card">
-        <div>
-          <div class="card-top">
-            <div style="display:flex; gap:12px; align-items:center;">
-              <span class="badge-num">${p.id}</span>
-              <div class="title-area">
-                <h3>${name}</h3>
-                <div class="place-type">${type}</div>
-              </div>
-            </div>
-            <div class="dist-badge">
-              ≈ ${distFormat(p.d)}
-              <small>${u.bird}</small>
-            </div>
-          </div>
-
-          <div class="info-group">
-            <div class="info-item">
-              <b>${u.hrs}</b> <span>${hours}</span>
-            </div>
-            ${p.ph ? `<div class="info-item"><b>${u.tel}</b> <bdi dir="ltr">${p.ph}</bdi></div>` : ''}
-            ${p.rt ? `<div class="info-item"><b>${u.rat}</b> ★${p.rt[0]} (${p.rt[1]}${u.rvw})</div>` : ''}
-          </div>
-
-          ${review ? `<div class="review-card"><b>${u.rvl}</b><br>"${review}"</div>` : ''}
-          ${note ? `<div class="note-card">📍 ${note}</div>` : ''}
+let LG = "ar";
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function distFormat(d){ const u = I[LG]; return d < 1000 ? Math.round(d) + " " + u.m : (d/1000).toFixed(1) + " " + u.km; }
+function renderPlaces(){
+  const u = I[LG], q = document.getElementById("search-input").value.toLowerCase();
+  const list = TOURIST_PLACES.filter(p => (p.n[LG]||p.n.ar).toLowerCase().includes(q) || (p.t[LG]||p.t.ar).toLowerCase().includes(q));
+  const box = document.getElementById("places-container");
+  if (!list.length){ box.innerHTML = `<div class="none">${u.none}</div>`; return; }
+  box.innerHTML = list.map(p => {
+    const name = p.n[LG]||p.n.ar, type = p.t[LG]||p.t.ar, hours = p.h ? (p.h[LG]||p.h.ar) : u.nohrs;
+    const note = p.note ? (p.note[LG]||p.note.ar) : "", review = p.rv ? (p.rv[LG]||p.rv.ar) : "";
+    return `<article class="place">
+      <div>
+        <div class="p-top">
+          <div class="p-id"><span class="badge-num">${p.id}</span><div><h3>${esc(name)}</h3><div class="p-type">${esc(type)}</div></div></div>
+          <div class="dist">≈ ${distFormat(p.d)}<small>${u.bird}</small></div>
         </div>
-
-        <div class="card-actions">
-          <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}&travelmode=driving">
-            🚗 ${u.rT}
-          </a>
-          <a class="btn btn-secondary" target="_blank" href="${p.u}">
-            🗺️ ${u.maps}
-          </a>
+        <div class="info">
+          <div><b>${u.hrs}</b>${esc(hours)}</div>
+          ${p.ph ? `<div><b>${u.tel}</b><bdi dir="ltr">${p.ph}</bdi></div>` : ''}
+          ${p.rt ? `<div><b>${u.rat}</b>★${p.rt[0]} (${p.rt[1]} ${u.rvw})</div>` : ''}
         </div>
-      </article>
-    `;
+        ${review ? `<div class="review"><b>${u.rvl}</b>"${esc(review)}"</div>` : ''}
+        ${note ? `<div class="note">📍 ${esc(note)}</div>` : ''}
+      </div>
+      <div class="p-act">
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}&travelmode=driving"><i class="fa-solid fa-car"></i> ${u.rT}</a>
+        <a class="btn2" target="_blank" rel="noopener" href="${p.u}"><i class="fa-solid fa-map-location-dot"></i> ${u.maps}</a>
+      </div>
+    </article>`;
   }).join('');
 }
-
-// Language Switch
-document.getElementById("lg").addEventListener("click", e => {
-  const btn = e.target.closest("button");
-  if (btn) {
-    LG = btn.dataset.l;
-    document.documentElement.lang = LG;
-    document.documentElement.dir = LG === "ar" ? "rtl" : "ltr";
-    
-    document.querySelectorAll("#lg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.l === LG)));
-    
-    const u = I[LG];
-    document.getElementById("app-title").textContent = u.app;
-    document.getElementById("hero-title").textContent = u.heroT;
-    document.getElementById("hero-subtitle").textContent = u.heroS;
-    document.getElementById("search-input").placeholder = u.search;
-    
-    renderPlaces();
-  }
-});
-
+function setLang(lang){
+  LG = lang; const u = I[lang], root = document.documentElement;
+  root.lang = lang; root.dir = lang === "ar" ? "rtl" : "ltr"; document.body.dataset.lang = lang;
+  document.querySelectorAll("#lg button").forEach(b => b.classList.toggle("on", b.dataset.l === lang));
+  document.getElementById("app-title").textContent = u.app;
+  document.getElementById("hero-title").textContent = u.heroT;
+  document.getElementById("hero-subtitle").textContent = u.heroS;
+  document.getElementById("search-input").placeholder = u.search;
+  document.getElementById("back-txt").textContent = u.back;
+  document.getElementById("st-count-l").textContent = u.stCount;
+  document.getElementById("st-start-l").textContent = u.stStart;
+  document.getElementById("st-start-v").textContent = u.stFrom;
+  document.title = u.app;
+  try{ localStorage.setItem('enstp-lang', lang) }catch(e){}
+  renderPlaces();
+}
+document.getElementById("lg").addEventListener("click", e => { const b = e.target.closest("button"); if (b) setLang(b.dataset.l); });
 document.getElementById("search-input").addEventListener("input", renderPlaces);
-
-// Initial Render
-renderPlaces();
+function toggleTheme(){
+  const r = document.documentElement, next = r.dataset.theme === 'dark' ? 'light' : 'dark';
+  r.dataset.theme = next; document.getElementById('metaTheme').content = next === 'dark' ? '#040b17' : '#f3f6fc';
+  try{ localStorage.setItem('enstp-theme', next) }catch(e){}
+}
+(function(){
+  document.getElementById('metaTheme').content = document.documentElement.dataset.theme === 'dark' ? '#040b17' : '#f3f6fc';
+  let s = 'ar'; try{ s = localStorage.getItem('enstp-lang') || 'ar' }catch(e){}
+  setLang(I[s] ? s : 'ar');
+  const pb = document.getElementById('progressBar'), tt = document.getElementById('toTop');
+  addEventListener('scroll', () => { const h = document.documentElement; pb.style.width = (h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%'; tt.classList.toggle('show', h.scrollTop > 600); }, {passive:true});
+})();
 </script>
 </body>
 </html>

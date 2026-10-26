@@ -1,180 +1,313 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الجلسات التوجيهية ونقل الخبرة</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Cairo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<title>منصة الجلسات التوجيهية ونقل الخبرة</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
+}
+html[data-theme="dark"]{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
+
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
+
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
+
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
+
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
+
+.hero{min-height:44svh}
+.hidden{display:none!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:16px;border-radius:24px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.search-box{flex:1 1 320px;max-width:460px;display:flex;align-items:center;border-radius:16px;background:var(--bar-s);border:1px solid var(--card-b);transition:.3s}
+.search-box:focus-within{border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,184,65,.22)}
+.search-box i{padding-inline:16px;color:var(--muted)}
+.search-box input{flex:1;min-width:0;padding:13px 4px;background:transparent;border:0;outline:0;font:inherit;font-size:.9rem;font-weight:600;color:var(--head)}
+.search-box input::placeholder{color:var(--muted);font-weight:500}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;max-width:100%}
+.fb{font:inherit;font-size:.8rem;font-weight:800;padding:10px 16px;border-radius:13px;border:1px solid var(--soft-b);cursor:pointer;white-space:nowrap;color:var(--nav-c);background:var(--soft);transition:.3s}
+.fb:hover{color:var(--head);border-color:var(--gold)}
+.fb.on{color:#14100a;border-color:transparent;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.4)}
+.vcard{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.vcard:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.vframe{position:relative;aspect-ratio:16/9;background:#000}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.soon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;color:#8fa3c0;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 70%),#0a1220}
+.soon i{font-size:2.6rem;color:rgba(245,184,65,.7)}
+.soon span{font-size:.8rem;font-weight:700;color:#b9c8df}
+.vbody{display:flex;flex-direction:column;gap:12px;flex:1;padding:22px}
+.vmeta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tag{font-size:.7rem;font-weight:800;padding:5px 12px;border-radius:999px;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.when{font-size:.74rem;color:var(--muted);font-weight:700}
+.vbody h3{font-size:1.04rem;font-weight:900;color:var(--head);line-height:1.6}
+.vbody p{font-size:.84rem;line-height:1.95;color:var(--desc)}
+.vfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--card-b);font-size:.78rem;color:var(--muted);font-weight:700}
+.vfoot i.u{color:var(--gold);margin-inline-end:8px}
+.share{display:inline-flex;gap:6px;align-items:center;font:inherit;font-size:.78rem;font-weight:800;color:var(--tag-c);background:none;border:0;cursor:pointer}
+.share:hover{color:var(--head)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 16px;color:var(--muted);font-weight:800}
+main{padding-top:50px;gap:34px}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
-
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="bg-blue-600 text-white p-2 rounded-lg flex items-center justify-center">
-                    <i class="fa-solid fa-video text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-bold text-lg text-slate-900 block leading-tight">منصة التوجيه ونقل الخبرة</span>
-                    <span class="text-xs text-slate-500">دليل الطلاب</span>
-                </div>
-            </div>
-            <a href="guide.html" class="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition">
-                <i class="fa-solid fa-arrow-right ml-2"></i> العودة للرئيسية
-            </a>
-        </div>
-    </header>
-
-    <!-- Hero / Header Section -->
-    <section class="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white py-10 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto text-center space-y-3">
-            <h1 class="text-2xl sm:text-4xl font-extrabold">مكتبة الجلسات التوجيهية والنصائح</h1>
-            <p class="text-blue-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                مجموعة من الفيديوهات التوجيهية المصورة من الطلبة القدامى لنقل تجاربهم الأكاديمية ومساعدة الطلبة الجدد.
-            </p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8">
-
-        <!-- Search & Filter Bar -->
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="relative w-full md:w-96">
-                <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" placeholder="ابحث عن موضوع أو جلسة..." class="w-full pr-10 pl-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
-            </div>
-            
-            <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 text-xs font-medium">
-                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold whitespace-nowrap shadow-sm">الكل</button>
-                <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg whitespace-nowrap transition">منهجية الدراسة</button>
-                <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg whitespace-nowrap transition">الامتحانات والتقييمات</button>
-                <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg whitespace-nowrap transition">الحياة الجامعية</button>
-            </div>
-        </div>
-
-        <!-- Videos Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Video Card 1 (الفيديو الأول الذي أرسلته) -->
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition duration-200 flex flex-col">
-                <!-- Video Player Container -->
-                <div class="relative aspect-video bg-black flex items-center justify-center">
-                    <iframe
-                        src="https://drive.google.com/file/d/1itzHFPDYNmnxTphw74uuXZRCf4ox4C8x/preview"
-                        title="توجيهات ونصائح للطلبة الجدد"
-                        class="w-full h-full"
-                        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                        allowfullscreen
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        style="border:0; min-height:100%;"
-                    ></iframe>
-                </div>
-                <!-- Card Body -->
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="bg-blue-100 text-blue-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">جلسة توجيهية #1</span>
-                            <span class="text-xs text-slate-400"><i class="fa-regular fa-clock ml-1"></i> فيديو حقيقي</span>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base leading-snug hover:text-blue-600 transition cursor-pointer">
-                            توجيهات ونصائح للطلبة الجدد
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            مشاركة خبرات وتجارب سابقة حول كيفية التأقلم وتنظيم الوقت والتفوق في المسار الدراسي.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <i class="fa-solid fa-user-graduate text-slate-400"></i>
-                            <span>طالب قديم / خريج</span>
-                        </div>
-                        <span class="text-blue-600 font-semibold cursor-pointer flex items-center gap-1">
-                            مشاركة <i class="fa-solid fa-share-nodes"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Video Card 2 (نموذج لفيديو قادم) -->
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition duration-200 flex flex-col">
-                <div class="relative aspect-video bg-slate-800 flex flex-col items-center justify-center text-slate-400 p-4 text-center space-y-2">
-                    <i class="fa-solid fa-circle-play text-4xl text-slate-500"></i>
-                    <span class="text-xs font-medium text-slate-300">سيتم إضافة الفيديو القريب</span>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="bg-indigo-100 text-indigo-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">منهجية الدراسة</span>
-                            <span class="text-xs text-slate-400">جلسة قادمة</span>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base leading-snug">
-                            كيف تراجع للدروس والمحاضرات اليومية؟
-                        </h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            طرق واستراتيجيات تلخيص المحاضرات والتحضير الفعّال للامتحانات والامتحانات الجزئية.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <i class="fa-solid fa-user-graduate text-slate-400"></i>
-                            <span>طالب قديم</span>
-                        </div>
-                        <span class="text-slate-400 text-xs">قريباً</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Video Card 3 (نموذج لفيديو قادم) -->
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition duration-200 flex flex-col">
-                <div class="relative aspect-video bg-slate-800 flex flex-col items-center justify-center text-slate-400 p-4 text-center space-y-2">
-                    <i class="fa-solid fa-circle-play text-4xl text-slate-500"></i>
-                    <span class="text-xs font-medium text-slate-300">سيتم إضافة الفيديو القريب</span>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">الجانب التطبيقي</span>
-                            <span class="text-xs text-slate-400">جلسة قادمة</span>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base leading-snug">
-                            أهمية التربصات والأنشطة الطلابية
-                        </h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            كيف تستغل وقتك في بناء مهاراتك والالتحاق بالتربصات الميدانية خلال سنتك الدراسية.
-                        </p>
-                    </div>
-                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <div class="flex items-center space-x-2 space-x-reverse">
-                            <i class="fa-solid fa-user-graduate text-slate-400"></i>
-                            <span>طالب قديم</span>
-                        </div>
-                        <span class="text-slate-400 text-xs">قريباً</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 text-slate-500 text-xs py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-            <p>جميع الحقوق محفوظة &copy; 2026 - دليل الطالب | منصة الجلسات التوجيهية</p>
-        </div>
-    </footer>
-
+<body data-lang="ar">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
+<header>
+<div class="bar">
+<div class="logo"><div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div><span id="txt-brand" data-i18n="brand">منصة التوجيه ونقل الخبرة</span></div>
+<div class="tools">
+<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span data-i18n="back">العودة للرئيسية</span></a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang"><button onclick="setLanguage('ar')" id="lang-ar" class="on">AR</button><button onclick="setLanguage('fr')" id="lang-fr">FR</button><button onclick="setLanguage('en')" id="lang-en">EN</button></div>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-video"></i> <span data-i18n="badge"></span></span>
+<h1 data-i18n="h1"></h1>
+<p data-i18n="desc"></p>
+</div>
+</section>
+<main>
+<div class="toolbar reveal">
+<div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="search" autocomplete="off"></div>
+<div class="filters">
+<button class="fb on" data-c="all" onclick="setCat(this)" data-i18n="f_all"></button>
+<button class="fb" data-c="study" onclick="setCat(this)" data-i18n="f_study"></button>
+<button class="fb" data-c="exams" onclick="setCat(this)" data-i18n="f_exams"></button>
+<button class="fb" data-c="life" onclick="setCat(this)" data-i18n="f_life"></button>
+</div>
+</div>
+<section class="cards">
+<article class="vcard reveal" data-cats="study life"><div class="vframe"><iframe src="https://drive.google.com/file/d/1itzHFPDYNmnxTphw74uuXZRCf4ox4C8x/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag1"></span><span class="when" data-i18n="when1"></span></div><h3 data-i18n="t1"></h3><p data-i18n="d1"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div></div></article>
+<article class="vcard reveal" data-cats="study exams"><div class="vframe soon"><i class="fa-solid fa-circle-play"></i><span data-i18n="soon_video"></span></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag2"></span><span class="when" data-i18n="when2"></span></div><h3 data-i18n="t2"></h3><p data-i18n="d2"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who2"></span></span><span data-i18n="soon"></span></div></div></article>
+<article class="vcard reveal" data-cats="life"><div class="vframe soon"><i class="fa-solid fa-circle-play"></i><span data-i18n="soon_video"></span></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag3"></span><span class="when" data-i18n="when2"></span></div><h3 data-i18n="t3"></h3><p data-i18n="d3"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who2"></span></span><span data-i18n="soon"></span></div></div></article>
+<div class="empty hidden" id="none" data-i18n="none"></div>
+</section>
+</main>
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title" data-i18n="footer_t"></p>
+<p id="footer-sub" data-i18n="footer_s"></p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+<script>
+const T={
+ar:{back:"العودة للرئيسية",brand:"منصة التوجيه ونقل الخبرة",title:"منصة الجلسات التوجيهية ونقل الخبرة",badge:"دليل الطلاب",
+h1:"مكتبة الجلسات التوجيهية <span>والنصائح</span>",desc:"مجموعة من الفيديوهات التوجيهية المصورة من الطلبة القدامى لنقل تجاربهم الأكاديمية ومساعدة الطلبة الجدد.",
+search:"ابحث عن موضوع أو جلسة...",f_all:"الكل",f_study:"منهجية الدراسة",f_exams:"الامتحانات والتقييمات",f_life:"الحياة الجامعية",none:"لا توجد جلسات مطابقة",
+tag1:"جلسة توجيهية #1",when1:"فيديو حقيقي",t1:"توجيهات ونصائح للطلبة الجدد",d1:"مشاركة خبرات وتجارب سابقة حول كيفية التأقلم وتنظيم الوقت والتفوق في المسار الدراسي.",who1:"طالب قديم / خريج",share:"مشاركة",
+tag2:"منهجية الدراسة",when2:"جلسة قادمة",t2:"كيف تراجع للدروس والمحاضرات اليومية؟",d2:"طرق واستراتيجيات تلخيص المحاضرات والتحضير الفعّال للامتحانات والامتحانات الجزئية.",who2:"طالب قديم",soon:"قريباً",soon_video:"سيتم إضافة الفيديو قريباً",
+tag3:"الجانب التطبيقي",t3:"أهمية التربصات والأنشطة الطلابية",d3:"كيف تستغل وقتك في بناء مهاراتك والالتحاق بالتربصات الميدانية خلال سنتك الدراسية.",
+copied:"تم نسخ الرابط",footer_t:"جميع الحقوق محفوظة © 2026 - دليل الطالب",footer_s:"منصة الجلسات التوجيهية"},
+fr:{back:"Retour à l'accueil",brand:"Plateforme de mentorat",title:"Plateforme de mentorat et de partage d'expérience",badge:"Guide de l'étudiant",
+h1:"Bibliothèque des séances <span>de mentorat et conseils</span>",desc:"Une collection de vidéos réalisées par d'anciens étudiants pour partager leur expérience et aider les nouveaux.",
+search:"Rechercher un sujet ou une séance...",f_all:"Tout",f_study:"Méthodologie d'étude",f_exams:"Examens et évaluations",f_life:"Vie universitaire",none:"Aucune séance correspondante",
+tag1:"Séance #1",when1:"Vidéo réelle",t1:"Conseils et orientations pour les nouveaux étudiants",d1:"Partage d'expériences sur l'adaptation, la gestion du temps et la réussite dans le parcours d'étude.",who1:"Ancien étudiant / diplômé",share:"Partager",
+tag2:"Méthodologie d'étude",when2:"Séance à venir",t2:"Comment réviser les cours au quotidien ?",d2:"Méthodes et stratégies pour résumer les cours et préparer efficacement les examens.",who2:"Ancien étudiant",soon:"Bientôt",soon_video:"La vidéo sera ajoutée prochainement",
+tag3:"Aspect pratique",t3:"L'importance des stages et des activités étudiantes",d3:"Comment mettre à profit votre temps pour développer vos compétences et obtenir des stages sur le terrain.",
+copied:"Lien copié",footer_t:"Tous droits réservés © 2026 - Guide de l'étudiant",footer_s:"Plateforme de mentorat"},
+en:{back:"Back to Home",brand:"Mentoring & Experience Hub",title:"Mentoring & Experience Sharing Platform",badge:"Student Guide",
+h1:"Mentoring Sessions <span>& Advice Library</span>",desc:"A collection of video sessions recorded by senior students to share their academic experience and help newcomers.",
+search:"Search a topic or session...",f_all:"All",f_study:"Study methods",f_exams:"Exams & assessments",f_life:"Campus life",none:"No matching sessions",
+tag1:"Session #1",when1:"Real video",t1:"Advice and guidance for new students",d1:"Sharing past experiences on settling in, organizing your time and excelling in your studies.",who1:"Senior student / graduate",share:"Share",
+tag2:"Study methods",when2:"Upcoming session",t2:"How do you review daily lessons and lectures?",d2:"Strategies for summarizing lectures and preparing effectively for exams and midterms.",who2:"Senior student",soon:"Coming soon",soon_video:"Video coming soon",
+tag3:"Practical side",t3:"The value of internships and student activities",d3:"How to use your time to build skills and land field internships during your studies.",
+copied:"Link copied",footer_t:"All rights reserved © 2026 - Student Guide",footer_s:"Mentoring sessions platform"}
+};
+let LG='ar', CAT='all';
+function applyFilter(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  let n=0;
+  document.querySelectorAll('.vcard').forEach(c=>{
+    const okCat=CAT==='all'||c.dataset.cats.split(' ').includes(CAT);
+    const okQ=!q||c.innerText.toLowerCase().includes(q);
+    c.classList.toggle('hidden',!(okCat&&okQ)); if(okCat&&okQ) n++;
+  });
+  document.getElementById('none').classList.toggle('hidden',n>0);
+}
+function setCat(btn){
+  CAT=btn.dataset.c;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.toggle('on',b===btn));
+  applyFilter();
+}
+function setLanguage(lang){
+  LG=lang; const d=T[lang], r=document.documentElement;
+  r.dir=lang==='ar'?'rtl':'ltr'; r.lang=lang; document.body.dataset.lang=lang;
+  ['ar','fr','en'].forEach(l=>document.getElementById('lang-'+l).classList.toggle('on',l===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n]; if(v!==undefined) el.innerHTML=v;});
+  document.getElementById('search').placeholder=d.search;
+  document.title=d.title;
+  try{localStorage.setItem('enstp-lang',lang)}catch(e){}
+  applyFilter();
+}
+function shareVideo(){
+  const data={title:T[LG].t1,url:location.href};
+  if(navigator.share){navigator.share(data).catch(()=>{});return;}
+  try{navigator.clipboard.writeText(location.href).then(()=>alert(T[LG].copied));}catch(e){}
+}
+function toggleTheme(){
+  const r=document.documentElement,next=r.dataset.theme==='dark'?'light':'dark';
+  r.dataset.theme=next; document.getElementById('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
+  try{localStorage.setItem('enstp-theme',next)}catch(e){}
+}
+(function(){
+  document.getElementById('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
+  document.getElementById('search').addEventListener('input',applyFilter);
+  let s='ar'; try{s=localStorage.getItem('enstp-lang')||'ar'}catch(e){}
+  setLanguage(T[s]?s:'ar');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const pb=document.getElementById('progressBar'),tt=document.getElementById('toTop');
+  addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
+})();
+</script>
 </body>
 </html>

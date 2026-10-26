@@ -1,531 +1,418 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">دليل الأساتذة والباحثين | ENSTP</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font: Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+<title id="page-title">دليل الأساتذة والباحثين | ENSTP</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
+}
+html[data-theme="dark"]{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0a66c2',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
 
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-        }
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
 
-        /* Glassmorphism subtle effects */
-        .glass-header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
 
-        .glass-card {
-            background: #ffffff;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
 
-        .glass-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgba(10, 102, 194, 0.12), 0 8px 10px -6px rgba(10, 102, 194, 0.08);
-        }
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
 
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #0a66c2 0%, #0369a1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
 
-        .hero-bg {
-            background: radial-gradient(circle at 50% 0%, rgba(10, 102, 194, 0.08) 0%, rgba(248, 250, 252, 0) 70%),
-                        linear-gradient(180deg, #f0f7ff 0%, #f8fafc 100%);
-        }
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
+
+/* ===== خاص بصفحة الأساتذة ===== */
+.hero{min-height:56svh}
+.search-box{position:relative;max-width:680px;margin:30px auto 0;display:flex;align-items:center;border-radius:20px;background:var(--bar-s);border:1px solid var(--glass-b);backdrop-filter:blur(16px);box-shadow:var(--bar-shadow);transition:box-shadow .3s,border-color .3s}
+.search-box:focus-within{border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,184,65,.22),var(--bar-shadow)}
+.search-box>i.s{padding-inline:20px;color:var(--muted);font-size:1.05rem}
+.search-box input{flex:1;min-width:0;padding:17px 4px;background:transparent;border:0;outline:0;font:inherit;font-size:.98rem;font-weight:600;color:var(--head)}
+.search-box input::placeholder{color:var(--muted);font-weight:500}
+.search-box button{padding-inline:20px;background:none;border:0;cursor:pointer;color:var(--muted);font-size:1.05rem}
+.search-box button:hover{color:var(--head)}
+.hidden{display:none!important}
+.stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:.8rem;font-weight:700;color:#c9d6ea}
+.stats i{color:var(--gold);margin-inline-end:6px}
+.stats strong{color:#fff;font-weight:900}
+.hero h1 .grad{display:inline;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.prof-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.prof-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.prof-band{position:relative;height:104px;padding:16px;background:linear-gradient(135deg,#0b2545,#1d5fd1 60%,#38bdf8);display:flex;justify-content:space-between;align-items:flex-start}
+.prof-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--img-fade))}
+.prof-tag{position:relative;z-index:1;font-size:.7rem;font-weight:800;padding:5px 12px;border-radius:999px;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 16px rgba(245,184,65,.4)}
+.prof-ok{position:relative;z-index:1;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;color:#fff;background:rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+.prof-avatar{position:relative;z-index:2;margin:-46px 22px 0;width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#0b2545,#1d5288);border:4px solid var(--icon-ring);box-shadow:0 12px 30px rgba(0,0,0,.25);overflow:hidden;transition:transform .5s var(--ease)}
+.prof-card:hover .prof-avatar{transform:translateY(-6px) rotate(-3deg)}
+.prof-avatar img{width:100%;height:100%;object-fit:cover}
+.prof-body{padding:16px 22px 22px;display:flex;flex-direction:column;flex:1}
+.prof-body h3{font-size:1.08rem;font-weight:900;color:var(--head);line-height:1.5}
+.prof-body .role{font-size:.8rem;font-weight:800;color:var(--tag-c);margin:2px 0 10px}
+.prof-body p{font-size:.84rem;line-height:1.95;color:var(--desc);margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.actions{margin-top:auto;display:grid;gap:9px;padding-top:14px;border-top:1px solid var(--card-b)}
+.btn2{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 16px;border-radius:14px;font-size:.82rem;font-weight:800;color:var(--btn-c);background:var(--soft);border:1px solid var(--glass-b);transition:.3s var(--ease)}
+.btn2:hover{color:#14100a;border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 10px 30px rgba(245,184,65,.35)}
+
+.empty{text-align:center;padding:70px 16px}
+.empty .ic{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-size:1.9rem;color:var(--muted);background:var(--soft);border:1px solid var(--soft-b)}
+.empty h3{font-size:1.15rem;font-weight:900;color:var(--head);margin-bottom:6px}
+.empty p{max-width:440px;margin:0 auto 22px;color:var(--muted);font-size:.9rem}
+.empty .btn{width:auto;display:inline-flex;padding-inline:26px}
+main{padding-top:60px}
+</style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+<body data-lang="ar" id="bodyTag">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
 
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo & Institution Name -->
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 font-black text-xl">
-                        ENSTP
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-800 leading-tight" id="logo-title">المدرسة العليا للأشغال العمومية</h2>
-                        <p class="text-xs text-slate-500 font-medium" id="logo-subtitle">دليل الهيئة التدريسية والباحثين</p>
-                    </div>
-                </div>
+<header>
+<div class="bar">
+<div class="logo">
+<div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div>
+<span id="txt-brand">دليل الأساتذة</span>
+</div>
+<div class="tools">
+<a href="index.html" class="back" id="btn-back"><i class="fa-solid fa-arrow-right"></i><span id="back-txt">العودة للرئيسية</span></a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang">
+<button onclick="setLanguage('ar')" id="btn-ar" class="on">AR</button>
+<button onclick="setLanguage('fr')" id="btn-fr">FR</button>
+<button onclick="setLanguage('en')" id="btn-en">EN</button>
+</div>
+</div>
+</div>
+</header>
 
-                <!-- Language Switcher Buttons -->
-                <div class="flex items-center bg-slate-100 p-1.5 rounded-xl border border-slate-200/60 shadow-inner">
-                    <button onclick="setLanguage('ar')" id="btn-ar" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 active-lang bg-white text-brand-600 shadow-sm">
-                        العربية
-                    </button>
-                    <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900">
-                        Français
-                    </button>
-                    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn px-3.5 py-1.5 text-xs font-bold rounded-lg transition-all duration-200 text-slate-600 hover:text-slate-900">
-                        English
-                    </button>
-                </div>
-            </div>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-graduation-cap"></i> <span id="hero-badge">المنصة الأكاديمية الرسمية للأساتذة</span></span>
+<h1 id="hero-title">ابحث عن <span class="grad">الأساتذة والباحثين</span> بكل سهولة</h1>
+<p id="hero-desc">استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.</p>
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass s"></i>
+<input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية..." autocomplete="off">
+<button id="clear-btn" class="hidden" onclick="clearSearch()" aria-label="مسح"><i class="fa-solid fa-circle-xmark"></i></button>
+</div>
+<div class="stats">
+<span><i class="fa-solid fa-users"></i><span id="count-label">إجمالي الأساتذة: </span><strong id="prof-count">11</strong></span>
+<span><i class="fa-solid fa-bolt"></i><span id="quick-search-label">بحث لحظي وتفاعلي</span></span>
+</div>
+</div>
+</section>
+
+<main>
+<div id="grid-container" class="cards"></div>
+<div id="no-results" class="empty hidden">
+<div class="ic"><i class="fa-solid fa-user-slash"></i></div>
+<h3 id="no-results-title">لم نتمكن من العثور على نتائج</h3>
+<p id="no-results-desc">جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.</p>
+<a href="#" class="btn" onclick="clearSearch();return false"><i class="fa-solid fa-rotate-left"></i> <span id="reset-search-btn">إعادة ضبط البحث</span></a>
+</div>
+</main>
+
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title">ENSTP Algiers • جميع الحقوق محفوظة © 2026</p>
+<p id="footer-sub">المدرسة العليا للأشغال العمومية - القبة، الجزائر</p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+const professorsData = [
+{ id:"rima_bellal", avatar:"image01.jpg", link:"https://www.researchgate.net/profile/Rima-Bellal", email:"r.bellal@enstp.edu.dz",
+ ar:{ name:"د. ريما بلال", title:"أستاذة محاضرة وباحثة", bio:"أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)، تخصص هندسة المواد والمباني.", tag:"مواد البناء وهندسة الطرق" },
+ fr:{ name:"Dr. Rima Bellal", title:"Enseignante-Chercheuse", bio:"Enseignante-chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP).", tag:"Matériaux de Construction" },
+ en:{ name:"Dr. Rima Bellal", title:"Associate Professor & Researcher", bio:"Professor and researcher at the National Higher School of Public Works (ENSTP).", tag:"Construction Materials & Roads" } },
+{ id:"khodja_mea", avatar:"image02.jpg", link:"https://www.linkedin.com/in/khodjamea?trk=contact-info", email:"khodja.mea@enstp.edu.dz",
+ ar:{ name:"د. خوجة معمر", title:"أستاذ عالي وباحث", bio:"خبير ومستشار في الهندسة المدنية والمنشآت الكبرى وتصميم الخرسانة عالية الأداء.", tag:"الهندسة المدنية والمنشآت" },
+ fr:{ name:"Dr. Khodja Mea", title:"Professeur & Chercheur", bio:"Expert en Génie Civil, structures complexes et étude du béton à haute performance.", tag:"Génie Civil & Structures" },
+ en:{ name:"Dr. Khodja Mea", title:"Full Professor & Researcher", bio:"Expert in Civil Engineering, structural design and advanced concrete technology.", tag:"Civil & Structural Eng." } },
+{ id:"said_chami", avatar:"image03.jpg", link:"https://www.linkedin.com/in/sa%C3%AFd-chami-8b9438232?trk=contact-info", email:"s.chami@enstp.edu.dz",
+ ar:{ name:"سعيد شامي", title:"باحث وطالب دكتوراه", bio:"باحث بمخبر المواد والمنشآت (ENSTP) متمرس في سلوك الهياكل تحت تأثير الإجهاد.", tag:"مخبر المواد والمنشآت" },
+ fr:{ name:"Saïd Chami", title:"Doctorant & Chercheur", bio:"Chercheur au Laboratoire Matériaux et Structures, spécialiste du comportement des structures.", tag:"Labo Matériaux & Structures" },
+ en:{ name:"Saïd Chami", title:"PhD Researcher", bio:"Researcher at Materials & Structures Lab (ENSTP), focusing on structural behavior.", tag:"Materials & Structures Lab" } },
+{ id:"rania_allalou", avatar:"image04.jpg", link:"https://www.linkedin.com/in/allalou-rania-65b71818b?trk=contact-info", email:"r.allalou@enstp.edu.dz",
+ ar:{ name:"مهندسة رانيا علالو", title:"مهندسة وباحثة في الجسور", bio:"متخصصة في دراسات الجسور والمنشآت الفنية والخرسانة المسبقة الإجهاد.", tag:"الجسور والمنشآت الفنية" },
+ fr:{ name:"Ing. Rania Allalou", title:"Ingénieure Chercheuse", bio:"Spécialisée dans l'étude des ponts, ouvrages d'art et béton précontraint.", tag:"Ovrages d'Art & Ponts" },
+ en:{ name:"Eng. Rania Allalou", title:"Structural Bridge Engineer", bio:"Specialized in bridge engineering, art structures, and prestressed concrete design.", tag:"Bridges & Art Structures" } },
+{ id:"adel_rahoui", avatar:"image05.jpg", link:"https://www.linkedin.com/in/adel-rahoui?trk=contact-info", email:"a.rahoui@enstp.edu.dz",
+ ar:{ name:"د. عادل رحوي", title:"أستاذ محاضر قسم أ", bio:"باحث متخصص في تطبيقات الذكاء الاصطناعي، الأنظمة الذكية والطاقات المتجددة.", tag:"الذكاء الاصطناعي والأنظمة" },
+ fr:{ name:"Dr. Adel Rahoui", title:"Maître de Conférences", bio:"Chercheur spécialisé dans les applications de l'IA et les systèmes énergétiques.", tag:"IA & Énergies Renouvelables" },
+ en:{ name:"Dr. Adel Rahoui", title:"Associate Professor", bio:"Researcher specialized in AI applications, smart systems and renewable energy.", tag:"Artificial Intelligence & Energy" } },
+{ id:"mahdia_mehiaoui", avatar:"image06.jpg", link:"https://www.linkedin.com/in/mahdia-mehiaoui-88b510224?trk=contact-info", email:"m.mehiaoui@enstp.edu.dz",
+ ar:{ name:"د. مهدية محياوي", title:"أستاذة وباحثة في الجيوتقنيك", bio:"متخصصة في ميكانيكا التربة، استقرار المنحدرات والأساسات العميق للمنشآت.", tag:"الجيوتقنيك والأساسات" },
+ fr:{ name:"Dr. Mahdia Mehiaoui", title:"Enseignante-Chercheuse", bio:"Spécialiste en mécanique des sols, stabilité des pentes et fondations profondes.", tag:"Géotechnique & Fondations" },
+ en:{ name:"Dr. Mahdia Mehiaoui", title:"Geotechnical Professor", bio:"Specialist in soil mechanics, slope stability and deep foundations.", tag:"Geotechnics & Foundations" } },
+{ id:"nadjib_hemaidi", avatar:"image07.jpg", link:"https://www.linkedin.com/in/dr-nadjib-hemaidi-zourgui-03551a39?trk=contact-info", email:"n.hemaidizourgui@enstp.edu.dz",
+ ar:{ name:"د. نجيب حميدي زرقي", title:"رئيس قسم المواد والمنشآت", bio:"خبير دولي في الهندسة الزلزالية، تصميم الجسور وتحليل استجابة المنشآت.", tag:"الهندسة الزلزالية والجسور" },
+ fr:{ name:"Dr. Nadjib Hemaidi Zourgui", title:"Chef de Département", bio:"Expert en génie parasismique, conception des ponts et dynamique des structures.", tag:"Génie Parasismique" },
+ en:{ name:"Dr. Nadjib Hemaidi Zourgui", title:"Head of Materials Dept", bio:"International expert in earthquake engineering, bridge design and structural dynamics.", tag:"Earthquake & Bridge Eng." } },
+{ id:"benbokhari_abdellatif", avatar:"image08.jpg", link:"https://www.linkedin.com/in/benbokhari-abdellatif-456559195?trk=contact-info", email:"a.benbokhari@enstp.edu.dz",
+ ar:{ name:"د. عبد اللطيف بن بوهالي", title:"دكتور وباحث في الذكاء الاصطناعي", bio:"باحث دكتوراه يدمج تقنيات التعلم الآلي والذكاء الاصطناعي في تصميم الهياكل الزلزالية.", tag:"الذكاء الاصطناعي في الهندسة" },
+ fr:{ name:"Dr. Abdellatif Benbokhari", title:"Chercheur Post-Doc", bio:"Chercheur intégrant le Machine Learning au design structural parasismique.", tag:"IA & Design Parasismique" },
+ en:{ name:"Dr. Abdellatif Benbokhari", title:"Postdoc AI Researcher", bio:"Researcher integrating Machine Learning with seismic structural design optimization.", tag:"AI in Structural Engineering" } },
+{ id:"salaheddine_laib", avatar:"image09.jpg", link:"https://www.linkedin.com/in/salaheddine-laib-670225210?trk=contact-info", email:"s.laib@enstp.edu.dz",
+ ar:{ name:"د. صلاح الدين العايب", title:"أستاذ وباحث محاكاة", bio:"متخصص في النمذجة الرقمية والمحاكاة الحاسوبية المتقدمة للظواهر الفيزيائية والهندسية.", tag:"النمذجة والمحاكاة الرقمية" },
+ fr:{ name:"Dr. Salah Eddine Laib", title:"Enseignant-Chercheur", bio:"Spécialiste en modélisation numérique et simulation avancée des phénomènes physiques.", tag:"Modélisation Numérique" },
+ en:{ name:"Dr. Salah Eddine Laib", title:"Simulation & Modeling Professor", bio:"Specialized in numerical modeling and advanced computational simulation of physical phenomena.", tag:"Numerical Simulation" } },
+{ id:"khaoula_dib", avatar:"image10.jpg", link:"https://www.linkedin.com/in/khaoula-dib-58886099?trk=contact-info", email:"k.dib@enstp.edu.dz",
+ ar:{ name:"د. خولة ديب", title:"أستاذة وباحثة في الهياكل القاعدة", bio:"متخصصة في هندسة البنية التحتية، الطرق والأنفاق والانزلاقات الأرضية.", tag:"البنية التحتية والطرق" },
+ fr:{ name:"Dr. Khaoula Dib", title:"Enseignante-Chercheuse", bio:"Spécialiste en infrastructures de transport, routes, tunnels et géotechnique.", tag:"Infrastructures Routières" },
+ en:{ name:"Dr. Khaoula Dib", title:"Infrastructure Professor", bio:"Specialized in transport infrastructure, highways, tunneling and geotechnical engineering.", tag:"Infrastructure & Transport" } },
+{ id:"ahmed_y", avatar:"image11.jpg", link:"https://www.linkedin.com/in/ahmed-y-802b4215a?trk=contact-info", email:"a.yousfi@enstp.edu.dz",
+ ar:{ name:"أحمد يعلى", title:"مهندس وباحث أداء", bio:"باحث ومهندس مدني متخصص في إدارة مشاريع الأشغال العمومية والجودة الهندسية.", tag:"إدارة مشاريع الأشغال" },
+ fr:{ name:"Ahmed Yala", title:"Ingénieur Chercheur", bio:"Chercheur et ingénieur civil spécialisé en gestion des projets de travaux publics.", tag:"Gestion des Projets" },
+ en:{ name:"Ahmed Yala", title:"Civil Project Researcher", bio:"Researcher and civil engineer specialized in public works project management.", tag:"Public Works Management" } }
+];
+
+const uiText = {
+ar:{ dir:'rtl', title:"دليل الأساتذة والباحثين | ENSTP", brand:"دليل الأساتذة", back:"العودة للرئيسية",
+ heroBadge:"المنصة الأكاديمية الرسمية للأساتذة",
+ heroTitle:"ابحث عن <span class='grad'>الأساتذة والباحثين</span> بكل سهولة",
+ heroDesc:"استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.",
+ placeholder:"ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية...", quickSearch:"بحث لحظي وتفاعلي", profCountLabel:"إجمالي الأساتذة: ",
+ viewProfile:"عرض الملف الشخصي", contactBtn:"تواصل عبر البريد",
+ noResultsTitle:"لم نتمكن من العثور على نتائج", noResultsDesc:"جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.", resetBtn:"إعادة ضبط البحث",
+ footerTitle:"ENSTP Algiers • جميع الحقوق محفوظة © 2026", footerSub:"المدرسة العليا للأشغال العمومية - القبة، الجزائر" },
+fr:{ dir:'ltr', title:"Annuaire Enseignants & Chercheurs | ENSTP", brand:"Annuaire des enseignants", back:"Retour à l'accueil",
+ heroBadge:"Plateforme Académique Officielle",
+ heroTitle:"Recherchez les <span class='grad'>Professeurs & Chercheurs</span>",
+ heroDesc:"Découvrez le corps professoral de l'ENSTP, leurs domaines de recherche et contactez-les directement.",
+ placeholder:"Rechercher par nom, spécialité ou mot-clé...", quickSearch:"Recherche instantanée", profCountLabel:"Total Professeurs: ",
+ viewProfile:"Voir Profil", contactBtn:"Envoyer un e-mail",
+ noResultsTitle:"Aucun résultat trouvé", noResultsDesc:"Essayez de rechercher avec d'autres termes ou vérifiez l'orthographe du nom ou de la spécialité.", resetBtn:"Réinitialiser la recherche",
+ footerTitle:"ENSTP Algiers • Tous droits réservés © 2026", footerSub:"École Nationale Supérieure des Travaux Publics - Alger" },
+en:{ dir:'ltr', title:"Faculty & Researchers Directory | ENSTP", brand:"Faculty Directory", back:"Back to Home",
+ heroBadge:"Official Academic Directory",
+ heroTitle:"Search for <span class='grad'>Professors & Researchers</span>",
+ heroDesc:"Explore the academic staff of ENSTP, discover research domains, and connect with faculty directly.",
+ placeholder:"Search by professor name, specialty, or keywords...", quickSearch:"Instant Real-time Search", profCountLabel:"Total Professors: ",
+ viewProfile:"View Profile", contactBtn:"Send Email",
+ noResultsTitle:"No results found", noResultsDesc:"Try searching with different terms or check the spelling of the professor's name or specialty.", resetBtn:"Reset Search",
+ footerTitle:"ENSTP Algiers • All Rights Reserved © 2026", footerSub:"National Higher School of Public Works - Algiers" }
+};
+let currentLanguage = 'ar';
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function renderCards(list){
+  const grid = document.getElementById('grid-container');
+  const none = document.getElementById('no-results');
+  const t = uiText[currentLanguage];
+  if (!list.length){ grid.classList.add('hidden'); none.classList.remove('hidden'); grid.innerHTML=''; return; }
+  grid.classList.remove('hidden'); none.classList.add('hidden');
+  const arrow = currentLanguage === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right';
+  grid.innerHTML = list.map(p => {
+    const d = p[currentLanguage];
+    return `<article class="prof-card">
+      <div class="prof-band"><span class="prof-tag">${esc(d.tag)}</span><span class="prof-ok"><i class="fa-solid fa-circle-check"></i></span></div>
+      <div class="prof-avatar"><img src="${p.avatar}" alt="${esc(d.name)}" loading="lazy" onerror="this.style.visibility='hidden'"></div>
+      <div class="prof-body">
+        <h3>${esc(d.name)}</h3>
+        <div class="role">${esc(d.title)}</div>
+        <p>${esc(d.bio)}</p>
+        <div class="actions">
+          <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="btn"><span>${t.viewProfile}</span><i class="fa-solid ${arrow}"></i></a>
+          <a href="mailto:${p.email}" class="btn2"><i class="fa-solid fa-envelope"></i><span>${t.contactBtn}</span></a>
         </div>
-    </header>
+      </div>
+    </article>`;
+  }).join('');
+}
 
-    <!-- Hero Section & Instant Search Banner -->
-    <section class="hero-bg pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-100 mb-4 shadow-sm">
-                <i class="fa-solid fa-graduation-cap text-sm"></i>
-                <span id="hero-badge">المنصة الأكاديمية الرسمية للأساتذة</span>
-            </span>
-            
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-none mb-4" id="hero-title">
-                ابحث عن <span class="gradient-text">الأساتذة والباحثين</span> بكل سهولة
-            </h1>
-            
-            <p class="text-base sm:text-lg text-slate-600 font-normal max-w-2xl mx-auto mb-8" id="hero-desc">
-                استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.
-            </p>
+function handleSearch(){
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  document.getElementById('clear-btn').classList.toggle('hidden', q.length === 0);
+  const res = professorsData.filter(p => {
+    const d = p[currentLanguage];
+    return `${d.name} ${d.title} ${d.bio} ${d.tag} ${p.email}`.toLowerCase().includes(q);
+  });
+  renderCards(res);
+  document.getElementById('prof-count').textContent = res.length;
+}
+function clearSearch(){
+  const i = document.getElementById('search-input'); i.value = ''; handleSearch(); i.focus();
+}
 
-            <!-- Search Bar Component -->
-            <div class="relative max-w-2xl mx-auto">
-                <div class="relative flex items-center shadow-lg shadow-slate-200/60 rounded-2xl overflow-hidden bg-white border border-slate-200 focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-500/10 transition-all duration-200">
-                    <div class="ps-5 text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
-                    </div>
-                    <input 
-                        type="text" 
-                        id="search-input" 
-                        oninput="handleSearch()"
-                        placeholder="ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية..." 
-                        class="w-full py-4 px-4 text-sm sm:text-base text-slate-800 placeholder-slate-400 bg-transparent border-0 focus:outline-none font-medium"
-                    />
-                    <button 
-                        id="clear-btn"
-                        onclick="clearSearch()"
-                        class="hidden pe-5 text-slate-400 hover:text-slate-600 transition-colors"
-                        title="مسح البحث"
-                    >
-                        <i class="fa-solid fa-circle-xmark text-lg"></i>
-                    </button>
-                </div>
-                
-                <!-- Quick Stats -->
-                <div class="flex items-center justify-center gap-6 mt-4 text-xs font-semibold text-slate-500">
-                    <span id="total-count-badge" class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-users text-brand-500"></i>
-                        <span>إجمالي الأساتذة: <strong class="text-slate-800 font-bold" id="prof-count">11</strong></span>
-                    </span>
-                    <span class="inline-block w-1 h-1 rounded-full bg-slate-300"></span>
-                    <span class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-bolt text-amber-500"></i>
-                        <span id="quick-search-label">بحث لحظي وتفاعلي</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
+function setLanguage(lang){
+  currentLanguage = lang;
+  const t = uiText[lang];
+  const root = document.getElementById('htmlRoot');
+  root.dir = t.dir; root.lang = lang;
+  document.getElementById('bodyTag').dataset.lang = lang;
+  ['ar','fr','en'].forEach(l => document.getElementById('btn-'+l).classList.toggle('on', l === lang));
+  document.getElementById('page-title').textContent = t.title;
+  const set = (id, v, html) => { const el = document.getElementById(id); if (el) el[html ? 'innerHTML' : 'textContent'] = v; };
+  set('txt-brand', t.brand); set('back-txt', t.back);
+  set('hero-badge', t.heroBadge); set('hero-title', t.heroTitle, true); set('hero-desc', t.heroDesc);
+  document.getElementById('search-input').placeholder = t.placeholder;
+  set('quick-search-label', t.quickSearch); set('count-label', t.profCountLabel);
+  set('no-results-title', t.noResultsTitle); set('no-results-desc', t.noResultsDesc); set('reset-search-btn', t.resetBtn);
+  set('footer-title', t.footerTitle); set('footer-sub', t.footerSub);
+  try{ localStorage.setItem('enstp-lang', lang) }catch(e){}
+  handleSearch();
+}
 
-    <!-- Main Content Grid Directory -->
-    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
-        <!-- Results Grid Container -->
-        <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- Cards generated dynamically via JavaScript -->
-        </div>
+function toggleTheme(){
+  const r = document.documentElement;
+  const next = r.dataset.theme === 'dark' ? 'light' : 'dark';
+  r.dataset.theme = next;
+  document.getElementById('metaTheme').content = next === 'dark' ? '#040b17' : '#f3f6fc';
+  try{ localStorage.setItem('enstp-theme', next) }catch(e){}
+}
 
-        <!-- No Results Fallback View -->
-        <div id="no-results" class="hidden text-center py-16 px-4">
-            <div class="w-20 h-20 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-inner">
-                <i class="fa-solid fa-user-slash"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-800 mb-1" id="no-results-title">لم نتمكن من العثور على نتائج</h3>
-            <p class="text-sm text-slate-500 max-w-md mx-auto mb-6" id="no-results-desc">جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.</p>
-            <button onclick="clearSearch()" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold transition-colors shadow-md shadow-brand-500/20">
-                <i class="fa-solid fa-rotate-left me-2"></i><span id="reset-search-btn">إعادة ضبط البحث</span>
-            </button>
-        </div>
-    </main>
-
-    <!-- Professional Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-slate-700">ENSTP Algiers</span>
-                <span>•</span>
-                <span id="footer-rights">جميع الحقوق محفوظة © 2026</span>
-            </div>
-            <p id="footer-subtitle">المدرسة العليا للأشغال العمومية - القبة، الجزائر</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript Data Logic & Search Mechanics -->
-    <script>
-        // Data Store of Professors with Multi-language support
-        const professorsData = [
-            {
-                id: "rima_bellal",
-                avatar: "image01.jpg",
-                link: "https://www.researchgate.net/profile/Rima-Bellal",
-                email: "r.bellal@enstp.edu.dz",
-                badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
-                ar: { name: "د. ريما بلال", title: "أستاذة محاضرة وباحثة", bio: "أستاذة وباحثة في المدرسة العليا للأشغال العمومية (ENSTP)، تخصص هندسة المواد والمباني.", tag: "مواد البناء وهندسة الطرق" },
-                fr: { name: "Dr. Rima Bellal", title: "Enseignante-Chercheuse", bio: "Enseignante-chercheuse à l'École Nationale Supérieure des Travaux Publics (ENSTP).", tag: "Matériaux de Construction" },
-                en: { name: "Dr. Rima Bellal", title: "Associate Professor & Researcher", bio: "Professor and researcher at the National Higher School of Public Works (ENSTP).", tag: "Construction Materials & Roads" }
-            },
-            {
-                id: "khodja_mea",
-                avatar: "image02.jpg",
-                link: "https://www.linkedin.com/in/khodjamea?trk=contact-info",
-                email: "khodja.mea@enstp.edu.dz",
-                badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-                ar: { name: "د. خوجة معمر", title: "أستاذ عالي وباحث", bio: "خبير ومستشار في الهندسة المدنية والمنشآت الكبرى وتصميم الخرسانة عالية الأداء.", tag: "الهندسة المدنية والمنشآت" },
-                fr: { name: "Dr. Khodja Mea", title: "Professeur & Chercheur", bio: "Expert en Génie Civil, structures complexes et étude du béton à haute performance.", tag: "Génie Civil & Structures" },
-                en: { name: "Dr. Khodja Mea", title: "Full Professor & Researcher", bio: "Expert in Civil Engineering, structural design and advanced concrete technology.", tag: "Civil & Structural Eng." }
-            },
-            {
-                id: "said_chami",
-                avatar: "image03.jpg",
-                link: "https://www.linkedin.com/in/sa%C3%AFd-chami-8b9438232?trk=contact-info",
-                email: "s.chami@enstp.edu.dz",
-                badgeColor: "bg-indigo-50 text-indigo-700 border-indigo-200",
-                ar: { name: "سعيد شامي", title: "باحث وطالب دكتوراه", bio: "باحث بمخبر المواد والمنشآت (ENSTP) متمرس في سلوك الهياكل تحت تأثير الإجهاد.", tag: "مخبر المواد والمنشآت" },
-                fr: { name: "Saïd Chami", title: "Doctorant & Chercheur", bio: "Chercheur au Laboratoire Matériaux et Structures, spécialiste du comportement des structures.", tag: "Labo Matériaux & Structures" },
-                en: { name: "Saïd Chami", title: "PhD Researcher", bio: "Researcher at Materials & Structures Lab (ENSTP), focusing on structural behavior.", tag: "Materials & Structures Lab" }
-            },
-            {
-                id: "rania_allalou",
-                avatar: "image04.jpg",
-                link: "https://www.linkedin.com/in/allalou-rania-65b71818b?trk=contact-info",
-                email: "r.allalou@enstp.edu.dz",
-                badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
-                ar: { name: "مهندسة رانيا علالو", title: "مهندسة وباحثة في الجسور", bio: "متخصصة في دراسات الجسور والمنشآت الفنية والخرسانة المسبقة الإجهاد.", tag: "الجسور والمنشآت الفنية" },
-                fr: { name: "Ing. Rania Allalou", title: "Ingénieure Chercheuse", bio: "Spécialisée dans l'étude des ponts, ouvrages d'art et béton précontraint.", tag: "Ovrages d'Art & Ponts" },
-                en: { name: "Eng. Rania Allalou", title: "Structural Bridge Engineer", bio: "Specialized in bridge engineering, art structures, and prestressed concrete design.", tag: "Bridges & Art Structures" }
-            },
-            {
-                id: "adel_rahoui",
-                avatar: "image05.jpg",
-                link: "https://www.linkedin.com/in/adel-rahoui?trk=contact-info",
-                email: "a.rahoui@enstp.edu.dz",
-                badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
-                ar: { name: "د. عادل رحوي", title: "أستاذ محاضر قسم أ", bio: "باحث متخصص في تطبيقات الذكاء الاصطناعي، الأنظمة الذكية والطاقات المتجددة.", tag: "الذكاء الاصطناعي والأنظمة" },
-                fr: { name: "Dr. Adel Rahoui", title: "Maître de Conférences", bio: "Chercheur spécialisé dans les applications de l'IA et les systèmes énergétiques.", tag: "IA & Énergies Renouvelables" },
-                en: { name: "Dr. Adel Rahoui", title: "Associate Professor", bio: "Researcher specialized in AI applications, smart systems and renewable energy.", tag: "Artificial Intelligence & Energy" }
-            },
-            {
-                id: "mahdia_mehiaoui",
-                avatar: "image06.jpg",
-                link: "https://www.linkedin.com/in/mahdia-mehiaoui-88b510224?trk=contact-info",
-                email: "m.mehiaoui@enstp.edu.dz",
-                badgeColor: "bg-teal-50 text-teal-700 border-teal-200",
-                ar: { name: "د. مهدية محياوي", title: "أستاذة وباحثة في الجيوتقنيك", bio: "متخصصة في ميكانيكا التربة، استقرار المنحدرات والأساسات العميق للمنشآت.", tag: "الجيوتقنيك والأساسات" },
-                fr: { name: "Dr. Mahdia Mehiaoui", title: "Enseignante-Chercheuse", bio: "Spécialiste en mécanique des sols, stabilité des pentes et fondations profondes.", tag: "Géotechnique & Fondations" },
-                en: { name: "Dr. Mahdia Mehiaoui", title: "Geotechnical Professor", bio: "Specialist in soil mechanics, slope stability and deep foundations.", tag: "Geotechnics & Foundations" }
-            },
-            {
-                id: "nadjib_hemaidi",
-                avatar: "image07.jpg",
-                link: "https://www.linkedin.com/in/dr-nadjib-hemaidi-zourgui-03551a39?trk=contact-info",
-                email: "n.hemaidizourgui@enstp.edu.dz",
-                badgeColor: "bg-rose-50 text-rose-700 border-rose-200",
-                ar: { name: "د. نجيب حميدي زرقي", title: "رئيس قسم المواد والمنشآت", bio: "خبير دولي في الهندسة الزلزالية، تصميم الجسور وتحليل استجابة المنشآت.", tag: "الهندسة الزلزالية والجسور" },
-                fr: { name: "Dr. Nadjib Hemaidi Zourgui", title: "Chef de Département", bio: "Expert en génie parasismique, conception des ponts et dynamique des structures.", tag: "Génie Parasismique" },
-                en: { name: "Dr. Nadjib Hemaidi Zourgui", title: "Head of Materials Dept", bio: "International expert in earthquake engineering, bridge design and structural dynamics.", tag: "Earthquake & Bridge Eng." }
-            },
-            {
-                id: "benbokhari_abdellatif",
-                avatar: "image08.jpg",
-                link: "https://www.linkedin.com/in/benbokhari-abdellatif-456559195?trk=contact-info",
-                email: "a.benbokhari@enstp.edu.dz",
-                badgeColor: "bg-cyan-50 text-cyan-700 border-cyan-200",
-                ar: { name: "د. عبد اللطيف بن بوهالي", title: "دكتور وباحث في الذكاء الاصطناعي", bio: "باحث دكتوراه يدمج تقنيات التعلم الآلي والذكاء الاصطناعي في تصميم الهياكل الزلزالية.", tag: "الذكاء الاصطناعي في الهندسة" },
-                fr: { name: "Dr. Abdellatif Benbokhari", bio: "Chercheur intégrant le Machine Learning au design structural parasismique.", title: "Chercheur Post-Doc", tag: "IA & Design Parasismique" },
-                en: { name: "Dr. Abdellatif Benbokhari", title: "Postdoc AI Researcher", bio: "Researcher integrating Machine Learning with seismic structural design optimization.", tag: "AI in Structural Engineering" }
-            },
-            {
-                id: "salaheddine_laib",
-                avatar: "image09.jpg",
-                link: "https://www.linkedin.com/in/salaheddine-laib-670225210?trk=contact-info",
-                email: "s.laib@enstp.edu.dz",
-                badgeColor: "bg-sky-50 text-sky-700 border-sky-200",
-                ar: { name: "د. صلاح الدين العايب", title: "أستاذ وباحث محاكاة", bio: "متخصص في النمذجة الرقمية والمحاكاة الحاسوبية المتقدمة للظواهر الفيزيائية والهندسية.", tag: "النمذجة والمحاكاة الرقمية" },
-                fr: { name: "Dr. Salah Eddine Laib", title: "Enseignant-Chercheur", bio: "Spécialiste en modélisation numérique et simulation avancée des phénomènes physiques.", tag: "Modélisation Numérique" },
-                en: { name: "Dr. Salah Eddine Laib", title: "Simulation & Modeling Professor", bio: "Specialized in numerical modeling and advanced computational simulation of physical phenomena.", tag: "Numerical Simulation" }
-            },
-            {
-                id: "khaoula_dib",
-                avatar: "image10.jpg",
-                link: "https://www.linkedin.com/in/khaoula-dib-58886099?trk=contact-info",
-                email: "k.dib@enstp.edu.dz",
-                badgeColor: "bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200",
-                ar: { name: "د. خولة ديب", title: "أستاذة وباحثة في الهياكل القاعدة", bio: "متخصصة في هندسة البنية التحتية، الطرق والأنفاق والانزلاقات الأرضية.", tag: "البنية التحتية والطرق" },
-                fr: { name: "Dr. Khaoula Dib", title: "Enseignante-Chercheuse", bio: "Spécialiste en infrastructures de transport, routes, tunnels et géotechnique.", tag: "Infrastructures Routières" },
-                en: { name: "Dr. Khaoula Dib", title: "Infrastructure Professor", bio: "Specialized in transport infrastructure, highways, tunneling and geotechnical engineering.", tag: "Infrastructure & Transport" }
-            },
-            {
-                id: "ahmed_y",
-                avatar: "image11.jpg",
-                link: "https://www.linkedin.com/in/ahmed-y-802b4215a?trk=contact-info",
-                email: "a.yousfi@enstp.edu.dz",
-                badgeColor: "bg-slate-100 text-slate-700 border-slate-200",
-                ar: { name: "أحمد يعلى", title: "مهندس وباحث أداء", bio: "باحث ومهندس مدني متخصص في إدارة مشاريع الأشغال العمومية والجودة الهندسية.", tag: "إدارة مشاريع الأشغال" },
-                fr: { name: "Ahmed Yala", title: "Ingénieur Chercheur", bio: "Chercheur et ingénieur civil spécialisé en gestion des projets de travaux publics.", tag: "Gestion des Projets" },
-                en: { name: "Ahmed Yala", title: "Civil Project Researcher", bio: "Researcher and civil engineer specialized in public works project management.", tag: "Public Works Management" }
-            }
-        ];
-
-        // UI Language Translations Object
-        const uiText = {
-            ar: {
-                title: "دليل الأساتذة والباحثين | ENSTP",
-                logoTitle: "المدرسة العليا للأشغال العمومية",
-                logoSubtitle: "دليل الهيئة التدريسية والباحثين",
-                heroBadge: "المنصة الأكاديمية الرسمية للأساتذة",
-                heroTitle: "ابحث عن <span class='gradient-text'>الأساتذة والباحثين</span> بكل سهولة",
-                heroDesc: "استكشف الكادر الأكاديمي للمدرسة العليا للأشغال العمومية، وتعرف على التخصصات البحثية وسبل التواصل المباشر.",
-                placeholder: "ابحث باسم الأستاذ، التخصص، أو الكلمات المفتاحية...",
-                quickSearch: "بحث لحظي وتفاعلي",
-                profCountLabel: "إجمالي الأساتذة: ",
-                viewProfile: "عرض الملف الشخصي",
-                contactBtn: "تواصل عبر البريد",
-                noResultsTitle: "لم نتمكن من العثور على نتائج",
-                noResultsDesc: "جرب البحث بكلمات مختلفة أو تأكد من صحة كتابة اسم الأستاذ أو التخصص.",
-                resetBtn: "إعادة ضبط البحث",
-                footerRights: "جميع الحقوق محفوظة © 2026",
-                footerSubtitle: "المدرسة العليا للأشغال العمومية - القبة، الجزائر"
-            },
-            fr: {
-                title: "Annuaire Enseignants & Chercheurs | ENSTP",
-                logoTitle: "École Nationale Supérieure des Travaux Publics",
-                logoSubtitle: "Annuaire du Corps Enseignant et Chercheurs",
-                heroBadge: "Plateforme Académique Officielle",
-                heroTitle: "Recherchez les <span class='gradient-text'>Professeurs & Chercheurs</span>",
-                heroDesc: "Découvrez le corps professoral de l'ENSTP, leurs domaines de recherche et contactez-les directement.",
-                placeholder: "Rechercher par nom, spécialité ou mot-clé...",
-                quickSearch: "Recherche instantanée",
-                profCountLabel: "Total Professeurs: ",
-                viewProfile: "Voir Profil",
-                contactBtn: "Envoyer un e-mail",
-                noResultsTitle: "Aucun résultat trouvé",
-                noResultsDesc: "Essayez de rechercher avec d'autres termes ou vérifiez l'orthographe du nom ou de la spécialité.",
-                resetBtn: "Réinitialiser la recherche",
-                footerRights: "Tous droits réservés © 2026",
-                footerSubtitle: "École Nationale Supérieure des Travaux Publics - Alger"
-            },
-            en: {
-                title: "Faculty & Researchers Directory | ENSTP",
-                logoTitle: "National Higher School of Public Works",
-                logoSubtitle: "Faculty & Researcher Directory",
-                heroBadge: "Official Academic Directory",
-                heroTitle: "Search for <span class='gradient-text'>Professors & Researchers</span>",
-                heroDesc: "Explore the academic staff of ENSTP, discover research domains, and connect with faculty directly.",
-                placeholder: "Search by professor name, specialty, or keywords...",
-                quickSearch: "Instant Real-time Search",
-                profCountLabel: "Total Professors: ",
-                viewProfile: "View Profile",
-                contactBtn: "Send Email",
-                noResultsTitle: "No results found",
-                noResultsDesc: "Try searching with different terms or check the spelling of the professor's name or specialty.",
-                resetBtn: "Reset Search",
-                footerRights: "All Rights Reserved © 2026",
-                footerSubtitle: "National Higher School of Public Works - Algiers"
-            }
-        };
-
-        let currentLanguage = 'ar';
-
-        // Render Directory Cards dynamically
-        function renderCards(filteredData) {
-            const grid = document.getElementById('grid-container');
-            const noResults = document.getElementById('no-results');
-            const t = uiText[currentLanguage];
-
-            grid.innerHTML = '';
-
-            if (!filteredData || filteredData.length === 0) {
-                grid.classList.add('hidden');
-                noResults.classList.remove('hidden');
-                return;
-            }
-
-            grid.classList.remove('hidden');
-            noResults.classList.add('hidden');
-
-            filteredData.forEach(prof => {
-                const data = prof[currentLanguage];
-                const isRtl = currentLanguage === 'ar';
-                const arrowIcon = isRtl ? 'fa-arrow-left' : 'fa-arrow-right';
-
-                const cardHTML = `
-                    <div class="glass-card rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between relative group shadow-sm hover:border-brand-200">
-                        <!-- Top Accent Pattern -->
-                        <div class="h-24 bg-gradient-to-r from-brand-700 via-brand-600 to-sky-500 relative p-4 flex justify-between items-start">
-                            <span class="px-3 py-1 rounded-full text-[11px] font-bold border ${prof.badgeColor} shadow-sm backdrop-blur-md">
-                                ${data.tag}
-                            </span>
-                            <div class="w-7 h-7 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xs">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
-                        </div>
-
-                        <!-- Avatar Profile Floating -->
-                        <div class="px-6 -mt-12 flex justify-between items-end relative z-10">
-                            <div class="relative">
-                                <img src="${prof.avatar}" alt="${data.name}" class="w-20 h-20 rounded-2xl object-cover ring-4 ring-white shadow-md bg-slate-100">
-                                <span class="absolute bottom-1 right-1 w-4 h-4 bg-emerald-500 ring-2 ring-white rounded-full" title="نشط أسرع"></span>
-                            </div>
-                        </div>
-
-                        <!-- Card Information Body -->
-                        <div class="p-6 pt-4 flex-1 flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center gap-2 mb-1">
-                                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">${data.name}</h3>
-                                </div>
-                                <p class="text-xs font-semibold text-brand-600 mb-3">${data.title}</p>
-                                <p class="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">${data.bio}</p>
-                            </div>
-
-                            <!-- Buttons Actions -->
-                            <div class="space-y-2 pt-3 border-t border-slate-100">
-                                <a href="${prof.link}" target="_blank" rel="noopener noreferrer" 
-                                   class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-slate-900 hover:bg-brand-600 text-white flex items-center justify-center gap-2 transition-all duration-200 shadow-sm">
-                                    <span>${t.viewProfile}</span>
-                                    <i class="fa-solid ${arrowIcon} text-[10px]"></i>
-                                </a>
-                                
-                                <a href="mailto:${prof.email}" 
-                                   class="w-full py-2 px-4 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center gap-2 transition-colors">
-                                    <i class="fa-solid fa-envelope text-slate-500"></i>
-                                    <span>${t.contactBtn}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                grid.innerHTML += cardHTML;
-            });
-        }
-
-        // Instant Real-time Search Handler
-        function handleSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clear-btn');
-
-            if (query.length > 0) {
-                clearBtn.classList.remove('hidden');
-            } else {
-                clearBtn.classList.add('hidden');
-            }
-
-            const filtered = professorsData.filter(prof => {
-                const langData = prof[currentLanguage];
-                const searchPool = `${langData.name} ${langData.title} ${langData.bio} ${langData.tag} ${prof.email}`.toLowerCase();
-                return searchPool.includes(query);
-            });
-
-            renderCards(filtered);
-            document.getElementById('prof-count').innerText = filtered.length;
-        }
-
-        // Clear Search Query
-        function clearSearch() {
-            const input = document.getElementById('search-input');
-            input.value = '';
-            handleSearch();
-            input.focus();
-        }
-
-        // Language Switcher Logic
-        function setLanguage(lang) {
-            currentLanguage = lang;
-            const t = uiText[lang];
-
-            // Update Direction and HTML Lang
-            const body = document.body;
-            body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            body.setAttribute('lang', lang);
-
-            // Update Active Language Button UI
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('bg-white', 'text-brand-600', 'shadow-sm');
-                btn.classList.add('text-slate-600');
-            });
-            const activeBtn = document.getElementById(`btn-${lang}`);
-            activeBtn.classList.add('bg-white', 'text-brand-600', 'shadow-sm');
-            activeBtn.classList.remove('text-slate-600');
-
-            // Update Page Static Labels
-            document.getElementById('page-title').innerText = t.title;
-            document.getElementById('logo-title').innerText = t.logoTitle;
-            document.getElementById('logo-subtitle').innerText = t.logoSubtitle;
-            document.getElementById('hero-badge').innerText = t.heroBadge;
-            document.getElementById('hero-title').innerHTML = t.heroTitle;
-            document.getElementById('hero-desc').innerText = t.heroDesc;
-            document.getElementById('search-input').placeholder = t.placeholder;
-            document.getElementById('quick-search-label').innerText = t.quickSearch;
-            document.getElementById('no-results-title').innerText = t.noResultsTitle;
-            document.getElementById('no-results-desc').innerText = t.noResultsDesc;
-            document.getElementById('reset-search-btn').innerText = t.resetBtn;
-            document.getElementById('footer-rights').innerText = t.footerRights;
-            document.getElementById('footer-subtitle').innerText = t.footerSubtitle;
-
-            // Re-apply search filter for current view
-            handleSearch();
-        }
-
-        // Initial App Load
-        window.onload = function() {
-            setLanguage('ar');
-        };
-    </script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('metaTheme').content = document.documentElement.dataset.theme === 'dark' ? '#040b17' : '#f3f6fc';
+  let saved = 'ar'; try{ saved = localStorage.getItem('enstp-lang') || 'ar' }catch(e){}
+  setLanguage(uiText[saved] ? saved : 'ar');
+  const pb = document.getElementById('progressBar'), tt = document.getElementById('toTop');
+  addEventListener('scroll', () => {
+    const h = document.documentElement;
+    pb.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%';
+    tt.classList.toggle('show', h.scrollTop > 600);
+  }, {passive:true});
+});
+</script>
 </body>
 </html>
