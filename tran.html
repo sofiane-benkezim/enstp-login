@@ -3,97 +3,259 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <title>محطات النقل والحافلات - ENSTP</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --primary: #6366f1;
-  --primary-glow: rgba(99, 102, 241, 0.3);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --radius: 20px;
-  --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  --font: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
 }
-*, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; background: #0f172a; background-image: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); font-family: var(--font); min-height: 100vh; padding-bottom: 60px; }
-.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
-.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 28px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 32px; }
-.brand { display: flex; align-items: center; gap: 14px; font-size: 22px; font-weight: 900; color: #fff; }
-.places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; }
-.card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
-.card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; color: #fff; }
-.place-type { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
-.info-item { font-size: 13px; color: #cbd5e1; margin: 6px 0; }
-.info-item b { color: var(--text-muted); }
-.card-actions { display: flex; gap: 10px; margin-top: 20px; }
-.btn { flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 13px; text-decoration: none; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-.btn-primary { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; box-shadow: 0 4px 15px var(--primary-glow); }
-.btn-secondary { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--card-border); }
+html[data-theme="dark"]{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
+
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
+
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
+
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
+
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
+
+.hero{min-height:46svh}
+.hidden{display:none!important}
+.places{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:26px}
+.place{position:relative;display:flex;flex-direction:column;justify-content:space-between;border-radius:var(--radius);padding:26px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.place:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.p-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.ico{flex-shrink:0;width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:1.3rem;color:#fff;background:linear-gradient(145deg,var(--c1),var(--c2));box-shadow:0 12px 28px var(--c3),inset 0 1px 0 rgba(255,255,255,.4)}
+.place h3{font-size:1.05rem;font-weight:900;color:var(--head);line-height:1.6}
+.p-type{font-size:.78rem;font-weight:800;color:var(--tag-c);margin-top:2px}
+.dist{display:inline-flex;align-items:center;gap:8px;margin:10px 0;padding:8px 14px;border-radius:12px;font-size:.8rem;font-weight:800;color:var(--head);background:var(--soft);border:1px solid var(--card-b)}
+.dist i{color:var(--gold)}
+.note{margin-top:6px;padding:12px 14px;border-radius:14px;font-size:.82rem;line-height:1.9;color:#92400e;background:rgba(245,184,65,.16);border:1px solid rgba(245,184,65,.35)}
+html[data-theme="dark"] .note{color:var(--gold-2)}
+.p-act{margin-top:20px}
+.p-act .btn{margin:0;padding:13px}
+.t-bus{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.t-metro{--c1:#7c3aed;--c2:#c4b5fd;--c3:rgba(124,58,237,.5)}
+.t-tram{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+main{padding-top:50px}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <header class="header">
-    <div class="brand">🚌 محطات الحافلات والنقل - ENSTP</div>
-    <a href="index.html" class="btn btn-secondary" style="flex:unset; padding:8px 16px;">العودة للرئيسية</a>
-  </header>
-  <main class="places-grid" id="places-container"></main>
+<body data-lang="ar">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
+<header>
+<div class="bar">
+<div class="logo"><div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div><span id="txt-brand" data-i18n="brand">محطات النقل</span></div>
+<div class="tools">
+<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span data-i18n="back">العودة للرئيسية</span></a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang"><button onclick="setLanguage('ar')" id="lang-ar" class="on">AR</button><button onclick="setLanguage('fr')" id="lang-fr">FR</button><button onclick="setLanguage('en')" id="lang-en">EN</button></div>
 </div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-bus"></i> <span data-i18n="badge"></span></span>
+<h1 data-i18n="h1"></h1>
+<p data-i18n="desc"></p>
+</div>
+</section>
+<main><div class="places" id="places"></div></main>
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title" data-i18n="footer_t"></p>
+<p id="footer-sub" data-i18n="footer_s"></p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
-const O = { lat: 36.7255818, lng: 3.0695956 };
-const TRANSPORT = [
-  { 
-    n: "محطة حافلات القبة (Gare routière de Kouba)", 
-    t: "محطة حافلات رئيسية (ETUSA)", 
-    lat: 36.7298726, 
-    lng: 3.0732016, 
-    note: "المحطة الأساسية التي تضم خطوط الحافلات الحضرية وشبه الحضرية الرابطة." 
-  },
-  { 
-    n: "موقف الحافلات الجامعي القريب (University Bus Stop)", 
-    t: "موقف حافلات جواري", 
-    lat: 36.7302816, 
-    lng: 3.0730786, 
-    note: "الموقف الأقرب لمحيط المدرسة والذي يستعمله الطلبة يومياً للتنقل السريع." 
-  },
-  { 
-    n: "محطة مترو المعدومين (Les Fusillés / Ruisseau)", 
-    t: "محطة المترو والربط", 
-    lat: 36.7424932, 
-    lng: 3.0834303, 
-    note: "محطة المترو الرئيسية القريبة (يمكنك ركوب الحافلة المباشرة نحو الرويسو للوصول إليها)." 
-  },
-  { 
-    n: "محطة ترامواي المعدومين (Les Fusillés)", 
-    t: "محطة الترامواي", 
-    lat: 36.7424277, 
-    lng: 3.0832741, 
-    note: "محطة ربط الترامواي المتواجدة بمحاذاة محطة مترو المعدومين." 
-  }
-];
-
-TRANSPORT.forEach(p => {
-  const dx = (p.lng - O.lng) * 89200, dy = (p.lat - O.lat) * 111000;
-  p.d = Math.hypot(dx, dy);
-});
-
-document.getElementById("places-container").innerHTML = TRANSPORT.map(p => `
-  <article class="card">
+const O = { lat: 36.7255818, lng: 3.0695956 }; // ENSTP
+const TRANSPORT = [{"ic": "fa-bus", "cls": "t-bus", "lat": 36.7298726, "lng": 3.0732016, "n": {"ar": "محطة حافلات القبة (Gare routière de Kouba)", "fr": "Gare routière de Kouba", "en": "Kouba Bus Station (Gare routière de Kouba)"}, "t": {"ar": "محطة حافلات رئيسية (ETUSA)", "fr": "Gare routière principale (ETUSA)", "en": "Main bus station (ETUSA)"}, "note": {"ar": "المحطة الأساسية التي تضم خطوط الحافلات الحضرية وشبه الحضرية الرابطة.", "fr": "La station principale regroupant les lignes de bus urbaines et périurbaines.", "en": "The main station serving urban and suburban connecting bus lines."}}, {"ic": "fa-bus-simple", "cls": "t-bus", "lat": 36.7302816, "lng": 3.0730786, "n": {"ar": "موقف الحافلات الجامعي القريب (University Bus Stop)", "fr": "Arrêt de bus universitaire proche", "en": "Nearby University Bus Stop"}, "t": {"ar": "موقف حافلات جواري", "fr": "Arrêt de bus de proximité", "en": "Local bus stop"}, "note": {"ar": "الموقف الأقرب لمحيط المدرسة والذي يستعمله الطلبة يومياً للتنقل السريع.", "fr": "L'arrêt le plus proche de l'école, utilisé chaque jour par les étudiants.", "en": "The closest stop to the school, used daily by students for quick commutes."}}, {"ic": "fa-train-subway", "cls": "t-metro", "lat": 36.7424932, "lng": 3.0834303, "n": {"ar": "محطة مترو المعدومين (Les Fusillés / Ruisseau)", "fr": "Station de métro Les Fusillés (Ruisseau)", "en": "Les Fusillés Metro Station (Ruisseau)"}, "t": {"ar": "محطة المترو والربط", "fr": "Station de métro et correspondance", "en": "Metro & connection station"}, "note": {"ar": "محطة المترو الرئيسية القريبة (يمكنك ركوب الحافلة المباشرة نحو الرويسو للوصول إليها).", "fr": "La principale station de métro proche (prenez le bus direct vers Ruisseau pour la rejoindre).", "en": "The nearest main metro station (take the direct bus toward Ruisseau to reach it)."}}, {"ic": "fa-train-tram", "cls": "t-tram", "lat": 36.7424277, "lng": 3.0832741, "n": {"ar": "محطة ترامواي المعدومين (Les Fusillés)", "fr": "Station de tramway Les Fusillés", "en": "Les Fusillés Tram Station"}, "t": {"ar": "محطة الترامواي", "fr": "Station de tramway", "en": "Tram station"}, "note": {"ar": "محطة ربط الترامواي المتواجدة بمحاذاة محطة مترو المعدومين.", "fr": "La station de correspondance du tramway, à côté de la station de métro Les Fusillés.", "en": "The tram interchange located beside Les Fusillés metro station."}}];
+TRANSPORT.forEach(p => { const dx=(p.lng-O.lng)*89200, dy=(p.lat-O.lat)*111000; p.d=Math.hypot(dx,dy); });
+const T={
+ar:{brand:'محطات النقل',back:'العودة للرئيسية',title:'محطات النقل والحافلات - ENSTP',badge:'النقل والتنقل',h1:'محطات الحافلات <span>والنقل</span>',desc:'أقرب محطات الحافلات والمترو والترامواي لمدرسة ENSTP، مع المسافة التقريبية والاتجاهات المباشرة.',
+distL:'المسافة التقريبية:',distV:(m)=>'نحو '+m+' متر عن المدرسة',dir:'الاتجاهات المباشرة',footer_t:'منصة دليل الطالب الموحد - ENSTP',footer_s:'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة العليا للأشغال العمومية'},
+fr:{brand:'Transports',back:"Retour à l'accueil",title:'Stations de bus et de transport - ENSTP',badge:'Transport et déplacements',h1:'Stations de bus <span>et de transport</span>',desc:"Les stations de bus, métro et tramway les plus proches de l'ENSTP, avec la distance approximative et l'itinéraire direct.",
+distL:'Distance approximative :',distV:(m)=>"environ "+m+" m de l'école",dir:'Itinéraire direct',footer_t:"Plateforme du Guide Unifié de l'Étudiant - ENSTP",footer_s:"Projet interactif dédié aux nouveaux étudiants de l'ENSTP"},
+en:{brand:'Transport',back:'Back to Home',title:'Bus & Transport Stations - ENSTP',badge:'Transport & commuting',h1:'Bus & <span>Transport Stations</span>',desc:'The nearest bus, metro and tram stations to ENSTP, with the approximate distance and direct directions.',
+distL:'Approx. distance:',distV:(m)=>'about '+m+' m from the school',dir:'Get directions',footer_t:'ENSTP Unified Student Guide Platform',footer_s:'An interactive project built to support new ENSTP students'}
+};
+let LG='ar';
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function render(){
+  const d=T[LG];
+  document.getElementById('places').innerHTML=TRANSPORT.map(p=>`<article class="place reveal in">
     <div>
-      <h3>${p.n}</h3>
-      <div class="place-type">${p.t}</div>
-      <div class="info-item"><b>المسافة التقريبية:</b> نحو ${Math.round(p.d)} متر عن المدرسة</div>
-      <div class="info-item" style="color:#fbbf24; margin-top:8px; line-height: 1.5;">📍 ${p.note}</div>
+      <div class="p-top"><div class="ico ${p.cls}"><i class="fa-solid ${p.ic}"></i></div><div><h3>${esc(p.n[LG])}</h3><div class="p-type">${esc(p.t[LG])}</div></div></div>
+      <div class="dist"><i class="fa-solid fa-person-walking"></i><span><b>${d.distL}</b> ${d.distV(Math.round(p.d))}</span></div>
+      <div class="note">📍 ${esc(p.note[LG])}</div>
     </div>
-    <div class="card-actions">
-      <a class="btn btn-primary" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}">🚗 الاتجاهات المباشرة</a>
-    </div>
-  </article>
-`).join('');
+    <div class="p-act"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}"><i class="fa-solid fa-route"></i> ${d.dir}</a></div>
+  </article>`).join('');
+}
+function setLanguage(lang){
+  LG=lang; const d=T[lang], r=document.documentElement;
+  r.dir=lang==='ar'?'rtl':'ltr'; r.lang=lang; document.body.dataset.lang=lang;
+  ['ar','fr','en'].forEach(l=>document.getElementById('lang-'+l).classList.toggle('on',l===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n]; if(typeof v==='string') el.innerHTML=v;});
+  document.title=d.title;
+  try{localStorage.setItem('enstp-lang',lang)}catch(e){}
+  render();
+}
+function toggleTheme(){
+  const r=document.documentElement,next=r.dataset.theme==='dark'?'light':'dark';
+  r.dataset.theme=next; document.getElementById('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
+  try{localStorage.setItem('enstp-theme',next)}catch(e){}
+}
+(function(){
+  document.getElementById('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
+  let s='ar'; try{s=localStorage.getItem('enstp-lang')||'ar'}catch(e){}
+  setLanguage(T[s]?s:'ar');
+  const pb=document.getElementById('progressBar'),tt=document.getElementById('toTop');
+  addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
+})();
 </script>
 </body>
 </html>

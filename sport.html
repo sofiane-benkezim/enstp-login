@@ -1,669 +1,406 @@
-<!DOCTYPE html>
-<html lang="fr" dir="ltr" class="dark">
+<!doctype html>
+<html lang="fr" dir="ltr" id="htmlRoot">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENSTP Sport & Vie Étudiante</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#071a33',
-                        },
-                        accent: { 500: '#f59e0b', 600: '#d97706' }
-                    },
-                    fontFamily: { 
-                        cairo: ['Cairo', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts Cairo & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
-        
-        #hero-sport {
-            background: linear-gradient(135deg, rgba(7, 26, 51, 0.88), rgba(18, 60, 104, 0.8)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<title>ENSTP Sport & Vie Étudiante</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
+}
+html[data-theme="dark"]{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-        .card-sport {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-sport:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(7, 26, 51, 0.15);
-        }
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
 
-        .play-btn-pulse {
-            animation: pulse-ring 2s infinite;
-        }
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
-            70% { box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-        }
-    </style>
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
+
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
+
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
+
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
+
+.hidden{display:none!important}
+.hero{min-height:58svh;text-align:start}
+.hero-bg{background:linear-gradient(135deg,rgba(7,26,51,.88),rgba(18,60,104,.8)),url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-inner{max-width:1280px;width:100%}
+.hero h1{font-size:clamp(2.2rem,6vw,4.2rem)}
+.hero h1 .g{display:inline;background:linear-gradient(100deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0;max-width:600px}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.15);max-width:860px}
+.feat{display:flex;align-items:center;gap:12px;font-size:.84rem;font-weight:800;color:#e1eaf6}
+.feat i{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:1.05rem;color:var(--gold);background:rgba(255,255,255,.1);flex-shrink:0}
+.s-e{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-f{--c1:#7c3aed;--c2:#c4b5fd;--c3:rgba(124,58,237,.5)}
+.chip{font-size:.72rem;font-weight:800;padding:6px 13px;border-radius:999px;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 16px rgba(245,184,65,.35)}
+.dirbox{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;padding:34px;border-radius:32px;color:#fff;background:radial-gradient(ellipse at 0% 0%,#1d5fd1 0%,transparent 60%),linear-gradient(160deg,#0b2545,#030812);border:1px solid rgba(255,255,255,.1);box-shadow:var(--card-shadow)}
+@media(max-width:900px){.dirbox{grid-template-columns:1fr;padding:24px}}
+.dirbox h2{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:900;line-height:1.4;margin:12px 0}
+.dirbox>div>p{font-size:.9rem;line-height:2;color:#b9c8df}
+.badge2{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:800;padding:7px 14px;border-radius:999px;color:var(--gold-2);background:rgba(245,184,65,.14);border:1px solid rgba(245,184,65,.4)}
+.who{display:flex;align-items:center;gap:14px;margin:20px 0}
+.who i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:1.2rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));border:2px solid #fff}
+.who h4{font-size:1rem;font-weight:900}
+.who small{font-size:.76rem;font-weight:700;color:var(--gold)}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);text-align:center}
+.stat{padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.stat b{display:block;font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold)}
+.stat span{font-size:.7rem;font-weight:700;color:#9db0cd}
+.vthumb{position:relative;border-radius:22px;overflow:hidden;cursor:pointer;border:2px solid rgba(245,184,65,.45);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.vthumb img{width:100%;height:320px;object-fit:cover;transition:transform .6s var(--ease)}
+.vthumb:hover img{transform:scale(1.06)}
+.vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,8,18,.85),rgba(3,8,18,.15) 60%,transparent)}
+.play{position:absolute;z-index:2;inset:0;margin:auto;width:80px;height:80px;border-radius:50%;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));animation:ring 2s infinite;transition:transform .3s}
+.vthumb:hover .play{transform:scale(1.12)}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(245,184,65,.6)}70%{box-shadow:0 0 0 22px rgba(245,184,65,0)}100%{box-shadow:0 0 0 0 rgba(245,184,65,0)}}
+.vcap{position:absolute;z-index:2;inset-inline:16px;bottom:14px;display:flex;justify-content:space-between;gap:8px;font-size:.74rem;font-weight:800;color:#fff}
+.vcap span{padding:7px 12px;border-radius:10px;background:rgba(5,12,26,.8);backdrop-filter:blur(8px)}
+.vcap span.g{color:#14100a;background:var(--gold)}
+.sec-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:30px}
+.eyebrow{font-size:.76rem;font-weight:900;color:var(--tag-c);margin-bottom:4px}
+.eyebrow i{margin-inline-end:6px}
+.sec-top h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--head)}
+.sec-top p{font-size:.88rem;color:var(--muted);margin-top:4px}
+.pill{font-size:.74rem;font-weight:800;padding:7px 14px;border-radius:999px;color:var(--tag-c);background:var(--soft);border:1px solid var(--card-b)}
+.tagc{position:absolute;z-index:2;top:12px;inset-inline-start:12px;font-size:.68rem;font-weight:800;padding:5px 12px;border-radius:999px;color:#fff;display:inline-flex;align-items:center;gap:6px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.ok{background:#10b981}.soonc{background:#f59e0b}.bl{background:#2563eb}.pu{background:#7c3aed}.gr{background:#059669}
+.sc-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sc-body h3{font-size:1rem;font-weight:900;color:var(--head);line-height:1.5}
+.sc-body .ln{font-size:.8rem;color:var(--desc);display:flex;align-items:center;gap:8px}
+.sc-body .ln i{color:var(--gold);width:14px}
+.st{margin-top:auto;text-align:center;font-size:.76rem;font-weight:800;padding:9px;border-radius:12px}
+.st.o{color:#059669;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4)}
+.st.p{color:#b45309;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4)}
+html[data-theme="dark"] .st.o{color:#6ee7b7}
+html[data-theme="dark"] .st.p{color:var(--gold-2)}
+.team{text-align:center;padding:44px 28px;border-radius:32px;background:var(--card);border:2px solid rgba(245,184,65,.4);box-shadow:var(--card-shadow)}
+.team .ico{width:56px;height:56px;margin:0 auto 14px;border-radius:18px;display:grid;place-items:center;font-size:1.3rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 12px 28px rgba(245,184,65,.4)}
+.team h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--head)}
+.team>p{max-width:560px;margin:8px auto 0;font-size:.9rem;color:var(--desc);line-height:1.95}
+.team .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+.team .btn{width:auto;margin:0;padding-inline:26px}
+.btn-dark{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:16px;font-weight:900;font-size:.9rem;color:#fff;background:linear-gradient(135deg,#0b2545,#12386a);border:1px solid rgba(255,255,255,.15);transition:.3s var(--ease)}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(11,37,69,.4)}
+.sports{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+.sports span{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.78rem;font-weight:800;color:var(--ink);background:var(--soft);border:1px solid var(--card-b)}
+.sports i{color:var(--gold)}
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,8,18,.78);backdrop-filter:blur(8px)}
+.modal.open{display:flex}
+.vbox{position:relative;width:100%;max-width:900px;border-radius:26px;overflow:hidden;background:#0a1220;border:1px solid var(--glass-b);box-shadow:0 40px 100px rgba(0,0,0,.5);padding:14px}
+.vbox .x{position:absolute;top:18px;inset-inline-end:18px;z-index:3;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font-size:1rem;color:#14100a;background:var(--gold)}
+.vbox iframe,.vbox .nov{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000}
+.nov{display:grid;place-items:center;text-align:center;padding:20px;color:#b9c8df;font-weight:800}
+.nov i{display:block;font-size:2.4rem;color:var(--gold);margin-bottom:10px}
+main{gap:90px}
+</style>
 </head>
-<body class="font-inter bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-300 min-h-screen" id="bodyTag">
+<body data-lang="fr">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
+<header>
+<div class="bar">
+<div class="logo"><div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div><span id="txt-brand" data-i18n="brand"></span></div>
+<div class="tools">
+<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span data-i18n="back"></span></a>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang"><button onclick="changeLanguage('ar')" id="btn-ar">AR</button><button onclick="changeLanguage('fr')" id="btn-fr" class="on">FR</button><button onclick="changeLanguage('en')" id="btn-en">EN</button></div>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-person-running"></i> <span data-i18n="heroTag"></span></span>
+<h1 data-i18n="heroTitle"></h1>
+<p data-i18n="heroDesc"></p>
+<div class="feats">
+<div class="feat"><i class="fa-solid fa-building-circle-check"></i><span data-i18n="feat1"></span></div>
+<div class="feat"><i class="fa-solid fa-trophy"></i><span data-i18n="feat2"></span></div>
+<div class="feat"><i class="fa-solid fa-users"></i><span data-i18n="feat3"></span></div>
+</div>
+</div>
+</section>
+<main>
+<section id="director" class="reveal">
+<div class="dirbox">
+<div>
+<span class="badge2"><i class="fa-solid fa-clapperboard"></i><span data-i18n="dirBadge"></span></span>
+<h2 data-i18n="dirTitle"></h2>
+<p data-i18n="dirDesc"></p>
+<div class="who"><i class="fa-solid fa-user-tie"></i><div><h4 data-i18n="dirName"></h4><small data-i18n="dirRole"></small></div></div>
+<div class="stats3">
+<div class="stat"><b>5+</b><span data-i18n="stat1"></span></div>
+<div class="stat"><b>12</b><span data-i18n="stat2"></span></div>
+<div class="stat"><b>400+</b><span data-i18n="stat3"></span></div>
+</div>
+</div>
+<div class="vthumb" onclick="openVideoModal()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openVideoModal()">
+<img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80" alt="">
+<div class="play"><i class="fa-solid fa-play"></i></div>
+<div class="vcap"><span><i class="fa-solid fa-clock" style="color:var(--gold)"></i> 03:45 min</span><span class="g"><i class="fa-solid fa-circle-play"></i> <span data-i18n="watch"></span></span></div>
+</div>
+</div>
+</section>
+<section id="installations" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-dumbbell"></i><span data-i18n="sec1Sub"></span></div><h2 data-i18n="sec1Title"></h2><p data-i18n="sec1Desc"></p></div><span class="pill" data-i18n="sec1Badge"></span></div>
+<div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))">
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo11.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst1Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst1Loc"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo12.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst2Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst2Loc"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo13.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst3Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst3Loc"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo14.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80'"><span class="tagc soonc"><i class="fa-solid fa-clock" style="font-size:9px"></i><span data-i18n="project"></span></span></div><div class="sc-body"><h3 data-i18n="inst4Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst4Loc"></span></div></div></div>
+</div>
+</section>
+<section id="tournois" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-trophy"></i><span data-i18n="sec2Sub"></span></div><h2 data-i18n="sec2Title"></h2><p data-i18n="sec2Desc"></p></div></div>
+<div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))">
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo20.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80'"><span class="tagc bl" data-i18n="tagFoot"></span></div><div class="sc-body"><h3 data-i18n="tourn1Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn1Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tFoot"></span></div><div class="st o"><i class="fa-solid fa-circle-check"></i> <span data-i18n="open"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo28.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=600&q=80'"><span class="tagc soonc" data-i18n="tagBask"></span></div><div class="sc-body"><h3 data-i18n="tourn2Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn2Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tBask"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo22.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80'"><span class="tagc pu" data-i18n="tagVolley"></span></div><div class="sc-body"><h3 data-i18n="tourn3Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn3Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tVolley"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
+<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo23.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80'"><span class="tagc gr" data-i18n="tagRun"></span></div><div class="sc-body"><h3 data-i18n="tourn4Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn4Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tCampus"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
+</div>
+</section>
+<section id="equipe" class="reveal">
+<div class="team">
+<div class="ico"><i class="fa-solid fa-user-plus"></i></div>
+<h2 data-i18n="teamTitle"></h2>
+<p data-i18n="teamDesc"></p>
+<div class="row"><a href="#" class="btn-dark"><i class="fa-solid fa-users"></i><span data-i18n="btnJoin"></span></a><a href="#" class="btn"><i class="fa-solid fa-plus-circle"></i><span data-i18n="btnPost"></span></a></div>
+<div class="sports"><span><i class="fa-solid fa-futbol"></i><span data-i18n="sFoot"></span></span><span><i class="fa-solid fa-basketball"></i><span data-i18n="sBask"></span></span><span><i class="fa-solid fa-volleyball"></i><span data-i18n="sVolley"></span></span><span><i class="fa-solid fa-table-tennis-paddle-ball"></i><span data-i18n="sTT"></span></span><span><i class="fa-solid fa-person-running"></i><span data-i18n="sRun"></span></span></div>
+</div>
+</section>
+</main>
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title" data-i18n="ftTitle"></p>
+<p id="footer-sub" data-i18n="ftSub"></p>
+<p style="margin-top:16px;font-size:.74rem;color:#6b7f9f">© 2026 ENSTP Guide</p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+<div id="videoModal" class="modal" onclick="if(event.target===this)closeVideoModal()">
+<div class="vbox"><button class="x" onclick="closeVideoModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="videoSlot"></div></div>
+</div>
+<script>
+// ضع هنا رابط فيديو مدير الأنشطة الرياضية (YouTube embed أو Google Drive preview).
+// إن تُرك فارغاً تظهر رسالة «الفيديو قريباً» بدل فيديو تجريبي.
+const VIDEO_URL = '';
 
-    <!-- Floating Top Controls Bar (Dark Mode & Language Switcher Only) -->
-    <div class="fixed top-4 inset-x-0 z-50 pointer-events-none px-4 sm:px-8">
-        <div class="max-w-7xl mx-auto flex justify-end items-center gap-3">
-            <div class="pointer-events-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg flex items-center gap-2">
-                <!-- Dark Mode Toggle Button -->
-                <button onclick="toggleDarkMode()" id="darkModeBtn" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-amber-400 flex items-center justify-center transition hover:scale-105 shadow-sm" title="Mode Sombre / Clair">
-                    <i id="darkModeIcon" class="fa-solid fa-moon text-xs"></i>
-                </button>
-
-                <!-- Language Switcher -->
-                <div class="bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center text-xs font-bold">
-                    <button onclick="changeLanguage('fr')" id="btn-fr" class="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm transition">Français</button>
-                    <button onclick="changeLanguage('ar')" id="btn-ar" class="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-brand-600 transition">العربية</button>
-                    <button onclick="changeLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-brand-600 transition">English</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section id="hero-sport" class="text-white pt-24 pb-16 lg:pt-28 lg:pb-20 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl">
-                <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1.5 rounded-full inline-flex items-center gap-2 mb-4">
-                    <i class="fa-solid fa-running"></i> <span id="hero-tag">Sport & Vie Étudiante</span>
-                </span>
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-4 leading-tight" id="hero-title">
-                    Bouge, joue, <br><span class="text-amber-400">partage !</span>
-                </h1>
-                <p class="text-slate-200 text-base sm:text-lg mb-8 leading-relaxed max-w-xl" id="hero-desc">
-                    Découvre les installations sportives, participe aux tournois inter-promos et trouve ton équipe à l'ENSTP.
-                </p>
-
-                <!-- Quick Highlights Bar -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-400"><i class="fa-solid fa-building-circle-check text-lg"></i></div>
-                        <span class="text-xs font-bold text-slate-200" id="feat-1">Infrastructures à disposition</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-400"><i class="fa-solid fa-trophy text-lg"></i></div>
-                        <span class="text-xs font-bold text-slate-200" id="feat-2">Tournois toute l'année</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-400"><i class="fa-solid fa-users text-lg"></i></div>
-                        <span class="text-xs font-bold text-slate-200" id="feat-3">Équipes et partenaires</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
-
-        <!-- SECTION: Director Video Presentation -->
-        <section id="director" class="scroll-mt-28">
-            <div class="bg-gradient-to-br from-slate-900 to-brand-900 dark:from-slate-900 dark:to-slate-900/90 rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden shadow-2xl border border-slate-800">
-                <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
-                    
-                    <!-- Left: Text & Info -->
-                    <div class="lg:col-span-6 space-y-5">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-extrabold border border-amber-500/30">
-                            <i class="fa-solid fa-clapperboard"></i> <span id="dir-badge">Présentation Vidéo</span>
-                        </div>
-                        <h2 class="text-2xl sm:text-4xl font-black leading-tight" id="dir-title">
-                            Mot du Directeur des Activités Sportives
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed" id="dir-desc">
-                            Découvrez le programme sportif annuel, les créneaux d'entraînement, et le message de bienvenue du Directeur des activités physiques et sportives de l'ENSTP.
-                        </p>
-
-                        <!-- Director Profile Mini Card -->
-                        <div class="flex items-center gap-4 pt-2">
-                            <div class="w-12 h-12 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-slate-900 font-bold text-xl shadow-md">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-base text-white" id="dir-name">M. Mohamed Amine</h4>
-                                <p class="text-xs text-amber-400 font-semibold" id="dir-role">Directeur des Activités Sportives & Culturelles - ENSTP</p>
-                            </div>
-                        </div>
-
-                        <!-- Stats Bar -->
-                        <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-800 text-center">
-                            <div class="bg-white/5 p-3 rounded-2xl border border-white/5">
-                                <span class="block text-xl font-black text-amber-400">5+</span>
-                                <span class="text-[11px] text-slate-400 font-bold" id="stat-1">Terrains & Salles</span>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-2xl border border-white/5">
-                                <span class="block text-xl font-black text-amber-400">12</span>
-                                <span class="text-[11px] text-slate-400 font-bold" id="stat-2">Tournois / An</span>
-                            </div>
-                            <div class="bg-white/5 p-3 rounded-2xl border border-white/5">
-                                <span class="block text-xl font-black text-amber-400">400+</span>
-                                <span class="text-[11px] text-slate-400 font-bold" id="stat-3">Étudiants Sportifs</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: Video Player Thumbnail Container -->
-                    <div class="lg:col-span-6">
-                        <div class="relative rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-2xl group cursor-pointer" onclick="openVideoModal()">
-                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80" alt="Directeur des Sports" class="w-full h-72 sm:h-80 object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-20 h-20 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-2xl font-black play-btn-pulse group-hover:scale-110 transition shadow-2xl">
-                                    <i class="fa-solid fa-play ml-1"></i>
-                                </div>
-                            </div>
-                            <div class="absolute bottom-4 inset-x-4 flex justify-between items-center text-xs font-bold text-white">
-                                <span class="bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
-                                    <i class="fa-solid fa-clock text-amber-400 mr-1"></i> 03:45 min
-                                </span>
-                                <span class="bg-amber-500 text-slate-900 px-3 py-1.5 rounded-lg">
-                                    <i class="fa-solid fa-circle-play mr-1"></i> Regarder la vidéo
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: Nos installations sportives -->
-        <section id="installations" class="scroll-mt-28">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
-                <div>
-                    <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-extrabold text-xs mb-1">
-                        <i class="fa-solid fa-dumbbell"></i> <span id="sec1-sub">Infrastructures</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" id="sec1-title">Nos installations sportives</h2>
-                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1" id="sec1-desc">Profite des infrastructures de l'école pour pratiquer ton sport préféré.</p>
-                </div>
-                <span class="text-xs font-bold text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-slate-900 px-3 py-1.5 rounded-full border border-brand-100 dark:border-slate-800" id="sec1-badge">Disponibles à l'ENSTP</span>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Card 1 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo11.jpg" onerror="this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
-                            <i class="fa-solid fa-circle text-[6px]"></i> Disponible
-                        </span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-base mb-1" id="inst-1-title">Terrain de football</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-amber-500"></i> <span id="inst-1-loc">À côté du Bloc B</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo12.jpg" onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
-                            <i class="fa-solid fa-circle text-[6px]"></i> Disponible
-                        </span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-base mb-1" id="inst-2-title">Terrain de basketball</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-amber-500"></i> <span id="inst-2-loc">Cour intérieure</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo13.jpg" onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
-                            <i class="fa-solid fa-circle text-[6px]"></i> Disponible
-                        </span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-base mb-1" id="inst-3-title">Salle de musculation</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-amber-500"></i> <span id="inst-3-loc">Bâtiment des sports</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo14.jpg" onerror="this.src='https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
-                            <i class="fa-solid fa-clock text-[8px]"></i> En projet
-                        </span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-base mb-1" id="inst-4-title">Terrain de volleyball</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-amber-500"></i> <span id="inst-4-loc">Cour intérieure</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: Tournois & événements -->
-        <section id="tournois" class="scroll-mt-28">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
-                <div>
-                    <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-extrabold text-xs mb-1">
-                        <i class="fa-solid fa-trophy"></i> <span id="sec2-sub">Compétitions</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" id="sec2-title">Tournois & événements</h2>
-                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1" id="sec2-desc">Participe aux compétitions et aux activités sportives organisées par l'ENSTP.</p>
-                </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tourney 1 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo20.jpg" onerror="this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">Football</span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2" id="tourn-1-title">Tournoi de football ENSTP</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1"><i class="fa-regular fa-calendar text-amber-500 mr-1"></i> <span id="tourn-1-date">15 - 20 Avril 2026</span></p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Terrain de football</p>
-                        </div>
-                        <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-xl border border-emerald-200 dark:border-emerald-800/80 text-center block">
-                            <i class="fa-solid fa-check-circle mr-1"></i> Inscriptions ouvertes
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Tourney 2 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo28.jpg" onerror="this.src='https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">Basketball</span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2" id="tourn-2-title">Championnat de basketball</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1"><i class="fa-regular fa-calendar text-amber-500 mr-1"></i> <span id="tourn-2-date">22 - 28 Avril 2026</span></p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Terrain de basketball</p>
-                        </div>
-                        <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-200 dark:border-amber-800/80 text-center block">
-                            <i class="fa-solid fa-clock mr-1"></i> Prochainement
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Tourney 3 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo22.jpg" onerror="this.src='https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">Volleyball</span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2" id="tourn-3-title">Tournoi de volleyball</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1"><i class="fa-regular fa-calendar text-amber-500 mr-1"></i> <span id="tourn-3-date">05 - 10 Mai 2026</span></p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Terrain de volleyball</p>
-                        </div>
-                        <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-200 dark:border-amber-800/80 text-center block">
-                            <i class="fa-solid fa-clock mr-1"></i> Prochainement
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Tourney 4 -->
-                <div class="card-sport bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-sm">
-                    <div class="h-44 overflow-hidden relative">
-                        <img src="photo23.jpg" onerror="this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg">Course</span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2" id="tourn-4-title">Course de l'ENSTP</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-1"><i class="fa-regular fa-calendar text-amber-500 mr-1"></i> <span id="tourn-4-date">12 Mai 2026</span></p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Campus ENSTP</p>
-                        </div>
-                        <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-200 dark:border-amber-800/80 text-center block">
-                            <i class="fa-solid fa-clock mr-1"></i> Prochainement
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: Trouve ton équipe / joueur -->
-        <section id="equipe" class="scroll-mt-28">
-            <div class="bg-gradient-to-br from-amber-500/10 via-brand-50 to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-900/90 border-2 border-amber-400/40 rounded-3xl p-6 sm:p-10 shadow-lg">
-                <div class="max-w-3xl mx-auto text-center space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-900 flex items-center justify-center font-bold text-xl mx-auto shadow-md">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" id="team-title">Trouve ton équipe / joueur</h2>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-xl mx-auto" id="team-desc">
-                        Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l'ENSTP pour partager ta passion.
-                    </p>
-
-                    <div class="flex flex-wrap justify-center gap-3 pt-4">
-                        <a href="#" class="px-6 py-3 rounded-xl bg-slate-900 dark:bg-amber-500 dark:text-slate-950 hover:bg-slate-800 text-white text-xs font-extrabold transition shadow-md flex items-center gap-2">
-                            <i class="fa-solid fa-users"></i> <span id="btn-join">Rejoindre une équipe</span>
-                        </a>
-                        <a href="#" class="px-6 py-3 rounded-xl bg-amber-500 dark:bg-slate-800 dark:text-white hover:bg-amber-600 text-slate-950 text-xs font-extrabold transition shadow-md flex items-center gap-2">
-                            <i class="fa-solid fa-plus-circle"></i> <span id="btn-post">Publier une annonce</span>
-                        </a>
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-2 pt-6">
-                        <span class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-futbol text-amber-500"></i> Football
-                        </span>
-                        <span class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-basketball text-amber-500"></i> Basketball
-                        </span>
-                        <span class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-volleyball text-amber-500"></i> Volleyball
-                        </span>
-                        <span class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-table-tennis-paddle-ball text-amber-500"></i> Tennis de table
-                        </span>
-                        <span class="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-person-running text-amber-500"></i> Course
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-3 text-xs">
-            <p class="font-extrabold text-white text-sm" id="ft-title">ENSTP Sport & Vie Étudiante</p>
-            <p id="ft-sub">Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !</p>
-            <p class="text-slate-600 pt-4">© 2026 ENSTP Guide - Tous droits réservés.</p>
-        </div>
-    </footer>
-
-    <!-- Video Modal Popup -->
-    <div id="videoModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="relative w-full max-w-4xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center hover:bg-amber-600 transition">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-            <div class="p-2 sm:p-4">
-                <div class="aspect-video w-full rounded-xl overflow-hidden bg-black">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" title="ENSTP Sport Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        let currentLang = 'fr';
-
-        const translations = {
-            fr: {
-                dir: 'ltr',
-                heroTag: 'Sport & Vie Étudiante',
-                heroTitle: 'Bouge, joue, <br><span class="text-amber-400">partage !</span>',
-                heroDesc: 'Découvre les installations sportives, participe aux tournois inter-promos et trouve ton équipe à l\'ENSTP.',
-                feat1: 'Infrastructures à disposition',
-                feat2: 'Tournois toute l\'année',
-                feat3: 'Équipes et partenaires',
-                dirBadge: 'Présentation Vidéo',
-                dirTitle: 'Mot du Directeur des Activités Sportives',
-                dirDesc: 'Découvrez le programme sportif annuel, les créneaux d\'entraînement, et le message de bienvenue du Directeur des activités physiques et sportives de l\'ENSTP.',
-                dirName: 'M. Mohamed Amine',
-                dirRole: 'Directeur des Activités Sportives & Culturelles - ENSTP',
-                stat1: 'Terrains & Salles',
-                stat2: 'Tournois / An',
-                stat3: 'Étudiants Sportifs',
-                sec1Sub: 'Infrastructures',
-                sec1Title: 'Nos installations sportives',
-                sec1Desc: 'Profite des infrastructures de l\'école pour pratiquer ton sport préféré.',
-                sec1Badge: 'Disponibles à l\'ENSTP',
-                inst1Title: 'Terrain de football',
-                inst1Loc: 'À côté du Bloc B',
-                inst2Title: 'Terrain de basketball',
-                inst2Loc: 'Cour intérieure',
-                inst3Title: 'Salle de musculation',
-                inst3Loc: 'Bâtiment des sports',
-                inst4Title: 'Terrain de volleyball',
-                inst4Loc: 'Cour intérieure',
-                sec2Sub: 'Compétitions',
-                sec2Title: 'Tournois & événements',
-                sec2Desc: 'Participe aux compétitions et aux activités sportives organisées par l\'ENSTP.',
-                tourn1Title: 'Tournoi de football ENSTP',
-                tourn1Date: '15 - 20 Avril 2026',
-                tourn2Title: 'Championnat de basketball',
-                tourn2Date: '22 - 28 Avril 2026',
-                tourn3Title: 'Tournoi de volleyball',
-                tourn3Date: '05 - 10 Mai 2026',
-                tourn4Title: 'Course de l\'ENSTP',
-                tourn4Date: '12 Mai 2026',
-                teamTitle: 'Trouve ton équipe / joueur',
-                teamDesc: 'Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l\'ENSTP pour partager ta passion.',
-                btnJoin: 'Rejoindre une équipe',
-                btnPost: 'Publier une annonce',
-                ftTitle: 'ENSTP Sport & Vie Étudiante',
-                ftSub: 'Le sport à l\'ENSTP, c\'est aussi une histoire de partage et de dépassement de soi !'
-            },
-            ar: {
-                dir: 'rtl',
-                heroTag: 'الرياضة والحياة الطلابية',
-                heroTitle: 'تحرّك، العب، <br><span class="text-amber-400">وشارك الشغف!</span>',
-                heroDesc: 'اكتشف المنشآت الرياضية، شارك في البطولات بين الدفعات، وجد فريقك الرياضي في المدرسة العليا للأشغال العمومية.',
-                feat1: 'منشآت تحت تصرفك',
-                feat2: 'بطولات على مدار السنة',
-                feat3: 'فرق وزملائه رياضيون',
-                dirBadge: 'فيديو تعريفي',
-                dirTitle: 'كلمة مدير النشاطات الرياضية',
-                dirDesc: 'شاهد البرنامج الرياضي السنوي، أوقات التدريب المتاحة، وكلمة الترحيب الخاصة بمدير الأنشطة البدنية والرياضية بالمدرسة.',
-                dirName: 'أ. محمد أمين',
-                dirRole: 'مدير الأنشطة الرياضية والثقافية - ENSTP',
-                stat1: 'ملاعب وقاعات',
-                stat2: 'بطولات / سنوياً',
-                stat3: 'طالب رياضي',
-                sec1Sub: 'الهياكل الرياضية',
-                sec1Title: 'المنشآت الرياضية بالمدرسة',
-                sec1Desc: 'استفد من هياكل المدرسة لممارسة رياضتك المفضلة.',
-                sec1Badge: 'متوفرة في ENSTP',
-                inst1Title: 'ملعب كرة القدم',
-                inst1Loc: 'بجوار المجمع B',
-                inst2Title: 'ملعب كرة السلة',
-                inst2Loc: 'الساحة الداخلية',
-                inst3Title: 'قاعة تقوية العضلات',
-                inst3Loc: 'مبنى الرياضات',
-                inst4Title: 'ملعب كرة الطائرة',
-                inst4Loc: 'الساحة الداخلية',
-                sec2Sub: 'المنافسات',
-                sec2Title: 'البطولات والفعاليات الرياضية',
-                sec2Desc: 'شارك في البطولات والأنشطة الرياضية التي تنظمها المدرسة.',
-                tourn1Title: 'دوري كرة القدم ENSTP',
-                tourn1Date: '15 - 20 أفريل 2026',
-                tourn2Title: 'بطولة كرة السلة',
-                tourn2Date: '22 - 28 أفريل 2026',
-                tourn3Title: 'دوري كرة الطائرة',
-                tourn3Date: '05 - 10 ماي 2026',
-                tourn4Title: 'سباق ENSTP للعدو',
-                tourn4Date: '12 ماي 2026',
-                teamTitle: 'جد فريقك أو شريكك الرياضي',
-                teamDesc: 'انضم إلى فريق موجود أو ابحث عن زملائه من طلبة المدرسة لمشاركتك شغفك الرياضي.',
-                btnJoin: 'الانضمام إلى فريق',
-                btnPost: 'نشر إعلان بحث',
-                ftTitle: 'ENSTP الرياضة والحياة الطلابية',
-                ftSub: 'الرياضة في ENSTP هي أيضاً حكاية مشاركة وتحدٍّ للذات!'
-            },
-            en: {
-                dir: 'ltr',
-                heroTag: 'Sports & Student Life',
-                heroTitle: 'Move, play, <br><span class="text-amber-400">and share!</span>',
-                heroDesc: 'Discover sports facilities, take part in tournaments, and find your team at ENSTP.',
-                feat1: 'Facilities available',
-                feat2: 'Year-round tournaments',
-                feat3: 'Teams & Teammates',
-                dirBadge: 'Video Presentation',
-                dirTitle: 'Message from the Sports Director',
-                dirDesc: 'Discover the annual sports program, training slots, and welcoming words from the ENSTP Sports Director.',
-                dirName: 'Mr. Mohamed Amine',
-                dirRole: 'Director of Sports & Cultural Activities - ENSTP',
-                stat1: 'Courts & Gyms',
-                stat2: 'Tournaments / Yr',
-                stat3: 'Student Athletes',
-                sec1Sub: 'Infrastructures',
-                sec1Title: 'Our Sports Facilities',
-                sec1Desc: 'Take advantage of the school facilities to practice your favorite sport.',
-                sec1Badge: 'Available at ENSTP',
-                inst1Title: 'Football Pitch',
-                inst1Loc: 'Next to Building B',
-                inst2Title: 'Basketball Court',
-                inst2Loc: 'Inner Courtyard',
-                inst3Title: 'Fitness & Gym Room',
-                inst3Loc: 'Sports Building',
-                inst4Title: 'Volleyball Court',
-                inst4Loc: 'Inner Courtyard',
-                sec2Sub: 'Competitions',
-                sec2Title: 'Tournaments & Events',
-                sec2Desc: 'Participate in sports competitions organized by ENSTP.',
-                tourn1Title: 'ENSTP Football Tournament',
-                tourn1Date: 'April 15 - 20, 2026',
-                tourn2Title: 'Basketball Championship',
-                tourn2Date: 'April 22 - 28, 2026',
-                tourn3Title: 'Volleyball Tournament',
-                tourn3Date: 'May 05 - 10, 2026',
-                tourn4Title: 'ENSTP Campus Run',
-                tourn4Date: 'May 12, 2026',
-                teamTitle: 'Find your team / teammate',
-                teamDesc: 'Join an existing team or find teammates among ENSTP students to share your passion.',
-                btnJoin: 'Join a Team',
-                btnPost: 'Post an Announcement',
-                ftTitle: 'ENSTP Sports & Student Life',
-                ftSub: 'Sports at ENSTP is a story of teamwork and pushing boundaries!'
-            }
-        };
-
-        function changeLanguage(lang) {
-            currentLang = lang;
-            const data = translations[lang];
-
-            document.documentElement.dir = data.dir;
-            document.documentElement.lang = lang;
-            
-            const isDark = document.documentElement.classList.contains('dark');
-            document.body.className = (lang === 'ar' ? 'font-cairo ' : 'font-inter ') + (isDark ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-800') + ' antialiased transition-colors duration-300 min-h-screen';
-
-            ['fr', 'ar', 'en'].forEach(l => {
-                const btn = document.getElementById(`btn-${l}`);
-                if (l === lang) {
-                    btn.className = "px-2.5 py-1 rounded-lg bg-white dark:bg-slate-700 text-brand-600 dark:text-white shadow-sm transition";
-                } else {
-                    btn.className = "px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-300 hover:text-brand-600 transition";
-                }
-            });
-
-            document.getElementById('hero-tag').innerText = data.heroTag;
-            document.getElementById('hero-title').innerHTML = data.heroTitle;
-            document.getElementById('hero-desc').innerText = data.heroDesc;
-            document.getElementById('feat-1').innerText = data.feat1;
-            document.getElementById('feat-2').innerText = data.feat2;
-            document.getElementById('feat-3').innerText = data.feat3;
-
-            document.getElementById('dir-badge').innerText = data.dirBadge;
-            document.getElementById('dir-title').innerText = data.dirTitle;
-            document.getElementById('dir-desc').innerText = data.dirDesc;
-            document.getElementById('dir-name').innerText = data.dirName;
-            document.getElementById('dir-role').innerText = data.dirRole;
-            document.getElementById('stat-1').innerText = data.stat1;
-            document.getElementById('stat-2').innerText = data.stat2;
-            document.getElementById('stat-3').innerText = data.stat3;
-
-            document.getElementById('sec1-sub').innerText = data.sec1Sub;
-            document.getElementById('sec1-title').innerText = data.sec1Title;
-            document.getElementById('sec1-desc').innerText = data.sec1Desc;
-            document.getElementById('sec1-badge').innerText = data.sec1Badge;
-            document.getElementById('inst-1-title').innerText = data.inst1Title;
-            document.getElementById('inst-1-loc').innerText = data.inst1Loc;
-            document.getElementById('inst-2-title').innerText = data.inst2Title;
-            document.getElementById('inst-2-loc').innerText = data.inst2Loc;
-            document.getElementById('inst-3-title').innerText = data.inst3Title;
-            document.getElementById('inst-3-loc').innerText = data.inst3Loc;
-            document.getElementById('inst-4-title').innerText = data.inst4Title;
-            document.getElementById('inst-4-loc').innerText = data.inst4Loc;
-
-            document.getElementById('sec2-sub').innerText = data.sec2Sub;
-            document.getElementById('sec2-title').innerText = data.sec2Title;
-            document.getElementById('sec2-desc').innerText = data.sec2Desc;
-            document.getElementById('tourn-1-title').innerText = data.tourn1Title;
-            document.getElementById('tourn-1-date').innerText = data.tourn1Date;
-            document.getElementById('tourn-2-title').innerText = data.tourn2Title;
-            document.getElementById('tourn-2-date').innerText = data.tourn2Date;
-            document.getElementById('tourn-3-title').innerText = data.tourn3Title;
-            document.getElementById('tourn-3-date').innerText = data.tourn3Date;
-            document.getElementById('tourn-4-title').innerText = data.tourn4Title;
-            document.getElementById('tourn-4-date').innerText = data.tourn4Date;
-
-            document.getElementById('team-title').innerText = data.teamTitle;
-            document.getElementById('team-desc').innerText = data.teamDesc;
-            document.getElementById('btn-join').innerText = data.btnJoin;
-            document.getElementById('btn-post').innerText = data.btnPost;
-            document.getElementById('ft-title').innerText = data.ftTitle;
-            document.getElementById('ft-sub').innerText = data.ftSub;
-        }
-
-        // Global Dark Mode Toggle Logic
-        function toggleDarkMode() {
-            const htmlEl = document.documentElement;
-            const iconEl = document.getElementById('darkModeIcon');
-            if (htmlEl.classList.contains('dark')) {
-                htmlEl.classList.remove('dark');
-                iconEl.className = "fa-solid fa-moon text-xs";
-                localStorage.setItem('enstp_theme', 'light');
-            } else {
-                htmlEl.classList.add('dark');
-                iconEl.className = "fa-solid fa-sun text-xs text-amber-400";
-                localStorage.setItem('enstp_theme', 'dark');
-            }
-            changeLanguage(currentLang);
-        }
-
-        function openVideoModal() {
-            document.getElementById('videoModal').classList.remove('hidden');
-        }
-        function closeVideoModal() {
-            document.getElementById('videoModal').classList.add('hidden');
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedTheme = localStorage.getItem('enstp_theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('darkModeIcon').className = "fa-solid fa-moon text-xs";
-            } else {
-                document.documentElement.classList.add('dark');
-                document.getElementById('darkModeIcon').className = "fa-solid fa-sun text-xs text-amber-400";
-            }
-            changeLanguage('fr');
-        });
-    </script>
+const T={
+fr:{brand:'ENSTP Sport',back:"Retour à l'accueil",title:'ENSTP Sport & Vie Étudiante',
+heroTag:'Sport & Vie Étudiante',heroTitle:'Bouge, joue, <span class="g">partage !</span>',heroDesc:"Découvre les installations sportives, participe aux tournois inter-promos et trouve ton équipe à l'ENSTP.",
+feat1:'Infrastructures à disposition',feat2:"Tournois toute l'année",feat3:'Équipes et partenaires',
+dirBadge:'Présentation Vidéo',dirTitle:'Mot du Directeur des Activités Sportives',dirDesc:"Découvrez le programme sportif annuel, les créneaux d'entraînement, et le message de bienvenue du Directeur des activités physiques et sportives de l'ENSTP.",
+dirName:'M. Mohamed Amine',dirRole:'Directeur des Activités Sportives & Culturelles - ENSTP',stat1:'Terrains & Salles',stat2:'Tournois / An',stat3:'Étudiants Sportifs',watch:'Regarder la vidéo',
+avail:'Disponible',project:'En projet',open:'Inscriptions ouvertes',soon:'Prochainement',
+sec1Sub:'Infrastructures',sec1Title:'Nos installations sportives',sec1Desc:"Profite des infrastructures de l'école pour pratiquer ton sport préféré.",sec1Badge:"Disponibles à l'ENSTP",
+inst1Title:'Terrain de football',inst1Loc:'À côté du Bloc B',inst2Title:'Terrain de basketball',inst2Loc:'Cour intérieure',inst3Title:'Salle de musculation',inst3Loc:'Bâtiment des sports',inst4Title:'Terrain de volleyball',inst4Loc:'Cour intérieure',
+sec2Sub:'Compétitions',sec2Title:'Tournois & événements',sec2Desc:"Participe aux compétitions et aux activités sportives organisées par l'ENSTP.",
+tourn1Title:'Tournoi de football ENSTP',tourn1Date:'15 - 20 Avril 2026',tourn2Title:'Championnat de basketball',tourn2Date:'22 - 28 Avril 2026',tourn3Title:'Tournoi de volleyball',tourn3Date:'05 - 10 Mai 2026',tourn4Title:"Course de l'ENSTP",tourn4Date:'12 Mai 2026',
+tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Terrain de basketball',tVolley:'Terrain de volleyball',tCampus:'Campus ENSTP',
+teamTitle:'Trouve ton équipe / joueur',teamDesc:"Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l'ENSTP pour partager ta passion.",btnJoin:'Rejoindre une équipe',btnPost:'Publier une annonce',
+sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Tennis de table',sRun:'Course',
+ftTitle:'ENSTP Sport & Vie Étudiante',ftSub:"Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !",novideo:'La vidéo sera ajoutée prochainement'},
+ar:{brand:'رياضة ENSTP',back:'العودة للرئيسية',title:'ENSTP الرياضة والحياة الطلابية',
+heroTag:'الرياضة والحياة الطلابية',heroTitle:'تحرّك، العب، <span class="g">وشارك الشغف!</span>',heroDesc:'اكتشف المنشآت الرياضية، شارك في البطولات بين الدفعات، وجد فريقك الرياضي في المدرسة العليا للأشغال العمومية.',
+feat1:'منشآت تحت تصرفك',feat2:'بطولات على مدار السنة',feat3:'فرق وزملاء رياضيون',
+dirBadge:'فيديو تعريفي',dirTitle:'كلمة مدير النشاطات الرياضية',dirDesc:'شاهد البرنامج الرياضي السنوي، أوقات التدريب المتاحة، وكلمة الترحيب الخاصة بمدير الأنشطة البدنية والرياضية بالمدرسة.',
+dirName:'أ. محمد أمين',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',watch:'شاهد الفيديو',
+avail:'متاح',project:'قيد الإنجاز',open:'التسجيل مفتوح',soon:'قريباً',
+sec1Sub:'الهياكل الرياضية',sec1Title:'المنشآت الرياضية بالمدرسة',sec1Desc:'استفد من هياكل المدرسة لممارسة رياضتك المفضلة.',sec1Badge:'متوفرة في ENSTP',
+inst1Title:'ملعب كرة القدم',inst1Loc:'بجوار المجمع B',inst2Title:'ملعب كرة السلة',inst2Loc:'الساحة الداخلية',inst3Title:'قاعة تقوية العضلات',inst3Loc:'مبنى الرياضات',inst4Title:'ملعب كرة الطائرة',inst4Loc:'الساحة الداخلية',
+sec2Sub:'المنافسات',sec2Title:'البطولات والفعاليات الرياضية',sec2Desc:'شارك في البطولات والأنشطة الرياضية التي تنظمها المدرسة.',
+tourn1Title:'دوري كرة القدم ENSTP',tourn1Date:'15 - 20 أفريل 2026',tourn2Title:'بطولة كرة السلة',tourn2Date:'22 - 28 أفريل 2026',tourn3Title:'دوري كرة الطائرة',tourn3Date:'05 - 10 ماي 2026',tourn4Title:'سباق ENSTP للعدو',tourn4Date:'12 ماي 2026',
+tagFoot:'كرة القدم',tagBask:'كرة السلة',tagVolley:'كرة الطائرة',tagRun:'عدو',tFoot:'ملعب كرة القدم',tBask:'ملعب كرة السلة',tVolley:'ملعب كرة الطائرة',tCampus:'حرم ENSTP',
+teamTitle:'جد فريقك أو شريكك الرياضي',teamDesc:'انضم إلى فريق موجود أو ابحث عن زملاء من طلبة المدرسة لمشاركتك شغفك الرياضي.',btnJoin:'الانضمام إلى فريق',btnPost:'نشر إعلان بحث',
+sFoot:'كرة القدم',sBask:'كرة السلة',sVolley:'كرة الطائرة',sTT:'tennis de table',sRun:'العدو',
+ftTitle:'ENSTP الرياضة والحياة الطلابية',ftSub:'الرياضة في ENSTP هي أيضاً حكاية مشاركة وتحدٍّ للذات!',novideo:'سيتم إضافة الفيديو قريباً'},
+en:{brand:'ENSTP Sports',back:'Back to Home',title:'ENSTP Sports & Student Life',
+heroTag:'Sports & Student Life',heroTitle:'Move, play, <span class="g">and share!</span>',heroDesc:'Discover sports facilities, take part in tournaments, and find your team at ENSTP.',
+feat1:'Facilities available',feat2:'Year-round tournaments',feat3:'Teams & teammates',
+dirBadge:'Video Presentation',dirTitle:'Message from the Sports Director',dirDesc:'Discover the annual sports program, training slots, and welcoming words from the ENSTP Sports Director.',
+dirName:'Mr. Mohamed Amine',dirRole:'Director of Sports & Cultural Activities - ENSTP',stat1:'Courts & Gyms',stat2:'Tournaments / Yr',stat3:'Student Athletes',watch:'Watch the video',
+avail:'Available',project:'Planned',open:'Registration open',soon:'Coming soon',
+sec1Sub:'Infrastructures',sec1Title:'Our Sports Facilities',sec1Desc:'Take advantage of the school facilities to practice your favorite sport.',sec1Badge:'Available at ENSTP',
+inst1Title:'Football Pitch',inst1Loc:'Next to Building B',inst2Title:'Basketball Court',inst2Loc:'Inner Courtyard',inst3Title:'Fitness & Gym Room',inst3Loc:'Sports Building',inst4Title:'Volleyball Court',inst4Loc:'Inner Courtyard',
+sec2Sub:'Competitions',sec2Title:'Tournaments & Events',sec2Desc:'Participate in sports competitions organized by ENSTP.',
+tourn1Title:'ENSTP Football Tournament',tourn1Date:'April 15 - 20, 2026',tourn2Title:'Basketball Championship',tourn2Date:'April 22 - 28, 2026',tourn3Title:'Volleyball Tournament',tourn3Date:'May 05 - 10, 2026',tourn4Title:'ENSTP Campus Run',tourn4Date:'May 12, 2026',
+tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Running',tFoot:'Football pitch',tBask:'Basketball court',tVolley:'Volleyball court',tCampus:'ENSTP Campus',
+teamTitle:'Find your team / teammate',teamDesc:'Join an existing team or find teammates among ENSTP students to share your passion.',btnJoin:'Join a Team',btnPost:'Post an Announcement',
+sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Table tennis',sRun:'Running',
+ftTitle:'ENSTP Sports & Student Life',ftSub:'Sports at ENSTP is a story of teamwork and pushing boundaries!',novideo:'Video coming soon'}
+};
+T.ar.sTT='كرة الطاولة';
+function changeLanguage(lang){
+  const d=T[lang], r=document.documentElement;
+  r.dir=lang==='ar'?'rtl':'ltr'; r.lang=lang; document.body.dataset.lang=lang;
+  ['ar','fr','en'].forEach(l=>document.getElementById('btn-'+l).classList.toggle('on',l===lang));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n]; if(v!==undefined) el.innerHTML=v;});
+  document.title=d.title; window.__d=d;
+  try{localStorage.setItem('enstp-lang',lang)}catch(e){}
+}
+function toggleTheme(){
+  const r=document.documentElement,next=r.dataset.theme==='dark'?'light':'dark';
+  r.dataset.theme=next; document.getElementById('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
+  try{localStorage.setItem('enstp-theme',next)}catch(e){}
+}
+function openVideoModal(){
+  const slot=document.getElementById('videoSlot');
+  slot.innerHTML=VIDEO_URL
+    ? '<iframe src="'+VIDEO_URL+'" title="ENSTP Sport" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+    : '<div class="nov"><div><i class="fa-solid fa-circle-play"></i>'+(window.__d?window.__d.novideo:'')+'</div></div>';
+  document.getElementById('videoModal').classList.add('open');
+}
+function closeVideoModal(){document.getElementById('videoModal').classList.remove('open');document.getElementById('videoSlot').innerHTML='';}
+addEventListener('keydown',e=>{if(e.key==='Escape')closeVideoModal();});
+(function(){
+  document.getElementById('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
+  let s='fr'; try{s=localStorage.getItem('enstp-lang')||'fr'}catch(e){}
+  changeLanguage(T[s]?s:'fr');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const pb=document.getElementById('progressBar'),tt=document.getElementById('toTop');
+  addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
+})();
+</script>
 </body>
 </html>
