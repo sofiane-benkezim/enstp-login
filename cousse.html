@@ -343,15 +343,11 @@ main{padding-top:50px;gap:50px}
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 <div class="toast" id="toast"></div>
 <script>
-/* =====================================================================
-   1) إعدادات المحادثة (Supabase) — اتركها فارغة لتعمل المحادثة على جهازك فقط
-   ===================================================================== */
-const SUPABASE_URL = '';   // مثال: https://xxxxxxxx.supabase.co
-const SUPABASE_KEY = '';   // المفتاح العام (publishable / anon key)
+//___________________________________________________________________________________________________________
+const SUPABASE_URL = ' https://kzlkkdliipbpekdnbxfj.supabase.co';  
+const SUPABASE_KEY = 'sb_publishable_gDsJ7Z0Kp0u75cBGGYeg3w_OiDsGbNi'; 
 
-/* =====================================================================
-   2) برنامج الحافلات — المصدر: «المخطط الشامل لمواعيد النقل الجامعي والولائي - السداسي الأول 2026/2027»
-   ===================================================================== */
+
 const IS_SAMPLE = false;
 const WK = ['sun','mon','tue','wed','thu'];
 // rule = مواعيد دورية: بلا نهاية رسمية محددة في البرنامج، تُحسب هنا تقديرياً (est)
