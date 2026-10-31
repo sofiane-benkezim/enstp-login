@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+/* ===== ENSTP — نظام التصميم الموحد ===== */
 :root{
 --bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
 --gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
@@ -102,37 +102,10 @@ main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-dir
 .sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
 .sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
 [dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
-.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
-.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
-.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
-.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
 
 /* البطاقات */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
-.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
-@media(max-width:992px){.two{grid-template-columns:1fr}}
 .box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
-.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
-.box h3.t i{color:var(--gold)}
-.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
-.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
-.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
-.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
-.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
-.director p{font-size:.82rem;line-height:1.8;margin:0}
-@media(max-width:600px){.director{flex-direction:column;text-align:center}}
-
-.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
-.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
-.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
-.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
-.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
-.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
-.card-content{padding:18px 20px 20px}
-.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
-
-.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
 
 footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
 footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
@@ -142,23 +115,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 .to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
 .to-top.show{opacity:1;pointer-events:auto;transform:none}
 .to-top:hover{background:var(--gold);color:#111}
-
-.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
-.reveal.in{opacity:1;translate:0 0}
-
-@media(max-width:640px){
-header{top:8px;padding:0 8px}
-.bar{padding:7px 9px;border-radius:18px;gap:8px}
-.logo-img img{height:30px}
-#txt-brand{display:none}
-.back span{display:none}
-.lang button{padding:6px 8px;font-size:.68rem}
-.hero{padding:120px 18px 70px}
-main{gap:70px}
-.card-image-wrap{height:190px}
-.box{padding:24px}
-}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
 
 .hidden{display:none!important}
 .hero{min-height:auto;padding:140px 20px 70px}
@@ -202,8 +158,6 @@ html[data-theme="dark"] .sample{color:var(--gold-2)}
 .route{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.8rem;font-weight:700;color:var(--desc);margin-top:2px}
 .route i{color:var(--gold);font-size:.7rem}
 [dir="rtl"] .route i{transform:scaleX(-1)}
-.stops{font-size:.78rem;line-height:1.9;color:var(--muted);margin:6px 0 14px}
-.stops b{color:var(--tag-c)}
 .times{display:flex;flex-wrap:wrap;gap:8px}
 .tm{font-family:'Inter',sans-serif;font-size:.84rem;font-weight:800;padding:8px 14px;border-radius:12px;color:var(--head);background:var(--soft);border:1px solid var(--card-b)}
 .tm.past{opacity:.4;text-decoration:line-through}
@@ -235,8 +189,10 @@ html[data-theme="dark"] .sample{color:var(--gold-2)}
 .bub .h{display:flex;justify-content:space-between;gap:10px;font-size:.74rem;font-weight:800;color:var(--tag-c);margin-bottom:3px}
 .bub .h span{color:var(--muted);font-weight:600}
 .bub p{font-size:.88rem;line-height:1.85;color:var(--ink);word-break:break-word;margin:0}
-.bub .rp{margin-top:4px;font:inherit;font-size:.68rem;font-weight:700;border:0;background:none;color:var(--muted);cursor:pointer}
+.bub .rp{margin-top:4px;font:inherit;font-size:.68rem;font-weight:700;border:0;background:none;color:var(--muted);cursor:pointer;transition:.2s}
 .bub .rp:hover{color:#dc2626}
+.bub .rp.del{color:#ef4444}
+.bub .rp.del:hover{color:#b91c1c;text-decoration:underline}
 .noMsg{text-align:center;padding:30px 10px;color:var(--muted);font-size:.86rem;font-weight:700}
 .comp{padding:18px 26px 22px;border-top:1px solid var(--card-b);display:grid;gap:10px;background:var(--soft)}
 .comp .r{display:grid;grid-template-columns:170px 1fr;gap:10px}
@@ -261,17 +217,13 @@ main{padding-top:50px;gap:50px}
 .srch input{flex:1;min-width:0;padding:12px 4px;background:transparent;border:0;outline:0;font:inherit;font-size:.9rem;font-weight:600;color:var(--head)}
 .grp{margin-top:16px}
 .grp h4{font-size:.74rem;font-weight:900;color:var(--gold-2);letter-spacing:.03em;margin-bottom:8px}
-.grp .chips{margin-top:0;max-height:none}
 .zscroll{max-height:290px;overflow:auto;padding-inline-end:4px}
-.days{max-width:100%;overflow-x:auto}
-.days button{white-space:nowrap}
 .trip{margin-top:14px;padding-top:14px;border-top:1px dashed var(--card-b)}
 .trip:first-of-type{border-top:0;margin-top:6px;padding-top:0}
 .trip h5{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:900;color:var(--head);margin-bottom:10px}
 .trip h5 i{color:var(--gold)}
 .trip h5 em{font-style:normal;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;color:var(--tag-c);background:rgba(245,184,65,.16)}
 .tm.rule{font-family:inherit;font-weight:800;color:var(--tag-c);background:rgba(245,184,65,.14);border-color:rgba(245,184,65,.4)}
-.tm.est{border-style:dashed}
 .meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
 .meta span{font-size:.72rem;font-weight:800;padding:5px 12px;border-radius:99px;color:var(--muted);background:var(--soft);border:1px solid var(--card-b)}
 .upgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:14px}
@@ -342,19 +294,32 @@ main{padding-top:50px;gap:50px}
 </footer>
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 <div class="toast" id="toast"></div>
+
 <script>
 /* =====================================================================
-   1) إعدادات المحادثة (Supabase) — اتركها فارغة لتعمل المحادثة على جهازك فقط
+   1) إعدادات المحادثة (Supabase)
    ===================================================================== */
 const SUPABASE_URL = 'https://kzlkkdliipbpekdnbxfj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_gDsJ7Z0Kp0u75cBGGYeg3w_OiDsGbNi';
 
 /* =====================================================================
-   2) برنامج الحافلات — المصدر: «المخطط الشامل لمواعيد النقل الجامعي والولائي - السداسي الأول 2026/2027»
+   2) معرف المستخدم الشخصي للجهاز الحالي (لتمييز رسائلك وإتاحة حذفها)
+   ===================================================================== */
+function getUserId(){
+  let u = localStorage.getItem('bus-user-id');
+  if(!u){
+    u = 'usr_' + Math.random().toString(36).substring(2,11) + '_' + Date.now();
+    localStorage.setItem('bus-user-id', u);
+  }
+  return u;
+}
+const MY_UID = getUserId();
+
+/* =====================================================================
+   3) برنامج الحافلات — المصدر: «المخطط الشامل لمواعيد النقل الجامعي والولائي»
    ===================================================================== */
 const IS_SAMPLE = false;
 const WK = ['sun','mon','tue','wed','thu'];
-// rule = مواعيد دورية: بلا نهاية رسمية محددة في البرنامج، تُحسب هنا تقديرياً (est)
 const R = (from,to,step,txt)=>({rule:{from,to,step},txt,est:true});
 
 const GROUPS = { res:'الإقامة الجامعية رويسو', alger:'العاصمة والجامعات (انطلاقاً من القبة)', wil:'الولايات المجاورة (انطلاقاً من القبة)' };
@@ -365,7 +330,6 @@ const ZONES = [
    trips:[ {k:'go',label:'الذهاب (Départ)',byDay:{sun:['07:40'],mon:['07:40'],tue:['07:40'],wed:['07:40'],thu:['07:40']}},
            {k:'back',label:'الإياب (Retour)',byDay:{sun:['14:45','15:20','16:25','16:45','17:45'],mon:['11:20','13:00','15:20','16:25','17:00'],tue:['13:00','14:45','16:25','17:00'],wed:['15:20','16:25','17:00'],thu:['12:20','13:00','14:45','15:20','16:45']}} ] },
 
- // ---- العاصمة والجامعات ----
  { id:'harrach', g:'alger', name:'باش جراح - الحراش', buses:3, trips:[
    {k:'go',label:L_GO,t:['07:00','07:30','08:00','08:30','09:00','10:00','11:30']},
    {k:'back',label:L_BACK,t:['13:00','14:30','16:00','17:00','18:00']} ]},
@@ -400,7 +364,6 @@ const ZONES = [
  { id:'tafourah', g:'alger', name:'تافورة', trips:[
    {k:'go',label:'الذهاب',t:['07:15','08:00','10:00','11:00']},{k:'back',label:'العودة',t:['14:00','14:30','15:00','15:30','17:15','18:00']} ]},
 
- // ---- الولايات المجاورة ----
  { id:'blida', g:'wil', name:'البليدة (عبر الصومعة والأربعاء)', buses:1, trips:[
    {k:'go',label:L_GO,t:['06:30','06:45']},{k:'back',label:L_BACK,t:['14:30','16:00']} ]},
  { id:'boufarik', g:'wil', name:'بوفاريك', buses:1, trips:[
@@ -426,7 +389,7 @@ const ZONES = [
 ];
 ZONES.forEach(z=>{ if(!z.days) z.days=WK; z.assumed = z.id!=='revoil'; });
 
-/* ===================== المنطق (لا تحتاج تعديله) ===================== */
+/* ===================== المنطق البرمجي ===================== */
 const DAYS=['sun','mon','tue','wed','thu','fri','sat'];
 const DAY_LABEL={sun:'الأحد',mon:'الاثنين',tue:'الثلاثاء',wed:'الأربعاء',thu:'الخميس',fri:'الجمعة',sat:'السبت'};
 const $=id=>document.getElementById(id);
@@ -493,10 +456,10 @@ function renderUpNow(){
   const n=nowMin();
   $('upTitle').textContent='الحافلات القادمة الآن · '+DAY_LABEL[day];
   $('upGrid').innerHTML=all.length?all.slice(0,9).map(x=>`<button class="up" onclick="selectZone('${x.z.id}',true)"><b class="t">${x.t}</b><span><strong>${esc(x.z.name)}</strong><small>${esc(x.tr.label)} · بعد ${x.m-n} د${x.est?' · تقريبي':''}</small></span></button>`).join(''):
-    `<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-moon"></i>لا توجد حافلات متبقية اليوم${DAYS.indexOf(day)>4?' (لا رحلات في هذا اليوم حسب البرنامج)':''}. اختر وجهة لمعرفة مواعيد الأيام الأخرى.</div>`;
+    `<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-moon"></i>لا توجد حافلات متبقية اليوم. اختر وجهة لمعرفة مواعيد الأيام الأخرى.</div>`;
 }
 
-/* ---------- عرض الوجهة ---------- */
+/* ---------- عرض نتائج الوجهة ---------- */
 function renderResults(){
   const z=ZONES.find(x=>x.id===zoneId); if(!z)return;
   const today=dayOf(), n=nowMin(), runs=z.days.includes(dayType);
@@ -526,12 +489,12 @@ function renderResults(){
 function toggleFav(){const z=zoneId;if(!z)return;if(localStorage.getItem('bus-fav')===z){localStorage.removeItem('bus-fav');toast('أُزيلت من المفضلة')}else{localStorage.setItem('bus-fav',z);toast('ستُفتح هذه الوجهة تلقائياً')}renderResults();}
 function shareZone(){const u=location.href;if(navigator.share){navigator.share({title:document.title,url:u}).catch(()=>{})}else{try{navigator.clipboard.writeText(u);toast('تم نسخ الرابط')}catch(e){}}}
 
-/* ---------- المحادثة: تخزين محلي أو Supabase ---------- */
+/* ---------- المحادثة: Supabase والتخزين المحلي + الحذف عند الجميع ---------- */
 const REMOTE=!!(SUPABASE_URL&&SUPABASE_KEY);
 const BASE=String(SUPABASE_URL).trim().replace(/\/+$/,'').replace(/\/rest\/v1$/,'');
-// المفاتيح الجديدة (sb_publishable_...) تُرسل في apikey فقط؛ المفاتيح القديمة (eyJ...) تحتاج Authorization أيضاً
 const H={apikey:SUPABASE_KEY,'Content-Type':'application/json'};
 if(String(SUPABASE_KEY).startsWith('eyJ'))H.Authorization='Bearer '+SUPABASE_KEY;
+
 async function chk(r){
   if(r.ok)return r;
   let t='';try{t=await r.text()}catch(e){}
@@ -540,44 +503,105 @@ async function chk(r){
 function explain(e){
   console.error('[bus-chat]',e);
   const m=String(e&&e.message||e);
-  if(/Failed to fetch|NetworkError|Load failed/i.test(m))return 'تعذّر الوصول إلى Supabase: تأكد أن SUPABASE_URL كاملٌ وينتهي بـ .supabase.co';
-  if(/PGRST205|PGRST106|does not exist|^404/.test(m))return 'الجدول bus_messages غير موجود: شغّل ملف bus-chat.sql في SQL Editor.';
-  if(/row-level security|42501/.test(m))return 'سياسة الإدخال غير مضبوطة: أعد تشغيل ملف bus-chat.sql.';
-  if(/Invalid API key|invalid.*jwt|^401|^403/i.test(m))return 'مفتاح Supabase غير مقبول: انسخ المفتاح العام (publishable / anon) من Project Settings ← API Keys.';
-  if(/PGRST204|column/i.test(m))return 'ينقص عمود في الجدول: احذف الجدول وأعد تشغيل bus-chat.sql.';
-  if(/23514|check constraint|23502|null value/i.test(m))return 'رفض الجدول هذه الرسالة (قيود الطول أو القيم).';
-  return 'تعذّر الإرسال: '+m.slice(0,140);
+  if(/Failed to fetch|NetworkError|Load failed/i.test(m))return 'تعذّر الوصول إلى Supabase.';
+  if(/PGRST205|PGRST106|does not exist|^404/.test(m))return 'الجدول bus_messages غير موجود في Supabase.';
+  if(/row-level security|42501/.test(m))return 'سياسة الأمن تحظر هذه العملية (تأكد من تفعيل Delete Policy).';
+  return 'حدث خطأ: '+m.slice(0,140);
 }
+
 const Store=REMOTE?{
-  async list(z){const r=await chk(await fetch(`${BASE}/rest/v1/bus_messages?zone_id=eq.${encodeURIComponent(z)}&order=created_at.desc&limit=60`,{headers:H}));return r.json();},
-  async add(m){await chk(await fetch(`${BASE}/rest/v1/bus_messages`,{method:'POST',headers:{...H,Prefer:'return=minimal'},body:JSON.stringify(m)}));}
+  async list(z){
+    const r=await chk(await fetch(`${BASE}/rest/v1/bus_messages?zone_id=eq.${encodeURIComponent(z)}&order=created_at.desc&limit=60`,{headers:H}));
+    return r.json();
+  },
+  async add(m){
+    await chk(await fetch(`${BASE}/rest/v1/bus_messages`,{
+      method:'POST',
+      headers:{...H,Prefer:'return=minimal'},
+      body:JSON.stringify({...m, user_id: MY_UID})
+    }));
+  },
+  async delete(id){
+    await chk(await fetch(`${BASE}/rest/v1/bus_messages?id=eq.${encodeURIComponent(id)}`,{
+      method:'DELETE',
+      headers:H
+    }));
+  }
 }:{
-  async list(z){return JSON.parse(localStorage.getItem('bus-chat-'+z)||'[]').sort((a,b)=>b.created_at.localeCompare(a.created_at));},
-  async add(m){const k='bus-chat-'+m.zone_id,a=JSON.parse(localStorage.getItem(k)||'[]');a.push({...m,id:Date.now()+'',created_at:new Date().toISOString()});localStorage.setItem(k,JSON.stringify(a.slice(-80)));}
+  async list(z){
+    return JSON.parse(localStorage.getItem('bus-chat-'+z)||'[]').sort((a,b)=>b.created_at.localeCompare(a.created_at));
+  },
+  async add(m){
+    const k='bus-chat-'+m.zone_id, a=JSON.parse(localStorage.getItem(k)||'[]');
+    a.push({...m, id:Date.now()+'', user_id:MY_UID, created_at:new Date().toISOString()});
+    localStorage.setItem(k,JSON.stringify(a.slice(-80)));
+  },
+  async delete(id){
+    if(!zoneId)return;
+    const k='bus-chat-'+zoneId;
+    let a=JSON.parse(localStorage.getItem(k)||'[]');
+    a=a.filter(m=>String(m.id)!==String(id));
+    localStorage.setItem(k,JSON.stringify(a));
+  }
 };
+
 const STATUS={ontime:['🟢','في الوقت'],late:['🟡','متأخرة'],cancel:['🔴','ملغاة'],crowd:['👥','مزدحمة'],ok:['✅','وصلت']};
 const colors=['#2563eb','#7c3aed','#059669','#d97706','#dc2626','#0891b2','#be185d'];
 const colorOf=s=>colors[[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%colors.length];
 const ago=iso=>{const m=Math.max(0,Math.round((Date.now()-new Date(iso))/60000));return m<1?'الآن':m<60?'قبل '+m+' د':m<1440?'قبل '+Math.floor(m/60)+' س':'قبل '+Math.floor(m/1440)+' ي';};
 const hidden=()=>JSON.parse(localStorage.getItem('bus-hidden')||'[]');
 let polling=null;
+
 async function loadChat(showLoad){
   if(!zoneId)return;
   $('liveTag').className='live'+(REMOTE?'':' local'); $('liveTag').textContent=REMOTE?'مباشر':'محلي على جهازك فقط';
   try{renderChat(await Store.list(zoneId));}catch(e){const t=explain(e);if(showLoad)$('msgs').innerHTML='<div class="noMsg">تعذّر تحميل الرسائل.<br><small>'+esc(t)+'</small></div>';}
-  clearInterval(polling); polling=setInterval(()=>{if(!document.hidden)loadChat(false)},REMOTE?20000:60000);
+  clearInterval(polling); polling=setInterval(()=>{if(!document.hidden)loadChat(false)},REMOTE?10000:60000);
 }
+
 function renderChat(list){
   const hid=hidden(), now=Date.now(), cnt={};
   list.forEach(m=>{if(m.kind==='status'&&now-new Date(m.created_at)<7200000)cnt[m.body]=(cnt[m.body]||0)+1;});
   $('statusBtns').innerHTML=Object.entries(STATUS).map(([k,[e,l]])=>`<button class="sb ${cnt[k]?'has':''}" onclick="sendStatus('${k}')">${e} ${l}<b>${cnt[k]||0}</b></button>`).join('');
   const vis=list.filter(m=>!hid.includes(String(m.id)));
+
   $('msgs').innerHTML=vis.length?vis.map(m=>{
     const st=m.kind==='status', s=STATUS[m.body];
-    return `<div class="msg"><div class="av" style="--c:${colorOf(m.nick||'?')}">${esc((m.nick||'؟').trim().charAt(0)||'؟')}</div><div class="bub ${st?'st':''}"><div class="h"><div>${esc(m.nick||'مجهول')}</div><span>${ago(m.created_at)}</span></div><p>${st&&s?`${s[0]} <b>${s[1]}</b>`:esc(m.body)}</p><button class="rp" onclick="hideMsg('${esc(String(m.id))}')"><i class="fa-regular fa-eye-slash"></i> إخفاء</button></div></div>`;
+    const isMine = m.user_id === MY_UID; // معرفة هل الرسالة لي
+
+    // زر الحذف للجميع لرسائلي، وإخفاء محلي لرسائل الآخرين
+    const actionBtn = isMine
+      ? `<button class="rp del" onclick="deleteMsg('${esc(String(m.id))}')"><i class="fa-solid fa-trash-can"></i> حذف عند الجميع</button>`
+      : `<button class="rp" onclick="hideMsg('${esc(String(m.id))}')"><i class="fa-regular fa-eye-slash"></i> إخفاء</button>`;
+
+    return `<div class="msg">
+      <div class="av" style="--c:${colorOf(m.nick||'?')}">${esc((m.nick||'؟').trim().charAt(0)||'؟')}</div>
+      <div class="bub ${st?'st':''}">
+        <div class="h">
+          <div>${esc(m.nick||'مجهول')} ${isMine?'<small style="color:var(--gold)">(أنت)</small>':''}</div>
+          <span>${ago(m.created_at)}</span>
+        </div>
+        <p>${st&&s?`${s[0]} <b>${s[1]}</b>`:esc(m.body)}</p>
+        ${actionBtn}
+      </div>
+    </div>`;
   }).join(''):'<div class="noMsg"><i class="fa-regular fa-comments" style="display:block;font-size:1.8rem;color:var(--gold);margin-bottom:8px"></i>لا توجد رسائل بعد في هذه الوجهة. كن أول من يخبر الآخرين بمستجدات الحافلات!</div>';
 }
+
 function hideMsg(id){const h=hidden();h.push(id);localStorage.setItem('bus-hidden',JSON.stringify(h));loadChat(false);}
+
+async function deleteMsg(id){
+  if(!confirm('هل أنت تأكد من إزالة هذه الرسالة نهائياً عند الجميع؟')) return;
+  try{
+    await Store.delete(id);
+    toast('تم حذف الرسالة عند الجميع');
+    loadChat(false);
+  }catch(e){
+    toast('تعذر حذف الرسالة');
+    console.error(e);
+  }
+}
+
 function nick(){return ($('nick').value||'').trim().slice(0,24)||'طالب';}
 let lastSend=0;
 function canSend(){const d=Date.now()-lastSend;if(d<15000){toast('انتظر '+Math.ceil((15000-d)/1000)+' ث قبل الإرسال التالي');return false}return true;}
@@ -596,6 +620,7 @@ async function sendMsg(){
   catch(e){er.textContent=explain(e)}
   $('sendBtn').disabled=false;
 }
+
 function toggleTheme(){
   const r=document.documentElement,next=r.dataset.theme==='dark'?'light':'dark';
   r.dataset.theme=next; $('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
