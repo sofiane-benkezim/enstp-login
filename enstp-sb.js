@@ -4,8 +4,8 @@
    ===================================================================== */
 (function () {
   var CONFIG = {
-    url: 'https://xdsoxnafuyfiijqdhare.supabase.co',
-    key: 'sb_publishable_DGEQC7jScxKtvrRKgP3Okw_2VuXitHe'
+    url: 'https://fynbdujbtbqsoahhsylo.supabase.co',
+    key: 'sb_publishable_t1yPBiRKFGvdgQKYfZvL8w_LbloOd2f'
   };
 
   // تنظيف العنوان تلقائياً: https:// و .supabase.co
