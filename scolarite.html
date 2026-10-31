@@ -264,6 +264,24 @@ footer .f-cols p{font-size:.8rem;color:#8fa3c0;line-height:1.9}
 footer .copy{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;font-size:.76rem;color:#6b7f9f}
 footer .f-logo{margin-bottom:12px}
 main{gap:100px}
+
+.deptsel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.deptsel{grid-template-columns:1fr}}
+.dpt{position:relative;cursor:pointer}
+.dpt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.dpt span{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:14px 10px;border-radius:16px;background:var(--bar-s);border:2px solid var(--card-b);transition:.3s var(--ease)}
+.dpt i{font-size:1.3rem;color:var(--gold)}
+.dpt b{font-size:.84rem;font-weight:900;color:var(--head);line-height:1.5}
+.dpt small{font-size:.7rem;font-weight:700;color:var(--muted);font-family:'Inter',sans-serif}
+.dpt:hover span{border-color:var(--gold)}
+.dpt input:checked+span{border-color:var(--gold);background:linear-gradient(135deg,rgba(255,223,154,.35),rgba(245,184,65,.2));box-shadow:0 8px 22px rgba(245,184,65,.3)}
+.dpt input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.alert.bad{background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.4)}
+.alert.bad>i{color:#dc2626}
+.mycodes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.mycodes button{font-family:'Inter',sans-serif;font-size:.76rem;font-weight:800;padding:7px 13px;border-radius:10px;cursor:pointer;color:var(--btn-c);background:var(--soft);border:1px solid var(--card-b);transition:.3s}
+.mycodes button:hover{background:var(--gold);color:#111;border-color:transparent}
+.mycodes small{width:100%;text-align:center;font-size:.72rem;color:var(--muted);font-weight:700}
 </style>
 </head>
 <body data-lang="ar">
@@ -334,7 +352,8 @@ main{gap:100px}
 <p>يمكنك الآن تقديم طلب للحصول على الوثائق الخاصة بك وتجهيزها مسبقاً قبل القدوم للإدارة لاستلامها.</p>
 <div class="facts">
 <div class="fact"><i class="fa-solid fa-clock"></i><div><h4>مدة المعالجة</h4><span>من 24 إلى 48 ساعة عمل كحد أقصى.</span></div></div>
-<div class="fact"><i class="fa-solid fa-circle-check"></i><div><h4>تنبيه بالجاهزية</h4><span>تصلك رسالة تأكيد عند جاهزية الوثيقة للاستلام.</span></div></div>
+<div class="fact"><i class="fa-solid fa-route"></i><div><h4>يصل إلى قسمك مباشرة</h4><span>كل طلب يذهب إلى فريق قسمك فقط: التحضيري أو DIB أو DMS.</span></div></div>
+<div class="fact"><i class="fa-solid fa-circle-check"></i><div><h4>تتبّع حالة الطلب</h4><span>تعرف حالته برقم المتابعة: استُلم، قيد المعالجة، جاهز للاستلام.</span></div></div>
 </div>
 </div>
 <p class="priv"><i class="fa-solid fa-shield-halved"></i>يتم الحفاظ على خصوصية وبيانات الطالب وفق التشريعات الجامعية.</p>
@@ -343,26 +362,28 @@ main{gap:100px}
 <h3>ملء استمارة الطلب</h3>
 <div id="successAlert" class="alert hidden">
 <i class="fa-solid fa-circle-check"></i>
-<div><h4>تم إرسال طلبك بنجاح!</h4><p>رقم المتابعة الخاص بك هو: <code id="generatedCode"></code>. احتفظ به لمتابعة حالة الطلب.</p></div>
+<div><h4>تم إرسال طلبك بنجاح!</h4><p>أُرسل إلى فريق <b id="successDept"></b>. رقم المتابعة: <code id="generatedCode"></code>. احتفظ به لمتابعة حالة الطلب.</p></div>
 </div>
+<div id="formErr" class="alert bad hidden"><i class="fa-solid fa-circle-exclamation"></i><div><h4>تعذّر إرسال الطلب</h4><p id="formErrMsg"></p></div></div>
 <form id="docRequestForm" onsubmit="handleRequestSubmit(event)">
+<div class="fld" style="margin-bottom:14px"><label>القسم المعني بطلبك</label>
+<div class="deptsel">
+<label class="dpt"><input type="radio" name="dept" value="cp" required onchange="onDeptChange()"><span><i class="fa-solid fa-book-open"></i><b>السنتان التحضيريتان</b><small>CP1 · CP2</small></span></label>
+<label class="dpt"><input type="radio" name="dept" value="dib" onchange="onDeptChange()"><span><i class="fa-solid fa-road"></i><b>تخصص DIB</b><small>Infrastructure des Bases</small></span></label>
+<label class="dpt"><input type="radio" name="dept" value="dms" onchange="onDeptChange()"><span><i class="fa-solid fa-building"></i><b>تخصص DMS</b><small>Matériaux &amp; Structures</small></span></label>
+</div></div>
 <div class="row">
-<div class="fld"><label>الاسم الكامل</label><input type="text" required placeholder="أدخل اسمك الكامل"></div>
-<div class="fld"><label>رقم التسجيل الجامعي (Matricule)</label><input type="text" required placeholder="مثال: 20233100234"></div>
+<div class="fld"><label for="fName">الاسم الكامل</label><input id="fName" type="text" required minlength="3" maxlength="80" placeholder="أدخل اسمك الكامل" autocomplete="name"></div>
+<div class="fld"><label for="fMat">رقم التسجيل الجامعي (Matricule)</label><input id="fMat" type="text" required minlength="4" maxlength="30" placeholder="مثال: 20233100234" inputmode="numeric"></div>
 </div>
 <div class="row">
-<div class="fld"><label>الكلية / القسم</label>
-<select required><option value="">اختر القسم...</option><option value="1">كلية العلوم والتكنولوجيا</option><option value="2">كلية الحقوق والعلوم السياسية</option><option value="3">كلية العلوم الاقتصادية</option><option value="4">معهد العلوم الإنسانية</option></select></div>
-<div class="fld"><label>المستوى الدراسي</label>
-<select required><option value="">اختر المستوى...</option><option value="l1">ليسانس - السنة الأولى</option><option value="l2">ليسانس - السنة الثانية</option><option value="l3">ليسانس - السنة الثالثة</option><option value="m1">ماستر - السنة الأولى</option><option value="m2">ماستر - السنة الثانية</option></select></div>
+<div class="fld"><label for="fLevel">المستوى الدراسي</label><select id="fLevel" required disabled><option value="">اختر القسم أولاً...</option></select></div>
+<div class="fld"><label for="fDoc">الوثيقة المطلوبة</label>
+<select id="fDoc" required><option value="">اختر نوع الوثيقة...</option><option value="cert">شهادة مدرسية (Certificat de Scolarité)</option><option value="trans">كشف النقاط السنوي (Relevé de Notes)</option><option value="quit">إبراء الذمة (Quitus)</option><option value="card">بطاقة الطالب (بديل ضائع)</option></select></div>
 </div>
-<div class="row">
-<div class="fld"><label>الوثيقة المطلوبة</label>
-<select required><option value="">اختر نوع الوثيقة...</option><option value="cert">شهادة مدرسية (Certificat de Scolarité)</option><option value="trans">كشف النقاط السنوي (Relevé de Notes)</option><option value="quit">إبراء الذمة (Quitus)</option><option value="card">بطاقة الطالب (بديل ضائع)</option></select></div>
-<div class="fld"><label>رقم الهاتف للتواصل</label><input type="tel" required placeholder="06XXXXXXXX"></div>
-</div>
-<div class="fld" style="margin-bottom:14px"><label>ملاحظات إضافية (اختياري)</label><textarea rows="2" placeholder="أذكر أي تفاصيل إضافية إن وجدت..."></textarea></div>
-<button type="submit" class="btn form-btn"><i class="fa-solid fa-paper-plane"></i><span>إرسال الطلب الإلكتروني</span></button>
+<div class="fld" style="margin-bottom:14px"><label for="fPhone">رقم الهاتف للتواصل</label><input id="fPhone" type="tel" required maxlength="20" placeholder="06XXXXXXXX" inputmode="tel" autocomplete="tel"></div>
+<div class="fld" style="margin-bottom:14px"><label for="fNotes">ملاحظات إضافية (اختياري)</label><textarea id="fNotes" rows="2" maxlength="300" placeholder="أذكر أي تفاصيل إضافية إن وجدت..."></textarea></div>
+<button type="submit" id="submitBtn" class="btn form-btn"><i class="fa-solid fa-paper-plane"></i><span>إرسال الطلب الإلكتروني</span></button>
 </form>
 </div>
 </div>
@@ -378,11 +399,13 @@ main{gap:100px}
 <button class="btn" onclick="checkTrackingStatus()">تتبع الآن</button>
 </div>
 <div id="trackResult" class="result hidden">
-<div class="result-head"><span>حالة الطلب الحالية</span><span id="statusBadge" class="pill">قيد المعالجة</span></div>
-<p><strong>نوع الوثيقة:</strong> <span id="trackDocType">شهادة مدرسية</span></p>
-<p><strong>تاريخ تقديم الطلب:</strong> <span id="trackDate">اليوم، 10:30 صباحاً</span></p>
-<p><strong>ملاحظة الإدارة:</strong> <span id="trackNote">تم استلام طلبك وجاري مراجعته من مصلحة Scolarité.</span></p>
+<div class="result-head"><span>حالة الطلب الحالية</span><span id="statusBadge" class="pill">—</span></div>
+<p><strong>القسم:</strong> <span id="trackDept"></span></p>
+<p><strong>نوع الوثيقة:</strong> <span id="trackDocType"></span></p>
+<p><strong>تاريخ تقديم الطلب:</strong> <span id="trackDate"></span></p>
+<p><strong>ملاحظة الإدارة:</strong> <span id="trackNote"></span></p>
 </div>
+<div id="myCodes" class="mycodes"></div>
 </div>
 </section>
 
@@ -423,6 +446,7 @@ main{gap:100px}
 </footer>
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 
+<script src="enstp-sb.js"></script>
 <script>
 const modalData = {
   scolariteModal: { title:"مصلحة الدراسة والتسجيل (Scolarité)", badge:"إدارة", icon:"fa-id-card", cls:"s-a",
@@ -449,13 +473,67 @@ function openModal(key) {
 function closeModal() { document.getElementById('detailModal').classList.remove('open'); }
 addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function handleRequestSubmit(e) {
+
+const DEPT_LABEL = { cp:'السنتان التحضيريتان (CP)', dib:'تخصص DIB', dms:'تخصص DMS' };
+const DOC_LABEL  = { cert:'شهادة مدرسية', trans:'كشف النقاط السنوي', quit:'إبراء الذمة (Quitus)', card:'بطاقة الطالب (بديل ضائع)' };
+const LEVELS = {
+  cp:  [['cp1','السنة الأولى تحضيري (CP1)'],['cp2','السنة الثانية تحضيري (CP2)']],
+  dib: [['y3','السنة الثالثة (أولى تخصص)'],['y4','السنة الرابعة (ثانية تخصص)'],['y5','السنة الخامسة (تخرج)']]
+};
+LEVELS.dms = LEVELS.dib;
+const STATUS_UI = {
+  new:        ['تم استلام طلبك','#fde68a','#78350f','وصل طلبك إلى فريق القسم وسيُراجَع قريباً.'],
+  processing: ['قيد المعالجة','#bfdbfe','#1e3a8a','يعمل الفريق على تجهيز وثيقتك.'],
+  ready:      ['جاهزة للاستلام','#bbf7d0','#14532d','وثيقتك جاهزة، تفضّل باستلامها من شباك المصلحة.'],
+  rejected:   ['مرفوض','#fecaca','#7f1d1d','تعذّر قبول الطلب، راجع الملاحظة أو توجّه إلى المصلحة.'],
+  delivered:  ['تم التسليم','#e5e7eb','#374151','تم تسليم الوثيقة.']
+};
+const $id = id => document.getElementById(id);
+const escH = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function onDeptChange() {
+  const d = (document.querySelector('input[name="dept"]:checked') || {}).value;
+  const sel = $id('fLevel');
+  if (!d) { sel.disabled = true; sel.innerHTML = '<option value="">اختر القسم أولاً...</option>'; return; }
+  sel.disabled = false;
+  sel.innerHTML = '<option value="">اختر المستوى...</option>' + LEVELS[d].map(l => `<option value="${l[0]}">${l[1]}</option>`).join('');
+}
+function showFormError(msg) {
+  $id('formErrMsg').textContent = msg;
+  $id('successAlert').classList.add('hidden');
+  $id('formErr').classList.remove('hidden');
+  $id('formErr').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function myCodes() { try { return JSON.parse(localStorage.getItem('sc-codes') || '[]'); } catch (e) { return []; } }
+function rememberCode(c) { const a = myCodes().filter(x => x !== c); a.unshift(c); try { localStorage.setItem('sc-codes', JSON.stringify(a.slice(0, 6))); } catch (e) {} drawMyCodes(); }
+function drawMyCodes() {
+  const a = myCodes(), box = $id('myCodes'); if (!box) return;
+  box.innerHTML = a.length ? '<small>طلباتك السابقة على هذا الجهاز:</small>' + a.map(c => `<button type="button" onclick="trackCode('${escH(c)}')">${escH(c)}</button>`).join('') : '';
+}
+function trackCode(c) { $id('trackCodeInput').value = c; checkTrackingStatus(); }
+
+async function handleRequestSubmit(e) {
   e.preventDefault();
-  const code = 'REQ-' + Math.floor(1000 + Math.random() * 9000);
-  document.getElementById('generatedCode').innerText = code;
-  document.getElementById('successAlert').classList.remove('hidden');
-  document.getElementById('docRequestForm').reset();
-  document.getElementById('successAlert').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  $id('formErr').classList.add('hidden');
+  if (!window.SB || !SB.ready) { showFormError('الخدمة غير مفعّلة بعد: أضف ملف enstp-sb.js إلى الموقع.'); return; }
+  const dept = (document.querySelector('input[name="dept"]:checked') || {}).value;
+  const phone = $id('fPhone').value.replace(/[\s.-]/g, '');
+  if (!dept) { showFormError('اختر القسم المعني بطلبك.'); return; }
+  if (!/^\+?\d{8,15}$/.test(phone)) { showFormError('رقم الهاتف غير صحيح (أرقام فقط، مثال: 0550123456).'); return; }
+  const btn = $id('submitBtn'); btn.disabled = true; btn.style.opacity = .6;
+  try {
+    const code = await SB.rpc('sc_submit', {
+      p_dept: dept, p_level: $id('fLevel').value, p_name: $id('fName').value.trim(),
+      p_matricule: $id('fMat').value.trim(), p_phone: phone, p_doc: $id('fDoc').value, p_details: $id('fNotes').value.trim()
+    });
+    $id('generatedCode').textContent = code;
+    $id('successDept').textContent = DEPT_LABEL[dept];
+    $id('successAlert').classList.remove('hidden');
+    rememberCode(code);
+    $id('docRequestForm').reset(); onDeptChange();
+    $id('successAlert').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (err) { showFormError(SB.explain(err)); }
+  btn.disabled = false; btn.style.opacity = 1;
 }
 
 function filterServices() {
@@ -465,11 +543,28 @@ function filterServices() {
   });
 }
 
-function checkTrackingStatus() {
-  const code = document.getElementById('trackCodeInput').value.trim();
-  if (!code) { alert('الرجاء إدخال رقم المتابعة المكون من الحروف والأرقام'); return; }
-  document.getElementById('trackResult').classList.remove('hidden');
-  document.getElementById('trackNote').innerText = `الطلب الخاص بـ (${code}) جاري تجهيزه وطباعته من مصلحة Scolarité. يمكنك الاستلام غداً صباحاً.`;
+async function checkTrackingStatus() {
+  const code = $id('trackCodeInput').value.trim().toUpperCase();
+  const box = $id('trackResult');
+  if (!code) { alert('الرجاء إدخال رقم المتابعة (مثال: REQ-1A2B3C4D)'); return; }
+  if (!window.SB || !SB.ready) { alert('الخدمة غير مفعّلة بعد.'); return; }
+  try {
+    const rows = await SB.rpc('sc_track', { p_code: code });
+    box.classList.remove('hidden');
+    if (!rows || !rows.length) {
+      $id('statusBadge').textContent = 'غير موجود'; $id('statusBadge').style.cssText = 'background:#fecaca;color:#7f1d1d';
+      $id('trackDept').textContent = '—'; $id('trackDocType').textContent = '—'; $id('trackDate').textContent = '—';
+      $id('trackNote').textContent = 'لم يتم العثور على طلب بهذا الرقم. تأكد من كتابته بشكل صحيح.';
+      return;
+    }
+    const r = rows[0], st = STATUS_UI[r.status] || STATUS_UI.new;
+    const b = $id('statusBadge'); b.textContent = st[0]; b.style.cssText = `background:${st[1]};color:${st[2]}`;
+    $id('trackDept').textContent = DEPT_LABEL[r.dept] || r.dept;
+    $id('trackDocType').textContent = DOC_LABEL[r.doc_type] || r.doc_type;
+    $id('trackDate').textContent = new Date(r.created_at).toLocaleString('ar-DZ', { dateStyle: 'medium', timeStyle: 'short' });
+    $id('trackNote').textContent = r.public_note || st[3];
+    rememberCode(code);
+  } catch (err) { alert(SB.explain(err)); }
 }
 
 function toggleTheme() {
@@ -481,6 +576,7 @@ function toggleTheme() {
 }
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('metaTheme').content = document.documentElement.dataset.theme === 'dark' ? '#040b17' : '#f3f6fc';
+  drawMyCodes();
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.1});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   const pb = document.getElementById('progressBar'), tt = document.getElementById('toTop');
@@ -492,27 +588,5 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- Supabase: محفوظ كما هو في ملفك الأصلي (محاط بـ try حتى لا يعطّل الصفحة) -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-try {
-  const SUPABASE_URL = 'https://xdsoxnafuyfiijqdhare.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_DGEQC7jScxKtvrRKgP3Okw_2VuXitHe';
-  var _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-} catch (err) { console.warn('Supabase غير مهيأ:', err.message); }
-
-async function sendStudentRequest(fullName, studentId, docType) {
-  const trackingCode = 'REQ-' + Math.floor(100000 + Math.random() * 900000);
-  const { data, error } = await _supabase.from('requests').insert([{ id: trackingCode, full_name: fullName, student_id: studentId, doc_type: docType, status: 'قيد المعالجة' }]);
-  if (error) { alert('حدث خطأ أثناء إرسال الطلب: ' + error.message); }
-  else { alert(`تم إرسال طلبك بنجاح!\nرقم المتابعة الخاص بك هو: ${trackingCode}\nاحتفظ بهذا الرقم لتتبع حالة طلبك.`); }
-}
-
-async function checkRequestStatus(trackingCode) {
-  const { data, error } = await _supabase.from('requests').select('status, doc_type, full_name, created_at').eq('id', trackingCode).single();
-  if (error || !data) { alert('لم يتم العثور على طلب بهذا الرقم. تأكد من كتابة الرقم بشكل صحيح.'); }
-  else { alert(`مرحباً ${data.full_name}\nطلبك لـ (${data.doc_type})\nالحالة الحالية: ${data.status}`); }
-}
-</script>
 </body>
 </html>
