@@ -509,25 +509,32 @@ function explain(e){
   return 'حدث خطأ: '+m.slice(0,140);
 }
 
-const Store=REMOTE?{
+const Store = REMOTE ? {
   async list(z){
-    const r=await chk(await fetch(`${BASE}/rest/v1/bus_messages?zone_id=eq.${encodeURIComponent(z)}&order=created_at.desc&limit=60`,{headers:H}));
+    const r = await chk(await fetch(`${BASE}/rest/v1/bus_messages?zone_id=eq.${encodeURIComponent(z)}&order=created_at.desc&limit=60`, {headers:H}));
     return r.json();
   },
   async add(m){
-    await chk(await fetch(`${BASE}/rest/v1/bus_messages`,{
-      method:'POST',
-      headers:{...H,Prefer:'return=minimal'},
-      body:JSON.stringify({...m, user_id: MY_UID})
+    await chk(await fetch(`${BASE}/rest/v1/bus_messages`, {
+      method: 'POST',
+      headers: {...H, Prefer:'return=minimal'},
+      body: JSON.stringify({...m, user_id: MY_UID})
     }));
   },
   async delete(id){
-    await chk(await fetch(`${BASE}/rest/v1/bus_messages?id=eq.${encodeURIComponent(id)}`,{
-      method:'DELETE',
-      headers:H
-    }));
+    const r = await fetch(`${BASE}/rest/v1/bus_messages?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      headers: {
+        ...H,
+        'Prefer': 'return=representation'
+      }
+    });
+    if(!r.ok) {
+      const errText = await r.text();
+      throw new Error('رفض الخادم الحذف: ' + errText);
+    }
   }
-}:{
+} : {
   async list(z){
     return JSON.parse(localStorage.getItem('bus-chat-'+z)||'[]').sort((a,b)=>b.created_at.localeCompare(a.created_at));
   },
