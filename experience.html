@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+/* ===== ENSTP — نظام التصميم الموحد ===== */
 :root{
 --bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
 --gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
@@ -85,7 +85,7 @@ html[data-theme="dark"] .theme-btn .i-moon{transform:translateY(-130%) rotate(90
 html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
 
 /* الواجهة */
-.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero{position:relative;min-height:44svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
 .hero-inner{max-width:900px}
@@ -94,45 +94,9 @@ html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
 .hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
 
-main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
-.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
-.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
-.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
-.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
-.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
-.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
-[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
-.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
-.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
-.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
-.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+main{max-width:1280px;margin:0 auto;padding:50px 20px 40px;display:flex;flex-direction:column;gap:34px}
 
-/* البطاقات */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
-.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
-@media(max-width:992px){.two{grid-template-columns:1fr}}
-.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
-.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
-.box h3.t i{color:var(--gold)}
-.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
-.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
-.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
-.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
-.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
-.director p{font-size:.82rem;line-height:1.8;margin:0}
-@media(max-width:600px){.director{flex-direction:column;text-align:center}}
-
-.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
-.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
-.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
-.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
-.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
-.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
-.card-content{padding:18px 20px 20px}
-.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
-
-.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
 
 footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
 footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
@@ -154,13 +118,10 @@ header{top:8px;padding:0 8px}
 .back span{display:none}
 .lang button{padding:6px 8px;font-size:.68rem}
 .hero{padding:120px 18px 70px}
-main{gap:70px}
-.card-image-wrap{height:190px}
-.box{padding:24px}
+main{gap:24px}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
 
-.hero{min-height:44svh}
 .hidden{display:none!important}
 .toolbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:16px;border-radius:24px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
 .search-box{flex:1 1 320px;max-width:460px;display:flex;align-items:center;border-radius:16px;background:var(--bar-s);border:1px solid var(--card-b);transition:.3s}
@@ -190,7 +151,6 @@ main{gap:70px}
 .share{display:inline-flex;gap:6px;align-items:center;font:inherit;font-size:.78rem;font-weight:800;color:var(--tag-c);background:none;border:0;cursor:pointer}
 .share:hover{color:var(--head)}
 .empty{grid-column:1/-1;text-align:center;padding:60px 16px;color:var(--muted);font-weight:800}
-main{padding-top:50px;gap:34px}
 </style>
 </head>
 <body data-lang="ar">
@@ -207,6 +167,7 @@ main{padding-top:50px;gap:34px}
 </div>
 </div>
 </header>
+
 <section class="hero">
 <div class="hero-bg"></div>
 <div class="hero-inner">
@@ -215,6 +176,7 @@ main{padding-top:50px;gap:34px}
 <p data-i18n="desc"></p>
 </div>
 </section>
+
 <main>
 <div class="toolbar reveal">
 <div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="search" autocomplete="off"></div>
@@ -225,43 +187,153 @@ main{padding-top:50px;gap:34px}
 <button class="fb" data-c="life" onclick="setCat(this)" data-i18n="f_life"></button>
 </div>
 </div>
+
 <section class="cards">
-<article class="vcard reveal" data-cats="study life"><div class="vframe"><iframe src="https://drive.google.com/file/d/1itzHFPDYNmnxTphw74uuXZRCf4ox4C8x/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag1"></span><span class="when" data-i18n="when1"></span></div><h3 data-i18n="t1"></h3><p data-i18n="d1"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div></div></article>
-<article class="vcard reveal" data-cats="study exams"><div class="vframe soon"><i class="fa-solid fa-circle-play"></i><span data-i18n="soon_video"></span></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag2"></span><span class="when" data-i18n="when2"></span></div><h3 data-i18n="t2"></h3><p data-i18n="d2"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who2"></span></span><span data-i18n="soon"></span></div></div></article>
-<article class="vcard reveal" data-cats="life"><div class="vframe soon"><i class="fa-solid fa-circle-play"></i><span data-i18n="soon_video"></span></div><div class="vbody"><div class="vmeta"><span class="tag" data-i18n="tag3"></span><span class="when" data-i18n="when2"></span></div><h3 data-i18n="t3"></h3><p data-i18n="d3"></p><div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who2"></span></span><span data-i18n="soon"></span></div></div></article>
-<div class="empty hidden" id="none" data-i18n="none"></div>
+  <!-- الفيديو الأول -->
+  <article class="vcard reveal" data-cats="study life">
+    <div class="vframe">
+      <iframe src="https://drive.google.com/file/d/1itzHFPDYNmnxTphw74uuXZRCf4ox4C8x/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag1"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t1"></h3>
+      <p data-i18n="d1"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو الثاني -->
+  <article class="vcard reveal" data-cats="study exams">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1PgAAenvdkRZDI77PAcPWKo2FDF1bXW00/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag2"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t2"></h3>
+      <p data-i18n="d2"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو الثالث -->
+  <article class="vcard reveal" data-cats="life">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1EA2vlIhPCiGaGByb6fAnOm6QsV6KL5HB/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag3"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t3"></h3>
+      <p data-i18n="d3"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو الرابع -->
+  <article class="vcard reveal" data-cats="study">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1Og5kboP3jGvideovLqNy4Nm4DnohM5X0/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag4"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t4"></h3>
+      <p data-i18n="d4"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو الخامس -->
+  <article class="vcard reveal" data-cats="exams">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1y7UKs5puZHLz2QeFCPqnkejp6j0pRjgq/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag5"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t5"></h3>
+      <p data-i18n="d5"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو السادس -->
+  <article class="vcard reveal" data-cats="life">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1NDbDISIg23mC3aGUueAYFWuyzRCrv0Fx/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag6"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t6"></h3>
+      <p data-i18n="d6"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو السابع -->
+  <article class="vcard reveal" data-cats="study exams">
+    <div class="vframe">
+      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
+      <iframe src="https://drive.google.com/file/d/1j49_GLHKjOvGW2ZEdoxSQ9Om0gMnoa0t/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag7"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t7"></h3>
+      <p data-i18n="d7"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <div class="empty hidden" id="none" data-i18n="none"></div>
 </section>
 </main>
+
 <footer>
 <div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
 <p id="footer-title" data-i18n="footer_t"></p>
 <p id="footer-sub" data-i18n="footer_s"></p>
 </footer>
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+
 <script>
 const T={
 ar:{back:"العودة للرئيسية",brand:"منصة التوجيه ونقل الخبرة",title:"منصة الجلسات التوجيهية ونقل الخبرة",badge:"دليل الطلاب",
 h1:"مكتبة الجلسات التوجيهية <span>والنصائح</span>",desc:"مجموعة من الفيديوهات التوجيهية المصورة من الطلبة القدامى لنقل تجاربهم الأكاديمية ومساعدة الطلبة الجدد.",
 search:"ابحث عن موضوع أو جلسة...",f_all:"الكل",f_study:"منهجية الدراسة",f_exams:"الامتحانات والتقييمات",f_life:"الحياة الجامعية",none:"لا توجد جلسات مطابقة",
 tag1:"جلسة توجيهية #1",when1:"فيديو حقيقي",t1:"توجيهات ونصائح للطلبة الجدد",d1:"مشاركة خبرات وتجارب سابقة حول كيفية التأقلم وتنظيم الوقت والتفوق في المسار الدراسي.",who1:"طالب قديم / خريج",share:"مشاركة",
-tag2:"منهجية الدراسة",when2:"جلسة قادمة",t2:"كيف تراجع للدروس والمحاضرات اليومية؟",d2:"طرق واستراتيجيات تلخيص المحاضرات والتحضير الفعّال للامتحانات والامتحانات الجزئية.",who2:"طالب قديم",soon:"قريباً",soon_video:"سيتم إضافة الفيديو قريباً",
+tag2:"منهجية الدراسة",t2:"كيف تراجع للدروس والمحاضرات اليومية؟",d2:"طرق واستراتيجيات تلخيص المحاضرات والتحضير الفعّال للامتحانات والامتحانات الجزئية.",
 tag3:"الجانب التطبيقي",t3:"أهمية التربصات والأنشطة الطلابية",d3:"كيف تستغل وقتك في بناء مهاراتك والالتحاق بالتربصات الميدانية خلال سنتك الدراسية.",
+tag4:"تنظيم الوقت",t4:"إدارة الوقت وضغط الدراسة في الهندسة",d4:"أفضل التقنيات الحديثة لتنظيم الجداول اليومية وتفادي تراكم المحاضرات.",
+tag5:"الامتحانات",t5:"كيف تتعامل مع ورقة الامتحان وتتجنب الأخطاء الشائعة؟",d5:"نصائح منهجية لإدارة وقت الامتحان وتحقيق أفضل العلامات.",
+tag6:"الحياة اليومية",t6:"الإقامة الجامعية والنصائح المعيشية",d6:"كيف تعيش بانسجام في الإقامة وتدير شؤونك اليومية كطالب مغترب.",
+tag7:"المشاريع التطبيقية",t7:"منهجية إعداد المشاريع والبحوث",d7:"دليلك الشامل لإعداد البحوث والمشاريع التقنية المطلوبة خلال السداسي والموسم الدراسي.",
 copied:"تم نسخ الرابط",footer_t:"جميع الحقوق محفوظة © 2026 - دليل الطالب",footer_s:"منصة الجلسات التوجيهية"},
 fr:{back:"Retour à l'accueil",brand:"Plateforme de mentorat",title:"Plateforme de mentorat et de partage d'expérience",badge:"Guide de l'étudiant",
 h1:"Bibliothèque des séances <span>de mentorat et conseils</span>",desc:"Une collection de vidéos réalisées par d'anciens étudiants pour partager leur expérience et aider les nouveaux.",
 search:"Rechercher un sujet ou une séance...",f_all:"Tout",f_study:"Méthodologie d'étude",f_exams:"Examens et évaluations",f_life:"Vie universitaire",none:"Aucune séance correspondante",
 tag1:"Séance #1",when1:"Vidéo réelle",t1:"Conseils et orientations pour les nouveaux étudiants",d1:"Partage d'expériences sur l'adaptation, la gestion du temps et la réussite dans le parcours d'étude.",who1:"Ancien étudiant / diplômé",share:"Partager",
-tag2:"Méthodologie d'étude",when2:"Séance à venir",t2:"Comment réviser les cours au quotidien ?",d2:"Méthodes et stratégies pour résumer les cours et préparer efficacement les examens.",who2:"Ancien étudiant",soon:"Bientôt",soon_video:"La vidéo sera ajoutée prochainement",
-tag3:"Aspect pratique",t3:"L'importance des stages et des activités étudiantes",d3:"Comment mettre à profit votre temps pour développer vos compétences et obtenir des stages sur le terrain.",
+tag2:"Méthodologie",t2:"Comment réviser les cours au quotidien ?",d2:"Méthodes et stratégies pour résumer les cours et préparer efficacement les examens.",
+tag3:"Pratique",t3:"L'importance des stages et des activités étudiantes",d3:"Comment mettre à profit votre temps pour développer vos compétences.",
+tag4:"Gestion du temps",t4:"Gestion du temps et pression des études",d4:"Techniques modernes pour organiser son emploi du temps.",
+tag5:"Examens",t5:"Comment gérer sa copie d'examen ?",d5:"Conseils méthodologiques pour la gestion du temps en examen.",
+tag6:"Vie quotidienne",t6:"La vie en cité universitaire",d6:"Conseils pour vivre en harmonie et gérer son quotidien.",
+tag7:"Projets",t7:"Méthodologie de préparation des projets",d7:"Guide complet pour la réalisation des projets académiques.",
 copied:"Lien copié",footer_t:"Tous droits réservés © 2026 - Guide de l'étudiant",footer_s:"Plateforme de mentorat"},
 en:{back:"Back to Home",brand:"Mentoring & Experience Hub",title:"Mentoring & Experience Sharing Platform",badge:"Student Guide",
 h1:"Mentoring Sessions <span>& Advice Library</span>",desc:"A collection of video sessions recorded by senior students to share their academic experience and help newcomers.",
 search:"Search a topic or session...",f_all:"All",f_study:"Study methods",f_exams:"Exams & assessments",f_life:"Campus life",none:"No matching sessions",
 tag1:"Session #1",when1:"Real video",t1:"Advice and guidance for new students",d1:"Sharing past experiences on settling in, organizing your time and excelling in your studies.",who1:"Senior student / graduate",share:"Share",
-tag2:"Study methods",when2:"Upcoming session",t2:"How do you review daily lessons and lectures?",d2:"Strategies for summarizing lectures and preparing effectively for exams and midterms.",who2:"Senior student",soon:"Coming soon",soon_video:"Video coming soon",
+tag2:"Study methods",t2:"How do you review daily lessons and lectures?",d2:"Strategies for summarizing lectures and preparing effectively for exams and midterms.",
 tag3:"Practical side",t3:"The value of internships and student activities",d3:"How to use your time to build skills and land field internships during your studies.",
+tag4:"Time Management",t4:"Time Management & Engineering Study Pressure",d4:"Best modern techniques to organize daily schedules and avoid lecture backlog.",
+tag5:"Exams",t5:"How to handle exam papers & avoid common mistakes",d5:"Methodological tips for managing exam time and achieving top grades.",
+tag6:"Campus Life",t6:"University Residence & Living Tips",d6:"How to live harmoniously in residence and manage daily student life.",
+tag7:"Projects",t7:"Project & Research Preparation Methodology",d7:"Your comprehensive guide to preparing academic projects and technical research.",
 copied:"Link copied",footer_t:"All rights reserved © 2026 - Student Guide",footer_s:"Mentoring sessions platform"}
 };
+
 let LG='ar', CAT='all';
 function applyFilter(){
   const q=document.getElementById('search').value.toLowerCase().trim();
