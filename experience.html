@@ -95,7 +95,6 @@ html[data-theme="dark"] .theme-btn .i-sun{transform:none;opacity:1}
 .hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
 
 main{max-width:1280px;margin:0 auto;padding:50px 20px 40px;display:flex;flex-direction:column;gap:34px}
-
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
 
 footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
@@ -137,15 +136,11 @@ main{gap:24px}
 .vcard:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
 .vframe{position:relative;aspect-ratio:16/9;background:#000}
 .vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.soon{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:16px;color:#8fa3c0;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 70%),#0a1220}
-.soon i{font-size:2.6rem;color:rgba(245,184,65,.7)}
-.soon span{font-size:.8rem;font-weight:700;color:#b9c8df}
 .vbody{display:flex;flex-direction:column;gap:12px;flex:1;padding:22px}
 .vmeta{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .tag{font-size:.7rem;font-weight:800;padding:5px 12px;border-radius:999px;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
 .when{font-size:.74rem;color:var(--muted);font-weight:700}
 .vbody h3{font-size:1.04rem;font-weight:900;color:var(--head);line-height:1.6}
-.vbody p{font-size:.84rem;line-height:1.95;color:var(--desc)}
 .vfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--card-b);font-size:.78rem;color:var(--muted);font-weight:700}
 .vfoot i.u{color:var(--gold);margin-inline-end:8px}
 .share{display:inline-flex;gap:6px;align-items:center;font:inherit;font-size:.78rem;font-weight:800;color:var(--tag-c);background:none;border:0;cursor:pointer}
@@ -197,7 +192,6 @@ main{gap:24px}
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag1"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t1"></h3>
-      <p data-i18n="d1"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -205,13 +199,11 @@ main{gap:24px}
   <!-- الفيديو الثاني -->
   <article class="vcard reveal" data-cats="study exams">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1PgAAenvdkRZDI77PAcPWKo2FDF1bXW00/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1PgAAenvdkRZDI77PAcPWKo2FDF1bXW00/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag2"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t2"></h3>
-      <p data-i18n="d2"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -219,13 +211,11 @@ main{gap:24px}
   <!-- الفيديو الثالث -->
   <article class="vcard reveal" data-cats="life">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1EA2vlIhPCiGaGByb6fAnOm6QsV6KL5HB/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1EA2vlIhPCiGaGByb6fAnOm6QsV6KL5HB/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag3"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t3"></h3>
-      <p data-i18n="d3"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -233,13 +223,11 @@ main{gap:24px}
   <!-- الفيديو الرابع -->
   <article class="vcard reveal" data-cats="study">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1Og5kboP3jGvideovLqNy4Nm4DnohM5X0/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1Og5kboP3jGvideovLqNy4Nm4DnohM5X0/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag4"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t4"></h3>
-      <p data-i18n="d4"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -247,13 +235,11 @@ main{gap:24px}
   <!-- الفيديو الخامس -->
   <article class="vcard reveal" data-cats="exams">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1y7UKs5puZHLz2QeFCPqnkejp6j0pRjgq/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1y7UKs5puZHLz2QeFCPqnkejp6j0pRjgq/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag5"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t5"></h3>
-      <p data-i18n="d5"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -261,13 +247,11 @@ main{gap:24px}
   <!-- الفيديو السادس -->
   <article class="vcard reveal" data-cats="life">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1NDbDISIg23mC3aGUueAYFWuyzRCrv0Fx/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1NDbDISIg23mC3aGUueAYFWuyzRCrv0Fx/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag6"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t6"></h3>
-      <p data-i18n="d6"></p>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -275,13 +259,23 @@ main{gap:24px}
   <!-- الفيديو السابع -->
   <article class="vcard reveal" data-cats="study exams">
     <div class="vframe">
-      <!-- استبدل الرابط أدناه برابط فيديو Google Drive المباشر عند توفره -->
-      <iframe src="https://drive.google.com/file/d/1j49_GLHKjOvGW2ZEdoxSQ9Om0gMnoa0t/view?usp=drive_link" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+      <iframe src="https://drive.google.com/file/d/1j49_GLHKjOvGW2ZEdoxSQ9Om0gMnoa0t/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
     </div>
     <div class="vbody">
       <div class="vmeta"><span class="tag" data-i18n="tag7"></span><span class="when" data-i18n="when1"></span></div>
       <h3 data-i18n="t7"></h3>
-      <p data-i18n="d7"></p>
+      <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
+    </div>
+  </article>
+
+  <!-- الفيديو الثامن -->
+  <article class="vcard reveal" data-cats="study life">
+    <div class="vframe">
+      <iframe src="https://drive.google.com/file/d/1liXSmfgIhBz9gnYAEIdK6ocjM9XgkN91/preview" title="video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+    <div class="vbody">
+      <div class="vmeta"><span class="tag" data-i18n="tag8"></span><span class="when" data-i18n="when1"></span></div>
+      <h3 data-i18n="t8"></h3>
       <div class="vfoot"><span><i class="fa-solid fa-user-graduate u"></i><span data-i18n="who1"></span></span><button class="share" onclick="shareVideo()"><span data-i18n="share"></span><i class="fa-solid fa-share-nodes"></i></button></div>
     </div>
   </article>
@@ -301,36 +295,39 @@ main{gap:24px}
 const T={
 ar:{back:"العودة للرئيسية",brand:"منصة التوجيه ونقل الخبرة",title:"منصة الجلسات التوجيهية ونقل الخبرة",badge:"دليل الطلاب",
 h1:"مكتبة الجلسات التوجيهية <span>والنصائح</span>",desc:"مجموعة من الفيديوهات التوجيهية المصورة من الطلبة القدامى لنقل تجاربهم الأكاديمية ومساعدة الطلبة الجدد.",
-search:"ابحث عن موضوع أو جلسة...",f_all:"الكل",f_study:"منهجية الدراسة",f_exams:"الامتحانات والتقييمات",f_life:"الحياة الجامعية",none:"لا توجد جلسات مطابقة",
-tag1:"جلسة توجيهية #1",when1:"فيديو حقيقي",t1:"توجيهات ونصائح للطلبة الجدد",d1:"مشاركة خبرات وتجارب سابقة حول كيفية التأقلم وتنظيم الوقت والتفوق في المسار الدراسي.",who1:"طالب قديم / خريج",share:"مشاركة",
-tag2:"منهجية الدراسة",t2:"كيف تراجع للدروس والمحاضرات اليومية؟",d2:"طرق واستراتيجيات تلخيص المحاضرات والتحضير الفعّال للامتحانات والامتحانات الجزئية.",
-tag3:"الجانب التطبيقي",t3:"أهمية التربصات والأنشطة الطلابية",d3:"كيف تستغل وقتك في بناء مهاراتك والالتحاق بالتربصات الميدانية خلال سنتك الدراسية.",
-tag4:"تنظيم الوقت",t4:"إدارة الوقت وضغط الدراسة في الهندسة",d4:"أفضل التقنيات الحديثة لتنظيم الجداول اليومية وتفادي تراكم المحاضرات.",
-tag5:"الامتحانات",t5:"كيف تتعامل مع ورقة الامتحان وتتجنب الأخطاء الشائعة؟",d5:"نصائح منهجية لإدارة وقت الامتحان وتحقيق أفضل العلامات.",
-tag6:"الحياة اليومية",t6:"الإقامة الجامعية والنصائح المعيشية",d6:"كيف تعيش بانسجام في الإقامة وتدير شؤونك اليومية كطالب مغترب.",
-tag7:"المشاريع التطبيقية",t7:"منهجية إعداد المشاريع والبحوث",d7:"دليلك الشامل لإعداد البحوث والمشاريع التقنية المطلوبة خلال السداسي والموسم الدراسي.",
+search:"ابحث عن عنوان أو جلسة...",f_all:"الكل",f_study:"منهجية الدراسة",f_exams:"الامتحانات والتقييمات",f_life:"الحياة الجامعية",none:"لا توجد جلسات مطابقة",
+tag1:"جلسة #1",when1:"فيديو حقيقي",t1:"توجيهات ونصائح للطلبة الجدد",who1:"طالب قديم / خريج",share:"مشاركة",
+tag2:"جلسة #2",t2:"جلسة توجيهية رقم 2",
+tag3:"جلسة #3",t3:"جلسة توجيهية رقم 3",
+tag4:"جلسة #4",t4:"جلسة توجيهية رقم 4",
+tag5:"جلسة #5",t5:"جلسة توجيهية رقم 5",
+tag6:"جلسة #6",t6:"جلسة توجيهية رقم 6",
+tag7:"جلسة #7",t7:"جلسة توجيهية رقم 7",
+tag8:"جلسة #8",t8:"جلسة توجيهية رقم 8",
 copied:"تم نسخ الرابط",footer_t:"جميع الحقوق محفوظة © 2026 - دليل الطالب",footer_s:"منصة الجلسات التوجيهية"},
 fr:{back:"Retour à l'accueil",brand:"Plateforme de mentorat",title:"Plateforme de mentorat et de partage d'expérience",badge:"Guide de l'étudiant",
-h1:"Bibliothèque des séances <span>de mentorat et conseils</span>",desc:"Une collection de vidéos réalisées par d'anciens étudiants pour partager leur expérience et aider les nouveaux.",
-search:"Rechercher un sujet ou une séance...",f_all:"Tout",f_study:"Méthodologie d'étude",f_exams:"Examens et évaluations",f_life:"Vie universitaire",none:"Aucune séance correspondante",
-tag1:"Séance #1",when1:"Vidéo réelle",t1:"Conseils et orientations pour les nouveaux étudiants",d1:"Partage d'expériences sur l'adaptation, la gestion du temps et la réussite dans le parcours d'étude.",who1:"Ancien étudiant / diplômé",share:"Partager",
-tag2:"Méthodologie",t2:"Comment réviser les cours au quotidien ?",d2:"Méthodes et stratégies pour résumer les cours et préparer efficacement les examens.",
-tag3:"Pratique",t3:"L'importance des stages et des activités étudiantes",d3:"Comment mettre à profit votre temps pour développer vos compétences.",
-tag4:"Gestion du temps",t4:"Gestion du temps et pression des études",d4:"Techniques modernes pour organiser son emploi du temps.",
-tag5:"Examens",t5:"Comment gérer sa copie d'examen ?",d5:"Conseils méthodologiques pour la gestion du temps en examen.",
-tag6:"Vie quotidienne",t6:"La vie en cité universitaire",d6:"Conseils pour vivre en harmonie et gérer son quotidien.",
-tag7:"Projets",t7:"Méthodologie de préparation des projets",d7:"Guide complet pour la réalisation des projets académiques.",
+h1:"Bibliothèque des séances <span>de mentorat et conseils</span>",desc:"Une collection de vidéos réalisées par d'anciens étudiants pour partager leur expérience.",
+search:"Rechercher une séance...",f_all:"Tout",f_study:"Méthodologie",f_exams:"Examens",f_life:"Vie universitaire",none:"Aucune séance correspondante",
+tag1:"Séance #1",when1:"Vidéo réelle",t1:"Conseils et orientations pour les nouveaux étudiants",who1:"Ancien étudiant / diplômé",share:"Partager",
+tag2:"Séance #2",t2:"Séance de mentorat #2",
+tag3:"Séance #3",t3:"Séance de mentorat #3",
+tag4:"Séance #4",t4:"Séance de mentorat #4",
+tag5:"Séance #5",t5:"Séance de mentorat #5",
+tag6:"Séance #6",t6:"Séance de mentorat #6",
+tag7:"Séance #7",t7:"Séance de mentorat #7",
+tag8:"Séance #8",t8:"Séance de mentorat #8",
 copied:"Lien copié",footer_t:"Tous droits réservés © 2026 - Guide de l'étudiant",footer_s:"Plateforme de mentorat"},
-en:{back:"Back to Home",brand:"Mentoring & Experience Hub",title:"Mentoring & Experience Sharing Platform",badge:"Student Guide",
-h1:"Mentoring Sessions <span>& Advice Library</span>",desc:"A collection of video sessions recorded by senior students to share their academic experience and help newcomers.",
-search:"Search a topic or session...",f_all:"All",f_study:"Study methods",f_exams:"Exams & assessments",f_life:"Campus life",none:"No matching sessions",
-tag1:"Session #1",when1:"Real video",t1:"Advice and guidance for new students",d1:"Sharing past experiences on settling in, organizing your time and excelling in your studies.",who1:"Senior student / graduate",share:"Share",
-tag2:"Study methods",t2:"How do you review daily lessons and lectures?",d2:"Strategies for summarizing lectures and preparing effectively for exams and midterms.",
-tag3:"Practical side",t3:"The value of internships and student activities",d3:"How to use your time to build skills and land field internships during your studies.",
-tag4:"Time Management",t4:"Time Management & Engineering Study Pressure",d4:"Best modern techniques to organize daily schedules and avoid lecture backlog.",
-tag5:"Exams",t5:"How to handle exam papers & avoid common mistakes",d5:"Methodological tips for managing exam time and achieving top grades.",
-tag6:"Campus Life",t6:"University Residence & Living Tips",d6:"How to live harmoniously in residence and manage daily student life.",
-tag7:"Projects",t7:"Project & Research Preparation Methodology",d7:"Your comprehensive guide to preparing academic projects and technical research.",
+en:{back:"Back to Home",brand:"Mentoring Hub",title:"Mentoring & Experience Sharing Platform",badge:"Student Guide",
+h1:"Mentoring Sessions <span>& Advice Library</span>",desc:"A collection of video sessions recorded by senior students.",
+search:"Search a session...",f_all:"All",f_study:"Study methods",f_exams:"Exams",f_life:"Campus life",none:"No matching sessions",
+tag1:"Session #1",when1:"Real video",t1:"Advice and guidance for new students",who1:"Senior student / graduate",share:"Share",
+tag2:"Session #2",t2:"Mentoring Session #2",
+tag3:"Session #3",t3:"Mentoring Session #3",
+tag4:"Session #4",t4:"Mentoring Session #4",
+tag5:"Session #5",t5:"Mentoring Session #5",
+tag6:"Session #6",t6:"Mentoring Session #6",
+tag7:"Session #7",t7:"Mentoring Session #7",
+tag8:"Session #8",t8:"Mentoring Session #8",
 copied:"Link copied",footer_t:"All rights reserved © 2026 - Student Guide",footer_s:"Mentoring sessions platform"}
 };
 
