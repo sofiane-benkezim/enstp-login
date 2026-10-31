@@ -1,6 +1,5 @@
 /* =====================================================================
    ENSTP — إعداد Supabase المشترك لصفحات scolarite و scolarite-admin
-   غيّر السطرين التاليين فقط (المفتاح العام publishable/anon وليس service_role أبداً)
    ===================================================================== */
 (function () {
   var CONFIG = {
@@ -8,7 +7,6 @@
     key: 'sb_publishable_t1yPBiRKFGvdgQKYfZvL8w_LbloOd2f'
   };
 
-  // تنظيف العنوان تلقائياً: https:// و .supabase.co
   var u = String(CONFIG.url || '').trim().replace(/\s+/g, '');
   if (u && !/^https?:\/\//i.test(u)) u = 'https://' + u;
   u = u.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
@@ -17,7 +15,6 @@
 
   function headers(token) {
     var h = { apikey: KEY, 'Content-Type': 'application/json' };
-    // المفاتيح الجديدة sb_publishable_ تُرسل في apikey فقط؛ جلسة الموظف تُرسل كـ Bearer
     var bearer = token || (KEY.indexOf('eyJ') === 0 ? KEY : '');
     if (bearer) h.Authorization = 'Bearer ' + bearer;
     return h;
@@ -43,15 +40,12 @@
   function explain(e) {
     console.error('[ENSTP-SB]', e);
     var m = String((e && e.message) || e);
-    if (/^HTML|<html/i.test(m)) return 'الطلب لم يصل إلى Supabase بل إلى موقعك: راجع url في ملف enstp-sb.js (يجب أن يكون https://xxxx.supabase.co).';
-    if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'تعذّر الاتصال بالخادم: تحقق من الإنترنت ومن عنوان url في enstp-sb.js.';
+    if (/^HTML|<html/i.test(m)) return 'الطلب لم يصل إلى Supabase بل إلى موقعك: راجع url في ملف enstp-sb.js.';
+    if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'تعذّر الاتصال بالخادم: تحقق من الإنترنت ومن عنوان url.';
     if (/invalid_credentials|Invalid login/i.test(m)) return 'البريد الإلكتروني أو كلمة السر غير صحيحة.';
-    if (/email_not_confirmed/i.test(m)) return 'الحساب غير مؤكَّد: فعّل Auto Confirm User عند إنشائه في Supabase.';
-    if (/rate_limited/i.test(m)) return 'أرسلتَ عدداً كبيراً من الطلبات لهذا الرقم. حاول بعد ساعة.';
-    if (/PGRST202|Could not find the function|PGRST205|does not exist/i.test(m)) return 'قاعدة البيانات غير مهيأة: شغّل ملف scolarite-setup.sql في Supabase ← SQL Editor.';
+    if (/email_not_confirmed/i.test(m)) return 'الحساب غير مؤكَّد: فعّل Auto Confirm User في Supabase.';
+    if (/PGRST202|Could not find the function|does not exist/i.test(m)) return 'قاعدة البيانات غير مهيأة: شغّل ملف scolarite-setup.sql في SQL Editor.';
     if (/JWT expired|PGRST301|^401/i.test(m)) return 'انتهت الجلسة أو المفتاح غير مقبول: سجّل الدخول من جديد.';
-    if (/42501|row-level security|^403/i.test(m)) return 'لا تملك صلاحية هذه العملية.';
-    if (/23514|check constraint|23502|null value|^400/i.test(m)) return 'بيانات غير صالحة: راجع الحقول وأعد المحاولة.';
     return 'حدث خطأ: ' + m.slice(0, 140);
   }
 
