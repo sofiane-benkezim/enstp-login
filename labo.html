@@ -1,296 +1,399 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<!doctype html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المخابر العلمية والتقنية - المدرسة العليا للأشغال العمومية ENSTP</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        enstp: {
-                            blue: '#003366',
-                            navy: '#001F3F',
-                            lightBlue: '#0066CC',
-                            gold: '#D4AF37',
-                            gray: '#F4F6F9',
-                            darkGray: '#1E293B'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Tajawal', 'Segoe UI', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Font: Tajawal -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f8fafc;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<script>try{var __t=localStorage.getItem("enstp-theme")||"light",__r=document.documentElement;__r.classList.toggle("dark",__t==="dark");__r.classList.toggle("light",__t!=="dark")}catch(e){}</script>
+<title>المخابر العلمية والتقنية | ENSTP</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{colors:{enstp:{blue:'#003366',navy:'#001F3F',lightBlue:'#0066CC',gold:'#D4AF37',gray:'#F4F6F9',darkGray:'#1E293B'}}}}}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+:root{
+--bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
+--gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
+--glass-b:rgba(20,50,110,.13);--radius:26px;--ease:cubic-bezier(.22,1,.36,1);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#d6e6ff 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#e6eeff 0%,transparent 60%),#f3f6fc;
+--au-op:.55;--grid:rgba(40,80,160,.08);
+--bar:rgba(255,255,255,.72);--bar-s:rgba(255,255,255,.92);
+--bar-shadow:0 14px 40px rgba(20,50,110,.14);--bar-inset:rgba(255,255,255,.9);
+--logo-grad:linear-gradient(100deg,#0b1d3a,#b9770e);
+--soft:rgba(20,50,110,.05);--soft-b:rgba(20,50,110,.1);--nav-c:#41547a;
+--hero-o1:rgba(8,26,60,.5);--hero-o2:rgba(8,26,60,.82);
+--card:linear-gradient(165deg,rgba(255,255,255,.96),rgba(255,255,255,.72));
+--card-b:rgba(20,50,110,.11);--card-shadow:0 20px 50px rgba(20,50,110,.13);
+--card-shadow-h:0 34px 70px rgba(20,50,110,.2),0 0 50px rgba(245,184,65,.18);
+--desc:#53648a;--tag-c:#a8650a;--icon-ring:#fff;--img-fade:rgba(8,22,50,.55);
+--btn-c:#1e3358;--toggle-bg:#0b1d3a;--toggle-c:#ffdf9a;
+}
+html.dark{
+--bg:#040b17;--ink:#e8eef9;--muted:#8fa3c0;--head:#fff;--glass-b:rgba(255,255,255,.12);
+--au-bg:radial-gradient(1200px 700px at 85% -10%,#0d2a52 0%,transparent 60%),radial-gradient(900px 600px at 0% 40%,#0a1d3d 0%,transparent 60%),#040b17;
+--au-op:1;--grid:rgba(120,160,220,.07);
+--bar:rgba(8,18,36,.55);--bar-s:rgba(5,12,26,.85);--bar-shadow:0 18px 50px rgba(0,0,0,.35);--bar-inset:rgba(255,255,255,.08);
+--logo-grad:linear-gradient(100deg,#fff,#ffdf9a);
+--soft:rgba(255,255,255,.05);--soft-b:rgba(255,255,255,.1);--nav-c:#b9c8df;
+--hero-o1:rgba(4,11,23,.55);--hero-o2:rgba(4,11,23,.92);
+--card:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));
+--card-b:rgba(255,255,255,.1);--card-shadow:0 22px 60px rgba(0,0,0,.35);
+--card-shadow-h:0 36px 80px rgba(0,0,0,.5),0 0 60px rgba(245,184,65,.12);
+--desc:#9db0cd;--tag-c:#ffdf9a;--icon-ring:#0a1730;--img-fade:rgba(4,11,23,.92);
+--btn-c:#dbe7fb;--toggle-bg:#ffdf9a;--toggle-c:#14100a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
+body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:#101828}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* خلفية حية */
+.aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
+.aurora i:nth-child(2){width:460px;height:460px;background:#7c4dff;top:45%;inset-inline-end:-120px;animation-duration:28s;opacity:calc(.28*var(--au-op))}
+.aurora i:nth-child(3){width:420px;height:420px;background:#f5b841;bottom:-160px;inset-inline-start:30%;animation-duration:32s;opacity:calc(.16*var(--au-op))}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
+.progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
+
+/* الشريط العلوي */
+header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
+.bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
+.logo{display:flex;align-items:center;gap:12px;min-width:0}
+.logo-img{background:#fff;border-radius:14px;padding:5px 9px;box-shadow:0 6px 20px rgba(0,0,0,.3);flex-shrink:0}
+.logo-img img{height:38px;width:auto;object-fit:contain}
+#txt-brand{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:10px}
+.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);white-space:nowrap;transition:.3s}
+.back:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 18px rgba(245,184,65,.35)}
+[dir="rtl"] .back i{transform:scaleX(-1)}
+.lang{display:flex;padding:4px;border-radius:14px;background:var(--soft);border:1px solid var(--soft-b)}
+.lang button{font:inherit;font-size:.74rem;font-weight:800;padding:7px 11px;border-radius:10px;border:0;cursor:pointer;color:var(--nav-c);background:transparent;transition:.3s}
+.lang button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#111;box-shadow:0 4px 14px rgba(245,184,65,.4)}
+.theme-btn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);cursor:pointer;overflow:hidden;background:var(--toggle-bg);color:var(--toggle-c);display:grid;place-items:center;flex-shrink:0;transition:transform .35s var(--ease)}
+.theme-btn:hover{transform:translateY(-2px) rotate(-8deg)}
+.theme-btn i{position:absolute;transition:transform .6s var(--ease),opacity .4s}
+.theme-btn .i-sun{transform:translateY(130%) rotate(-90deg);opacity:0}
+html.dark .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
+html.dark .theme-btn .i-sun{transform:none;opacity:1}
+
+/* الواجهة */
+.hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
+.hero h1{font-weight:900;font-size:clamp(1.9rem,5vw,3.6rem);line-height:1.35;color:#fff;text-wrap:balance;margin-bottom:22px;text-shadow:0 10px 50px rgba(0,0,0,.6)}
+.hero h1 span{display:block;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:#c9d6ea;font-size:clamp(.95rem,1.5vw,1.08rem);line-height:2.05;max-width:760px;margin:0 auto}
+
+main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-direction:column;gap:90px}
+.sec-head{display:flex;align-items:center;gap:20px;margin-bottom:34px}
+.sec-icon{flex-shrink:0;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:1.5rem;color:#fff;position:relative;background:linear-gradient(145deg,var(--c1,#2563eb),var(--c2,#38bdf8));box-shadow:0 14px 40px var(--c3,rgba(37,99,235,.45)),inset 0 1px 0 rgba(255,255,255,.4)}
+.sec-icon::after{content:"";position:absolute;inset:-7px;border-radius:27px;border:1px solid var(--c1,#2563eb);opacity:.35}
+.sec-head h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:900;line-height:1.4;color:var(--head)}
+.sec-head p{color:var(--muted);font-size:.92rem;margin-top:4px;max-width:640px}
+.sec-line{height:3px;width:90px;margin-top:12px;border-radius:3px;background:linear-gradient(270deg,var(--gold),transparent)}
+[dir="ltr"] .sec-line{background:linear-gradient(90deg,var(--gold),transparent)}
+.s-a{--c1:#2563eb;--c2:#38bdf8;--c3:rgba(37,99,235,.5)}
+.s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
+.s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
+.s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+
+/* البطاقات */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+@media(max-width:992px){.two{grid-template-columns:1fr}}
+.box{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);padding:32px;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow)}
+.box h3.t{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:900;color:var(--head);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.box h3.t i{color:var(--gold)}
+.box p{color:var(--desc);font-size:.92rem;line-height:2;margin-bottom:14px}
+.director{display:flex;gap:22px;align-items:center;background:var(--soft);border:1px solid var(--card-b);padding:22px;border-radius:20px;margin-top:10px}
+.director img{width:112px;height:112px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 25px rgba(245,184,65,.4);flex-shrink:0}
+.director h4{font-size:1.1rem;font-weight:900;color:var(--head);margin-bottom:4px}
+.director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
+.director p{font-size:.82rem;line-height:1.8;margin:0}
+@media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+.search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.card-image-wrap{position:relative;height:220px;overflow:hidden;background:linear-gradient(135deg,#0b2545,#1d5288)}
+.card-image{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;filter:saturate(1.05) brightness(.95)}
+.search-card:hover .card-image{transform:scale(1.1);filter:saturate(1.25) brightness(1.05)}
+.card-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,var(--img-fade) 100%)}
+.card-content{padding:18px 20px 20px}
+.card-title{font-size:.98rem;font-weight:800;line-height:1.7;color:var(--head);text-align:center}
+
+.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding:15px 18px;border-radius:16px;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .35s var(--ease),box-shadow .35s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 22px 50px rgba(245,184,65,.55)}
+
+footer{position:relative;margin-top:50px;padding:70px 20px 46px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#12386a 0%,transparent 65%),#030812}
+footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 30px var(--gold)}
+.f-logo{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 14px 40px rgba(245,184,65,.4)}
+#footer-title{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+#footer-sub{font-size:.85rem;color:#8fa3c0;max-width:520px;margin:0 auto}
+.to-top{position:fixed;bottom:22px;inset-inline-end:18px;z-index:140;width:48px;height:48px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;color:var(--tag-c);background:var(--bar-s);backdrop-filter:blur(14px);opacity:0;pointer-events:none;transform:translateY(20px);transition:.4s var(--ease)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{background:var(--gold);color:#111}
+
+.reveal{opacity:0;translate:0 40px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.reveal.in{opacity:1;translate:0 0}
+
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.hero{padding:120px 18px 70px}
+main{gap:70px}
+.card-image-wrap{height:190px}
+.box{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
+
+/* ===== طبقة مشتركة للصفحات المبنية على Tailwind ===== */
+:root{--solid:#fff}
+html.dark{--solid:#0a1730;color-scheme:dark}
+html:not(.dark){color-scheme:light}
+body{font-family:'Cairo',sans-serif}
+html[lang="fr"] body,html[lang="en"] body{font-family:'Inter','Cairo',sans-serif}
+.hero{min-height:40svh;padding:140px 20px 76px}
+.hero-bg{background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo30.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero h1 .grad{display:inline;background:linear-gradient(100deg,#fff 0%,var(--gold-2) 40%,var(--gold) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+main{padding-top:50px;gap:28px}
+.hidden{display:none!important}
+#footer-text{font-size:1.15rem;font-weight:900;color:#fff;margin-bottom:6px}
+.brand-t{font-weight:900;font-size:1.05rem;background:var(--logo-grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.ibtn{position:relative;width:42px;height:42px;border-radius:14px;border:1px solid var(--soft-b);background:var(--soft);color:var(--nav-c);display:grid;place-items:center;cursor:pointer;flex-shrink:0;transition:.3s}
+.ibtn:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.pill-clock{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill-clock i{color:var(--gold)}
+/* بطاقات */
+.box,.glass-panel,.glass-card{position:relative;border-radius:var(--radius)!important;background:var(--card)!important;border:1px solid var(--card-b)!important;box-shadow:var(--card-shadow)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.box{padding:28px}
+@media(max-width:640px){.box{padding:20px}}
+/* أزرار */
+.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 20px;border-radius:15px;font:inherit;font-weight:800;font-size:.82rem;cursor:pointer;color:var(--btn-c);background:var(--soft);border:1px solid var(--glass-b);transition:.3s var(--ease)}
+.gbtn:hover{color:#14100a;border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 10px 30px rgba(245,184,65,.35)}
+.gbtn.main{color:#14100a;border-color:transparent;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 12px 30px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5)}
+.gbtn.main:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(245,184,65,.55)}
+/* حقول الإدخال */
+main select,main input[type=text],main input[type=search],#task-modal input:not([type=hidden]),#task-modal select,#task-modal textarea{background:var(--bar-s)!important;border:1px solid var(--glass-b)!important;color:var(--head)!important;border-radius:16px!important;font-weight:600;outline:0}
+main select:focus,main input:focus,#task-modal input:focus,#task-modal select:focus,#task-modal textarea:focus{border-color:var(--gold)!important;box-shadow:0 0 0 4px rgba(245,184,65,.22)!important}
+main select option,#task-modal select option{color:#111;background:#fff}
+::placeholder{color:var(--muted)!important;font-weight:500}
+.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--soft)}::-webkit-scrollbar-thumb{background:rgba(120,140,180,.5);border-radius:6px}
+/* موبايل */
+@media(max-width:640px){
+header{top:8px;padding:0 8px}
+.bar{padding:7px 9px;border-radius:18px;gap:8px}
+.logo-img img{height:30px}
+.brand-t,#txt-brand{display:none}
+.back span{display:none}
+.lang button{padding:6px 8px;font-size:.68rem}
+.pill-clock{display:none}
+.hero{padding:112px 18px 64px;min-height:34svh}
+main{padding:34px 14px 30px}}
+@media print{.aurora,.grid-bg,.progress,header,.hero,.to-top,footer{display:none!important}body{background:#fff!important;color:#000!important}main{padding:0}}
+
+/* ===== خاص بصفحة المخابر ===== */
+.stat{padding:18px 12px;text-align:center;border-radius:22px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);backdrop-filter:blur(14px)}
+.stat b{display:block;font-size:1.7rem;font-weight:900;background:linear-gradient(135deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:2px}
+.stat span{font-size:.78rem;font-weight:700;color:var(--muted)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--card-b)}
+.sec-t{font-size:1.35rem;font-weight:900;color:var(--head);display:flex;align-items:center;gap:10px}
+.sec-t i{color:var(--gold)}
+.sec-head p{font-size:.8rem;color:var(--muted);margin-top:4px;font-weight:600}
+.count{font-size:.75rem;font-weight:800;color:var(--tag-c,var(--muted));background:var(--soft);border:1px solid var(--soft-b);padding:7px 14px;border-radius:12px;white-space:nowrap}
+.lab-card{position:relative;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);backdrop-filter:blur(14px);transition:transform .4s var(--ease),box-shadow .4s}
+.lab-card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-h)}
+.lab-card p.text-slate-600{color:var(--muted)!important;font-weight:600}
+.lab-card .border-slate-100{border-color:var(--card-b)!important}
+.lab-card .text-slate-500{color:var(--muted)!important}
+.lab-card .bg-enstp-navy\/90{background:rgba(6,16,36,.82)!important}
+.lab-card .text-enstp-lightBlue{color:var(--gold)!important}
+.lab-card .text-amber-300{color:var(--gold-2)!important}
+.eq-card{border-radius:18px;background:var(--soft);border:1px solid var(--card-b);transition:transform .3s var(--ease),box-shadow .3s}
+.eq-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-h)}
+.eq-card .bg-slate-100{background:var(--soft)!important}
+.eq-card .text-slate-800{color:var(--head)!important}
+.eq-card .text-slate-500{color:var(--muted)!important}
+.eq-card .text-enstp-lightBlue{color:var(--gold)!important}
+.modal-wrap{background:rgba(4,11,23,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow-y:auto}
+.modal-panel{max-height:92vh;border-radius:28px;background:var(--solid);border:1px solid var(--card-b);box-shadow:0 40px 100px rgba(0,0,0,.45)}
+.modal-head{background:linear-gradient(135deg,#0b2545,#1d3f78);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+.modal-head .ibtn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff}
+.mi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.2rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.modal-body{color:var(--head)}
+.modal-foot{background:var(--soft);border-top:1px solid var(--card-b)}
+.about{padding:16px;border-radius:18px;background:var(--soft);border:1px solid var(--card-b)}
+.mini-tag{display:inline-block;margin-bottom:5px;padding:3px 10px;border-radius:999px;font-size:.7rem;font-weight:800;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.up-btn{display:inline-flex;align-items:center;gap:7px;cursor:pointer;padding:8px 14px;border-radius:13px;font-size:.74rem;font-weight:800;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);transition:.3s}
+.modal-body .up-btn{color:var(--btn-c);background:var(--soft);border-color:var(--soft-b)}
+.up-btn:hover,.modal-body .up-btn:hover{color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));border-color:var(--gold)}
+.modal-body .relative .up-btn{color:#fff;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3)}
+.modal-wrap,#lightbox{z-index:300!important}
+.up-btn i{color:var(--gold)}.up-btn:hover i{color:#14100a}
+html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="">
+<div class="aurora"><i></i><i></i><i></i></div>
+<div class="grid-bg"></div>
+<div class="progress"><b id="progressBar"></b></div>
 
-    <!-- Header & Navigation -->
-    <header class="bg-enstp-navy text-white shadow-lg sticky top-0 z-40 border-b-4 border-enstp-gold">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo & Title -->
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class="bg-white p-2 rounded-lg shadow-md flex items-center justify-center">
-                        <i class="fa-solid me-0 fa-compass-drafting text-enstp-blue text-3xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-white">
-                            المدرسة العليا للأشغال العمومية
-                        </h1>
-                        <p class="text-xs sm:text-sm text-amber-300 font-medium tracking-wide">
-                            École Nationale Supérieure des Travaux Publics (ENSTP)
-                        </p>
-                    </div>
-                </div>
+<header>
+<div class="bar">
+<div class="logo">
+<div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div>
+<span class="brand-t" id="txt-brand" data-i="brand"></span>
+</div>
+<div class="tools">
 
-                <!-- Action Controls -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <button id="langToggleBtn" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg border border-slate-600 bg-enstp-blue hover:bg-enstp-lightBlue text-xs sm:text-sm font-semibold transition duration-200 flex items-center space-x-1.5 space-x-reverse">
-                        <i class="fa-solid fa-globe"></i>
-                        <span id="langText">Français</span>
-                    </button>
-                   
-                </div>
-            </div>
-        </div>
-    </header>
+<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span data-i="home">العودة للرئيسية</span></a>
+<button type="button" class="theme-btn" id="themeToggle" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
+<div class="lang" id="lg">
+<button type="button" data-l="ar">AR</button>
+<button type="button" data-l="fr">FR</button>
+<button type="button" data-l="en">EN</button>
+</div>
+<select id="languageSelect" aria-label="Language" hidden><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option></select>
+</div>
+</div>
+</header>
 
-    <!-- Hero Banner -->
-    <section class="bg-gradient-to-r from-enstp-navy via-enstp-blue to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <div class="absolute -right-10 -top-10 w-96 h-96 rounded-full bg-blue-400 blur-3xl"></div>
-            <div class="absolute -left-10 -bottom-10 w-96 h-96 rounded-full bg-amber-400 blur-3xl"></div>
-        </div>
-        <div class="max-w-7xl mx-auto relative z-10 text-center">
-            <span class="inline-block px-3 py-1 mb-3 bg-amber-400/20 text-amber-300 rounded-full text-xs font-bold uppercase tracking-wider border border-amber-400/30">
-                <i class="fa-solid fa-flask me-1"></i> البنية التحتية والمنشآت العلمية
-            </span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold mb-4 leading-tight" id="heroTitle">
-                المخابر العلمية والتقنية الحديثة
-            </h2>
-            <p class="text-sm sm:text-lg text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed" id="heroSubtitle">
-                منظومة متكاملة من 7 مخابر متخصصة ومجهزة بأحدث التجهيزات والتقنيات لإجراء التجارب العلمية والأبحاث الهندسية في مجال الأشغال العمومية.
-            </p>
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="hero-inner">
+<span class="badge"><i class="fa-solid fa-flask"></i> <span data-i="badge"></span></span>
+<h1 data-i="heroTitle"></h1>
+<p data-i="heroDesc"></p>
+</div>
+</section>
 
-            <!-- Search and Filter Bar -->
-            <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-2xl shadow-2xl border border-white/20">
-                <div class="flex flex-col md:flex-row gap-3">
-                    <div class="relative flex-1">
-                        <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 right-4 text-slate-400"></i>
-                        <input type="text" id="searchInput" oninput="filterLabs()" placeholder="ابحث عن مخبر أو أداة أو تجربة..." class="w-full pr-11 pl-4 py-3 bg-white text-slate-800 placeholder-slate-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner text-sm font-medium">
-                    </div>
-                    <div class="flex gap-2">
-                        <select id="categoryFilter" onchange="filterLabs()" class="px-4 py-3 bg-white text-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-inner text-sm font-semibold cursor-pointer">
-                            <option value="all">جميع التخصصات</option>
-                            <option value="materials">مواد وتربة (MDS / MDC / RDM)</option>
-                            <option value="fluids_physics">فيزياء وموائع (MDF / Physique)</option>
-                            <option value="applied">علوم تطبيقية (Chimie / Électricité)</option>
-                        </select>
-                        <button onclick="resetFilters()" class="px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition text-sm font-semibold flex items-center justify-center">
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main>
+<section class="box" id="controls">
+<div class="flex flex-col md:flex-row gap-3">
+<div class="relative flex-1">
+<i class="fa-solid fa-magnifying-glass" style="position:absolute;top:50%;transform:translateY(-50%);inset-inline-start:16px;color:var(--muted)"></i>
+<input type="text" id="searchInput" oninput="filterLabs()" placeholder="ابحث عن مخبر أو أداة أو تجربة..." class="w-full py-3 text-sm" style="padding-inline-start:44px;padding-inline-end:16px">
+</div>
+<div class="flex gap-2">
+<select id="categoryFilter" onchange="filterLabs()" class="px-4 py-3 text-sm cursor-pointer">
+<option value="all" data-i="catAll"></option>
+<option value="materials" data-i="catMat"></option>
+<option value="fluids_physics" data-i="catFl"></option>
+<option value="applied" data-i="catApp"></option>
+</select>
+<button type="button" onclick="resetFilters()" class="gbtn" aria-label="Reset"><i class="fa-solid fa-rotate-left"></i></button>
+</div>
+</div>
+</section>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-        <!-- Stats / Quick Info -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
-                <div class="text-enstp-blue text-2xl font-black mb-1">7</div>
-                <div class="text-xs sm:text-sm text-slate-600 font-medium">مخابر متخصصة</div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
-                <div class="text-amber-600 text-2xl font-black mb-1">35+</div>
-                <div class="text-xs sm:text-sm text-slate-600 font-medium">معدة وجهاز حديث</div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
-                <div class="text-emerald-600 text-2xl font-black mb-1">100%</div>
-                <div class="text-xs sm:text-sm text-slate-600 font-medium">تجارب عملية وتطبيقية</div>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-center">
-                <div class="text-indigo-600 text-2xl font-black mb-1">ENSTP</div>
-                <div class="text-xs sm:text-sm text-slate-600 font-medium">التميز الهندسي</div>
-            </div>
-        </div>
+<div class="stats grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="stat"><b>7</b><span data-i="s1"></span></div>
+<div class="stat"><b>35+</b><span data-i="s2"></span></div>
+<div class="stat"><b>100%</b><span data-i="s3"></span></div>
+<div class="stat"><b>ENSTP</b><span data-i="s4"></span></div>
+</div>
 
-        <!-- Section Title -->
-        <div class="flex items-center justify-between mb-8 pb-3 border-b-2 border-slate-200">
-            <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-enstp-navy flex items-center gap-2" id="sectionTitle">
-                    <i class="fa-solid fa-microscope text-enstp-gold"></i> قائمة المخابر المتاحة
-                </h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1" id="sectionSubtitle">انقر على أي مخبر لاستعراض المعدات والتفاصيل والصور المتاحة</p>
-            </div>
-            <div class="text-xs font-bold text-slate-500 bg-slate-200 px-3 py-1.5 rounded-lg">
-                <span id="visibleLabsCount">7</span> / 7 مخابر
-            </div>
-        </div>
+<div class="sec-head">
+<div>
+<h2 class="sec-t"><i class="fa-solid fa-microscope"></i> <span id="sectionTitle" data-i="secT"></span></h2>
+<p id="sectionSubtitle" data-i="secS"></p>
+</div>
+<div class="count"><span id="visibleLabsCount">7</span> / 7 <span data-i="labsWord"></span></div>
+</div>
 
-        <!-- Labs Grid Container -->
-        <div id="labsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamic JavaScript Content Here -->
-        </div>
+<div id="labsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <!-- Empty Search Result Alert -->
-        <div id="noResults" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm border border-slate-200">
-            <i class="fa-solid fa-flask-vial text-5xl text-slate-300 mb-4"></i>
-            <h4 class="text-lg font-bold text-slate-700 mb-1">لم يتم العثور على أي نتائج</h4>
-            <p class="text-sm text-slate-500 mb-4">يرجى التأكد من كلمة البحث أو تعديل الفلتر المختارة.</p>
-            <button onclick="resetFilters()" class="px-4 py-2 bg-enstp-blue text-white rounded-lg text-sm font-semibold hover:bg-enstp-lightBlue transition">
-                إعادة ضبط البحث
-            </button>
-        </div>
-    </main>
+<div id="noResults" class="hidden box text-center" style="padding:56px 20px">
+<i class="fa-solid fa-flask-vial" style="font-size:3rem;color:var(--gold);margin-bottom:14px"></i>
+<h4 class="text-lg font-bold" style="color:var(--head)" data-i="nrT"></h4>
+<p class="text-sm" style="color:var(--muted);margin:6px 0 18px" data-i="nrS"></p>
+<button type="button" onclick="resetFilters()" class="gbtn main" data-i="nrB"></button>
+</div>
+</main>
 
-    <!-- Lab Detail Modal (Interactive Lightbox & Equipment Viewer) -->
-    <div id="labModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200 border border-slate-200">
-            
-            <!-- Modal Header -->
-            <div class="bg-enstp-navy text-white px-6 py-4 flex items-center justify-between border-b border-slate-700">
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div id="modalIconContainer" class="w-10 h-10 rounded-lg bg-enstp-blue flex items-center justify-center text-amber-400 text-xl shadow">
-                        <i class="fa-solid fa-flask"></i>
-                    </div>
-                    <div>
-                        <h3 id="modalTitleAr" class="text-lg sm:text-xl font-bold leading-tight">اسم المخبر</h3>
-                        <p id="modalTitleFr" class="text-xs text-amber-300 font-medium">Nom du Laboratoire</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition focus:outline-none">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
+<div id="labModal" class="modal-wrap hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
+<div class="modal-panel w-full max-w-4xl flex flex-col overflow-hidden">
+<div class="modal-head flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-3">
+<div id="modalIconContainer" class="mi"><i class="fa-solid fa-flask"></i></div>
+<div>
+<h3 id="modalTitleAr" class="text-lg sm:text-xl font-bold leading-tight">اسم المخبر</h3>
+<p id="modalTitleFr" class="text-xs font-semibold" style="color:var(--gold-2)">Nom du Laboratoire</p>
+</div>
+</div>
+<button type="button" onclick="closeModal()" class="ibtn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<div class="p-6 overflow-y-auto flex-grow space-y-6 modal-body">
+<div class="relative group rounded-xl overflow-hidden" style="background:#0b1730">
+<img id="modalMainImg" src="" alt="Lab" class="w-full h-56 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105">
+<div class="absolute inset-0 flex flex-col justify-end p-4 text-white" style="background:linear-gradient(0deg,rgba(4,11,23,.85),transparent 60%)">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<span class="mini-tag" data-i="mainImg"></span>
+<p id="modalLabDesc" class="text-xs sm:text-sm line-clamp-2" style="color:#e2e8f0"></p>
+</div>
+<label class="up-btn self-start sm:self-auto">
+<i class="fa-solid fa-upload"></i><span data-i="upMain"></span>
+<input type="file" accept="image/*" class="hidden" onchange="uploadMainLabImage(event)">
+</label>
+</div>
+</div>
+</div>
+<div class="about">
+<h4 class="text-sm font-bold flex items-center gap-2" style="color:var(--head);margin-bottom:8px">
+<i class="fa-solid fa-circle-info" style="color:var(--gold)"></i><span id="modalAboutTitle" data-i="about"></span>
+</h4>
+<p id="modalFullDesc" class="text-sm leading-relaxed" style="color:var(--muted)"></p>
+</div>
+<div class="flex items-center justify-between gap-2 flex-wrap pt-2">
+<h4 class="text-base font-bold flex items-center gap-2" style="color:var(--head)">
+<i class="fa-solid fa-screwdriver-wrench" style="color:var(--gold)"></i><span id="modalEquipTitle" data-i="equip"></span>
+</h4>
+<label class="up-btn"><i class="fa-solid fa-plus"></i><span data-i="addEq"></span>
+<input type="file" accept="image/*" class="hidden" onchange="uploadEquipmentImage(event)"></label>
+</div>
+<div id="equipmentGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+</div>
+<div class="modal-foot flex items-center justify-between px-6 py-3">
+<span class="text-xs font-semibold" style="color:var(--muted)">ENSTP - Kouba</span>
+<button type="button" onclick="closeModal()" class="gbtn main" data-i="close"></button>
+</div>
+</div>
+</div>
 
-            <!-- Modal Content (Scrollable) -->
-            <div class="p-6 overflow-y-auto custom-scrollbar flex-grow space-y-6">
-                
-                <!-- Main Lab Image Banner & Controls -->
-                <div class="relative group rounded-xl overflow-hidden bg-slate-900 shadow-md">
-                    <img id="modalMainImg" src="" alt="Lab Main" class="w-full h-56 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                            <div>
-                                <span class="bg-amber-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-md mb-1 inline-block">صورة المخبر الرئيسية</span>
-                                <p id="modalLabDesc" class="text-xs sm:text-sm text-slate-200 line-clamp-2">الوصف المختصر للمخبر ووظائفه الرئيسية.</p>
-                            </div>
-                            
-                            <!-- Local Upload Button for Preview -->
-                            <label class="cursor-pointer bg-white/20 hover:bg-white/30 backdrop-blur-md text-white text-xs px-3 py-2 rounded-lg font-semibold flex items-center justify-center space-x-1.5 space-x-reverse transition border border-white/30 self-start sm:self-auto">
-                                <i class="fa-solid fa-upload"></i>
-                                <span>رفع صورة معاينة</span>
-                                <input type="file" accept="image/*" class="hidden" onchange="uploadMainLabImage(event)">
-                            </label>
-                        </div>
-                    </div>
-                </div>
+<div id="lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" style="background:rgba(0,0,0,.92)" onclick="closeLightbox()">
+<div class="relative max-w-4xl flex flex-col items-center" style="max-height:90vh">
+<img id="lightboxImg" src="" alt="" class="max-w-full rounded-lg object-contain" style="max-height:80vh;border:2px solid rgba(255,255,255,.15)">
+<p id="lightboxCaption" class="text-white text-sm font-medium mt-3 px-4 py-2 rounded-full text-center" style="background:rgba(15,23,42,.85);border:1px solid rgba(255,255,255,.15)"></p>
+<button type="button" onclick="closeLightbox()" class="absolute text-white text-3xl" style="top:-48px;inset-inline-end:0"><i class="fa-solid fa-xmark"></i></button>
+</div>
+</div>
 
-                <!-- Detailed Description -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-sm font-bold text-enstp-navy mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info text-enstp-lightBlue"></i>
-                        <span id="modalAboutTitle">عن المخبر والأبحاث</span>
-                    </h4>
-                    <p id="modalFullDesc" class="text-sm text-slate-600 leading-relaxed">
-                        التفاصيل الكاملة للمخبر والتخصصات المتعلقة بالأشغال العمومية.
-                    </p>
-                </div>
+<script>
 
-                <!-- Equipment & Tools Gallery Header -->
-                <div class="flex items-center justify-between pt-2">
-                    <h4 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-screwdriver-wrench text-amber-500"></i>
-                        <span id="modalEquipTitle">المعدات والأدوات العلمية</span>
-                    </h4>
-                    
-                    <!-- Upload Tool Image Button -->
-                    <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs px-3 py-1.5 rounded-lg font-medium transition flex items-center gap-1 border border-slate-300">
-                        <i class="fa-solid fa-plus text-amber-600"></i>
-                        <span>إضافة صورة أداة معاينة</span>
-                        <input type="file" accept="image/*" class="hidden" onchange="uploadEquipmentImage(event)">
-                    </label>
-                </div>
-
-                <!-- Equipment Grid -->
-                <div id="equipmentGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Dynamic Equipment Cards Generated by JS -->
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="bg-slate-100 px-6 py-3 border-t border-slate-200 flex items-center justify-between">
-                <span class="text-xs text-slate-500 font-medium">ENSTP - M'Sila / Kouba</span>
-                <button onclick="closeModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-sm font-bold transition">
-                    إغلاق
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Lightbox for Full Image View -->
-    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4" onclick="closeLightbox()">
-        <div class="relative max-w-4xl max-h-[90vh] flex flex-col items-center">
-            <img id="lightboxImg" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl border-2 border-slate-700 object-contain">
-            <p id="lightboxCaption" class="text-white text-sm font-medium mt-3 bg-slate-900/80 px-4 py-2 rounded-full border border-slate-700 text-center"></p>
-            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-400 transition">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-enstp-navy text-slate-300 py-8 border-t-4 border-enstp-gold mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-            <div class="flex items-center justify-center space-x-2 space-x-reverse text-amber-400 font-bold">
-                <i class="fa-solid fa-building-columns"></i>
-                <span>المدرسة العليا للأشغال العمومية - قاريدي القبة</span>
-            </div>
-            <p class="text-xs text-slate-400 max-w-xl mx-auto">
-                جميع الحقوق محفوظة © 2026 - بوابة عرض المخابر التقنية والهندسية (ENSTP)
-            </p>
-        </div>
-    </footer>
-
-    <!-- JavaScript Data and Interactivity -->
-    <script>
         // Current Active Language (ar / fr)
-        let currentLang = 'ar';
+        let currentLang = (function(){try{var s=localStorage.getItem('enstp-lang');return (s==='fr'||s==='en')?s:'ar'}catch(e){return 'ar'}})();
+        const LT = (ar, fr, en) => currentLang === 'ar' ? ar : (currentLang === 'en' ? en : fr);
         let currentLabId = null;
 
         // Labs Primary Master Data
@@ -573,10 +676,10 @@
             data.forEach(lab => {
                 const title = currentLang === 'ar' ? lab.titleAr : lab.titleFr;
                 const shortDesc = currentLang === 'ar' ? lab.shortDescAr : lab.shortDescFr;
-                const btnText = currentLang === 'ar' ? 'استعراض الأدوات والتفاصيل' : 'Voir Équipements & Détails';
+                const btnText = LT('استعراض الأدوات والتفاصيل', 'Voir Équipements & Détails', 'View equipment & details');
 
                 const cardHtml = `
-                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 overflow-hidden flex flex-col group transform hover:-translate-y-1">
+                    <div class="lab-card overflow-hidden flex flex-col group">
                         <!-- Lab Image Header -->
                         <div class="relative h-48 overflow-hidden bg-slate-800">
                             <img src="${lab.mainImage}" alt="${title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100">
@@ -601,10 +704,10 @@
                             <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
                                 <span class="text-xs font-semibold text-slate-500 flex items-center gap-1">
                                     <i class="fa-solid fa-microscope text-enstp-lightBlue"></i>
-                                    ${lab.equipment.length} ${currentLang === 'ar' ? 'أجهزة رئيسية' : 'équipements'}
+                                    ${lab.equipment.length} ${LT('أجهزة رئيسية', 'équipements', 'main devices')}
                                 </span>
                                 
-                                <button onclick="openModal('${lab.id}')" class="px-3.5 py-2 bg-enstp-blue hover:bg-enstp-lightBlue text-white rounded-xl text-xs font-bold transition shadow-md hover:shadow-lg flex items-center space-x-1.5 space-x-reverse">
+                                <button onclick="openModal('${lab.id}')" class="gbtn main sm" style="min-height:38px;padding:0 14px;font-size:.74rem">
                                     <span>${btnText}</span>
                                     <i class="fa-solid ${currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right'} text-xs"></i>
                                 </button>
@@ -652,7 +755,7 @@
                 const desc = currentLang === 'ar' ? item.descAr : item.descFr;
 
                 const equipHtml = `
-                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group">
+                    <div class="eq-card overflow-hidden flex flex-col group">
                         <div class="relative h-36 bg-slate-100 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image}', '${name}')">
                             <img src="${item.image}" alt="${name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xl">
@@ -666,7 +769,7 @@
                             </div>
                             <div class="mt-2 text-left">
                                 <button onclick="openLightbox('${item.image}', '${name}')" class="text-[11px] text-enstp-lightBlue font-semibold hover:underline">
-                                    <i class="fa-regular fa-image me-1"></i> ${currentLang === 'ar' ? 'تكبير الصورة' : 'Agrandir'}
+                                    <i class="fa-regular fa-image me-1"></i> ${LT('تكبير الصورة', 'Agrandir', 'Enlarge')}
                                 </button>
                             </div>
                         </div>
@@ -765,46 +868,70 @@
             renderLabs(labsData);
         }
 
-        // Language Toggle Handler (AR / FR)
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'fr' : 'ar';
+        // Language handler (AR / FR / EN) - driven by the shared header buttons
+        const PH = {
+            ar: 'ابحث عن مخبر أو أداة أو تجربة...',
+            fr: 'Rechercher un labo, un équipement, un essai...',
+            en: 'Search a lab, equipment or experiment...'
+        };
+        function setLang(l) {
+            currentLang = (l === 'fr' || l === 'en') ? l : 'ar';
             const htmlTag = document.documentElement;
-            const langText = document.getElementById('langText');
-
-            if (currentLang === 'fr') {
-                htmlTag.setAttribute('dir', 'ltr');
-                htmlTag.setAttribute('lang', 'fr');
-                langText.innerText = 'العربية';
-
-                // Static Content Strings (FR)
-                document.getElementById('heroTitle').innerText = 'Laboratoires Scientifiques & Techniques Modernes';
-                document.getElementById('heroSubtitle').innerText = 'Système intégré de 7 laboratoires spécialisés équipés des dernières technologies pour la recherche et l\'expérimentation à l\'ENSTP.';
-                document.getElementById('searchInput').placeholder = 'Rechercher un labo, un équipement, un essai...';
-                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-microscope text-enstp-gold"></i> Liste des Laboratoires';
-                document.getElementById('sectionSubtitle').innerText = 'Cliquez sur un laboratoire pour explorer ses équipements et détails.';
-                document.getElementById('modalAboutTitle').innerText = 'À propos du laboratoire';
-                document.getElementById('modalEquipTitle').innerText = 'Équipements et Appareils';
-            } else {
-                htmlTag.setAttribute('dir', 'rtl');
-                htmlTag.setAttribute('lang', 'ar');
-                langText.innerText = 'Français';
-
-                // Static Content Strings (AR)
-                document.getElementById('heroTitle').innerText = 'المخابر العلمية والتقنية الحديثة';
-                document.getElementById('heroSubtitle').innerText = 'منظومة متكاملة من 7 مخابر متخصصة ومجهزة بأحدث التجهيزات والتقنيات لإجراء التجارب العلمية والأبحاث الهندسية في مجال الأشغال العمومية.';
-                document.getElementById('searchInput').placeholder = 'ابحث عن مخبر أو أداة أو تجربة...';
-                document.getElementById('sectionTitle').innerHTML = '<i class="fa-solid fa-microscope text-enstp-gold"></i> قائمة المخابر المتاحة';
-                document.getElementById('sectionSubtitle').innerText = 'انقر على أي مخبر لاستعراض المعدات والتفاصيل والصور المتاحة';
-                document.getElementById('modalAboutTitle').innerText = 'عن المخبر والأبحاث';
-                document.getElementById('modalEquipTitle').innerText = 'المعدات والأدوات العلمية';
-            }
-
-            // Re-render UI Elements
+            htmlTag.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            htmlTag.setAttribute('lang', currentLang);
+            document.getElementById('searchInput').placeholder = PH[currentLang];
             filterLabs();
             if (currentLabId && !document.getElementById('labModal').classList.contains('hidden')) {
                 openModal(currentLabId);
             }
         }
-    </script>
+        (function () {
+            const sel = document.getElementById('languageSelect');
+            sel.addEventListener('change', () => setLang(sel.value));
+            setLang(currentLang);
+        })();
+
+        // Theme toggle (shared key with the rest of the site)
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light', !isDark);
+            try { localStorage.setItem('enstp-theme', isDark ? 'dark' : 'light'); } catch (e) {}
+        });
+</script>
+<footer>
+<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<p id="footer-title" data-i="foot"></p>
+<p id="footer-sub" data-i="fsub"></p>
+</footer>
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+window.__FT={"ar": {"title": "المخابر العلمية والتقنية | ENSTP", "home": "العودة للرئيسية", "brand": "المخابر العلمية", "badge": "البنية التحتية والمنشآت العلمية", "heroTitle": "المخابر العلمية والتقنية <span class=\"grad\">الحديثة</span>", "heroDesc": "منظومة متكاملة من 7 مخابر متخصصة ومجهزة بأحدث التجهيزات والتقنيات لإجراء التجارب العلمية والأبحاث الهندسية في مجال الأشغال العمومية.", "catAll": "جميع التخصصات", "catMat": "مواد وتربة (MDS / MDC / RDM)", "catFl": "فيزياء وموائع (MDF / Physique)", "catApp": "علوم تطبيقية (Chimie / Électricité)", "s1": "مخابر متخصصة", "s2": "معدة وجهاز حديث", "s3": "تجارب عملية وتطبيقية", "s4": "التميز الهندسي", "secT": "قائمة المخابر المتاحة", "secS": "انقر على أي مخبر لاستعراض المعدات والتفاصيل والصور المتاحة", "labsWord": "مخابر", "nrT": "لم يتم العثور على أي نتائج", "nrS": "يرجى التأكد من كلمة البحث أو تعديل الفلتر المختارة.", "nrB": "إعادة ضبط البحث", "mainImg": "صورة المخبر الرئيسية", "upMain": "رفع صورة معاينة", "about": "عن المخبر والأبحاث", "equip": "المعدات والأدوات العلمية", "addEq": "إضافة صورة أداة معاينة", "close": "إغلاق", "fsub": "المدرسة العليا للأشغال العمومية - القبة، الجزائر", "foot": "ENSTP Algiers • جميع الحقوق محفوظة © 2026"}, "fr": {"title": "Laboratoires | ENSTP", "home": "Retour à l'accueil", "brand": "Laboratoires", "badge": "Infrastructures et installations scientifiques", "heroTitle": "Laboratoires scientifiques &amp; techniques <span class=\"grad\">modernes</span>", "heroDesc": "Système intégré de 7 laboratoires spécialisés équipés des dernières technologies pour la recherche et l'expérimentation à l'ENSTP.", "catAll": "Toutes les spécialités", "catMat": "Matériaux et sols (MDS / MDC / RDM)", "catFl": "Physique et fluides (MDF / Physique)", "catApp": "Sciences appliquées (Chimie / Électricité)", "s1": "Laboratoires spécialisés", "s2": "Équipements modernes", "s3": "Travaux pratiques", "s4": "Excellence en ingénierie", "secT": "Liste des laboratoires", "secS": "Cliquez sur un laboratoire pour explorer ses équipements et détails.", "labsWord": "laboratoires", "nrT": "Aucun résultat trouvé", "nrS": "Vérifiez votre recherche ou modifiez le filtre.", "nrB": "Réinitialiser la recherche", "mainImg": "Photo principale du labo", "upMain": "Importer une photo (aperçu)", "about": "À propos du laboratoire", "equip": "Équipements et Appareils", "addEq": "Ajouter une photo (aperçu)", "close": "Fermer", "fsub": "École Nationale Supérieure des Travaux Publics - Alger", "foot": "ENSTP Algiers • Tous droits réservés © 2026"}, "en": {"title": "Laboratories | ENSTP", "home": "Back to Home", "brand": "Laboratories", "badge": "Scientific facilities & infrastructure", "heroTitle": "Modern scientific &amp; technical <span class=\"grad\">laboratories</span>", "heroDesc": "An integrated system of 7 specialised laboratories equipped with the latest technology for experiments and engineering research in public works.", "catAll": "All fields", "catMat": "Materials & soils (MDS / MDC / RDM)", "catFl": "Physics & fluids (MDF / Physics)", "catApp": "Applied sciences (Chemistry / Electricity)", "s1": "Specialised labs", "s2": "Modern devices", "s3": "Hands-on experiments", "s4": "Engineering excellence", "secT": "Available laboratories", "secS": "Click any lab to explore its equipment, details and photos.", "labsWord": "labs", "nrT": "No results found", "nrS": "Check your search term or adjust the filter.", "nrB": "Reset search", "mainImg": "Main lab photo", "upMain": "Upload preview photo", "about": "About the laboratory", "equip": "Equipment and instruments", "addEq": "Add equipment photo (preview)", "close": "Close", "fsub": "National Higher School of Public Works - Algiers", "foot": "ENSTP Algiers • All Rights Reserved © 2026"}};
+(function(){
+ var $=function(i){return document.getElementById(i)};
+ var sel=$('languageSelect')||$('lang-select');
+ function sync(){
+  var l=document.documentElement.lang||'ar',d=window.__FT[l]||window.__FT.ar;
+  document.querySelectorAll('[data-i]').forEach(function(el){var v=d[el.dataset.i];if(v!=null&&el.innerHTML!==v)el.innerHTML=v});
+  if(d.title)document.title=d.title;
+  document.querySelectorAll('#lg button').forEach(function(b){b.classList.toggle('on',b.dataset.l===l)});
+  if(sel&&sel.value!==l)sel.value=l;
+  var m=$('metaTheme');if(m)m.content=document.documentElement.classList.contains('dark')?'#040b17':'#f3f6fc';
+ }
+ $('lg').addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  try{localStorage.setItem('enstp-lang',b.dataset.l)}catch(x){}
+  if(sel){sel.value=b.dataset.l;sel.dispatchEvent(new Event('change',{bubbles:true}))}
+ });
+ new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang','class']});
+ sync();
+ var pb=$('progressBar'),tt=$('toTop');
+ addEventListener('scroll',function(){
+  var h=document.documentElement;
+  pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';
+  tt.classList.toggle('show',h.scrollTop>600);
+ },{passive:true});
+})();
+</script>
 </body>
 </html>
