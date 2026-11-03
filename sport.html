@@ -321,9 +321,8 @@ main{gap:90px}
 <div class="vbox"><button class="x" onclick="closeVideoModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="videoSlot"></div></div>
 </div>
 <script>
-// ضع هنا رابط فيديو مدير الأنشطة الرياضية (YouTube embed أو Google Drive preview).
-// إن تُرك فارغاً تظهر رسالة «الفيديو قريباً» بدل فيديو تجريبي.
-const VIDEO_URL = '';
+// تم تحويل رابط Google Drive إلى رابط عرض مباشر مخصص للإطار (embed) ليظهر بسلاسة داخل الموقع:
+const VIDEO_URL = 'https://drive.google.com/file/d/1vAk2admgEX9DN6wTo9sYiagNsdgEogZ7/preview';
 
 const T={
 fr:{brand:'ENSTP Sport',back:"Retour à l'accueil",title:'ENSTP Sport & Vie Étudiante',
@@ -336,7 +335,7 @@ sec1Sub:'Infrastructures',sec1Title:'Nos installations sportives',sec1Desc:"Prof
 inst1Title:'Terrain de football',inst1Loc:'À côté du Bloc B',inst2Title:'Terrain de basketball',inst2Loc:'Cour intérieure',inst3Title:'Salle de musculation',inst3Loc:'Bâtiment des sports',inst4Title:'Terrain de volleyball',inst4Loc:'Cour intérieure',
 sec2Sub:'Compétitions',sec2Title:'Tournois & événements',sec2Desc:"Participe aux compétitions et aux activités sportives organisées par l'ENSTP.",
 tourn1Title:'Tournoi de football ENSTP',tourn1Date:'15 - 20 Avril 2026',tourn2Title:'Championnat de basketball',tourn2Date:'22 - 28 Avril 2026',tourn3Title:'Tournoi de volleyball',tourn3Date:'05 - 10 Mai 2026',tourn4Title:"Course de l'ENSTP",tourn4Date:'12 Mai 2026',
-tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Terrain de basketball',tVolley:'Terrain de volleyball',tCampus:'Campus ENSTP',
+tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Terrain de basketball',tVolley:'Terrain de volleyball',tCampus:'ENSTP Campus',
 teamTitle:'Trouve ton équipe / joueur',teamDesc:"Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l'ENSTP pour partager ta passion.",btnJoin:'Rejoindre une équipe',btnPost:'Publier une annonce',
 sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Tennis de table',sRun:'Course',
 ftTitle:'ENSTP Sport & Vie Étudiante',ftSub:"Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !",novideo:'La vidéo sera ajoutée prochainement'},
