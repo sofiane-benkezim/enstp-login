@@ -186,16 +186,11 @@ main{gap:70px}
 .stat{padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
 .stat b{display:block;font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold)}
 .stat span{font-size:.7rem;font-weight:700;color:#9db0cd}
-.vthumb{position:relative;border-radius:22px;overflow:hidden;cursor:pointer;border:2px solid rgba(245,184,65,.45);box-shadow:0 30px 70px rgba(0,0,0,.5)}
-.vthumb img{width:100%;height:320px;object-fit:cover;transition:transform .6s var(--ease)}
-.vthumb:hover img{transform:scale(1.06)}
-.vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,8,18,.85),rgba(3,8,18,.15) 60%,transparent)}
-.play{position:absolute;z-index:2;inset:0;margin:auto;width:80px;height:80px;border-radius:50%;display:grid;place-items:center;font-size:1.6rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));animation:ring 2s infinite;transition:transform .3s}
-.vthumb:hover .play{transform:scale(1.12)}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(245,184,65,.6)}70%{box-shadow:0 0 0 22px rgba(245,184,65,0)}100%{box-shadow:0 0 0 0 rgba(245,184,65,0)}}
-.vcap{position:absolute;z-index:2;inset-inline:16px;bottom:14px;display:flex;justify-content:space-between;gap:8px;font-size:.74rem;font-weight:800;color:#fff}
-.vcap span{padding:7px 12px;border-radius:10px;background:rgba(5,12,26,.8);backdrop-filter:blur(8px)}
-.vcap span.g{color:#14100a;background:var(--gold)}
+
+/* حاوية مشغل الفيديو المباشر في الغلاف */
+.vthumb{position:relative;border-radius:22px;overflow:hidden;border:2px solid rgba(245,184,65,.45);box-shadow:0 30px 70px rgba(0,0,0,.5);width:100%;height:320px;background:#000}
+.vthumb iframe{width:100%;height:100%;border:0;display:block}
+
 .sec-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:30px}
 .eyebrow{font-size:.76rem;font-weight:900;color:var(--tag-c);margin-bottom:4px}
 .eyebrow i{margin-inline-end:6px}
@@ -208,7 +203,7 @@ main{gap:70px}
 .sc-body h3{font-size:1rem;font-weight:900;color:var(--head);line-height:1.5}
 .sc-body .ln{font-size:.8rem;color:var(--desc);display:flex;align-items:center;gap:8px}
 .sc-body .ln i{color:var(--gold);width:14px}
-.st{margin-top:auto;text-align:center;font-size:.76rem;font-weight:800;padding:9px;border-radius:12px}
+.st{margin-top:auto;text-align:center;font-size:.76rem;font-weight:800;padding:99px}
 .st.o{color:#059669;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4)}
 .st.p{color:#b45309;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4)}
 html[data-theme="dark"] .st.o{color:#6ee7b7}
@@ -224,13 +219,6 @@ html[data-theme="dark"] .st.p{color:var(--gold-2)}
 .sports{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
 .sports span{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.78rem;font-weight:800;color:var(--ink);background:var(--soft);border:1px solid var(--card-b)}
 .sports i{color:var(--gold)}
-.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,8,18,.78);backdrop-filter:blur(8px)}
-.modal.open{display:flex}
-.vbox{position:relative;width:100%;max-width:900px;border-radius:26px;overflow:hidden;background:#0a1220;border:1px solid var(--glass-b);box-shadow:0 40px 100px rgba(0,0,0,.5);padding:14px}
-.vbox .x{position:absolute;top:18px;inset-inline-end:18px;z-index:3;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font-size:1rem;color:#14100a;background:var(--gold)}
-.vbox iframe,.vbox .nov{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000}
-.nov{display:grid;place-items:center;text-align:center;padding:20px;color:#b9c8df;font-weight:800}
-.nov i{display:block;font-size:2.4rem;color:var(--gold);margin-bottom:10px}
 main{gap:90px}
 </style>
 </head>
@@ -275,10 +263,9 @@ main{gap:90px}
 <div class="stat"><b>400+</b><span data-i18n="stat3"></span></div>
 </div>
 </div>
-<div class="vthumb" onclick="openVideoModal()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openVideoModal()">
-<img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80" alt="">
-<div class="play"><i class="fa-solid fa-play"></i></div>
-<div class="vcap"><span><i class="fa-solid fa-clock" style="color:var(--gold)"></i> 03:45 min</span><span class="g"><i class="fa-solid fa-circle-play"></i> <span data-i18n="watch"></span></span></div>
+<!-- مشغل الفيديو المباشر مباشرة في غلاف البطاقة -->
+<div class="vthumb">
+<iframe src="https://drive.google.com/file/d/1vAk2admgEX9DN6wTo9sYiagNsdgEogZ7/preview" title="ENSTP Sport Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 </div>
 </div>
 </section>
@@ -316,33 +303,29 @@ main{gap:90px}
 <p id="footer-sub" data-i18n="ftSub"></p>
 <p style="margin-top:16px;font-size:.74rem;color:#6b7f9f">© 2026 ENSTP Guide</p>
 </footer>
-<button class="to-top" id="toTop" aria-label="Top"><i class="fa-solid fa-arrow-up"></i></button>
-<div id="videoModal" class="modal" onclick="if(event.target===this)closeVideoModal()">
-<div class="vbox"><button class="x" onclick="closeVideoModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="videoSlot"></div></div>
-</div>
-<script>
-const VIDEO_URL = 'https://drive.google.com/file/d/1vAk2admgEX9DN6wTo9sYiagNsdgEogZ7/preview';
+<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 
+<script>
 const T={
 fr:{brand:'ENSTP Sport',back:"Retour à l'accueil",title:'ENSTP Sport & Vie Étudiante',
 heroTag:'Sport & Vie Étudiante',heroTitle:'Bouge, joue, <span class="g">partage !</span>',heroDesc:"Découvre les installations sportives, participe aux tournois inter-promos et trouve ton équipe à l'ENSTP.",
 feat1:'Infrastructures à disposition',feat2:"Tournois toute l'année",feat3:'Équipes et partenaires',
 dirBadge:'Présentation Vidéo',dirTitle:'Mot du Directeur des Activités Sportives',dirDesc:"Découvrez le programme sportif annuel, les créneaux d'entraînement, et le message de bienvenue du Directeur des activités physiques et sportives de l'ENSTP.",
-dirName:'M. Mohamed Amine',dirRole:'Directeur des Activités Sportives & Culturelles - ENSTP',stat1:'Terrains & Salles',stat2:'Tournois / An',stat3:'Étudiants Sportifs',watch:'Regarder la vidéo',
+dirName:'M. Mohamed Amine',dirRole:'Directeur des Activités Sportives & Culturelles - ENSTP',stat1:'Terrains & Salles',stat2:'Tournois / An',stat3:'Étudiants Sportifs',
 avail:'Disponible',project:'En projet',open:'Inscriptions ouvertes',soon:'Prochainement',
 sec1Sub:'Infrastructures',sec1Title:'Nos installations sportives',sec1Desc:"Profite des infrastructures de l'école pour pratiquer ton sport préféré.",sec1Badge:"Disponibles à l'ENSTP",
 inst1Title:'Terrain de football',inst1Loc:'À côté du Bloc B',inst2Title:'Terrain de basketball',inst2Loc:'Cour intérieure',inst3Title:'Salle de musculation',inst3Loc:'Bâtiment des sports',inst4Title:'Terrain de volleyball',inst4Loc:'Cour intérieure',
 sec2Sub:'Compétitions',sec2Title:'Tournois & événements',sec2Desc:"Participe aux compétitions et aux activités sportives organisées par l'ENSTP.",
 tourn1Title:'Tournoi de football ENSTP',tourn1Date:'15 - 20 Avril 2026',tourn2Title:'Championnat de basketball',tourn2Date:'22 - 28 Avril 2026',tourn3Title:'Tournoi de volleyball',tourn3Date:'05 - 10 Mai 2026',tourn4Title:"Course de l'ENSTP",tourn4Date:'12 Mai 2026',
-tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Terrain de basketball',tVolley:'Terrain de volleyball',tCampus:'ENSTP Campus',
+tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Basketball court',tVolley:'Volleyball court',tCampus:'ENSTP Campus',
 teamTitle:'Trouve ton équipe / joueur',teamDesc:"Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l'ENSTP pour partager ta passion.",btnJoin:'Rejoindre une équipe',btnPost:'Publier une annonce',
 sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Tennis de table',sRun:'Course',
-ftTitle:'ENSTP Sport & Vie Étudiante',ftSub:"Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !",novideo:'La vidéo sera ajoutée prochainement'},
+ftTitle:'ENSTP Sport & Vie Étudiante',ftSub:"Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !"},
 ar:{brand:'رياضة ENSTP',back:'العودة للرئيسية',title:'ENSTP الرياضة والحياة الطلابية',
 heroTag:'الرياضة والحياة الطلابية',heroTitle:'تحرّك، العب، <span class="g">وشارك الشغف!</span>',heroDesc:'اكتشف المنشآت الرياضية، شارك في البطولات بين الدفعات، وجد فريقك الرياضي في المدرسة العليا للأشغال العمومية.',
 feat1:'منشآت تحت تصرفك',feat2:'بطولات على مدار السنة',feat3:'فرق وزملاء رياضيون',
 dirBadge:'فيديو تعريفي',dirTitle:'كلمة مدير النشاطات الرياضية',dirDesc:'شاهد البرنامج الرياضي السنوي، أوقات التدريب المتاحة، وكلمة الترحيب الخاصة بمدير الأنشطة البدنية والرياضية بالمدرسة.',
-dirName:'سفيان',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',watch:'شاهد الفيديو',
+dirName:'أ. محمد أمين',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',
 avail:'متاح',project:'قيد الإنجاز',open:'التسجيل مفتوح',soon:'قريباً',
 sec1Sub:'الهياكل الرياضية',sec1Title:'المنشآت الرياضية بالمدرسة',sec1Desc:'استفد من هياكل المدرسة لممارسة رياضتك المفضلة.',sec1Badge:'متوفرة في ENSTP',
 inst1Title:'ملعب كرة القدم',inst1Loc:'بجوار المجمع B',inst2Title:'ملعب كرة السلة',inst2Loc:'الساحة الداخلية',inst3Title:'قاعة تقوية العضلات',inst3Loc:'مبنى الرياضات',inst4Title:'ملعب كرة الطائرة',inst4Loc:'الساحة الداخلية',
@@ -351,12 +334,12 @@ tourn1Title:'دوري كرة القدم ENSTP',tourn1Date:'15 - 20 أفريل 20
 tagFoot:'كرة القدم',tagBask:'كرة السلة',tagVolley:'كرة الطائرة',tagRun:'عدو',tFoot:'ملعب كرة القدم',tBask:'ملعب كرة السلة',tVolley:'ملعب كرة الطائرة',tCampus:'حرم ENSTP',
 teamTitle:'جد فريقك أو شريكك الرياضي',teamDesc:'انضم إلى فريق موجود أو ابحث عن زملاء من طلبة المدرسة لمشاركتك شغفك الرياضي.',btnJoin:'الانضمام إلى فريق',btnPost:'نشر إعلان بحث',
 sFoot:'كرة القدم',sBask:'كرة السلة',sVolley:'كرة الطائرة',sTT:'tennis de table',sRun:'العدو',
-ftTitle:'ENSTP الرياضة والحياة الطلابية',ftSub:'الرياضة في ENSTP هي أيضاً حكاية مشاركة وتحدٍّ للذات!',novideo:'سيتم إضافة الفيديو قريباً'},
+ftTitle:'ENSTP الرياضة والحياة الطلابية',ftSub:'الرياضة في ENSTP هي أيضاً حكاية مشاركة وتحدٍّ للذات!'},
 en:{brand:'ENSTP Sports',back:'Back to Home',title:'ENSTP Sports & Student Life',
 heroTag:'Sports & Student Life',heroTitle:'Move, play, <span class="g">and share!</span>',heroDesc:'Discover sports facilities, take part in tournaments, and find your team at ENSTP.',
 feat1:'Facilities available',feat2:'Year-round tournaments',feat3:'Teams & teammates',
 dirBadge:'Video Presentation',dirTitle:'Message from the Sports Director',dirDesc:'Discover the annual sports program, training slots, and welcoming words from the ENSTP Sports Director.',
-dirName:'Mr. Mohamed Amine',dirRole:'Director of Sports & Cultural Activities - ENSTP',stat1:'Courts & Gyms',stat2:'Tournaments / Yr',stat3:'Student Athletes',watch:'Watch the video',
+dirName:'Mr. Mohamed Amine',dirRole:'Director of Sports & Cultural Activities - ENSTP',stat1:'Courts & Gyms',stat2:'Tournaments / Yr',stat3:'Student Athletes',
 avail:'Available',project:'Planned',open:'Registration open',soon:'Coming soon',
 sec1Sub:'Infrastructures',sec1Title:'Our Sports Facilities',sec1Desc:'Take advantage of the school facilities to practice your favorite sport.',sec1Badge:'Available at ENSTP',
 inst1Title:'Football Pitch',inst1Loc:'Next to Building B',inst2Title:'Basketball Court',inst2Loc:'Inner Courtyard',inst3Title:'Fitness & Gym Room',inst3Loc:'Sports Building',inst4Title:'Volleyball Court',inst4Loc:'Inner Courtyard',
@@ -365,7 +348,7 @@ tourn1Title:'ENSTP Football Tournament',tourn1Date:'April 15 - 20, 2026',tourn2T
 tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Running',tFoot:'Football pitch',tBask:'Basketball court',tVolley:'Volleyball court',tCampus:'ENSTP Campus',
 teamTitle:'Find your team / teammate',teamDesc:'Join an existing team or find teammates among ENSTP students to share your passion.',btnJoin:'Join a Team',btnPost:'Post an Announcement',
 sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Table tennis',sRun:'Running',
-ftTitle:'ENSTP Sports & Student Life',ftSub:'Sports at ENSTP is a story of teamwork and pushing boundaries!',novideo:'Video coming soon'}
+ftTitle:'ENSTP Sports & Student Life',ftSub:'Sports at ENSTP is a story of teamwork and pushing boundaries!'}
 };
 T.ar.sTT='كرة الطاولة';
 function changeLanguage(lang){
@@ -381,15 +364,6 @@ function toggleTheme(){
   r.dataset.theme=next; document.getElementById('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
   try{localStorage.setItem('enstp-theme',next)}catch(e){}
 }
-function openVideoModal(){
-  const slot=document.getElementById('videoSlot');
-  slot.innerHTML=VIDEO_URL
-    ? '<iframe src="'+VIDEO_URL+'" title="ENSTP Sport" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
-    : '<div class="nov"><div><i class="fa-solid fa-circle-play"></i>'+(window.__d?window.__d.novideo:'')+'</div></div>';
-  document.getElementById('videoModal').classList.add('open');
-}
-function closeVideoModal(){document.getElementById('videoModal').classList.remove('open');document.getElementById('videoSlot').innerHTML='';}
-addEventListener('keydown',e=>{if(e.key==='Escape')closeVideoModal();});
 (function(){
   document.getElementById('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
   let s='fr'; try{s=localStorage.getItem('enstp-lang')||'fr'}catch(e){}
