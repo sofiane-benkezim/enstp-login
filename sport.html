@@ -316,12 +316,11 @@ main{gap:90px}
 <p id="footer-sub" data-i18n="ftSub"></p>
 <p style="margin-top:16px;font-size:.74rem;color:#6b7f9f">© 2026 ENSTP Guide</p>
 </footer>
-<button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="to-top" id="toTop" aria-label="Top"><i class="fa-solid fa-arrow-up"></i></button>
 <div id="videoModal" class="modal" onclick="if(event.target===this)closeVideoModal()">
 <div class="vbox"><button class="x" onclick="closeVideoModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="videoSlot"></div></div>
 </div>
 <script>
-// تم تحويل رابط Google Drive إلى رابط عرض مباشر مخصص للإطار (embed) ليظهر بسلاسة داخل الموقع:
 const VIDEO_URL = 'https://drive.google.com/file/d/1vAk2admgEX9DN6wTo9sYiagNsdgEogZ7/preview';
 
 const T={
@@ -343,7 +342,7 @@ ar:{brand:'رياضة ENSTP',back:'العودة للرئيسية',title:'ENSTP �
 heroTag:'الرياضة والحياة الطلابية',heroTitle:'تحرّك، العب، <span class="g">وشارك الشغف!</span>',heroDesc:'اكتشف المنشآت الرياضية، شارك في البطولات بين الدفعات، وجد فريقك الرياضي في المدرسة العليا للأشغال العمومية.',
 feat1:'منشآت تحت تصرفك',feat2:'بطولات على مدار السنة',feat3:'فرق وزملاء رياضيون',
 dirBadge:'فيديو تعريفي',dirTitle:'كلمة مدير النشاطات الرياضية',dirDesc:'شاهد البرنامج الرياضي السنوي، أوقات التدريب المتاحة، وكلمة الترحيب الخاصة بمدير الأنشطة البدنية والرياضية بالمدرسة.',
-dirName:'أ. محمد أمين',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',watch:'شاهد الفيديو',
+dirName:'سفيان',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',watch:'شاهد الفيديو',
 avail:'متاح',project:'قيد الإنجاز',open:'التسجيل مفتوح',soon:'قريباً',
 sec1Sub:'الهياكل الرياضية',sec1Title:'المنشآت الرياضية بالمدرسة',sec1Desc:'استفد من هياكل المدرسة لممارسة رياضتك المفضلة.',sec1Badge:'متوفرة في ENSTP',
 inst1Title:'ملعب كرة القدم',inst1Loc:'بجوار المجمع B',inst2Title:'ملعب كرة السلة',inst2Loc:'الساحة الداخلية',inst3Title:'قاعة تقوية العضلات',inst3Loc:'مبنى الرياضات',inst4Title:'ملعب كرة الطائرة',inst4Loc:'الساحة الداخلية',
