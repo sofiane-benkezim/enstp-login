@@ -46,7 +46,7 @@ html[data-theme="dark"]{
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .5s,color .5s}
-body[data-lang="fr"],body[data-lang="en"]{font-family:'Inter','Cairo',sans-serif}
+html[lang="fr"] body,html[lang="en"] body{font-family:'Inter','Cairo',sans-serif}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 ::selection{background:var(--gold);color:#101828}
@@ -250,7 +250,12 @@ main{padding-top:50px;gap:50px}
 <div class="bar">
 <div class="logo"><div class="logo-img"><img src="https://enstp.edu.dz/themes/custom/corporate3/logo.png" alt="ENSTP"></div><span id="txt-brand">حافلات الجامعة</span></div>
 <div class="tools">
-<a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span>العودة للرئيسية</span></a>
+<div class="lang" id="langSelector">
+  <button data-lang="ar" class="on">العربية</button>
+  <button data-lang="fr">Français</button>
+  <button data-lang="en">English</button>
+</div>
+<a href="index.html" class="back" id="btnBackHome"><i class="fa-solid fa-arrow-right"></i><span>العودة للرئيسية</span></a>
 <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
 </div>
 </div>
@@ -258,15 +263,15 @@ main{padding-top:50px;gap:50px}
 <section class="hero">
 <div class="hero-bg"></div>
 <div class="hero-inner">
-<span class="badge"><i class="fa-solid fa-bus"></i> السداسي الأول 2026/2027</span>
-<h1>من أين وإلى أين <span>تريد الذهاب؟</span></h1>
-<p>اختر نقطة الانطلاق ونقطة الوصول لتعرف الحافلات المتوفرة ومواعيدها، وتابع مستجدات الطلبة في كل منطقة لحظة بلحظة.</p>
+<span class="badge" id="heroBadge"><i class="fa-solid fa-bus"></i> السداسي الأول 2026/2027</span>
+<h1 id="heroTitle">من أين وإلى أين <span>تريد الذهاب؟</span></h1>
+<p id="heroDesc">اختر نقطة الانطلاق ونقطة الوصول لتعرف الحافلات المتوفرة ومواعيدها، وتابع مستجدات الطلبة في كل منطقة لحظة بلحظة.</p>
 <div class="picker">
 <div class="pgrid">
-<div class="pcell"><label for="fromSel"><i class="fa-solid fa-circle-dot"></i> من</label>
+<div class="pcell"><label for="fromSel" id="lblFrom"><i class="fa-solid fa-circle-dot"></i> من</label>
 <div class="sel"><select id="fromSel"></select><i class="fa-solid fa-chevron-down"></i></div></div>
 <button type="button" class="swap" id="swapBtn" aria-label="عكس الاتجاه" title="عكس الاتجاه"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-<div class="pcell"><label for="zoneSel"><i class="fa-solid fa-location-dot"></i> إلى</label>
+<div class="pcell"><label for="zoneSel" id="lblTo"><i class="fa-solid fa-location-dot"></i> إلى</label>
 <div class="sel"><select id="zoneSel"></select><i class="fa-solid fa-chevron-down"></i></div></div>
 </div>
 <div class="srch"><i class="fa-solid fa-magnifying-glass"></i><input id="zoneSearch" placeholder="ابحث عن وجهتك (مثال: الحراش، البليدة، تافورة...)" autocomplete="off"></div><div class="zscroll" id="zoneChips"></div>
@@ -274,26 +279,38 @@ main{padding-top:50px;gap:50px}
 </div>
 </section>
 <main>
-<div id="sampleBar" class="sample hidden"><i class="fa-solid fa-triangle-exclamation"></i><span>هذه <b>بيانات تجريبية</b> لعرض شكل الموقع فقط، وليست مواعيد الحافلات الحقيقية. سيتم استبدالها بالبرنامج الرسمي.</span></div>
+<div id="sampleBar" class="sample hidden"><i class="fa-solid fa-triangle-exclamation"></i><span id="txtSampleBar">هذه <b>بيانات تجريبية</b> لعرض شكل الموقع فقط، وليست مواعيد الحافلات الحقيقية. سيتم استبدالها بالبرنامج الرسمي.</span></div>
 <section id="upNow"><div class="sec-t"><i class="fa-solid fa-clock"></i><span id="upTitle">الحافلات القادمة الآن من القبة</span></div><div class="upgrid" id="upGrid"></div></section>
 <section id="results" class="hidden">
 <div class="top">
 <h2 id="zTitle"></h2>
-<div class="days" id="dayTabs"><button data-d="sun" onclick="setDay('sun')">الأحد</button><button data-d="mon" onclick="setDay('mon')">الاثنين</button><button data-d="tue" onclick="setDay('tue')">الثلاثاء</button><button data-d="wed" onclick="setDay('wed')">الأربعاء</button><button data-d="thu" onclick="setDay('thu')">الخميس</button><button data-d="fri" onclick="setDay('fri')">الجمعة</button><button data-d="sat" onclick="setDay('sat')">السبت</button></div>
-<div class="acts"><button class="ib" onclick="backToAll()"><i class="fa-solid fa-arrow-right"></i><span>كل الوجهات</span></button><button class="ib" id="favBtn" onclick="toggleFav()"><i class="fa-solid fa-star"></i><span>اجعلها مفضلة</span></button><button class="ib" onclick="shareZone()"><i class="fa-solid fa-share-nodes"></i><span>مشاركة</span></button></div>
+<div class="days" id="dayTabs">
+  <button data-d="sun" onclick="setDay('sun')">الأحد</button>
+  <button data-d="mon" onclick="setDay('mon')">الاثنين</button>
+  <button data-d="tue" onclick="setDay('tue')">الثلاثاء</button>
+  <button data-d="wed" onclick="setDay('wed')">الأربعاء</button>
+  <button data-d="thu" onclick="setDay('thu')">الخميس</button>
+  <button data-d="fri" onclick="setDay('fri')">الجمعة</button>
+  <button data-d="sat" onclick="setDay('sat')">السبت</button>
+</div>
+<div class="acts">
+  <button class="ib" onclick="backToAll()"><i class="fa-solid fa-arrow-right"></i><span id="btnAllZones">كل الوجهات</span></button>
+  <button class="ib" id="favBtn" onclick="toggleFav()"><i class="fa-solid fa-star"></i><span id="btnFavText">اجعلها مفضلة</span></button>
+  <button class="ib" onclick="shareZone()"><i class="fa-solid fa-share-nodes"></i><span id="btnShareText">مشاركة</span></button>
+</div>
 </div>
 <div id="nextBox" class="next hidden"></div>
 <div class="lines" id="lines"></div>
 </section>
 <section id="chatSec">
 <div class="chat">
-<div class="c-head"><div><h3><i class="fa-solid fa-comments"></i><span>مجتمع وجهة: <span id="zoneNameChat">—</span></span></h3><small>أخبر زملاءك بالمستجدات: تأخر، إلغاء، ازدحام...</small></div><span class="live local" id="liveTag">اختر وجهة أولاً</span></div>
-<div class="stat"><span>أبلغ بسرعة (آخر ساعتين):</span><div id="statusBtns" style="display:contents"></div></div>
-<div class="msgs" id="msgs"><div class="noMsg">اختر وجهتك من الأعلى لتظهر محادثتها.</div></div>
+<div class="c-head"><div><h3><i class="fa-solid fa-comments"></i><span><span id="txtCommunity">مجتمع وجهة:</span> <span id="zoneNameChat">—</span></span></h3><small id="txtChatSubtitle">أخبر زملاءك بالمستجدات: تأخر، إلغاء، ازدحام...</small></div><span class="live local" id="liveTag">اختر وجهة أولاً</span></div>
+<div class="stat"><span id="txtQuickReport">أبلغ بسرعة (آخر ساعتين):</span><div id="statusBtns" style="display:contents"></div></div>
+<div class="msgs" id="msgs"><div class="noMsg" id="txtSelectDestination">اختر وجهتك من الأعلى لتظهر محادثتها.</div></div>
 <div class="comp">
 <div class="r"><input id="nick" maxlength="24" placeholder="اسمك المستعار" autocomplete="off"><textarea id="msgText" maxlength="280" placeholder="اكتب رسالة للطلبة في هذه الوجهة..."></textarea></div>
-<div class="c-foot"><small><span id="cc">0/280</span> · <span class="err" id="err"></span></small><button class="send" id="sendBtn" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i> إرسال</button></div>
-<div class="rules"><b>قواعد المجتمع:</b> بلا روابط ولا أرقام هواتف ولا إساءة. استخدم اسماً مستعاراً ولا تنشر بياناتك الشخصية.</div>
+<div class="c-foot"><small><span id="cc">0/280</span> · <span class="err" id="err"></span></small><button class="send" id="sendBtn" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i> <span id="txtSendBtn">إرسال</span></button></div>
+<div class="rules" id="txtCommunityRules"><b>قواعد المجتمع:</b> بلا روابط ولا أرقام هواتف ولا إساءة. استخدم اسماً مستعاراً ولا تنشر بياناتك الشخصية.</div>
 </div>
 </div>
 </section>
@@ -308,14 +325,316 @@ main{padding-top:50px;gap:50px}
 
 <script>
 /* =====================================================================
-   1) إعدادات المحادثة (Supabase)
+   1) الترجمة وتعدد اللغات (i18n)
+   ===================================================================== */
+let currentLang = localStorage.getItem('enstp-lang') || 'ar';
+
+const TRANSLATIONS = {
+  ar: {
+    title: "حافلات النقل الجامعي - ENSTP",
+    brand: "حافلات الجامعة",
+    backHome: "العودة للرئيسية",
+    badge: "السداسي الأول 2026/2027",
+    heroTitle: "من أين وإلى أين <span>تريد الذهاب؟</span>",
+    heroDesc: "اختر نقطة الانطلاق ونقطة الوصول لتعرف الحافلات المتوفرة ومواعيدها، وتابع مستجدات الطلبة في كل منطقة لحظة بلحظة.",
+    from: "من",
+    to: "إلى",
+    searchPlaceholder: "ابحث عن وجهتك (مثال: الحراش، البليدة، تافورة...)",
+    phFrom: "— من أين؟ —",
+    phTo: "— إلى أين؟ —",
+    kouba: "القبة (ENSTP)",
+    sampleBar: "هذه <b>بيانات تجريبية</b> لعرض شكل الموقع فقط، وليست مواعيد الحافلات الحقيقية. سيتم استبدالها بالبرنامج الرسمي.",
+    upTitleNow: "الحافلات القادمة الآن من القبة",
+    upTitleDay: "الحافلات القادمة الآن · ",
+    noBusesLeftToday: "لا توجد حافلات متبقية اليوم. اختر وجهة لمعرفة مواعيد الأيام الأخرى.",
+    allZones: "كل الوجهات",
+    fav: "اجعلها مفضلة",
+    unfav: "وجهتي المفضلة",
+    share: "مشاركة",
+    todayTag: " (اليوم)",
+    viaKouba: " · عبر القبة",
+    busCount1: " · حافلة واحدة",
+    busCountN: " · {n} حافلات",
+    closestBus: "أقرب حافلة",
+    firstLeg: " (الرحلة الأولى)",
+    approx: " (تقريبي)",
+    mins: "دقيقة",
+    hrMin: "ساعة : دقيقة",
+    dayEnded: "انتهت رحلات اليوم",
+    noBusesLeft: "لا توجد حافلات متبقية اليوم",
+    chooseAnotherDay: "اختر يوماً آخر من الأعلى لرؤية المواعيد.",
+    noTripsDay: "لا توجد رحلات في هذا اليوم حسب البرنامج المنشور.",
+    viaNotice: " لا يوجد خط مباشر بين الوجهتين؛ جميع الخطوط تمر عبر القبة. انزل في القبة ثم اركب الرحلة الثانية.",
+    community: "مجتمع وجهة:",
+    chatSubtitle: "أخبر زملاءك بالمستجدات: تأخر، إلغاء، ازدحام...",
+    selectDestFirst: "اختر وجهة أولاً",
+    liveMsg: "مباشر",
+    localMsg: "محلي على جهازك فقط",
+    quickReport: "أبلغ بسرعة (آخر ساعتين):",
+    selectDestNotice: "اختر وجهتك من الأعلى لتظهر محادثتها.",
+    nickPlaceholder: "اسمك المستعار",
+    msgPlaceholder: "اكتب رسالة للطلبة في هذه الوجهة...",
+    send: "إرسال",
+    communityRules: "<b>قواعد المجتمع:</b> بلا روابط ولا أرقام هواتف ولا إساءة. استخدم اسماً مستعاراً ولا تنشر بياناتك الشخصية.",
+    footerTitle: "حافلات النقل الجامعي - ENSTP",
+    footerSub: "المصدر: المخطط الشامل لمواعيد النقل الجامعي والولائي - السداسي الأول 2026/2027. المواعيد للاسترشاد وقد تتغير.",
+    notFound: "لا توجد وجهة بهذا الاسم",
+    diffPoints: "اختر نقطتين مختلفتين",
+    noDirect: "لا توجد رحلات مباشرة بين هاتين النقطتين",
+    removedFav: "أُزيلت من المفضلة",
+    addedFav: "ستُفتح هذه الوجهة تلقائياً",
+    copiedLink: "تم نسخ الرابط",
+    you: "(أنت)",
+    deleteForEveryone: "حذف عند الجميع",
+    hide: "إخفاء",
+    noMsgsYet: "لا توجد رسائل بعد في هذه الوجهة. كن أول من يخبر الآخرين بمستجدات الحافلات!",
+    confirmDelete: "هل أنت تأكد من إزالة هذه الرسالة نهائياً عند الجميع؟",
+    deletedMsg: "تم حذف الرسالة عند الجميع",
+    errorDelete: "تعذر حذف الرسالة",
+    anonymous: "طالب",
+    waitSecs: "انتظر {s} ث قبل الإرسال التالي",
+    statusRecorded: "شكراً! تم تسجيل الحالة",
+    msgTooShort: "اكتب رسالة أطول قليلاً.",
+    noLinks: "الروابط غير مسموحة.",
+    ruleNote: "لم يحدد البرنامج ساعة نهاية دقيقة لهذه الرحلات؛ تُحسب هنا تقريباً لحظة الانطلاق التالية.",
+    agoNow: "الآن",
+    agoMin: "قبل {n} د",
+    agoHr: "قبل {n} س",
+    agoDay: "قبل {n} ي",
+    days: { sun:'الأحد', mon:'الاثنين', tue:'الثلاثاء', wed:'الأربعاء', thu:'الخميس', fri:'الجمعة', sat:'السبت' },
+    groups: { res:'الإقامة الجامعية رويسو', alger:'العاصمة والجامعات (انطلاقاً من القبة)', wil:'الولايات المجاورة (انطلاقاً من القبة)' },
+    status: { ontime:['🟢','في الوقت'], late:['🟡','متأخرة'], cancel:['🔴','ملغاة'], crowd:['👥','مزدحمة'], ok:['✅','وصلت'] },
+    lGo: "الذهاب (صباحاً)",
+    lBack: "الرجوع / العودة",
+    lRevoilGo: "الذهاب (Départ)",
+    lRevoilBack: "الإياب (Retour)",
+    revoilFrom: "الإقامة الجامعية رويسو",
+    revoilTo: "ENSTP - القبة"
+  },
+  fr: {
+    title: "Buses Universitaires - ENSTP",
+    brand: "Buses ENSTP",
+    backHome: "Accueil",
+    badge: "1er Semestre 2026/2027",
+    heroTitle: "D'où et où <span>voulez-vous aller ?</span>",
+    heroDesc: "Sélectionnez vos points de départ et d'arrivée pour consulter les bus et les horaires disponibles, et suivez les mises à jour en direct.",
+    from: "De",
+    to: "À",
+    searchPlaceholder: "Recherchez une destination (ex: Harrach, Blida, Tafourah...)",
+    phFrom: "— D'où ? —",
+    phTo: "— Où ? —",
+    kouba: "Kouba (ENSTP)",
+    sampleBar: "Ceci est une <b>démonstration</b>. Les horaires réels seront mis à jour avec le programme officiel.",
+    upTitleNow: "Prochains départs de Kouba",
+    upTitleDay: "Prochains départs · ",
+    noBusesLeftToday: "Plus aucun bus aujourd'hui. Choisissez une destination pour voir les autres jours.",
+    allZones: "Toutes les destinations",
+    fav: "Ajouter aux favoris",
+    unfav: "Ma destination favorite",
+    share: "Partager",
+    todayTag: " (Aujourd'hui)",
+    viaKouba: " · via Kouba",
+    busCount1: " · 1 bus",
+    busCountN: " · {n} bus",
+    closestBus: "Prochain bus",
+    firstLeg: " (Premier trajet)",
+    approx: " (approx.)",
+    mins: "min",
+    hrMin: "heure(s) : min",
+    dayEnded: "Service terminé pour aujourd'hui",
+    noBusesLeft: "Aucun bus restant aujourd'hui",
+    chooseAnotherDay: "Choisissez un autre jour ci-dessus pour consulter les horaires.",
+    noTripsDay: "Aucun trajet prévu ce jour selon le programme publié.",
+    viaNotice: " Aucun trajet direct. Toutes les lignes passent par Kouba. Changez de bus à Kouba.",
+    community: "Communauté :",
+    chatSubtitle: "Partagez les infos en direct : retard, annulation, affluence...",
+    selectDestFirst: "Sélectionnez d'abord une destination",
+    liveMsg: "En direct",
+    localMsg: "Local (sur cet appareil)",
+    quickReport: "Signalement rapide (dernières 2h) :",
+    selectDestNotice: "Sélectionnez une destination en haut pour afficher le tchat.",
+    nickPlaceholder: "Votre pseudo",
+    msgPlaceholder: "Écrivez un message aux étudiants...",
+    send: "Envoyer",
+    communityRules: "<b>Règles :</b> Pas de liens, numéros ou propos offensants. Utilisez un pseudonyme.",
+    footerTitle: "Buses Universitaires - ENSTP",
+    footerSub: "Source: Plan global des transports universitaires 2026/2027. Horaires fournis à titre indicatif.",
+    notFound: "Aucune destination trouvée",
+    diffPoints: "Veuillez choisir deux points différents",
+    noDirect: "Pas de trajet direct entre ces deux points",
+    removedFav: "Retiré des favoris",
+    addedFav: "Destination enregistrée par défaut",
+    copiedLink: "Lien copié dans le presse-papier",
+    you: "(Vous)",
+    deleteForEveryone: "Supprimer pour tous",
+    hide: "Masquer",
+    noMsgsYet: "Aucun message pour le moment. Soyez le premier à informer les autres !",
+    confirmDelete: "Voulez-vous vraiment supprimer définitivement ce message pour tout le monde ?",
+    deletedMsg: "Message supprimé pour tous",
+    errorDelete: "Impossible de supprimer le message",
+    anonymous: "Étudiant",
+    waitSecs: "Attendez {s}s avant le prochain envoi",
+    statusRecorded: "Merci ! Statut enregistré",
+    msgTooShort: "Veuillez écrire un message un peu plus long.",
+    noLinks: "Les liens ne sont pas autorisés.",
+    ruleNote: "Le programme n'indique pas d'heure de fin précise ; affichage approximatif du prochain départ.",
+    agoNow: "À l'instant",
+    agoMin: "il y a {n} min",
+    agoHr: "il y a {n} h",
+    agoDay: "il y a {n} j",
+    days: { sun:'Dimanche', mon:'Lundi', tue:'Mardi', wed:'Mercredi', thu:'Jeudi', fri:'Vendredi', sat:'Samedi' },
+    groups: { res:'Résidence Universitaire Revoil', alger:'Alger & Universités (Départ Kouba)', wil:'Wilayas Limitrophes (Départ Kouba)' },
+    status: { ontime:['🟢','À l\'heure'], late:['🟡','En retard'], cancel:['🔴','Annulé'], crowd:['👥','Bondé'], ok:['✅','Arrivé'] },
+    lGo: "Aller (matin)",
+    lBack: "Retour",
+    lRevoilGo: "Départ",
+    lRevoilBack: "Retour",
+    revoilFrom: "Cité Universitaire Revoil",
+    revoilTo: "ENSTP - Kouba"
+  },
+  en: {
+    title: "University Bus Schedule - ENSTP",
+    brand: "ENSTP Buses",
+    backHome: "Home",
+    badge: "1st Semester 2026/2027",
+    heroTitle: "Where are you <span>heading to?</span>",
+    heroDesc: "Select departure and arrival locations to view available buses, schedules, and live community updates.",
+    from: "From",
+    to: "To",
+    searchPlaceholder: "Search destination (e.g. Harrach, Blida, Tafourah...)",
+    phFrom: "— From where? —",
+    phTo: "— To where? —",
+    kouba: "Kouba (ENSTP)",
+    sampleBar: "This is a <b>demo mode</b>. Real bus schedules will be updated once officially published.",
+    upTitleNow: "Upcoming departures from Kouba",
+    upTitleDay: "Upcoming departures · ",
+    noBusesLeftToday: "No more buses today. Select a destination to check other days.",
+    allZones: "All Destinations",
+    fav: "Add to Favorites",
+    unfav: "Favorite Destination",
+    share: "Share",
+    todayTag: " (Today)",
+    viaKouba: " · via Kouba",
+    busCount1: " · 1 bus",
+    busCountN: " · {n} buses",
+    closestBus: "Next bus",
+    firstLeg: " (First leg)",
+    approx: " (approx.)",
+    mins: "mins",
+    hrMin: "hrs : mins",
+    dayEnded: "Service ended for today",
+    noBusesLeft: "No buses remaining today",
+    chooseAnotherDay: "Select another day above to view the schedule.",
+    noTripsDay: "No trips scheduled for this day according to the published timetable.",
+    viaNotice: " No direct route between these two points. All routes pass through Kouba. Transfer at Kouba.",
+    community: "Community:",
+    chatSubtitle: "Share updates with students: delays, cancellations, crowding...",
+    selectDestFirst: "Select a destination first",
+    liveMsg: "Live",
+    localMsg: "Local (this device only)",
+    quickReport: "Quick report (last 2 hrs):",
+    selectDestNotice: "Select a destination above to display its chat.",
+    nickPlaceholder: "Nickname",
+    msgPlaceholder: "Type a message to students on this route...",
+    send: "Send",
+    communityRules: "<b>Rules:</b> No links, phone numbers, or harassment. Use a nickname.",
+    footerTitle: "University Bus Schedule - ENSTP",
+    footerSub: "Source: University & Wilaya Transport Master Plan 2026/2027. Timetables are indicative.",
+    notFound: "No destination found",
+    diffPoints: "Please select two different locations",
+    noDirect: "No direct buses available between these locations",
+    removedFav: "Removed from favorites",
+    addedFav: "Set as default favorite destination",
+    copiedLink: "Link copied to clipboard",
+    you: "(You)",
+    deleteForEveryone: "Delete for everyone",
+    hide: "Hide",
+    noMsgsYet: "No messages yet for this route. Be the first to post an update!",
+    confirmDelete: "Are you sure you want to permanently delete this message for everyone?",
+    deletedMsg: "Message deleted for everyone",
+    errorDelete: "Could not delete message",
+    anonymous: "Student",
+    waitSecs: "Please wait {s}s before sending again",
+    statusRecorded: "Thank you! Status reported.",
+    msgTooShort: "Please write a slightly longer message.",
+    noLinks: "Links are not allowed.",
+    ruleNote: "No exact end time specified; displaying approximate next departure.",
+    agoNow: "Just now",
+    agoMin: "{n}m ago",
+    agoHr: "{n}h ago",
+    agoDay: "{n}d ago",
+    days: { sun:'Sunday', mon:'Monday', tue:'Tuesday', wed:'Wednesday', thu:'Thursday', fri:'Friday', sat:'Saturday' },
+    groups: { res:'Revoil Student Residence', alger:'Algiers & Universities (From Kouba)', wil:'Neighboring Wilayas (From Kouba)' },
+    status: { ontime:['🟢','On time'], late:['🟡','Delayed'], cancel:['🔴','Canceled'], crowd:['👥','Crowded'], ok:['✅','Arrived'] },
+    lGo: "Departure (Morning)",
+    lBack: "Return",
+    lRevoilGo: "Departure",
+    lRevoilBack: "Return",
+    revoilFrom: "Revoil Residence",
+    revoilTo: "ENSTP - Kouba"
+  }
+};
+
+function t(key, vars={}) {
+  let text = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang][key]) || TRANSLATIONS['ar'][key] || key;
+  for (let k in vars) { text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), vars[k]); }
+  return text;
+}
+
+function tDay(d) { return (TRANSLATIONS[currentLang].days && TRANSLATIONS[currentLang].days[d]) || d; }
+function tGroup(g) { return (TRANSLATIONS[currentLang].groups && TRANSLATIONS[currentLang].groups[g]) || g; }
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('enstp-lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.setAttribute('data-lang', lang);
+
+  // تحديث أزرار اختيار اللغة
+  document.querySelectorAll('#langSelector button').forEach(btn => {
+    btn.classList.toggle('on', btn.dataset.lang === lang);
+  });
+
+  // تحديث النصوص الثابتة
+  document.title = t('title');
+  $('txt-brand').textContent = t('brand');
+  $('btnBackHome').querySelector('span').textContent = t('backHome');
+  $('heroBadge').innerHTML = `<i class="fa-solid fa-bus"></i> ${t('badge')}`;
+  $('heroTitle').innerHTML = t('heroTitle');
+  $('heroDesc').textContent = t('heroDesc');
+  $('lblFrom').innerHTML = `<i class="fa-solid fa-circle-dot"></i> ${t('from')}`;
+  $('lblTo').innerHTML = `<i class="fa-solid fa-location-dot"></i> ${t('to')}`;
+  $('zoneSearch').placeholder = t('searchPlaceholder');
+  $('txtSampleBar').innerHTML = t('sampleBar');
+  $('upTitle').textContent = t('upTitleNow');
+  $('btnAllZones').textContent = t('allZones');
+  $('btnFavText').textContent = t('fav');
+  $('btnShareText').textContent = t('share');
+  $('txtCommunity').textContent = t('community');
+  $('txtChatSubtitle').textContent = t('chatSubtitle');
+  $('txtQuickReport').textContent = t('quickReport');
+  $('nick').placeholder = t('nickPlaceholder');
+  $('msgText').placeholder = t('msgPlaceholder');
+  $('txtSendBtn').textContent = t('send');
+  $('txtCommunityRules').innerHTML = t('communityRules');
+  $('footer-title').textContent = t('footerTitle');
+  $('footer-sub').textContent = t('footerSub');
+
+  // تحديث أزرار الأيام
+  document.querySelectorAll('#dayTabs button').forEach(btn => {
+    btn.textContent = tDay(btn.dataset.d);
+  });
+
+  initPicker();
+}
+
+/* =====================================================================
+   2) إعدادات المحادثة (Supabase)
    ===================================================================== */
 const SUPABASE_URL = 'https://kzlkkdliipbpekdnbxfj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_gDsJ7Z0Kp0u75cBGGYeg3w_OiDsGbNi';
 
-/* =====================================================================
-   2) معرف المستخدم الشخصي للجهاز الحالي (لتمييز رسائلك وإتاحة حذفها)
-   ===================================================================== */
 function getUserId(){
   let u = localStorage.getItem('bus-user-id');
   if(!u){
@@ -331,78 +650,91 @@ const MY_UID = getUserId();
    ===================================================================== */
 const IS_SAMPLE = false;
 const WK = ['sun','mon','tue','wed','thu'];
-const R = (from,to,step,txt)=>({rule:{from,to,step},txt,est:true});
+const R = (from,to,step,txtKey)=>({rule:{from,to,step},txtKey,est:true});
 
-const GROUPS = { res:'الإقامة الجامعية رويسو', alger:'العاصمة والجامعات (انطلاقاً من القبة)', wil:'الولايات المجاورة (انطلاقاً من القبة)' };
-const L_GO='الذهاب (صباحاً)', L_BACK='الرجوع / العودة';
+const GROUPS = { res:'res', alger:'alger', wil:'wil' };
 
-const ZONES = [
- { id:'revoil', g:'res', name:'الإقامة الجامعية رويسو (REVOIL ↔ ENSTP)', from:'الإقامة الجامعية رويسو', to:'ENSTP - القبة', days:WK,
-   trips:[ {k:'go',label:'الذهاب (Départ)',byDay:{sun:['07:40'],mon:['07:40'],tue:['07:40'],wed:['07:40'],thu:['07:40']}},
-           {k:'back',label:'الإياب (Retour)',byDay:{sun:['14:45','15:20','16:25','16:45','17:45'],mon:['11:20','13:00','15:20','16:25','17:00'],tue:['13:00','14:45','16:25','17:00'],wed:['15:20','16:25','17:00'],thu:['12:20','13:00','14:45','15:20','16:45']}} ] },
+const ZONES_DATA = [
+ { id:'revoil', g:'res', name:{ar:'الإقامة الجامعية رويسو (REVOIL ↔ ENSTP)', fr:'Cité Universitaire Revoil (REVOIL ↔ ENSTP)', en:'Revoil Student Residence (REVOIL ↔ ENSTP)'}, fromKey:'revoilFrom', toKey:'revoilTo', days:WK,
+   trips:[ {k:'go',labelKey:'lRevoilGo',byDay:{sun:['07:40'],mon:['07:40'],tue:['07:40'],wed:['07:40'],thu:['07:40']}},
+           {k:'back',labelKey:'lRevoilBack',byDay:{sun:['14:45','15:20','16:25','16:45','17:45'],mon:['11:20','13:00','15:20','16:25','17:00'],tue:['13:00','14:45','16:25','17:00'],wed:['15:20','16:25','17:00'],thu:['12:20','13:00','14:45','15:20','16:45']}} ] },
 
- { id:'harrach', g:'alger', name:'باش جراح - الحراش', buses:3, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:30','08:00','08:30','09:00','10:00','11:30']},
-   {k:'back',label:L_BACK,t:['13:00','14:30','16:00','17:00','18:00']} ]},
- { id:'meaalma-bm', g:'alger', name:'الإقامة الجامعية 01-02 · المعالمة - بني مسوس', buses:7, trips:[
-   {k:'go',label:L_GO,...R('07:00','12:30',30,'ابتداءً من 07:00 كل 30 دقيقة')},
-   {k:'back',label:L_BACK,t:['13:00','14:00','15:00','16:00','17:00','18:00']} ]},
- { id:'ain-benian', g:'alger', name:'عين البنيان - سطاوالي', buses:2, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:15','09:00','10:00']},{k:'back',label:L_BACK,t:['14:15','15:30','17:00','18:00']} ]},
- { id:'chatonaf', g:'alger', name:'شاطوناف', buses:2, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:15','09:00','10:00']},{k:'back',label:L_BACK,t:['14:15','15:30','17:00','18:00']} ]},
- { id:'kherouba', g:'alger', name:'خروبة', buses:4, trips:[
-   {k:'go',label:L_GO,...R('07:15','12:00',30,'من 07:15 إلى 12:00 (كل 30 دقيقة)')},
-   {k:'back',label:L_BACK,...R('13:30','17:00',30,'من 13:30 إلى 17:00 (كل 30/60 دقيقة)')} ]},
- { id:'tessala', g:'alger', name:'تسالة المرجة', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['13:00','17:15']} ]},
- { id:'sidi-abdellah', g:'alger', name:'المعالمة - سيدي عبد الله (سيدي بنور)', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['13:00','17:15']} ]},
- { id:'1mai', g:'alger', name:'أول ماي', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00','09:30']},{k:'back',label:L_BACK,t:['13:00','17:15']} ]},
- { id:'dweira', g:'alger', name:'بابا حسن - الدويرة', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00','09:30']},{k:'back',label:L_BACK,t:['13:00','17:15']} ]},
- { id:'bastaali', g:'alger', name:'باسطا علي', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00','09:30']},{k:'back',label:L_BACK,t:['14:00','17:15']} ]},
- { id:'zeralda', g:'alger', name:'زرالدة', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['14:30','17:15']} ]},
- { id:'cosider', g:'alger', name:'كوسيدار - السبالة - AADL - ITFC', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['14:30','17:15']} ]},
- { id:'ouled-fayet', g:'alger', name:'أولاد فايت', buses:3, trips:[
-   {k:'go',label:'الذهاب',text:'رحلات متتابعة من 07:00 إلى 12:20'},{k:'back',label:'الإياب',t:['17:15']} ]},
- { id:'info-com', g:'alger', name:'كلية الإعلام والاتصال', trips:[
-   {k:'go',label:'الذهاب',t:['07:00','07:30','08:00','10:00','10:30','11:00']},{k:'back',label:'العودة',t:['13:30','14:00','15:15','17:00','18:00']} ]},
- { id:'tafourah', g:'alger', name:'تافورة', trips:[
-   {k:'go',label:'الذهاب',t:['07:15','08:00','10:00','11:00']},{k:'back',label:'العودة',t:['14:00','14:30','15:00','15:30','17:15','18:00']} ]},
+ { id:'harrach', g:'alger', name:{ar:'باش جراح - الحراش', fr:'Bachdjerrah - El Harrach', en:'Bachdjerrah - El Harrach'}, buses:3, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:30','08:00','08:30','09:00','10:00','11:30']},
+   {k:'back',labelKey:'lBack',t:['13:00','14:30','16:00','17:00','18:00']} ]},
+ { id:'meaalma-bm', g:'alger', name:{ar:'الإقامة الجامعية 01-02 · المعالمة - بني مسوس', fr:'Cité U 01-02 · Mahelma - Beni Messous', en:'Residence 01-02 · Mahelma - Beni Messous'}, buses:7, trips:[
+   {k:'go',labelKey:'lGo',...R('07:00','12:30',30,'')},
+   {k:'back',labelKey:'lBack',t:['13:00','14:00','15:00','16:00','17:00','18:00']} ]},
+ { id:'ain-benian', g:'alger', name:{ar:'عين البنيان - سطاوالي', fr:'Aïn Bénian - Staouéli', en:'Ain Benian - Staoueli'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:15','09:00','10:00']},{k:'back',labelKey:'lBack',t:['14:15','15:30','17:00','18:00']} ]},
+ { id:'chatonaf', g:'alger', name:{ar:'شاطوناف', fr:'Châteauneuf', en:'Chateauneuf'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:15','09:00','10:00']},{k:'back',labelKey:'lBack',t:['14:15','15:30','17:00','18:00']} ]},
+ { id:'kherouba', g:'alger', name:{ar:'خروبة', fr:'Caroubier (Kherouba)', en:'Kherouba'}, buses:4, trips:[
+   {k:'go',labelKey:'lGo',...R('07:15','12:00',30,'')},
+   {k:'back',labelKey:'lBack',...R('13:30','17:00',30,'')} ]},
+ { id:'tessala', g:'alger', name:{ar:'تسالة المرجة', fr:'Tessala El Merdja', en:'Tessala El Merdja'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['13:00','17:15']} ]},
+ { id:'sidi-abdellah', g:'alger', name:{ar:'المعالمة - سيدي عبد الله (سيدي بنور)', fr:'Mahelma - Sidi Abdellah (Sidi Bennour)', en:'Mahelma - Sidi Abdellah (Sidi Bennour)'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['13:00','17:15']} ]},
+ { id:'1mai', g:'alger', name:{ar:'أول ماي', fr:'Place du 1er Mai', en:'1st May Square'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','09:30']},{k:'back',labelKey:'lBack',t:['13:00','17:15']} ]},
+ { id:'dweira', g:'alger', name:{ar:'بابا حسن - الدويرة', fr:'Baba Hassen - Douera', en:'Baba Hassen - Douera'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','09:30']},{k:'back',labelKey:'lBack',t:['13:00','17:15']} ]},
+ { id:'bastaali', g:'alger', name:{ar:'باسطا علي', fr:'Basta Ali', en:'Basta Ali'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','09:30']},{k:'back',labelKey:'lBack',t:['14:00','17:15']} ]},
+ { id:'zeralda', g:'alger', name:{ar:'زرالدة', fr:'Zéralda', en:'Zeralda'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['14:30','17:15']} ]},
+ { id:'cosider', g:'alger', name:{ar:'كوسيدار - السبالة - AADL - ITFC', fr:'Cosider - Sebala - AADL - ITFC', en:'Cosider - Sebala - AADL - ITFC'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['14:30','17:15']} ]},
+ { id:'ouled-fayet', g:'alger', name:{ar:'أولاد فايت', fr:'Ouled Fayet', en:'Ouled Fayet'}, buses:3, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','08:00','09:00','10:00','11:00','12:20']},{k:'back',labelKey:'lBack',t:['17:15']} ]},
+ { id:'info-com', g:'alger', name:{ar:'كلية الإعلام والاتصال', fr:'Faculté de l\'Information et Com.', en:'Faculty of Information & Com.'}, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:30','08:00','10:00','10:30','11:00']},{k:'back',labelKey:'lBack',t:['13:30','14:00','15:15','17:00','18:00']} ]},
+ { id:'tafourah', g:'alger', name:{ar:'تافورة', fr:'Tafourah', en:'Tafourah'}, trips:[
+   {k:'go',labelKey:'lGo',t:['07:15','08:00','10:00','11:00']},{k:'back',labelKey:'lBack',t:['14:00','14:30','15:00','15:30','17:15','18:00']} ]},
 
- { id:'blida', g:'wil', name:'البليدة (عبر الصومعة والأربعاء)', buses:1, trips:[
-   {k:'go',label:L_GO,t:['06:30','06:45']},{k:'back',label:L_BACK,t:['14:30','16:00']} ]},
- { id:'boufarik', g:'wil', name:'بوفاريك', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['14:30','16:00']} ]},
- { id:'rouiba', g:'wil', name:'رويبة - رغاية', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['16:00']} ]},
- { id:'kalitous', g:'wil', name:'الكاليتوس - الأربعاء', buses:2, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:30']},{k:'back',label:L_BACK,t:['15:30','17:30']} ]},
- { id:'mefteh', g:'wil', name:'مفتاح', buses:1, trips:[
-   {k:'go',label:L_GO,t:['07:00']},{k:'back',label:L_BACK,t:['17:30']} ]},
- { id:'bentalha-bougara', g:'wil', name:'بن طلحة - سيدي موسى - بوقرة', buses:2, trips:[
-   {k:'go',label:L_GO,t:['06:45','07:00']},{k:'back',label:L_BACK,t:['15:30','17:30']} ]},
- { id:'kolea', g:'wil', name:'دواودة - فوكة - القليعة', buses:2, trips:[
-   {k:'go',label:L_GO,t:['06:30','07:00','07:30']},{k:'back',label:L_BACK,t:['14:30','15:30','17:30']} ]},
- { id:'bouismail', g:'wil', name:'بوسماعيل - بوهارون - عين تاغورايت', buses:1, trips:[
-   {k:'go',label:L_GO,t:['06:45']},{k:'back',label:L_BACK,t:['17:45']} ]},
- { id:'baraki', g:'wil', name:'براقي - بن طلحة', buses:2, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:30']},{k:'back',label:L_BACK,t:['15:30','17:30']} ]},
- { id:'birtouta', g:'wil', name:'بئر توتة', buses:2, trips:[
-   {k:'go',label:L_GO,t:['07:00','07:30']},{k:'back',label:L_BACK,t:['15:30','17:30']} ]},
- { id:'tipaza', g:'wil', name:'تيبازة / حجوط', buses:1, trips:[
-   {k:'go',label:L_GO,t:['06:30','06:45']},{k:'back',label:L_BACK,t:['16:00','17:30']} ]},
+ { id:'blida', g:'wil', name:{ar:'البليدة (عبر الصومعة والأربعاء)', fr:'Blida (via Soumaâ & Larbaâ)', en:'Blida (via Soumaa & Larbaa)'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['06:30','06:45']},{k:'back',labelKey:'lBack',t:['14:30','16:00']} ]},
+ { id:'boufarik', g:'wil', name:{ar:'بوفاريك', fr:'Boufarik', en:'Boufarik'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['14:30','16:00']} ]},
+ { id:'rouiba', g:'wil', name:{ar:'رويبة - رغاية', fr:'Rouïba - Réghaïa', en:'Rouiba - Reghaia'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['16:00']} ]},
+ { id:'kalitous', g:'wil', name:{ar:'الكاليتوس - الأربعاء', fr:'Les Eucalyptus - Larbaâ', en:'El Khensa - Larbaa'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:30']},{k:'back',labelKey:'lBack',t:['15:30','17:30']} ]},
+ { id:'mefteh', g:'wil', name:{ar:'مفتاح', fr:'Meftah', en:'Meftah'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00']},{k:'back',labelKey:'lBack',t:['17:30']} ]},
+ { id:'bentalha-bougara', g:'wil', name:{ar:'بن طلحة - سيدي موسى - بوقرة', fr:'Bentalha - Sidi Moussa - Bougara', en:'Bentalha - Sidi Moussa - Bougara'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['06:45','07:00']},{k:'back',labelKey:'lBack',t:['15:30','17:30']} ]},
+ { id:'kolea', g:'wil', name:{ar:'دواودة - فوكة - القليعة', fr:'Douaouda - Fouka - Koléa', en:'Douaouda - Fouka - Kolea'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['06:30','07:00','07:30']},{k:'back',labelKey:'lBack',t:['14:30','15:30','17:30']} ]},
+ { id:'bouismail', g:'wil', name:{ar:'بوسماعيل - بوهارون - عين تاغورايت', fr:'Bou Ismaïl - Bou Haroun - Aïn Tagourait', en:'Bou Ismail - Bou Haroun - Ain Tagourait'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['06:45']},{k:'back',labelKey:'lBack',t:['17:45']} ]},
+ { id:'baraki', g:'wil', name:{ar:'براقي - بن طلحة', fr:'Baraki - Bentalha', en:'Baraki - Bentalha'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:30']},{k:'back',labelKey:'lBack',t:['15:30','17:30']} ]},
+ { id:'birtouta', g:'wil', name:{ar:'بئر توتة', fr:'Birtouta', en:'Birtouta'}, buses:2, trips:[
+   {k:'go',labelKey:'lGo',t:['07:00','07:30']},{k:'back',labelKey:'lBack',t:['15:30','17:30']} ]},
+ { id:'tipaza', g:'wil', name:{ar:'تيبازة / حجوط', fr:'Tipaza / Hadjout', en:'Tipaza / Hadjout'}, buses:1, trips:[
+   {k:'go',labelKey:'lGo',t:['06:30','06:45']},{k:'back',labelKey:'lBack',t:['16:00','17:30']} ]},
 ];
+
+function getZoneName(z) {
+  if (!z) return '';
+  if (typeof z.name === 'object') return z.name[currentLang] || z.name['ar'];
+  return z.name;
+}
+
+const ZONES = ZONES_DATA.map(z => {
+  const zoneObj = { ...z };
+  Object.defineProperty(zoneObj, 'name', {
+    get: function() { return getZoneName(z); }
+  });
+  return zoneObj;
+});
+
 ZONES.forEach(z=>{ if(!z.days) z.days=WK; z.assumed = z.id!=='revoil'; });
 
 /* ===================== المنطق البرمجي ===================== */
 const DAYS=['sun','mon','tue','wed','thu','fri','sat'];
-const DAY_LABEL={sun:'الأحد',mon:'الاثنين',tue:'الثلاثاء',wed:'الأربعاء',thu:'الخميس',fri:'الجمعة',sat:'السبت'};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const toMin=s=>{const[h,m]=s.split(':').map(Number);return h*60+m};
@@ -419,19 +751,19 @@ function tripTimes(z,tr,day){
   if(tr.rule)return expand(tr.rule);
   return [];
 }
-function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2200);}
+function toast(text){const e=$('toast');e.textContent=text;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2200);}
 
 /* ---------- اختيار نقطة الانطلاق والوصول ---------- */
-const KOUBA='kouba', KOUBA_LABEL='القبة (ENSTP)';
-/* اتجاه الرحلات في البرنامج: «الذهاب (صباحاً)» = من الوجهة إلى القبة، و«الرجوع / العودة» = من القبة إلى الوجهة.
-   إذا كان برنامجكم الرسمي يعني العكس غيّر القيمة التالية إلى false (رحلات الإقامة رويسو تبقى كما هي). */
+const KOUBA='kouba';
 const GO_FROM_ZONE=true;
 let fromId=KOUBA, toId='';
 const zoneById=id=>ZONES.find(x=>x.id===id);
 const goFromZone=z=>z.id==='revoil'?true:GO_FROM_ZONE;
 const kFor=(z,zoneIsOrigin)=>(zoneIsOrigin===goFromZone(z))?'go':'back';
+
 function routeText(z,k){
-  const place=z.from||z.name, school=z.to||KOUBA_LABEL;
+  const place = z.fromKey ? t(z.fromKey) : z.name;
+  const school = z.toKey ? t(z.toKey) : t('kouba');
   return ((k==='go')===goFromZone(z))?{from:place,to:school}:{from:school,to:place};
 }
 function resolveRoute(){
@@ -444,23 +776,23 @@ function resolveRoute(){
 }
 function drawChips(q){
   q=(q||'').trim().toLowerCase();
-  $('zoneChips').innerHTML=Object.entries(GROUPS).map(([g,label])=>{
+  $('zoneChips').innerHTML=Object.entries(GROUPS).map(([g,key])=>{
     const list=ZONES.filter(z=>z.g===g&&(!q||z.name.toLowerCase().includes(q)));
-    return list.length?`<div class="grp"><h4>${esc(label)}</h4><div class="chips">${list.map(z=>`<button class="chip ${z.id===toId?'on':''}" data-z="${z.id}">${esc(z.name)}</button>`).join('')}</div></div>`:'';
-  }).join('')||'<div class="grp"><h4>لا توجد وجهة بهذا الاسم</h4></div>';
+    return list.length?`<div class="grp"><h4>${esc(tGroup(key))}</h4><div class="chips">${list.map(z=>`<button class="chip ${z.id===toId?'on':''}" data-z="${z.id}">${esc(z.name)}</button>`).join('')}</div></div>`:'';
+  }).join('')||`<div class="grp"><h4>${t('notFound')}</h4></div>`;
 }
 function zoneOptions(ph){
-  return `<option value="">${ph}</option><option value="${KOUBA}">${KOUBA_LABEL}</option>`+Object.entries(GROUPS).map(([g,label])=>`<optgroup label="${esc(label)}">${ZONES.filter(z=>z.g===g).map(z=>`<option value="${z.id}">${esc(z.from&&z.id==='revoil'?z.from:z.name)}</option>`).join('')}</optgroup>`).join('');
+  return `<option value="">${ph}</option><option value="${KOUBA}">${t('kouba')}</option>`+Object.entries(GROUPS).map(([g,key])=>`<optgroup label="${esc(tGroup(key))}">${ZONES.filter(z=>z.g===g).map(z=>`<option value="${z.id}">${esc(z.fromKey&&z.id==='revoil'?t(z.fromKey):z.name)}</option>`).join('')}</optgroup>`).join('');
 }
 function initPicker(){
-  $('fromSel').innerHTML=zoneOptions('— من أين؟ —');
-  $('zoneSel').innerHTML=zoneOptions('— إلى أين؟ —');
+  $('fromSel').innerHTML=zoneOptions(t('phFrom'));
+  $('zoneSel').innerHTML=zoneOptions(t('phTo'));
   drawChips('');
-  $('zoneChips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;toId=b.dataset.z;if(!fromId)fromId=KOUBA;applyRoute(true)});
-  $('zoneSearch').addEventListener('input',e=>drawChips(e.target.value));
-  $('fromSel').addEventListener('change',e=>{fromId=e.target.value;if(fromId&&!toId&&fromId!==KOUBA)toId=KOUBA;applyRoute(true)});
-  $('zoneSel').addEventListener('change',e=>{toId=e.target.value;if(toId&&!fromId&&toId!==KOUBA)fromId=KOUBA;applyRoute(true)});
-  $('swapBtn').addEventListener('click',()=>{const t=fromId;fromId=toId;toId=t;applyRoute(false)});
+  $('zoneChips').onclick = e => { const b=e.target.closest('.chip'); if(!b)return; toId=b.dataset.z; if(!fromId)fromId=KOUBA; applyRoute(true); };
+  $('zoneSearch').oninput = e => drawChips(e.target.value);
+  $('fromSel').onchange = e => { fromId=e.target.value; if(fromId&&!toId&&fromId!==KOUBA)toId=KOUBA; applyRoute(true); };
+  $('zoneSel').onchange = e => { toId=e.target.value; if(toId&&!fromId&&toId!==KOUBA)toId=KOUBA; applyRoute(true); };
+  $('swapBtn').onclick = () => { const temp=fromId; fromId=toId; toId=temp; applyRoute(false); };
   $('sampleBar').classList.toggle('hidden',!IS_SAMPLE);
   const p=new URLSearchParams(location.search), fav=localStorage.getItem('bus-fav');
   const ok=id=>id===KOUBA||zoneById(id);
@@ -478,8 +810,8 @@ function applyRoute(scroll){
   const u=new URL(location.href);u.searchParams.delete('zone');
   if(fromId&&toId){u.searchParams.set('from',fromId);u.searchParams.set('to',toId)}else{u.searchParams.delete('from');u.searchParams.delete('to')}
   history.replaceState(null,'',u);
-  if(fromId&&toId&&fromId===toId)toast('اختر نقطتين مختلفتين');
-  else if(fromId&&toId&&!has)toast('لا توجد رحلات مباشرة بين هاتين النقطتين');
+  if(fromId&&toId&&fromId===toId)toast(t('diffPoints'));
+  else if(fromId&&toId&&!has)toast(t('noDirect'));
   if(!has){renderUpNow();return;}
   renderResults(); loadChat(true);
   if(scroll)$('results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -497,7 +829,7 @@ function setDay(d){dayType=d;renderResults();}
 /* ---------- أقرب الحافلات ---------- */
 function nextDepartures(z,day,k){
   const n=nowMin(), out=[];
-  z.trips.filter(tr=>!k||tr.k===k).forEach(tr=>tripTimes(z,tr,day).forEach(t=>{if(toMin(t)>=n)out.push({z,tr,t,m:toMin(t),est:!!tr.est})}));
+  z.trips.filter(tr=>!k||tr.k===k).forEach(tr=>tripTimes(z,tr,day).forEach(tVal=>{if(toMin(tVal)>=n)out.push({z,tr,t:tVal,m:toMin(tVal),est:!!tr.est})}));
   return out.sort((a,b)=>a.m-b.m);
 }
 function renderUpNow(){
@@ -505,48 +837,73 @@ function renderUpNow(){
   ZONES.forEach(z=>{const nx=nextDepartures(z,day)[0];if(nx)all.push(nx)});
   all.sort((a,b)=>a.m-b.m);
   const n=nowMin();
-  $('upTitle').textContent='الحافلات القادمة الآن · '+DAY_LABEL[day];
-  $('upGrid').innerHTML=all.length?all.slice(0,9).map(x=>{const rt=routeText(x.z,x.tr.k);return `<button class="up" onclick="selectZone('${x.z.id}',true,'${x.tr.k}')"><b class="t">${x.t}</b><span><strong>${esc(rt.from)} ← ${esc(rt.to)}</strong><small>${esc(x.tr.label)} · بعد ${x.m-n} د${x.est?' · تقريبي':''}</small></span></button>`}).join(''):
-    `<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-moon"></i>لا توجد حافلات متبقية اليوم. اختر وجهة لمعرفة مواعيد الأيام الأخرى.</div>`;
+  $('upTitle').textContent=t('upTitleDay')+tDay(day);
+  $('upGrid').innerHTML=all.length?all.slice(0,9).map(x=>{
+    const rt=routeText(x.z,x.tr.k);
+    const label = t(x.tr.labelKey || 'lGo');
+    const arrow = currentLang === 'ar' ? '←' : '→';
+    return `<button class="up" onclick="selectZone('${x.z.id}',true,'${x.tr.k}')"><b class="t">${x.t}</b><span><strong>${esc(rt.from)} ${arrow} ${esc(rt.to)}</strong><small>${esc(label)} · ${t('agoMin', {n: x.m-n})}${x.est?t('approx'):''}</small></span></button>`;
+  }).join(''):`<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-moon"></i>${t('noBusesLeftToday')}</div>`;
 }
 
 /* ---------- عرض نتائج المسار ---------- */
 function tripBlock(z,tr,today,n){
-  const ts=tripTimes(z,tr,dayType); let first=-1; if(dayType===today)first=ts.findIndex(t=>toMin(t)>=n);
+  const ts=tripTimes(z,tr,dayType); let first=-1; if(dayType===today)first=ts.findIndex(tVal=>toMin(tVal)>=n);
+  const label = t(tr.labelKey || 'lGo');
   let body;
-  if(tr.rule||tr.text) body=`<span class="tm rule">${esc(tr.txt||tr.text)}</span>`+(tr.rule?'<div class="l-note" style="margin-top:10px">لم يحدد البرنامج ساعة نهاية دقيقة لهذه الرحلات؛ تُحسب هنا تقريباً لحظة الانطلاق التالية.</div>':'');
-  else body=ts.length?ts.map((t,i)=>`<span class="tm ${dayType===today&&toMin(t)<n?'past':''} ${i===first?'nx':''}">${t}</span>`).join(''):'<span class="tm">—</span>';
-  return `<div class="trip"><h5><i class="fa-solid ${tr.k==='go'?'fa-sun':'fa-moon'}"></i>${esc(tr.label)}${tr.est?'<em>تقريبي</em>':''}</h5><div class="times">${body}</div></div>`;
+  if(tr.rule||tr.text) body=`<span class="tm rule">${esc(tr.txt||tr.text||'')}</span>`+(tr.rule?`<div class="l-note" style="margin-top:10px">${t('ruleNote')}</div>`:'');
+  else body=ts.length?ts.map((tVal,i)=>`<span class="tm ${dayType===today&&toMin(tVal)<n?'past':''} ${i===first?'nx':''}">${tVal}</span>`).join(''):'<span class="tm">—</span>';
+  return `<div class="trip"><h5><i class="fa-solid ${tr.k==='go'?'fa-sun':'fa-moon'}"></i>${esc(label)}${tr.est?`<em>${t('approx')}</em>`:''}</h5><div class="times">${body}</div></div>`;
 }
 function renderResults(){
   const r=resolveRoute(); if(!r.segs.length)return;
   const today=dayOf(), n=nowMin();
   const s0=r.segs[0], s1=r.segs[1];
   const a=routeText(s0.z,s0.k), b=s1?routeText(s1.z,s1.k):a;
-  const buses=(!r.via&&s0.z.buses)?' · '+s0.z.buses+(s0.z.buses===1?' حافلة':' حافلات'):'';
-  $('zTitle').innerHTML=`${esc(a.from)} <i class="fa-solid fa-arrow-left" style="font-size:.7em;color:var(--gold)"></i> ${esc(b.to)}<small>${DAY_LABEL[dayType]}${dayType===today?' (اليوم)':''}${r.via?' · عبر القبة':''}${buses}</small>`;
+  const busesText = (!r.via&&s0.z.buses) ? (s0.z.buses===1 ? t('busCount1') : t('busCountN', {n: s0.z.buses})) : '';
+  const arrowIcon = currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right';
+  
+  $('zTitle').innerHTML=`${esc(a.from)} <i class="fa-solid ${arrowIcon}" style="font-size:.7em;color:var(--gold)"></i> ${esc(b.to)}<small>${tDay(dayType)}${dayType===today?t('todayTag'):''}${r.via?t('viaKouba'):''}${busesText}</small>`;
   document.querySelectorAll('#dayTabs button').forEach(bt=>bt.classList.toggle('on',bt.dataset.d===dayType));
   const fav=localStorage.getItem('bus-fav')===zoneId; $('favBtn').classList.toggle('on',fav);
-  $('favBtn').querySelector('span').textContent=fav?'وجهتي المفضلة':'اجعلها مفضلة';
+  $('favBtn').querySelector('span').textContent=fav?t('unfav'):t('fav');
   const box=$('nextBox'), runs0=s0.z.days.includes(dayType);
+  
   if(dayType===today&&runs0){
     const nx=nextDepartures(s0.z,dayType,s0.k)[0];
     box.classList.remove('hidden');
-    if(nx){const d=nx.m-n;box.innerHTML=`<div class="ic"><i class="fa-solid fa-bus"></i></div><div><small>أقرب حافلة${r.via?' (الرحلة الأولى)':''}</small><h3>${esc(a.from)} ← ${esc(a.to)} · ${nx.t}${nx.est?' (تقريبي)':''}</h3><p>${esc(nx.tr.label)}</p></div><div class="cd"><b>${d>=60?Math.floor(d/60)+':'+String(d%60).padStart(2,'0'):d}</b><span>${d>=60?'ساعة : دقيقة':'دقيقة'}</span></div>`;}
-    else box.innerHTML=`<div class="ic"><i class="fa-solid fa-moon"></i></div><div><small>انتهت رحلات اليوم</small><h3>لا توجد حافلات متبقية اليوم</h3><p>اختر يوماً آخر من الأعلى لرؤية المواعيد.</p></div><div></div>`;
+    if(nx){
+      const d=nx.m-n;
+      const arrow = currentLang === 'ar' ? '←' : '→';
+      const label = t(nx.tr.labelKey || 'lGo');
+      box.innerHTML=`<div class="ic"><i class="fa-solid fa-bus"></i></div><div><small>${t('closestBus')}${r.via?t('firstLeg'):''}</small><h3>${esc(a.from)} ${arrow} ${esc(a.to)} · ${nx.t}${nx.est?t('approx'):''}</h3><p>${esc(label)}</p></div><div class="cd"><b>${d>=60?Math.floor(d/60)+':'+String(d%60).padStart(2,'0'):d}</b><span>${d>=60?t('hrMin'):t('mins')}</span></div>`;
+    }
+    else box.innerHTML=`<div class="ic"><i class="fa-solid fa-moon"></i></div><div><small>${t('dayEnded')}</small><h3>${t('noBusesLeft')}</h3><p>${t('chooseAnotherDay')}</p></div><div></div>`;
   } else box.classList.add('hidden');
+
   const arts=r.segs.map(sg=>{
     const z=sg.z, rt=routeText(z,sg.k), runs=z.days.includes(dayType);
-    const trips=!runs?`<div class="empty" style="padding:22px"><i class="fa-regular fa-calendar-xmark"></i>لا توجد رحلات في هذا اليوم حسب البرنامج المنشور.</div>`:
+    const trips=!runs?`<div class="empty" style="padding:22px"><i class="fa-regular fa-calendar-xmark"></i>${t('noTripsDay')}</div>`:
       z.trips.filter(tr=>tr.k===sg.k).map(tr=>tripBlock(z,tr,today,n)).join('');
     const meta=z.assumed?'<div class="meta"></div>':'';
-    return `<article class="line"><div class="l-top"><div class="l-no"><i class="fa-solid fa-bus"></i></div><div><h3>${esc(z.name)}</h3><div class="route"><span>${esc(rt.from)}</span><i class="fa-solid fa-arrow-right"></i><span>${esc(rt.to)}</span></div></div></div>${meta}${trips}</article>`;
+    const arrow = currentLang === 'ar' ? 'fa-arrow-left' : 'fa-arrow-right';
+    return `<article class="line"><div class="l-top"><div class="l-no"><i class="fa-solid fa-bus"></i></div><div><h3>${esc(z.name)}</h3><div class="route"><span>${esc(rt.from)}</span><i class="fa-solid ${arrow}"></i><span>${esc(rt.to)}</span></div></div></div>${meta}${trips}</article>`;
   });
-  $('lines').innerHTML=r.via?arts[0]+`<div class="l-note" style="margin:14px 0"><i class="fa-solid fa-circle-info"></i> لا يوجد خط مباشر بين الوجهتين؛ جميع الخطوط تمر عبر القبة. انزل في القبة ثم اركب الرحلة الثانية.</div>`+arts[1]:arts[0];
+  $('lines').innerHTML=r.via?arts[0]+`<div class="l-note" style="margin:14px 0"><i class="fa-solid fa-circle-info"></i> ${t('viaNotice')}</div>`+arts[1]:arts[0];
   const zc=zoneById(zoneId); $('zoneNameChat').textContent=zc?zc.name:'—';
 }
-function toggleFav(){const z=zoneId;if(!z)return;if(localStorage.getItem('bus-fav')===z){localStorage.removeItem('bus-fav');toast('أُزيلت من المفضلة')}else{localStorage.setItem('bus-fav',z);toast('ستُفتح هذه الوجهة تلقائياً')}renderResults();}
-function shareZone(){const u=location.href;if(navigator.share){navigator.share({title:document.title,url:u}).catch(()=>{})}else{try{navigator.clipboard.writeText(u);toast('تم نسخ الرابط')}catch(e){}}}
+
+function toggleFav(){
+  const z=zoneId;if(!z)return;
+  if(localStorage.getItem('bus-fav')===z){localStorage.removeItem('bus-fav');toast(t('removedFav'))}
+  else{localStorage.setItem('bus-fav',z);toast(t('addedFav'))}
+  renderResults();
+}
+function shareZone(){
+  const u=location.href;
+  if(navigator.share){navigator.share({title:document.title,url:u}).catch(()=>{})}
+  else{try{navigator.clipboard.writeText(u);toast(t('copiedLink'))}catch(e){}}
+}
 
 /* ---------- المحادثة: Supabase والتخزين المحلي + الحذف عند الجميع ---------- */
 const REMOTE=!!(SUPABASE_URL&&SUPABASE_KEY);
@@ -556,16 +913,16 @@ if(String(SUPABASE_KEY).startsWith('eyJ'))H.Authorization='Bearer '+SUPABASE_KEY
 
 async function chk(r){
   if(r.ok)return r;
-  let t='';try{t=await r.text()}catch(e){}
-  throw new Error(r.status+' '+t);
+  let text='';try{text=await r.text()}catch(e){}
+  throw new Error(r.status+' '+text);
 }
 function explain(e){
   console.error('[bus-chat]',e);
   const m=String(e&&e.message||e);
-  if(/Failed to fetch|NetworkError|Load failed/i.test(m))return 'تعذّر الوصول إلى Supabase.';
-  if(/PGRST205|PGRST106|does not exist|^404/.test(m))return 'الجدول bus_messages غير موجود في Supabase.';
-  if(/row-level security|42501/.test(m))return 'سياسة الأمن تحظر هذه العملية (تأكد من تفعيل Delete Policy).';
-  return 'حدث خطأ: '+m.slice(0,140);
+  if(/Failed to fetch|NetworkError|Load failed/i.test(m))return 'Error connecting to database.';
+  if(/PGRST205|PGRST106|does not exist|^404/.test(m))return 'Table bus_messages does not exist.';
+  if(/row-level security|42501/.test(m))return 'Security policy error.';
+  return 'Error: '+m.slice(0,140);
 }
 
 const Store = REMOTE ? {
@@ -590,7 +947,7 @@ const Store = REMOTE ? {
     });
     if(!r.ok) {
       const errText = await r.text();
-      throw new Error('رفض الخادم الحذف: ' + errText);
+      throw new Error('Server rejected deletion: ' + errText);
     }
   }
 } : {
@@ -611,78 +968,83 @@ const Store = REMOTE ? {
   }
 };
 
-const STATUS={ontime:['🟢','في الوقت'],late:['🟡','متأخرة'],cancel:['🔴','ملغاة'],crowd:['👥','مزدحمة'],ok:['✅','وصلت']};
 const colors=['#2563eb','#7c3aed','#059669','#d97706','#dc2626','#0891b2','#be185d'];
 const colorOf=s=>colors[[...s].reduce((a,c)=>a+c.charCodeAt(0),0)%colors.length];
-const ago=iso=>{const m=Math.max(0,Math.round((Date.now()-new Date(iso))/60000));return m<1?'الآن':m<60?'قبل '+m+' د':m<1440?'قبل '+Math.floor(m/60)+' س':'قبل '+Math.floor(m/1440)+' ي';};
+const ago=iso=>{
+  const m=Math.max(0,Math.round((Date.now()-new Date(iso))/60000));
+  return m<1 ? t('agoNow') : m<60 ? t('agoMin', {n:m}) : m<1440 ? t('agoHr', {n:Math.floor(m/60)}) : t('agoDay', {n:Math.floor(m/1440)});
+};
 const hidden=()=>JSON.parse(localStorage.getItem('bus-hidden')||'[]');
 let polling=null;
 
 async function loadChat(showLoad){
   if(!zoneId)return;
-  $('liveTag').className='live'+(REMOTE?'':' local'); $('liveTag').textContent=REMOTE?'مباشر':'محلي على جهازك فقط';
-  try{renderChat(await Store.list(zoneId));}catch(e){const t=explain(e);if(showLoad)$('msgs').innerHTML='<div class="noMsg">تعذّر تحميل الرسائل.<br><small>'+esc(t)+'</small></div>';}
+  $('liveTag').className='live'+(REMOTE?'':' local'); $('liveTag').textContent=REMOTE?t('liveMsg'):t('localMsg');
+  try{renderChat(await Store.list(zoneId));}catch(e){const text=explain(e);if(showLoad)$('msgs').innerHTML=`<div class="noMsg">Error loading messages.<br><small>${esc(text)}</small></div>`;}
   clearInterval(polling); polling=setInterval(()=>{if(!document.hidden)loadChat(false)},REMOTE?10000:60000);
 }
 
 function renderChat(list){
   const hid=hidden(), now=Date.now(), cnt={};
   list.forEach(m=>{if(m.kind==='status'&&now-new Date(m.created_at)<7200000)cnt[m.body]=(cnt[m.body]||0)+1;});
-  $('statusBtns').innerHTML=Object.entries(STATUS).map(([k,[e,l]])=>`<button class="sb ${cnt[k]?'has':''}" onclick="sendStatus('${k}')">${e} ${l}<b>${cnt[k]||0}</b></button>`).join('');
+  
+  const statusDict = TRANSLATIONS[currentLang].status || TRANSLATIONS['ar'].status;
+  $('statusBtns').innerHTML=Object.entries(statusDict).map(([k,[e,l]])=>`<button class="sb ${cnt[k]?'has':''}" onclick="sendStatus('${k}')">${e} ${l}<b>${cnt[k]||0}</b></button>`).join('');
   const vis=list.filter(m=>!hid.includes(String(m.id)));
 
   $('msgs').innerHTML=vis.length?vis.map(m=>{
-    const st=m.kind==='status', s=STATUS[m.body];
-    const isMine = m.user_id === MY_UID; // معرفة هل الرسالة لي
+    const st=m.kind==='status', s=statusDict[m.body];
+    const isMine = m.user_id === MY_UID;
 
-    // زر الحذف للجميع لرسائلي، وإخفاء محلي لرسائل الآخرين
     const actionBtn = isMine
-      ? `<button class="rp del" onclick="deleteMsg('${esc(String(m.id))}')"><i class="fa-solid fa-trash-can"></i> حذف عند الجميع</button>`
-      : `<button class="rp" onclick="hideMsg('${esc(String(m.id))}')"><i class="fa-regular fa-eye-slash"></i> إخفاء</button>`;
+      ? `<button class="rp del" onclick="deleteMsg('${esc(String(m.id))}')"><i class="fa-solid fa-trash-can"></i> ${t('deleteForEveryone')}</button>`
+      : `<button class="rp" onclick="hideMsg('${esc(String(m.id))}')"><i class="fa-regular fa-eye-slash"></i> ${t('hide')}</button>`;
 
     return `<div class="msg">
       <div class="av" style="--c:${colorOf(m.nick||'?')}">${esc((m.nick||'؟').trim().charAt(0)||'؟')}</div>
       <div class="bub ${st?'st':''}">
         <div class="h">
-          <div>${esc(m.nick||'مجهول')} ${isMine?'<small style="color:var(--gold)">(أنت)</small>':''}</div>
+          <div>${esc(m.nick||'?')} ${isMine?`<small style="color:var(--gold)">${t('you')}</small>`:''}</div>
           <span>${ago(m.created_at)}</span>
         </div>
         <p>${st&&s?`${s[0]} <b>${s[1]}</b>`:esc(m.body)}</p>
         ${actionBtn}
       </div>
     </div>`;
-  }).join(''):'<div class="noMsg"><i class="fa-regular fa-comments" style="display:block;font-size:1.8rem;color:var(--gold);margin-bottom:8px"></i>لا توجد رسائل بعد في هذه الوجهة. كن أول من يخبر الآخرين بمستجدات الحافلات!</div>';
+  }).join(''):`<div class="noMsg"><i class="fa-regular fa-comments" style="display:block;font-size:1.8rem;color:var(--gold);margin-bottom:8px"></i>${t('noMsgsYet')}</div>`;
 }
 
 function hideMsg(id){const h=hidden();h.push(id);localStorage.setItem('bus-hidden',JSON.stringify(h));loadChat(false);}
 
 async function deleteMsg(id){
-  if(!confirm('هل أنت تأكد من إزالة هذه الرسالة نهائياً عند الجميع؟')) return;
+  if(!confirm(t('confirmDelete'))) return;
   try{
     await Store.delete(id);
-    toast('تم حذف الرسالة عند الجميع');
+    toast(t('deletedMsg'));
     loadChat(false);
   }catch(e){
-    toast('تعذر حذف الرسالة');
+    toast(t('errorDelete'));
     console.error(e);
   }
 }
 
-function nick(){return ($('nick').value||'').trim().slice(0,24)||'طالب';}
+function nick(){return ($('nick').value||'').trim().slice(0,24)||t('anonymous');}
 let lastSend=0;
-function canSend(){const d=Date.now()-lastSend;if(d<15000){toast('انتظر '+Math.ceil((15000-d)/1000)+' ث قبل الإرسال التالي');return false}return true;}
+function canSend(){const d=Date.now()-lastSend;if(d<15000){toast(t('waitSecs', {s: Math.ceil((15000-d)/1000)}));return false}return true;}
+
 async function sendStatus(k){
   if(!zoneId||!canSend())return; lastSend=Date.now();
-  try{await Store.add({zone_id:zoneId,nick:nick(),body:k,kind:'status'});toast('شكراً! تم تسجيل الحالة');loadChat(false);}catch(e){toast(explain(e));$('err').textContent=explain(e)}
+  try{await Store.add({zone_id:zoneId,nick:nick(),body:k,kind:'status'});toast(t('statusRecorded'));loadChat(false);}catch(e){toast(explain(e));$('err').textContent=explain(e)}
 }
+
 async function sendMsg(){
-  const t=$('msgText').value.replace(/\s+/g,' ').trim(), er=$('err'); er.textContent='';
+  const text=$('msgText').value.replace(/\s+/g,' ').trim(), er=$('err'); er.textContent='';
   if(!zoneId)return;
-  if(t.length<2){er.textContent='اكتب رسالة أطول قليلاً.';return}
-  if(/https?:\/\/|www\.|\.(com|net|org|dz)\b/i.test(t)){er.textContent='الروابط غير مسموحة.';return}
+  if(text.length<2){er.textContent=t('msgTooShort');return}
+  if(/https?:\/\/|www\.|\.(com|net|org|dz)\b/i.test(text)){er.textContent=t('noLinks');return}
   if(!canSend())return;
   $('sendBtn').disabled=true; lastSend=Date.now();
-  try{localStorage.setItem('bus-nick',nick());await Store.add({zone_id:zoneId,nick:nick(),body:t.slice(0,280),kind:'msg'});$('msgText').value='';$('cc').textContent='0/280';await loadChat(false);}
+  try{localStorage.setItem('bus-nick',nick());await Store.add({zone_id:zoneId,nick:nick(),body:text.slice(0,280),kind:'msg'});$('msgText').value='';$('cc').textContent='0/280';await loadChat(false);}
   catch(e){er.textContent=explain(e)}
   $('sendBtn').disabled=false;
 }
@@ -692,11 +1054,22 @@ function toggleTheme(){
   r.dataset.theme=next; $('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
   try{localStorage.setItem('enstp-theme',next)}catch(e){}
 }
+
 window.addEventListener('DOMContentLoaded',()=>{
   $('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
   $('nick').value=localStorage.getItem('bus-nick')||'';
   $('msgText').addEventListener('input',e=>$('cc').textContent=e.target.value.length+'/280');
-  initPicker();
+  
+  // إعداد اللغات عند النقر
+  document.getElementById('langSelector').addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (btn && btn.dataset.lang) {
+      applyLanguage(btn.dataset.lang);
+    }
+  });
+
+  applyLanguage(currentLang);
+
   setInterval(()=>{if(zoneId&&dayType===dayOf())renderResults();else if(!zoneId)renderUpNow();},30000);
   const pb=$('progressBar'),tt=$('toTop');
   addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
