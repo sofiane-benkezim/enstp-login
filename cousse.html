@@ -539,7 +539,7 @@ function renderResults(){
     const z=sg.z, rt=routeText(z,sg.k), runs=z.days.includes(dayType);
     const trips=!runs?`<div class="empty" style="padding:22px"><i class="fa-regular fa-calendar-xmark"></i>لا توجد رحلات في هذا اليوم حسب البرنامج المنشور.</div>`:
       z.trips.filter(tr=>tr.k===sg.k).map(tr=>tripBlock(z,tr,today,n)).join('');
-    const meta=z.assumed?'<div class="meta"><span>أيام التشغيل غير مذكورة في البرنامج؛ المعروض: الأحد - الخميس</span></div>':'';
+    const meta=z.assumed?'<div class="meta"></div>':'';
     return `<article class="line"><div class="l-top"><div class="l-no"><i class="fa-solid fa-bus"></i></div><div><h3>${esc(z.name)}</h3><div class="route"><span>${esc(rt.from)}</span><i class="fa-solid fa-arrow-right"></i><span>${esc(rt.to)}</span></div></div></div>${meta}${trips}</article>`;
   });
   $('lines').innerHTML=r.via?arts[0]+`<div class="l-note" style="margin:14px 0"><i class="fa-solid fa-circle-info"></i> لا يوجد خط مباشر بين الوجهتين؛ جميع الخطوط تمر عبر القبة. انزل في القبة ثم اركب الرحلة الثانية.</div>`+arts[1]:arts[0];
