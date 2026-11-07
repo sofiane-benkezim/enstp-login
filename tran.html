@@ -220,14 +220,13 @@ html[data-theme="dark"] .mapbox{--ink:#0a2347;--mute:#4a6283;--line:#d3e0f1;--ca
 .btn.mnu{background:rgba(245,184,65,.14);border-color:rgba(245,184,65,.5);color:var(--head)}
 .btn.gal,.btn.mnu{cursor:pointer}
 #shr{margin:0 0 14px;cursor:pointer}
-.card.hasph{background-image:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.72) 60%),var(--bg);background-size:cover;background-position:center}
-.card.hasph.logobg{background-color:#fff;background-repeat:no-repeat;background-position:center,center;background-size:100% 100%,contain;background-image:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.8) 60%),var(--bg)}
-.card.hasph h3,.card.hasph .t,.card.hasph .i,.card.hasph .dist{text-shadow:0 0 6px #fff,0 0 3px #fff,0 0 12px rgba(255,255,255,.85)}
-html[data-theme="dark"] .card.hasph{background-image:linear-gradient(180deg,rgba(4,11,23,.3),rgba(4,11,23,.86) 60%),var(--bg)}
-html[data-theme="dark"] .card.hasph.logobg{background-color:#040b17;background-image:linear-gradient(180deg,rgba(4,11,23,.45),rgba(4,11,23,.88) 60%),var(--bg)}
-html[data-theme="dark"] .card.hasph h3,html[data-theme="dark"] .card.hasph .t,html[data-theme="dark"] .card.hasph .i,html[data-theme="dark"] .card.hasph .dist{text-shadow:0 0 6px #000,0 0 3px #000,0 0 12px rgba(0,0,0,.85)}
+/* صورة المكان في أعلى البطاقة، والتفاصيل تحتها (بدل الصورة الضبابية خلف النص) */
+.card.hasph::before{content:"";display:block;box-sizing:border-box;flex:none;height:176px;margin:-22px 0 16px;margin-inline:-28px -22px;background:var(--bg) center/cover no-repeat;border-bottom:1px solid var(--card-b)}
+.card.hasph.logobg::before{height:132px;background-color:#fff;background-size:contain;background-origin:content-box;padding:14px}
+.card:has(>.ph)::before{display:none}
+.card.hasph{padding-top:22px}
 .card>*:not(.ph){position:relative;z-index:1}
-.ph{position:absolute;top:0;bottom:0;inset-inline-start:8px;inset-inline-end:0;width:calc(100% - 8px);height:100%;object-fit:cover;opacity:.34;z-index:0;pointer-events:none}
+.ph{order:-1;display:block;flex:none;align-self:stretch;width:auto;height:176px;object-fit:cover;margin:-22px 0 16px;margin-inline:-28px -22px;border-bottom:1px solid var(--card-b);pointer-events:none}
 
 /* معرض الصور */
 #lb{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center}
@@ -273,6 +272,8 @@ header{top:8px;padding:0 8px}
 .wrap{padding:22px 14px 32px}
 .card,[dir="rtl"] .card{padding:18px}
 .card{padding-inline-start:24px}
+.card.hasph::before,.ph{height:150px;margin-top:-18px;margin-inline:-24px -18px}
+.card.hasph.logobg::before{height:112px}
 .tile{min-height:170px;padding:22px 16px 16px}
 .tile b{font-size:1.05rem}
 .sug{flex-wrap:wrap}}
