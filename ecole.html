@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+/* ===== ENSTP — نظام التصميم الموحد ===== */
 :root{
 --bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
 --gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
@@ -106,6 +106,7 @@ main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-dir
 .s-b{--c1:#6d5cff;--c2:#b093ff;--c3:rgba(109,92,255,.5)}
 .s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
 .s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
+.s-v{--c1:#e11d48;--c2:#fb7185;--c3:rgba(225,29,72,.5)}
 
 /* البطاقات */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
@@ -121,6 +122,11 @@ main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-dir
 .director small{display:block;font-size:.78rem;color:var(--tag-c);font-weight:800;margin-bottom:6px}
 .director p{font-size:.82rem;line-height:1.8;margin:0}
 @media(max-width:600px){.director{flex-direction:column;text-align:center}}
+
+/* تنسيق قسم الفيديو */
+.video-wrapper{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);box-shadow:var(--card-shadow);padding:14px}
+.video-container{position:relative;width:100%;padding-top:56.25%; /* 16:9 Aspect Ratio */border-radius:calc(var(--radius) - 8px);overflow:hidden;background:#000}
+.video-container iframe, .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
 
 .search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
 .search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
@@ -194,6 +200,7 @@ main{gap:70px}
 </section>
 
 <main>
+<!-- قسم النبذة التاريخية والتعريف بالمديرة -->
 <div class="two reveal">
 <div class="box">
 <div>
@@ -216,6 +223,25 @@ main{gap:70px}
 </div>
 </div>
 </div>
+
+<!-- ================= قسم الفيديو التعريفي بالمدرسة (الجديد) ================= -->
+<section class="section-block">
+<div class="sec-head reveal s-v">
+<div class="sec-icon"><i class="fa-solid fa-circle-play"></i></div>
+<div>
+<h2 id="video-heading">الفيديو التعريفي بالمدرسة</h2>
+<p id="video-desc">جولة شريطية استعراضية تأخذكم في جولة داخل أروقة ومرافق المدرسة الوطنية العليا للأشغال العمومية:</p>
+<div class="sec-line"></div>
+</div>
+</div>
+<div class="video-wrapper reveal">
+<div class="video-container">
+<!-- إذا كان فيديو محلي استبدل الإطار بـ: <video src="video.mp4" controls></video> -->
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="ENSTP Promo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+</section>
+<!-- ==================================================================== -->
 
 <section class="section-block">
 <div class="sec-head reveal s-a">
@@ -275,6 +301,8 @@ directorDesc:'تدار المدرسة برؤية استراتيجية تسعى �
 dirName:'الدكتورة فوزية ميكاداش باشا',
 dirRole:'مديرة المدرسة الوطنية العليا للأشغال العمومية',
 dirBio:'تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.',
+videoHeading:'الفيديو التعريفي بالمدرسة',
+videoDesc:'جولة شريطية استعراضية تأخذكم في جولة داخل أروقة ومرافق المدرسة الوطنية العليا للأشغال العمومية:',
 amphiAHeading:'قاعة المحاضرات الكبرى (أ) - Amphithéâtre A',
 amphiADesc:'المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، المؤتمرات العلمية والفعاليات الأكاديمية الرسمية للطلبة:',
 capA1:'واجهة المنصة والمدرج من الأمام', capA2:'المقاعد ومدرجات الجلوس الفسيحة', capA3:'تجهيزات الإضاءة والتحكم السمعي البصري',
@@ -298,6 +326,8 @@ directorTitle:"Direction de l'École",
 directorDesc:"L'école est dirigée avec une vision stratégique visant à élever la qualité de la formation d'ingénieur, à promouvoir l'innovation et à renforcer les partenariats avec les institutions économiques.",
 dirName:'Dr. Fawzia Mekadache Bacha', dirRole:"Directrice de l'ENSTP",
 dirBio:'Supervise la politique pédagogique et de recherche, ainsi que le développement des partenariats scientifiques nationaux et internationaux.',
+videoHeading:'Vidéo de Présentation',
+videoDesc:"Une visite vidéo guidée à travers les couloirs et les installations de l'ENSTP :",
 amphiAHeading:'Amphithéâtre A',
 amphiADesc:"L'amphithéâtre principal dédié aux grandes conférences théoriques, colloques nationaux, conférences scientifiques et événements académiques :",
 capA1:"Vue de la tribune et de l'amphithéâtre", capA2:'Sièges et gradins spacieux', capA3:"Équipements d'éclairage et contrôle audiovisuel",
@@ -321,6 +351,8 @@ directorTitle:'School Administration',
 directorDesc:'The school is managed with a strategic vision aiming to elevate engineering education quality, foster innovation, and strengthen partnerships with major economic institutions.',
 dirName:'Dr. Fawzia Mekadache Bacha', dirRole:'Director of ENSTP',
 dirBio:'Supervises pedagogical and research policies, and develops national and international scientific partnerships to serve Algerian engineering students.',
+videoHeading:'School Promotional Video',
+videoDesc:'A guided video tour through the halls and facilities of ENSTP:',
 amphiAHeading:'Amphitheater A',
 amphiADesc:'The primary lecture hall hosting major theoretical conferences, national symposia, scientific congresses, and official academic events:',
 capA1:'Front view of the podium and amphitheater', capA2:'Spacious seating and tiers', capA3:'Lighting and audiovisual control equipment',
@@ -337,6 +369,7 @@ const MAP = {
 'txt-brand':'brand','back-txt':'back','hero-title':'heroTitle','hero-desc':'heroDesc',
 'history-title':'historyTitle','history-p1':'historyP1','history-p2':'historyP2','btn-official-txt':'btnOfficial',
 'director-title':'directorTitle','director-desc':'directorDesc','dir-name':'dirName','dir-role':'dirRole','dir-bio':'dirBio',
+'video-heading':'videoHeading','video-desc':'videoDesc',
 'amphi-a-heading':'amphiAHeading','amphi-a-desc':'amphiADesc','cap-a1':'capA1','cap-a2':'capA2','cap-a3':'capA3',
 'amphi-b-heading':'amphiBHeading','amphi-b-desc':'amphiBDesc','cap-b1':'capB1','cap-b2':'capB2',
 'class-heading':'classHeading','class-desc':'classDesc','cap-c1':'capC1','cap-c2':'capC2','cap-c3':'capC3',
@@ -382,4 +415,3 @@ function toggleTheme(){
 </script>
 </body>
 </html>
-
