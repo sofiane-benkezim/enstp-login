@@ -120,6 +120,12 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 .hero{min-height:auto;padding:140px 20px 70px}
 .picker{max-width:760px;margin:30px auto 0;padding:18px;border-radius:26px;text-align:start;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(16px)}
 .picker label{display:block;font-size:.76rem;font-weight:800;color:var(--gold-2);margin-bottom:8px}
+.pgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end}
+.pcell label{margin-bottom:8px}
+.swap{width:50px;height:54px;border-radius:16px;border:1px solid var(--glass-b);cursor:pointer;font-size:1rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 8px 22px rgba(245,184,65,.35);transition:transform .35s var(--ease)}
+.swap:hover{transform:rotate(180deg) scale(1.06)}
+.swap i{transform:rotate(90deg)}
+@media(max-width:640px){.pgrid{grid-template-columns:1fr}.swap{width:100%;height:44px}.swap i{transform:none}.swap:hover{transform:scale(1.02)}}
 .sel{position:relative}
 .sel select{width:100%;appearance:none;-webkit-appearance:none;padding:16px 50px 16px 18px;border-radius:16px;font:inherit;font-size:1rem;font-weight:800;color:var(--head);background:var(--bar-s);border:1px solid var(--glass-b);outline:0;cursor:pointer}
 [dir="rtl"] .sel select{padding:16px 18px 16px 50px}
@@ -253,11 +259,16 @@ main{padding-top:50px;gap:50px}
 <div class="hero-bg"></div>
 <div class="hero-inner">
 <span class="badge"><i class="fa-solid fa-bus"></i> السداسي الأول 2026/2027</span>
-<h1>إلى أين تريد <span>الذهاب اليوم؟</span></h1>
-<p>اختر وجهتك لتعرف الحافلات المتوفرة ومواعيدها، وتابع مستجدات الطلبة في كل منطقة لحظة بلحظة.</p>
+<h1>من أين وإلى أين <span>تريد الذهاب؟</span></h1>
+<p>اختر نقطة الانطلاق ونقطة الوصول لتعرف الحافلات المتوفرة ومواعيدها، وتابع مستجدات الطلبة في كل منطقة لحظة بلحظة.</p>
 <div class="picker">
-<label for="zoneSel"><i class="fa-solid fa-location-dot"></i> الوجهة</label>
-<div class="sel"><select id="zoneSel"></select><i class="fa-solid fa-chevron-down"></i></div>
+<div class="pgrid">
+<div class="pcell"><label for="fromSel"><i class="fa-solid fa-circle-dot"></i> من</label>
+<div class="sel"><select id="fromSel"></select><i class="fa-solid fa-chevron-down"></i></div></div>
+<button type="button" class="swap" id="swapBtn" aria-label="عكس الاتجاه" title="عكس الاتجاه"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+<div class="pcell"><label for="zoneSel"><i class="fa-solid fa-location-dot"></i> إلى</label>
+<div class="sel"><select id="zoneSel"></select><i class="fa-solid fa-chevron-down"></i></div></div>
+</div>
 <div class="srch"><i class="fa-solid fa-magnifying-glass"></i><input id="zoneSearch" placeholder="ابحث عن وجهتك (مثال: الحراش، البليدة، تافورة...)" autocomplete="off"></div><div class="zscroll" id="zoneChips"></div>
 </div>
 </div>
@@ -410,43 +421,83 @@ function tripTimes(z,tr,day){
 }
 function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2200);}
 
-/* ---------- اختيار الوجهة ---------- */
+/* ---------- اختيار نقطة الانطلاق والوصول ---------- */
+const KOUBA='kouba', KOUBA_LABEL='القبة (ENSTP)';
+/* اتجاه الرحلات في البرنامج: «الذهاب (صباحاً)» = من الوجهة إلى القبة، و«الرجوع / العودة» = من القبة إلى الوجهة.
+   إذا كان برنامجكم الرسمي يعني العكس غيّر القيمة التالية إلى false (رحلات الإقامة رويسو تبقى كما هي). */
+const GO_FROM_ZONE=true;
+let fromId=KOUBA, toId='';
+const zoneById=id=>ZONES.find(x=>x.id===id);
+const goFromZone=z=>z.id==='revoil'?true:GO_FROM_ZONE;
+const kFor=(z,zoneIsOrigin)=>(zoneIsOrigin===goFromZone(z))?'go':'back';
+function routeText(z,k){
+  const place=z.from||z.name, school=z.to||KOUBA_LABEL;
+  return ((k==='go')===goFromZone(z))?{from:place,to:school}:{from:school,to:place};
+}
+function resolveRoute(){
+  const fz=zoneById(fromId), tz=zoneById(toId);
+  if(!fromId||!toId||fromId===toId)return {segs:[],zone:null};
+  if(fromId===KOUBA&&tz)return {segs:[{z:tz,k:kFor(tz,false)}],zone:tz.id};
+  if(toId===KOUBA&&fz)return {segs:[{z:fz,k:kFor(fz,true)}],zone:fz.id};
+  if(fz&&tz)return {segs:[{z:fz,k:kFor(fz,true)},{z:tz,k:kFor(tz,false)}],zone:tz.id,via:true};
+  return {segs:[],zone:null};
+}
 function drawChips(q){
   q=(q||'').trim().toLowerCase();
   $('zoneChips').innerHTML=Object.entries(GROUPS).map(([g,label])=>{
     const list=ZONES.filter(z=>z.g===g&&(!q||z.name.toLowerCase().includes(q)));
-    return list.length?`<div class="grp"><h4>${esc(label)}</h4><div class="chips">${list.map(z=>`<button class="chip ${z.id===zoneId?'on':''}" data-z="${z.id}">${esc(z.name)}</button>`).join('')}</div></div>`:'';
+    return list.length?`<div class="grp"><h4>${esc(label)}</h4><div class="chips">${list.map(z=>`<button class="chip ${z.id===toId?'on':''}" data-z="${z.id}">${esc(z.name)}</button>`).join('')}</div></div>`:'';
   }).join('')||'<div class="grp"><h4>لا توجد وجهة بهذا الاسم</h4></div>';
 }
-function initPicker(){
-  $('zoneSel').innerHTML='<option value="">— اختر وجهتك —</option>'+Object.entries(GROUPS).map(([g,label])=>`<optgroup label="${esc(label)}">${ZONES.filter(z=>z.g===g).map(z=>`<option value="${z.id}">${esc(z.name)}</option>`).join('')}</optgroup>`).join('');
-  drawChips('');
-  $('zoneChips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)selectZone(b.dataset.z,true)});
-  $('zoneSearch').addEventListener('input',e=>drawChips(e.target.value));
-  $('zoneSel').addEventListener('change',e=>selectZone(e.target.value,true));
-  $('sampleBar').classList.toggle('hidden',!IS_SAMPLE);
-  const q=new URLSearchParams(location.search).get('zone'), fav=localStorage.getItem('bus-fav');
-  const start=ZONES.find(z=>z.id===q)?q:(ZONES.find(z=>z.id===fav)?fav:null);
-  if(start)selectZone(start,false);
-  renderUpNow();
+function zoneOptions(ph){
+  return `<option value="">${ph}</option><option value="${KOUBA}">${KOUBA_LABEL}</option>`+Object.entries(GROUPS).map(([g,label])=>`<optgroup label="${esc(label)}">${ZONES.filter(z=>z.g===g).map(z=>`<option value="${z.id}">${esc(z.from&&z.id==='revoil'?z.from:z.name)}</option>`).join('')}</optgroup>`).join('');
 }
-function selectZone(id,scroll){
-  zoneId=id||null; $('zoneSel').value=id||'';
+function initPicker(){
+  $('fromSel').innerHTML=zoneOptions('— من أين؟ —');
+  $('zoneSel').innerHTML=zoneOptions('— إلى أين؟ —');
+  drawChips('');
+  $('zoneChips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;toId=b.dataset.z;if(!fromId)fromId=KOUBA;applyRoute(true)});
+  $('zoneSearch').addEventListener('input',e=>drawChips(e.target.value));
+  $('fromSel').addEventListener('change',e=>{fromId=e.target.value;if(fromId&&!toId&&fromId!==KOUBA)toId=KOUBA;applyRoute(true)});
+  $('zoneSel').addEventListener('change',e=>{toId=e.target.value;if(toId&&!fromId&&toId!==KOUBA)fromId=KOUBA;applyRoute(true)});
+  $('swapBtn').addEventListener('click',()=>{const t=fromId;fromId=toId;toId=t;applyRoute(false)});
+  $('sampleBar').classList.toggle('hidden',!IS_SAMPLE);
+  const p=new URLSearchParams(location.search), fav=localStorage.getItem('bus-fav');
+  const ok=id=>id===KOUBA||zoneById(id);
+  if(ok(p.get('from'))&&ok(p.get('to'))){fromId=p.get('from');toId=p.get('to');}
+  else{const q=p.get('zone'),start=zoneById(q)?q:(zoneById(fav)?fav:null);if(start){fromId=KOUBA;toId=start;}}
+  applyRoute(false);
+}
+function applyRoute(scroll){
+  const r=resolveRoute(); zoneId=r.zone;
+  $('fromSel').value=fromId||''; $('zoneSel').value=toId||'';
   drawChips($('zoneSearch').value);
-  $('results').classList.toggle('hidden',!id);
-  $('upNow').classList.toggle('hidden',!!id);
-  if(!id){renderUpNow();return;}
-  const url=new URL(location.href);url.searchParams.set('zone',id);history.replaceState(null,'',url);
+  const has=r.segs.length>0;
+  $('results').classList.toggle('hidden',!has);
+  $('upNow').classList.toggle('hidden',has);
+  const u=new URL(location.href);u.searchParams.delete('zone');
+  if(fromId&&toId){u.searchParams.set('from',fromId);u.searchParams.set('to',toId)}else{u.searchParams.delete('from');u.searchParams.delete('to')}
+  history.replaceState(null,'',u);
+  if(fromId&&toId&&fromId===toId)toast('اختر نقطتين مختلفتين');
+  else if(fromId&&toId&&!has)toast('لا توجد رحلات مباشرة بين هاتين النقطتين');
+  if(!has){renderUpNow();return;}
   renderResults(); loadChat(true);
   if(scroll)$('results').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function backToAll(){zoneId=null;const u=new URL(location.href);u.searchParams.delete('zone');history.replaceState(null,'',u);$('zoneSel').value='';drawChips($('zoneSearch').value);$('results').classList.add('hidden');$('upNow').classList.remove('hidden');renderUpNow();window.scrollTo({top:0,behavior:'smooth'});}
+function selectZone(id,scroll,k){
+  if(!id){backToAll();return;}
+  const z=zoneById(id); if(!z)return;
+  const origin=k?((k==='go')===goFromZone(z)):false;
+  fromId=origin?id:KOUBA; toId=origin?KOUBA:id;
+  applyRoute(scroll);
+}
+function backToAll(){fromId=KOUBA;toId='';$('zoneSearch').value='';applyRoute(false);window.scrollTo({top:0,behavior:'smooth'});}
 function setDay(d){dayType=d;renderResults();}
 
 /* ---------- أقرب الحافلات ---------- */
-function nextDepartures(z,day){
+function nextDepartures(z,day,k){
   const n=nowMin(), out=[];
-  z.trips.forEach(tr=>tripTimes(z,tr,day).forEach(t=>{if(toMin(t)>=n)out.push({z,tr,t,m:toMin(t),est:!!tr.est})}));
+  z.trips.filter(tr=>!k||tr.k===k).forEach(tr=>tripTimes(z,tr,day).forEach(t=>{if(toMin(t)>=n)out.push({z,tr,t,m:toMin(t),est:!!tr.est})}));
   return out.sort((a,b)=>a.m-b.m);
 }
 function renderUpNow(){
@@ -455,36 +506,44 @@ function renderUpNow(){
   all.sort((a,b)=>a.m-b.m);
   const n=nowMin();
   $('upTitle').textContent='الحافلات القادمة الآن · '+DAY_LABEL[day];
-  $('upGrid').innerHTML=all.length?all.slice(0,9).map(x=>`<button class="up" onclick="selectZone('${x.z.id}',true)"><b class="t">${x.t}</b><span><strong>${esc(x.z.name)}</strong><small>${esc(x.tr.label)} · بعد ${x.m-n} د${x.est?' · تقريبي':''}</small></span></button>`).join(''):
+  $('upGrid').innerHTML=all.length?all.slice(0,9).map(x=>{const rt=routeText(x.z,x.tr.k);return `<button class="up" onclick="selectZone('${x.z.id}',true,'${x.tr.k}')"><b class="t">${x.t}</b><span><strong>${esc(rt.from)} ← ${esc(rt.to)}</strong><small>${esc(x.tr.label)} · بعد ${x.m-n} د${x.est?' · تقريبي':''}</small></span></button>`}).join(''):
     `<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-moon"></i>لا توجد حافلات متبقية اليوم. اختر وجهة لمعرفة مواعيد الأيام الأخرى.</div>`;
 }
 
-/* ---------- عرض نتائج الوجهة ---------- */
+/* ---------- عرض نتائج المسار ---------- */
+function tripBlock(z,tr,today,n){
+  const ts=tripTimes(z,tr,dayType); let first=-1; if(dayType===today)first=ts.findIndex(t=>toMin(t)>=n);
+  let body;
+  if(tr.rule||tr.text) body=`<span class="tm rule">${esc(tr.txt||tr.text)}</span>`+(tr.rule?'<div class="l-note" style="margin-top:10px">لم يحدد البرنامج ساعة نهاية دقيقة لهذه الرحلات؛ تُحسب هنا تقريباً لحظة الانطلاق التالية.</div>':'');
+  else body=ts.length?ts.map((t,i)=>`<span class="tm ${dayType===today&&toMin(t)<n?'past':''} ${i===first?'nx':''}">${t}</span>`).join(''):'<span class="tm">—</span>';
+  return `<div class="trip"><h5><i class="fa-solid ${tr.k==='go'?'fa-sun':'fa-moon'}"></i>${esc(tr.label)}${tr.est?'<em>تقريبي</em>':''}</h5><div class="times">${body}</div></div>`;
+}
 function renderResults(){
-  const z=ZONES.find(x=>x.id===zoneId); if(!z)return;
-  const today=dayOf(), n=nowMin(), runs=z.days.includes(dayType);
-  $('zTitle').innerHTML=`${esc(z.name)}<small>${DAY_LABEL[dayType]}${dayType===today?' (اليوم)':''}${z.buses?' · '+z.buses+(z.buses===1?' حافلة':' حافلات'):''}</small>`;
-  document.querySelectorAll('#dayTabs button').forEach(b=>b.classList.toggle('on',b.dataset.d===dayType));
-  const fav=localStorage.getItem('bus-fav')===z.id; $('favBtn').classList.toggle('on',fav);
+  const r=resolveRoute(); if(!r.segs.length)return;
+  const today=dayOf(), n=nowMin();
+  const s0=r.segs[0], s1=r.segs[1];
+  const a=routeText(s0.z,s0.k), b=s1?routeText(s1.z,s1.k):a;
+  const buses=(!r.via&&s0.z.buses)?' · '+s0.z.buses+(s0.z.buses===1?' حافلة':' حافلات'):'';
+  $('zTitle').innerHTML=`${esc(a.from)} <i class="fa-solid fa-arrow-left" style="font-size:.7em;color:var(--gold)"></i> ${esc(b.to)}<small>${DAY_LABEL[dayType]}${dayType===today?' (اليوم)':''}${r.via?' · عبر القبة':''}${buses}</small>`;
+  document.querySelectorAll('#dayTabs button').forEach(bt=>bt.classList.toggle('on',bt.dataset.d===dayType));
+  const fav=localStorage.getItem('bus-fav')===zoneId; $('favBtn').classList.toggle('on',fav);
   $('favBtn').querySelector('span').textContent=fav?'وجهتي المفضلة':'اجعلها مفضلة';
-  const box=$('nextBox');
-  if(dayType===today&&runs){
-    const nx=nextDepartures(z,dayType)[0];
+  const box=$('nextBox'), runs0=s0.z.days.includes(dayType);
+  if(dayType===today&&runs0){
+    const nx=nextDepartures(s0.z,dayType,s0.k)[0];
     box.classList.remove('hidden');
-    if(nx){const d=nx.m-n;box.innerHTML=`<div class="ic"><i class="fa-solid fa-bus"></i></div><div><small>أقرب حافلة · ${esc(z.name)}</small><h3>${esc(nx.tr.label)} · ${nx.t}${nx.est?' (تقريبي)':''}</h3><p>${esc(z.from||'القبة')} ${nx.tr.k==='back'&&z.id!=='revoil'?'(رحلة العودة)':''}</p></div><div class="cd"><b>${d>=60?Math.floor(d/60)+':'+String(d%60).padStart(2,'0'):d}</b><span>${d>=60?'ساعة : دقيقة':'دقيقة'}</span></div>`;}
+    if(nx){const d=nx.m-n;box.innerHTML=`<div class="ic"><i class="fa-solid fa-bus"></i></div><div><small>أقرب حافلة${r.via?' (الرحلة الأولى)':''}</small><h3>${esc(a.from)} ← ${esc(a.to)} · ${nx.t}${nx.est?' (تقريبي)':''}</h3><p>${esc(nx.tr.label)}</p></div><div class="cd"><b>${d>=60?Math.floor(d/60)+':'+String(d%60).padStart(2,'0'):d}</b><span>${d>=60?'ساعة : دقيقة':'دقيقة'}</span></div>`;}
     else box.innerHTML=`<div class="ic"><i class="fa-solid fa-moon"></i></div><div><small>انتهت رحلات اليوم</small><h3>لا توجد حافلات متبقية اليوم</h3><p>اختر يوماً آخر من الأعلى لرؤية المواعيد.</p></div><div></div>`;
   } else box.classList.add('hidden');
-  const trips=!runs?`<div class="empty" style="padding:22px"><i class="fa-regular fa-calendar-xmark"></i>لا توجد رحلات في هذا اليوم حسب البرنامج المنشور.</div>`:
-    z.trips.map(tr=>{
-      const ts=tripTimes(z,tr,dayType); let first=-1; if(dayType===today)first=ts.findIndex(t=>toMin(t)>=n);
-      let body;
-      if(tr.rule||tr.text) body=`<span class="tm rule">${esc(tr.txt||tr.text)}</span>`+(tr.rule?'<div class="l-note" style="margin-top:10px">لم يحدد البرنامج ساعة نهاية دقيقة لهذه الرحلات؛ تُحسب هنا تقريباً لحظة الانطلاق التالية.</div>':'');
-      else body=ts.length?ts.map((t,i)=>`<span class="tm ${dayType===today&&toMin(t)<n?'past':''} ${i===first?'nx':''}">${t}</span>`).join(''):'<span class="tm">—</span>';
-      return `<div class="trip"><h5><i class="fa-solid ${tr.k==='go'?'fa-sun':'fa-moon'}"></i>${esc(tr.label)}${tr.est?'<em>تقريبي</em>':''}</h5><div class="times">${body}</div></div>`;
-    }).join('');
-  const meta=[z.from&&`<span><i class="fa-solid fa-location-dot"></i> ${esc(z.from)}</span>`,z.assumed?'<span>أيام التشغيل غير مذكورة في البرنامج؛ المعروض: الأحد - الخميس</span>':''].filter(Boolean).join('');
-  $('lines').innerHTML=`<article class="line"><div class="l-top"><div class="l-no"><i class="fa-solid fa-bus"></i></div><div><h3>${esc(z.name)}</h3><div class="route"><span>${esc(z.from||'القبة')}</span>${z.to?`<i class="fa-solid fa-arrow-right"></i><span>${esc(z.to)}</span>`:''}</div></div></div>${meta?`<div class="meta">${meta}</div>`:''}${trips}</article>`;
-  $('zoneNameChat').textContent=z.name;
+  const arts=r.segs.map(sg=>{
+    const z=sg.z, rt=routeText(z,sg.k), runs=z.days.includes(dayType);
+    const trips=!runs?`<div class="empty" style="padding:22px"><i class="fa-regular fa-calendar-xmark"></i>لا توجد رحلات في هذا اليوم حسب البرنامج المنشور.</div>`:
+      z.trips.filter(tr=>tr.k===sg.k).map(tr=>tripBlock(z,tr,today,n)).join('');
+    const meta=z.assumed?'<div class="meta"><span>أيام التشغيل غير مذكورة في البرنامج؛ المعروض: الأحد - الخميس</span></div>':'';
+    return `<article class="line"><div class="l-top"><div class="l-no"><i class="fa-solid fa-bus"></i></div><div><h3>${esc(z.name)}</h3><div class="route"><span>${esc(rt.from)}</span><i class="fa-solid fa-arrow-right"></i><span>${esc(rt.to)}</span></div></div></div>${meta}${trips}</article>`;
+  });
+  $('lines').innerHTML=r.via?arts[0]+`<div class="l-note" style="margin:14px 0"><i class="fa-solid fa-circle-info"></i> لا يوجد خط مباشر بين الوجهتين؛ جميع الخطوط تمر عبر القبة. انزل في القبة ثم اركب الرحلة الثانية.</div>`+arts[1]:arts[0];
+  const zc=zoneById(zoneId); $('zoneNameChat').textContent=zc?zc.name:'—';
 }
 function toggleFav(){const z=zoneId;if(!z)return;if(localStorage.getItem('bus-fav')===z){localStorage.removeItem('bus-fav');toast('أُزيلت من المفضلة')}else{localStorage.setItem('bus-fav',z);toast('ستُفتح هذه الوجهة تلقائياً')}renderResults();}
 function shareZone(){const u=location.href;if(navigator.share){navigator.share({title:document.title,url:u}).catch(()=>{})}else{try{navigator.clipboard.writeText(u);toast('تم نسخ الرابط')}catch(e){}}}
