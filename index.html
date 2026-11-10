@@ -765,6 +765,8 @@ let bubbleSpeechTimer = null;
 const translations = {
   ar: {
     dir: 'rtl',
+    pageTitle: 'منصة دليل طالب ENSTP الشامل',
+    logoAlt: 'شعار ENSTP',
     logoTitle: 'دليل ENSTP الشامل',
     logoSub: 'المدرسة الوطنية العليا للأشغال العمومية',
     navMap: 'الخريطة والمباني',
@@ -798,14 +800,14 @@ const translations = {
     footerSub: 'مشروع تفاعلي متكامل لخدمة مستجدي المدرسة الوطنية العليا للأشغال العمومية',
 
     cartographie: [
-      { name: "المدرسة الوطنية العليا للاشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
+      { name: "المدرسة الوطنية العليا للأشغال العمومية" , desc: "نبذة عن المدرسة و بعض القاعات و المدرجات ", icon: "fa-building", tag: "المدرسة", url: "ecole.html" , img: "photo11.jpg" },
       { name: "مسار العبور بين المدرجات والمقصف", desc: "خريطة الممرات الداخلية لتسهيل الانتقال السريع بين الحصص متفادياً الاكتظاظ.", icon: "fa-route", tag: "توجيه ومسارات", url: "ecolemap.html" , img: "photo13.jpg"  },
       { name: "الجدول الزمني ", desc: "مواعيد الحصص و القاعات و اسماء الاساتذة", icon: "fa-calendar", tag: "جدول توقيت", url: "temp.html" , img: "photo32.jpg"  },
       { name:"الرزنامة اليومية", desc: "تنظيم الوقت و الوظائف اليومية", icon: "fa-calendar", tag: "رزنامتك", url: "agenda.html" , img: "photo40.jpg"  }
     ],
     enseignants: [
       { name: "قسم المواد و الهياكل (DMS)", desc: "رئيس القسم ومسؤول عن تخصص المنشآت الفنية والهندسة المدنية.", icon: "fa-bridge", tag: "قسم أكاديمي", url: "dms.html" , img: "photo14.jpg"   },
-      { name: "قسم المنشآت القاعدية (DIB)", desc: "تصميم الطرق والتعبد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي", url: "dib.html" , img: "photo15.jpg"   },
+      { name: "قسم المنشآت القاعدية (DIB)", desc: "تصميم الطرق والتعبيد وإدارة الحركة المرورية مع نخبة من الأساتذة.", icon: "fa-road", tag: "قسم أكاديمي", url: "dib.html" , img: "photo15.jpg"   },
       { name: "مخبر المواد والخرسانة (Bâtiment Labo)", desc: "ورشات التطبيق لميكانيكا التربة ومواد البناء والهندسة المدنية.", icon: "fa-flask", tag: "مخبر وتطبيق", url: "labo.html" , img: "photo12.jpg" },
       { name: "دليل البريد المؤسساتي للأساتذة", desc: "قائمة البريد الإلكتروني الرسمي لجميع أعضاء الهيئة التدريسية.", icon: "fa-at", tag: "تواصل", url: "professors.html" , img: "photo16.jpg"   }
     ],
@@ -841,152 +843,156 @@ const translations = {
   },
   fr: {
     dir: 'ltr',
-    logoTitle: 'Guide Global ENSTP',
+    pageTitle: 'Plateforme du guide complet de l\'étudiant ENSTP',
+    logoAlt: 'Logo ENSTP',
+    logoTitle: 'Guide complet ENSTP',
     logoSub: 'École Nationale Supérieure des Travaux Publics',
-    navMap: 'Cartographie',
+    navMap: 'Plan du site',
     navTeachers: 'Enseignants',
-    navAdmin: 'Services & Admin',
-    navDaily: 'Vie Quotidienne',
+    navAdmin: 'Admin & Services',
+    navDaily: 'Vie quotidienne',
     navTransport: 'Transport',
-    navHelp: 'Entraide',
-    heroBadge: '<i class="fa-solid fa-compass"></i> Guide interactif des étudiants',
+    navHelp: 'Solidarité',
+    heroBadge: '<i class="fa-solid fa-compass"></i> Le guide de terrain complet pour les étudiants',
     heroTitle: '<span class="grad-text">École Nationale Supérieure des Travaux Publics</span>',
-    heroDesc: 'Une plateforme numérique intégrée regroupant tout ce dont un étudiant de l\'ENSTP a besoin : orientation, communication académique, services, transport, résidence et entraide.',
+    heroDesc: 'Une plateforme numérique intégrée qui réunit tout ce dont un étudiant de l\'ENSTP a besoin : orientation sur le campus, communication académique, services du quotidien, transport, résidence universitaire et réseau de solidarité entre étudiants.',
     cta: 'Commencer l\'exploration',
-    sec1Title: 'Cartographie & Orientation du Campus',
-    sec1Desc: 'Amphithéâtres, salles de cours, laboratoires et itinéraires internes',
-    sec2Title: 'Enseignants & Départements Académiques',
-    sec2Desc: 'Départements scientifiques, e-mails institutionnels et heures de réception',
-    sec3Title: 'Services Administratifs & Scolarité',
-    sec3Desc: 'Service Scolarité, Bibliothèque centrale et documents administratifs',
-    sec4Title: 'Vie Quotidienne & Commerces de Proximité',
-    sec4Desc: 'Restaurants, cafés, services utiles, pharmacies et commerces',
-    sec5Title: 'Réseau de Transport & Déplacements',
-    sec5Desc: 'Bus ETUSA, lignes universitaires, taxis collectifs et métro/train',
-    sec6Title: 'Cité Universitaire & Hébergement',
-    sec6Desc: 'Services de la résidence, restauration, programmes du week-end et besoins',
-    sec7Title: 'Activités, Sports & Loisirs à Alger',
-    sec7Desc: 'Clubs sportifs, visites culturelles, musées, cinéma et sorties',
-    sec8Title: 'Réseau d\'Entraide & Solidarité',
-    sec8Desc: 'Covoiturage inter-wilayas, partage de cours et soutien académique',
-    detailsBtn: 'Voir détails',
-    footerTitle: 'Plateforme du Guide Unifié de l\'Étudiant - ENSTP',
-    footerSub: 'Projet interactif dédié aux nouveaux étudiants de l\'ENSTP',
+    sec1Title: 'Plans & orientation du campus',
+    sec1Desc: 'Amphithéâtres, salles, laboratoires et itinéraires internes interactifs',
+    sec2Title: 'Enseignants & départements académiques',
+    sec2Desc: 'Départements scientifiques, adresses e-mail institutionnelles et heures de réception',
+    sec3Title: 'Services administratifs & scolarité',
+    sec3Desc: 'Service de la scolarité, bibliothèque centrale et documents scolaires',
+    sec4Title: 'Vie quotidienne & services de proximité',
+    sec4Desc: 'Restaurants et cafés, centres de reprographie technique, pharmacies et commerces',
+    sec5Title: 'Réseau de transport & déplacements',
+    sec5Desc: 'Bus ETUSA, taxis collectifs, stations de métro et de train',
+    sec6Title: 'Résidence universitaire & vie interne',
+    sec6Desc: 'Services aux résidents, restauration, programme du week-end et équipements',
+    sec7Title: 'Activités, sport & loisirs dans la capitale',
+    sec7Desc: 'Clubs et compétitions sportives, sorties culturelles, musées et cinéma',
+    sec8Title: 'Réseau de solidarité & d\'entraide fraternelle',
+    sec8Desc: 'Covoiturage entre wilayas, échange de références et soutien académique',
+    detailsBtn: 'Voir les détails',
+    footerTitle: 'Plateforme du guide unifié de l\'étudiant - ENSTP',
+    footerSub: 'Un projet interactif complet au service des nouveaux étudiants de l\'École Nationale Supérieure des Travaux Publics',
 
     cartographie: [
-      { name: "École Nationale Supérieure des TP", desc: "Aperçu de l'école, de ses salles et de ses amphithéâtres.", icon: "fa-building", tag: "École", url: "ecole.html", img: "photo11.jpg" },
-      { name: "Itinéraire Interne (Amphis - Buvette)", desc: "Carte des passages internes pour faciliter les déplacements rapides sans encombrement.", icon: "fa-route", tag: "Orientation", url: "ecolemap.html", img: "photo13.jpg" },
-      { name: "Emploi du Temps", desc: "Horaires des cours, salles attribuées et noms des enseignants.", icon: "fa-calendar", tag: "Planning", url: "temp.html", img: "photo32.jpg" },
-      { name: "Agenda Quotidien", desc: "Organisation du temps et des tâches quotidiennes.", icon: "fa-calendar", tag: "Agenda", url: "agenda.html", img: "photo40.jpg" }
+      { name: "École Nationale Supérieure des Travaux Publics", desc: "Présentation de l'école, de certaines salles et amphithéâtres.", icon: "fa-building", tag: "École", url: "ecole.html", img: "photo11.jpg" },
+      { name: "Parcours entre les amphithéâtres et la buvette", desc: "Plan des passages internes pour se déplacer vite entre les cours en évitant l'affluence.", icon: "fa-route", tag: "Orientation & itinéraires", url: "ecolemap.html", img: "photo13.jpg" },
+      { name: "Emploi du temps", desc: "Horaires des cours, salles et noms des enseignants", icon: "fa-calendar", tag: "Emploi du temps", url: "temp.html", img: "photo32.jpg" },
+      { name: "Agenda quotidien", desc: "Organisation du temps et des tâches quotidiennes", icon: "fa-calendar", tag: "Votre agenda", url: "agenda.html", img: "photo40.jpg" }
     ],
     enseignants: [
-      { name: "Département Ouvrages d'Art (DMS)", desc: "Chef de département responsable de la spécialité Génie Civil et Structures.", icon: "fa-bridge", tag: "Département Académique", url: "dms.html", img: "photo14.jpg" },
-      { name: "Département Infrastructures Routières (DIB)", desc: "Conception des routes, chaussées et gestion du trafic routier avec des experts.", icon: "fa-road", tag: "Département Académique", url: "dib.html", img: "photo15.jpg" },
-      { name: "Laboratoire des Matériaux & Béton", desc: "Ateliers pratiques de mécanique des sols et matériaux de construction.", icon: "fa-flask", tag: "Laboratoire & Pratique", url: "labo.html", img: "photo12.jpg" },
-      { name: "Annuaire E-mail des Enseignants", desc: "Liste complète des adresses e-mail institutionnelles du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg" }
+      { name: "Département Matériaux & Structures (DMS)", desc: "Chef de département, responsable de la spécialité ouvrages d'art et génie civil.", icon: "fa-bridge", tag: "Département académique", url: "dms.html", img: "photo14.jpg" },
+      { name: "Département Infrastructures de Base (DIB)", desc: "Conception des routes, revêtements et gestion du trafic, avec une élite d'enseignants.", icon: "fa-road", tag: "Département académique", url: "dib.html", img: "photo15.jpg" },
+      { name: "Laboratoire des matériaux et du béton (Bâtiment Labo)", desc: "Travaux pratiques de mécanique des sols, matériaux de construction et génie civil.", icon: "fa-flask", tag: "Labo & pratique", url: "labo.html", img: "photo12.jpg" },
+      { name: "Annuaire e-mail institutionnel des enseignants", desc: "Liste des adresses e-mail officielles de tous les membres du corps enseignant.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg" }
     ],
     services: [
-      { name: "Service Scolarité & Inscription", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions annuelles.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
-      { name: "Bibliothèque Centrale", desc: "Ouvrages d'ingénierie, projets de fin d'études (PFE) et espace numérique.", icon: "fa-book-open", tag: "Bibliothèque", url: "bib.html", img: "photo18.jpg" }
+      { name: "Service des études et de l'inscription (Scolarité)", desc: "Délivrance des certificats de scolarité, relevés de notes et inscriptions annuelles.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
+      { name: "Bibliothèque centrale et recherche scientifique", desc: "Références d'ingénierie, mémoires de fin d'études et salles de lecture numériques.", icon: "fa-book-open", tag: "Bibliothèque", url: "bib.html", img: "photo18.jpg" }
     ],
     quotidien: [
-      { name: "Restaurants & Cafés à Proximité", desc: "Sélection de fast-foods et cafés très fréquentés près du portail de l'école.", icon: "fa-utensils", tag: "Restauration", url: "food.html", img: "photo20.jpg" },
-      { name: "Épiceries & Fournitures Quotidiennes", desc: "Impression, magasins et services utiles.", icon: "fa-print", tag: "Services Commerciaux", url: "print.html", img: "photo2051.jpg" },
-      { name: "Pharmacies & Cliniques", desc: "Guide des pharmacies et des services de santé médicale à proximité.", icon: "fa-capsules", tag: "Santé", url: "pharma.html", img: "photo22.jpg" },
-      { name: "Salles de Sport", desc: "Salles et clubs de sport.", icon: "fa-trophy", tag: "Sport", url: "salle.html", img: "photo55.jpg" },
-      { name: "Services Essentiels", desc: "Mosquées, postes de police et services postaux.", icon: "fa-shop", tag: "Services", url: "need.html", img: "photo56.jpg" }
+      { name: "Restaurants et cafés du voisinage", desc: "Liste de 5 restaurants rapides et cafés appréciés des étudiants, près du portail de l'école.", icon: "fa-utensils", tag: "Restauration", url: "food.html", img: "photo20.jpg" },
+      { name: "Épicerie et fournitures quotidiennes", desc: "Impression, commerces et services utiles", icon: "fa-print", tag: "Services commerciaux", url: "print.html", img: "photo2051.jpg" },
+      { name: "Pharmacies et cliniques", desc: "Guide des pharmacies et des cliniques médicales.", icon: "fa-capsules", tag: "Santé", url: "pharma.html", img: "photo22.jpg" },
+      { name: "Salles de sport", desc: "Salles et clubs de sport", icon: "fa-trophy", tag: "Sport", url: "salle.html", img: "photo55.jpg" },
+      { name: "Services essentiels", desc: "Mosquées, commissariats de police et bureau de poste", icon: "fa-shop", tag: "Services", url: "need.html", img: "photo56.jpg" }
     ],
     transport: [
-      { name: "Bus ETUSA & Lignes Universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
-      { name: "Positions et Gares Principales", desc: "Points de départ des bus et des transports en commun.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" },
-      { name: "Bus de Transport Universitaire", desc: "Horaires de départ vers toutes les directions.", icon: "fa-taxi", tag: "Transport", url: "cousse.html", img: "cousse.jpg" }
+      { name: "Bus ETUSA et lignes universitaires", desc: "Lignes de bus reliant l'école aux stations de métro et de train.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
+      { name: "Arrêts et stations principales", desc: "Points de départ des bus et des transports en commun.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" },
+      { name: "Bus du transport universitaire", desc: "Horaires de départ vers toutes les directions", icon: "fa-taxi", tag: "Transport", url: "cousse.html", img: "cousse.jpg" }
     ],
     cite: [
-      { name: "Services de la Résidence Universitaire", desc: "Guide des chambres, restauration interne, sécurité et tickets de repas.", icon: "fa-bed", tag: "Hébergement", url: "residence.html", img: "photo25.jpg" },
-      { name: "Besoins & Équipement de Chambre", desc: "Liste des objets essentiels et conseils pour bien vivre en résidence.", icon: "fa-list-check", tag: "Conseils", url: "important.html", img: "photo27.jpg" }
+      { name: "Services de la résidence universitaire pour les étudiants", desc: "Guide des chambres, de la restauration interne, de la sécurité et du retrait des repas quotidiens.", icon: "fa-bed", tag: "Hébergement interne", url: "residence.html", img: "photo25.jpg" },
+      { name: "Équipements de la chambre et de la résidence", desc: "Liste des affaires et conseils essentiels dont l'étudiant a besoin en résidence.", icon: "fa-list-check", tag: "Conseils", url: "important.html", img: "photo27.jpg" }
     ],
     loisirs: [
-      { name: "Clubs & Tournois Sportifs", desc: "Tournois de football, échecs et salles de sport à proximité.", icon: "fa-trophy", tag: "Sport", url: "sport.html", img: "photo28.jpg" },
-      { name: "Monuments Culturels & Musées à Alger", desc: "Makam El Chahid, Jardin d'Essai Hamma, Casbah et visites guidées.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
+      { name: "Clubs et activités sportives", desc: "Championnat de football, tournoi d'échecs et salles de musculation voisines.", icon: "fa-trophy", tag: "Sport", url: "sport.html", img: "photo28.jpg" },
+      { name: "Monuments culturels et musées de la capitale", desc: "Maqam Echahid, Jardin d'Essai du Hamma et Casbah, avec des visites dédiées aux étudiants.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
     ],
     entraide: [
-      { name: "Partage de Cours & Examens", desc: "Plateforme de partage de résumés et d'anciens sujets d'examens.", icon: "fa-hands-holding-circle", tag: "Soutien Académique", url: "drives.html", img: "photo30.jpg" },
-      { name: "Mentorat & Orientation", desc: "Sessions d'orientation animées par les anciens étudiants pour les nouveaux.", icon: "fa-heart-pulse", tag: "Solidarité", url: "experience.html", img: "photo31.jpg" }
+      { name: "Échange de cours et de solutions académiques", desc: "Plateforme de partage de résumés et d'examens des années précédentes.", icon: "fa-hands-holding-circle", tag: "Soutien académique", url: "drives.html", img: "photo30.jpg" },
+      { name: "Initiatives d'orientation", desc: "Séances d'orientation et transmission d'expérience des anciens aux nouveaux étudiants.", icon: "fa-heart-pulse", tag: "Solidarité", url: "experience.html", img: "photo31.jpg" }
     ]
   },
   en: {
     dir: 'ltr',
-    logoTitle: 'ENSTP Student Guide',
+    pageTitle: 'ENSTP Complete Student Guide Platform',
+    logoAlt: 'ENSTP logo',
+    logoTitle: 'ENSTP Complete Guide',
     logoSub: 'National Higher School of Public Works',
     navMap: 'Campus Map',
     navTeachers: 'Faculty',
-    navAdmin: 'Services & Admin',
+    navAdmin: 'Admin & Services',
     navDaily: 'Daily Life',
     navTransport: 'Transport',
-    navHelp: 'Peer Support',
-    heroBadge: '<i class="fa-solid fa-compass"></i> Interactive Student Field Guide',
+    navHelp: 'Solidarity',
+    heroBadge: '<i class="fa-solid fa-compass"></i> The complete field guide for students',
     heroTitle: '<span class="grad-text">National Higher School of Public Works</span>',
-    heroDesc: 'An integrated digital platform with everything an ENSTP student needs: campus navigation, faculty directory, daily services, transport, residence & peer support.',
+    heroDesc: 'An integrated digital platform that brings together everything an ENSTP student needs: campus orientation, academic communication, daily services, transport, university residence and a student solidarity network.',
     cta: 'Start exploring',
-    sec1Title: 'Campus Navigation & Maps',
-    sec1Desc: 'Lecture halls, labs, classrooms and internal interactive pathways',
+    sec1Title: 'Campus Maps & Orientation',
+    sec1Desc: 'Lecture halls, classrooms, labs and interactive internal routes',
     sec2Title: 'Faculty & Academic Departments',
-    sec2Desc: 'Academic departments, official faculty emails and office hours',
-    sec3Title: 'Administrative & Academic Services',
-    sec3Desc: 'Scolarité office, central library, and student documentation',
-    sec4Title: 'Daily Life & Nearby Amenities',
-    sec4Desc: 'Restaurants, cafés, useful services, pharmacies and shops',
-    sec5Title: 'Public Transport & Routes',
-    sec5Desc: 'ETUSA buses, university shuttle lines, shared taxis and train/metro',
+    sec2Desc: 'Scientific departments, institutional email addresses and office hours',
+    sec3Title: 'Administrative & School Services',
+    sec3Desc: 'Studies office (Scolarité), central library and school documents',
+    sec4Title: 'Daily Life & Nearby Services',
+    sec4Desc: 'Restaurants and cafés, engineering print shops, pharmacies and stores',
+    sec5Title: 'Transport & Getting Around',
+    sec5Desc: 'ETUSA buses, shared taxi lines, metro and train stations',
     sec6Title: 'University Residence & Dorm Life',
-    sec6Desc: 'Dorm services, dining, weekend schedule, and essential tips',
-    sec7Title: 'Activities, Sports & Leisure in Algiers',
-    sec7Desc: 'Sports clubs, tournaments, cultural sites, museums, and cinemas',
-    sec8Title: 'Peer Support & Community Network',
-    sec8Desc: 'Inter-wilaya carpooling, study materials exchange, and mentoring',
-    detailsBtn: 'View Details',
+    sec6Desc: 'Resident services, meals, the weekend programme and supplies',
+    sec7Title: 'Activities, Sports & Leisure in the Capital',
+    sec7Desc: 'Sports clubs and competitions, cultural outings, museums and cinema',
+    sec8Title: 'Solidarity & Mutual Support Network',
+    sec8Desc: 'Shared travel between wilayas, exchange of references and academic support',
+    detailsBtn: 'View details',
     footerTitle: 'ENSTP Unified Student Guide Platform',
-    footerSub: 'An interactive project built to support new ENSTP students',
+    footerSub: 'A complete interactive project serving new students of the National Higher School of Public Works',
 
     cartographie: [
-      { name: "National Higher School of Public Works", desc: "Overview of the school, its halls, and lecture theaters.", icon: "fa-building", tag: "School", url: "ecole.html", img: "photo11.jpg" },
-      { name: "Campus Internal Pathways", desc: "Internal pathway map for quick transfers between lectures without overcrowding.", icon: "fa-route", tag: "Navigation", url: "ecolemap.html", img: "photo13.jpg" },
-      { name: "Class Timetable", desc: "Lecture schedules, assigned rooms, and professor names.", icon: "fa-calendar", tag: "Timetable", url: "temp.html", img: "photo32.jpg" },
-      { name: "Daily Agenda", desc: "Time management and daily task planning.", icon: "fa-calendar", tag: "Agenda", url: "agenda.html", img: "photo40.jpg" }
+      { name: "National Higher School of Public Works", desc: "Introduction to the school and some of its rooms and lecture halls.", icon: "fa-building", tag: "School", url: "ecole.html", img: "photo11.jpg" },
+      { name: "Route Between the Lecture Halls and the Canteen", desc: "Map of internal walkways for moving quickly between classes while avoiding crowds.", icon: "fa-route", tag: "Navigation & routes", url: "ecolemap.html", img: "photo13.jpg" },
+      { name: "Timetable", desc: "Class times, rooms and teacher names", icon: "fa-calendar", tag: "Timetable", url: "temp.html", img: "photo32.jpg" },
+      { name: "Daily Agenda", desc: "Organize your time and daily tasks", icon: "fa-calendar", tag: "Your agenda", url: "agenda.html", img: "photo40.jpg" }
     ],
     enseignants: [
-      { name: "Department of Structural Engineering (DMS)", desc: "Head of department overseeing civil engineering and bridge structures.", icon: "fa-bridge", tag: "Academic Department", url: "dms.html", img: "photo14.jpg" },
-      { name: "Department of Highway Infrastructure (DIB)", desc: "Road design, pavement materials, and traffic management faculty.", icon: "fa-road", tag: "Academic Department", url: "dib.html", img: "photo15.jpg" },
-      { name: "Materials & Concrete Laboratory", desc: "Practical workshops for soil mechanics and civil engineering materials.", icon: "fa-flask", tag: "Laboratory & Practice", url: "labo.html", img: "photo12.jpg" },
-      { name: "Faculty Email Directory", desc: "List of official institutional email addresses for all teaching staff.", icon: "fa-at", tag: "Contacts", url: "professors.html", img: "photo16.jpg" }
+      { name: "Department of Materials & Structures (DMS)", desc: "Head of department, in charge of the structural works and civil engineering specialty.", icon: "fa-bridge", tag: "Academic department", url: "dms.html", img: "photo14.jpg" },
+      { name: "Department of Basic Infrastructure (DIB)", desc: "Road design, paving and traffic management, with an elite group of professors.", icon: "fa-road", tag: "Academic department", url: "dib.html", img: "photo15.jpg" },
+      { name: "Materials & Concrete Laboratory (Bâtiment Labo)", desc: "Practical workshops in soil mechanics, building materials and civil engineering.", icon: "fa-flask", tag: "Lab & practice", url: "labo.html", img: "photo12.jpg" },
+      { name: "Faculty Institutional Email Directory", desc: "List of the official email addresses of all teaching staff.", icon: "fa-at", tag: "Contact", url: "professors.html", img: "photo16.jpg" }
     ],
     services: [
-      { name: "Scolarité & Registration Office", desc: "Issuance of student certificates, transcripts, and annual registration.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
-      { name: "Central Engineering Library", desc: "Engineering books, graduation theses (PFE), and digital reading rooms.", icon: "fa-book-open", tag: "Library", url: "bib.html", img: "photo18.jpg" }
+      { name: "Studies & Registration Office (Scolarité)", desc: "Issuing of school certificates, transcripts and annual registrations.", icon: "fa-id-card", tag: "Administration", url: "scolarite.html", img: "photo17.jpg" },
+      { name: "Central Library & Scientific Research", desc: "Engineering references, graduation theses and digital reading rooms.", icon: "fa-book-open", tag: "Library", url: "bib.html", img: "photo18.jpg" }
     ],
     quotidien: [
-      { name: "Nearby Fast Food & Cafés", desc: "A curated list of popular fast-food joints and cafés near the main gate.", icon: "fa-utensils", tag: "Dining", url: "food.html", img: "photo20.jpg" },
-      { name: "Groceries & Daily Essentials", desc: "Printing, shops and useful services.", icon: "fa-print", tag: "Commercial Services", url: "print.html", img: "photo2051.jpg" },
-      { name: "Pharmacies & Clinics", desc: "Guide to pharmacies and nearby medical health clinic locations.", icon: "fa-capsules", tag: "Health", url: "pharma.html", img: "photo22.jpg" },
-      { name: "Sports Halls", desc: "Gyms and sports clubs.", icon: "fa-trophy", tag: "Sports", url: "salle.html", img: "photo55.jpg" },
-      { name: "Essential Services", desc: "Mosques, police stations and post offices.", icon: "fa-shop", tag: "Services", url: "need.html", img: "photo56.jpg" }
+      { name: "Nearby Restaurants & Cafés", desc: "A list of 5 fast-food restaurants and cafés popular with students near the school gate.", icon: "fa-utensils", tag: "Dining", url: "food.html", img: "photo20.jpg" },
+      { name: "Groceries & Daily Supplies", desc: "Printing, shops and useful services", icon: "fa-print", tag: "Commercial services", url: "print.html", img: "photo2051.jpg" },
+      { name: "Pharmacies & Clinics", desc: "Guide to pharmacies and medical clinics.", icon: "fa-capsules", tag: "Health", url: "pharma.html", img: "photo22.jpg" },
+      { name: "Sports Halls", desc: "Sports halls and clubs", icon: "fa-trophy", tag: "Sports", url: "salle.html", img: "photo55.jpg" },
+      { name: "Essential Services", desc: "Mosques, police stations and the post office", icon: "fa-shop", tag: "Services", url: "need.html", img: "photo56.jpg" }
     ],
     transport: [
-      { name: "ETUSA & University Bus Routes", desc: "Bus lines connecting the school to metro and train stations.", icon: "fa-bus-simple", tag: "Bus", url: "transport.html", img: "photo23.jpg" },
-      { name: "Major Parking and Stations", desc: "Bus and public transport starting points.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" },
-      { name: "University Bus Shuttles", desc: "Departure schedules towards all directions.", icon: "fa-taxi", tag: "Transport", url: "cousse.html", img: "cousse.jpg" }
+      { name: "ETUSA Buses & University Lines", desc: "Bus lines linking the school to metro and train stations.", icon: "fa-bus-simple", tag: "Buses", url: "transport.html", img: "photo23.jpg" },
+      { name: "Main Stops & Stations", desc: "Departure points for buses and public transport.", icon: "fa-taxi", tag: "Transport", url: "tran.html", img: "photo24.jpg" },
+      { name: "University Transport Buses", desc: "Departure times to every direction", icon: "fa-taxi", tag: "Transport", url: "cousse.html", img: "cousse.jpg" }
     ],
     cite: [
-      { name: "Dormitory Services & Dining", desc: "Room guide, internal dining hall hours, security, and meal tickets.", icon: "fa-bed", tag: "Dorms", url: "residence.html", img: "photo25.jpg" },
-      { name: "Dorm Room Checklist & Tips", desc: "Essential items checklist and tips for comfortable dorm living.", icon: "fa-list-check", tag: "Tips", url: "important.html", img: "photo27.jpg" }
+      { name: "University Residence Services for Students", desc: "Guide to rooms, internal catering, security and daily meal pickup.", icon: "fa-bed", tag: "On-campus housing", url: "residence.html", img: "photo25.jpg" },
+      { name: "Room & Residence Essentials", desc: "List of essential items and tips a student needs in the residence.", icon: "fa-list-check", tag: "Guidelines", url: "important.html", img: "photo27.jpg" }
     ],
     loisirs: [
-      { name: "Sports Clubs & Tournaments", desc: "Football league, chess tournaments, and nearby gyms with discounts.", icon: "fa-trophy", tag: "Sports", url: "sport.html", img: "photo28.jpg" },
-      { name: "Algiers Landmarks & Museums", desc: "Makam El Chahid, Hamma Botanical Garden, Casbah, and student visits.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
+      { name: "Sports Clubs & Activities", desc: "Football league, chess tournament and nearby bodybuilding gyms.", icon: "fa-trophy", tag: "Sports", url: "sport.html", img: "photo28.jpg" },
+      { name: "Cultural Landmarks & Museums in the Capital", desc: "Maqam Echahid (Martyrs' Memorial), the Hamma Garden and the Casbah, with visits arranged for students.", icon: "fa-landmark", tag: "Culture", url: "alger.html", img: "photo29.jpg" }
     ],
     entraide: [
-      { name: "Course Exchange & Exam Archive", desc: "Shared repository for summary notes and previous exam solutions.", icon: "fa-hands-holding-circle", tag: "Study Support", url: "drives.html", img: "photo30.jpg" },
-      { name: "Mentorship & Guidance Network", desc: "Orientation sessions hosted by senior students for newcomers.", icon: "fa-heart-pulse", tag: "Peer Mentoring", url: "experience.html", img: "photo31.jpg" }
+      { name: "Course & Solution Exchange", desc: "A platform for sharing summaries and past years' exams.", icon: "fa-hands-holding-circle", tag: "Academic support", url: "drives.html", img: "photo30.jpg" },
+      { name: "Guidance Initiatives", desc: "Guidance sessions and experience sharing from senior students to newcomers.", icon: "fa-heart-pulse", tag: "Solidarity", url: "experience.html", img: "photo31.jpg" }
     ]
   }
 };
@@ -1057,6 +1063,8 @@ function changeLanguage(lang) {
     set('sec-' + i + '-title', data['sec' + i + 'Title']);
     set('sec-' + i + '-desc', data['sec' + i + 'Desc']);
   }
+  document.title = data.pageTitle;
+  const logoImg = document.querySelector('.logo-img img'); if (logoImg) logoImg.alt = data.logoAlt;
   set('footer-title', data.footerTitle);
   set('footer-sub', data.footerSub);
 
@@ -1285,24 +1293,24 @@ const BEE_TEXT = {
     }
   },
   fr: {
-    tag2: "Ton guide à l'ENSTP",
-    hello: 'Trouvons ton chemin ! 🐝',
-    menu: 'Où veux-tu aller ?',
+    tag2: "Votre guide à l'ENSTP",
+    hello: 'Trouvons votre chemin ! 🐝',
+    menu: 'Où souhaitez-vous aller ?',
     tour: 'Lancer la visite guidée',
     next: 'Suivant', prev: 'Précédent', done: 'Terminer',
     menuBack: 'Retour au menu', exit: 'Fermer',
-    tourEnd: 'Bravo ! Tu connais maintenant tout le guide 🎓',
+    tourEnd: 'Bravo ! Vous connaissez maintenant tout le guide 🎓 Appelez-moi quand vous voulez',
     section: (n) => `Section : ${n} 🐝`,
     tips: {
-      hero: 'Trouvons ton chemin ! 🐝',
-      cartographie: 'Ici : cartes et itinéraires du campus 🗺️',
+      hero: 'Trouvons votre chemin ! 🐝',
+      cartographie: "Ici : plans et itinéraires de l'école 🗺️",
       enseignants: 'Départements et e-mails des enseignants 🎓',
-      services: 'Scolarité, bibliothèque et démarches 📚',
+      services: 'Documents, bibliothèque et toutes les démarches 📚',
       quotidien: "Où manger, imprimer et trouver une pharmacie près de l'école 🍴",
       transport: "Comment venir à l'école et en repartir 🚌",
       cite: 'Tout sur la résidence universitaire 🛏️',
-      loisirs: 'Sport et sorties après les cours ⚽',
-      entraide: "Ici on s'entraide et on partage les cours 💛"
+      loisirs: 'Sport et loisirs après les cours ⚽',
+      entraide: "Ici, on s'entraide et on échange les cours 💛"
     }
   },
   en: {
@@ -1312,18 +1320,18 @@ const BEE_TEXT = {
     tour: 'Start guided tour',
     next: 'Next', prev: 'Back', done: 'Finish',
     menuBack: 'Back to menu', exit: 'Close',
-    tourEnd: 'Great! You now know the whole guide 🎓',
+    tourEnd: 'Great! You now know the whole guide 🎓 Call me anytime',
     section: (n) => `Section: ${n} 🐝`,
     tips: {
       hero: "Let's find your way! 🐝",
-      cartographie: 'Campus maps and routes live here 🗺️',
-      enseignants: 'Departments and faculty emails 🎓',
-      services: 'Registrar, library and paperwork 📚',
+      cartographie: 'Maps and routes of the school are here 🗺️',
+      enseignants: 'Departments and official faculty emails 🎓',
+      services: 'Documents, the library and all procedures 📚',
       quotidien: 'Where to eat, print and find a pharmacy 🍴',
       transport: 'How to get to school and back 🚌',
-      cite: 'Everything about dorm life 🛏️',
+      cite: 'Everything about the university residence 🛏️',
       loisirs: 'Sports and fun after class ⚽',
-      entraide: 'Peers helping peers, sharing notes 💛'
+      entraide: 'Here we help each other and share lessons 💛'
     }
   }
 };
@@ -1586,5 +1594,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
    <script src="assistant.js" defer></script>
    <script src="nahla.js" defer></script>
+   <script src="bee-voice.js" defer></script>
 </body>
 </html>
