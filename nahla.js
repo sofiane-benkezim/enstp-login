@@ -8,9 +8,9 @@
   var KEY = 'enstp-bee-voice';                      // 'on' | 'off'  (الافتراضي: تتكلم)
   var LANGS = { ar: 'ar-SA', fr: 'fr-FR', en: 'en-US' };
   var T = {
-    ar: { on: 'النحلة تتكلم — اضغط لكتمها', off: 'النحلة صامتة — اضغط لتتكلم', none: 'لا يوجد صوت عربي على جهازك، لذلك قد لا يُسمع الكلام 🔇' },
-    fr: { on: "L'abeille parle — cliquez pour la couper", off: "L'abeille est muette — cliquez pour activer la voix", none: "Aucune voix française sur votre appareil 🔇" },
-    en: { on: 'Bee is talking — click to mute', off: 'Bee is muted — click to turn the voice on', none: 'No English voice on your device 🔇' }
+    ar: { on: 'النحلة تتكلم — اضغط لكتمها', off: 'النحلة صامتة — اضغط لتتكلم', none: 'تعذّر تشغيل الصوت العربي (لا يوجد صوت على جهازك ولا اتصال بخدمة الصوت) 🔇' },
+    fr: { on: "L'abeille parle — cliquez pour la couper", off: "L'abeille est muette — cliquez pour activer la voix", none: 'Voix française indisponible (aucune voix locale et service en ligne inaccessible) 🔇' },
+    en: { on: 'Bee is talking — click to mute', off: 'Bee is muted — click to turn the voice on', none: 'English voice unavailable (no local voice and online service unreachable) 🔇' }
   };
   var synth = ('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window) ? window.speechSynthesis : null;
   if (!synth) return;
@@ -28,7 +28,37 @@
     return exact || loose;
   }
 
-  var btn, warned = {}, orig = {};
+  var btn, warned = {}, orig = {}, remote = { q: [], cur: null, token: 0 };
+
+  /* احتياطي للعربية: إن لم يوجد صوت عربي على الجهاز نستعمل صوتاً عبر الإنترنت (خدمة Google Translate غير الرسمية) */
+  function chunks(text) {
+    var out = [], parts = text.split(/(?<=[.!?؟،,:;])\s+/), cur = '';
+    parts.forEach(function (p) {
+      if ((cur + ' ' + p).length > 180) { if (cur) out.push(cur); cur = p; } else cur = cur ? cur + ' ' + p : p;
+    });
+    if (cur) out.push(cur);
+    return out.map(function (c) { return c.slice(0, 190); });
+  }
+  function remoteStop() {
+    remote.token++; remote.q = [];
+    if (remote.cur) { try { remote.cur.pause(); } catch (e) {} remote.cur = null; }
+  }
+  function remoteSpeak(text, l) {
+    remoteStop();
+    var my = remote.token; remote.q = chunks(text);
+    (function next() {
+      if (my !== remote.token || !remote.q.length) { if (btn && my === remote.token) btn.classList.remove('speaking'); return; }
+      var a = new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=' + l + '&q=' + encodeURIComponent(remote.q.shift()));
+      remote.cur = a;
+      a.onplay = function () { if (btn) btn.classList.add('speaking'); };
+      a.onended = next;
+      a.onerror = function () {
+        if (btn) btn.classList.remove('speaking');
+        if (!warned[l] && orig.bubble) { warned[l] = 1; orig.bubble(T[l].none, 4200); }
+      };
+      var pr = a.play(); if (pr && pr.catch) pr.catch(function () { /* قبل أي نقرة من الزائر: تجاهل */ });
+    })();
+  }
 
   function paint() {
     if (!btn) return;
@@ -37,16 +67,18 @@
     btn.title = o ? t.on : t.off; btn.setAttribute('aria-label', btn.title); btn.setAttribute('aria-pressed', o ? 'true' : 'false');
     btn.firstChild.className = 'fa-solid ' + (o ? 'fa-volume-high' : 'fa-volume-xmark');
   }
-  function stop() { synth.cancel(); if (btn) btn.classList.remove('speaking'); }
+  function stop() { synth.cancel(); remoteStop(); if (btn) btn.classList.remove('speaking'); }
   function speak(text) {
     if (!on()) return;
     var l = L(), c = clean(text); if (!c) return;
-    synth.cancel();
-    var u = new SpeechSynthesisUtterance(c), v = pick(LANGS[l]);
+    synth.cancel(); remoteStop();
+    var v = pick(LANGS[l]);
+    if (!v) { remoteSpeak(c, l); return; }          // لا يوجد صوت للغة على الجهاز → صوت عبر الإنترنت
+    var u = new SpeechSynthesisUtterance(c);
     u.lang = LANGS[l]; if (v) u.voice = v; u.rate = 1; u.pitch = 1.15;   // نبرة أرفع قليلاً للنحلة
     u.onstart = function () { if (btn) btn.classList.add('speaking'); };
-    u.onend = u.onerror = function () { if (btn) btn.classList.remove('speaking'); };
-    if (!v && !warned[l] && synth.getVoices().length && orig.bubble) { warned[l] = 1; orig.bubble(T[l].none, 4200); }
+    u.onend = function () { if (btn) btn.classList.remove('speaking'); };
+    u.onerror = function (e) { if (btn) btn.classList.remove('speaking'); if (e && /language|synthesis/.test(e.error || '')) remoteSpeak(c, l); };
     setTimeout(function () { synth.speak(u); }, 60);
   }
   function unlock() { if (on()) { try { var z = new SpeechSynthesisUtterance(' '); z.volume = 0; synth.speak(z); } catch (e) {} } }
