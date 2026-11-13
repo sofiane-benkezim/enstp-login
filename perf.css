@@ -1,0 +1,18 @@
+/* ===== ENSTP performance patch ===== */
+.aurora i{filter:none!important;animation:none!important}
+.aurora i:nth-child(1){background:radial-gradient(circle,#1d5fd1,transparent 70%)}
+.aurora i:nth-child(2){background:radial-gradient(circle,#7c4dff,transparent 70%)}
+.aurora i:nth-child(3){background:radial-gradient(circle,#f5b841,transparent 70%)}
+.cursor-glow{display:none!important}
+.search-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:auto!important}
+.bar{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}
+.orb{backdrop-filter:none!important}
+.section-block{content-visibility:auto;contain-intrinsic-size:auto 700px}
+.card-image{content-visibility:auto}
+@media(max-width:900px){
+  .ring,.orb,.grid-bg,#particles{display:none!important}
+  .search-card::before,.search-card::after{display:none}
+  .sec-icon::after,#hero-badge::after{animation:none}
+  .grad-text{animation:none}
+  .hero-bg{will-change:auto}
+}
