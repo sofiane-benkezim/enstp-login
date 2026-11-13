@@ -15,7 +15,6 @@ tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{50:'#eff6ff',100
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
 :root{
 --bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
 --gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
@@ -56,7 +55,6 @@ img{max-width:100%;display:block}
 ::selection{background:var(--gold);color:#101828}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-/* خلفية حية */
 .aurora{position:fixed;inset:0;z-index:-3;overflow:hidden;background:var(--au-bg)}
 .aurora i{position:absolute;border-radius:50%;filter:blur(110px);animation:drift 22s ease-in-out infinite alternate}
 .aurora i:nth-child(1){width:520px;height:520px;background:#1d5fd1;top:-120px;inset-inline-start:-80px;opacity:calc(.38*var(--au-op))}
@@ -67,7 +65,6 @@ img{max-width:100%;display:block}
 .progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:200}
 .progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--violet));box-shadow:0 0 18px var(--gold)}
 
-/* الشريط العلوي */
 header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
 .bar{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 14px;border-radius:22px;background:var(--bar);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--bar-shadow),inset 0 1px 0 var(--bar-inset)}
 .logo{display:flex;align-items:center;gap:12px;min-width:0}
@@ -88,7 +85,6 @@ header{position:fixed;top:14px;inset-inline:0;z-index:150;padding:0 14px}
 html.dark .theme-btn .i-moon{transform:translateY(-130%) rotate(90deg);opacity:0}
 html.dark .theme-btn .i-sun{transform:none;opacity:1}
 
-/* الواجهة */
 .hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
@@ -111,7 +107,6 @@ main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-dir
 .s-c{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
 .s-d{--c1:#d97706;--c2:#fbbf24;--c3:rgba(217,119,6,.5)}
 
-/* البطاقات */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
 .two{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
 @media(max-width:992px){.two{grid-template-columns:1fr}}
@@ -164,7 +159,6 @@ main{gap:70px}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
 
-/* ===== طبقة مشتركة للصفحات المبنية على Tailwind ===== */
 :root{--solid:#fff}
 html.dark{--solid:#0a1730;color-scheme:dark}
 html:not(.dark){color-scheme:light}
@@ -181,23 +175,23 @@ main{padding-top:50px;gap:28px}
 .ibtn:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
 .pill-clock{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:13px;font-size:.78rem;font-weight:800;color:var(--nav-c);background:var(--soft);border:1px solid var(--soft-b);font-variant-numeric:tabular-nums;white-space:nowrap}
 .pill-clock i{color:var(--gold)}
-/* بطاقات */
+
 .box,.glass-panel,.glass-card{position:relative;border-radius:var(--radius)!important;background:var(--card)!important;border:1px solid var(--card-b)!important;box-shadow:var(--card-shadow)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .box{padding:28px}
 @media(max-width:640px){.box{padding:20px}}
-/* أزرار */
+
 .gbtn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 20px;border-radius:15px;font:inherit;font-weight:800;font-size:.82rem;cursor:pointer;color:var(--btn-c);background:var(--soft);border:1px solid var(--glass-b);transition:.3s var(--ease)}
 .gbtn:hover{color:#14100a;border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 10px 30px rgba(245,184,65,.35)}
 .gbtn.main{color:#14100a;border-color:transparent;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 12px 30px rgba(245,184,65,.4),inset 0 1px 0 rgba(255,255,255,.5)}
 .gbtn.main:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(245,184,65,.55)}
-/* حقول الإدخال */
+
 main select,main input[type=text],main input[type=search],#task-modal input:not([type=hidden]),#task-modal select,#task-modal textarea{background:var(--bar-s)!important;border:1px solid var(--glass-b)!important;color:var(--head)!important;border-radius:16px!important;font-weight:600;outline:0}
 main select:focus,main input:focus,#task-modal input:focus,#task-modal select:focus,#task-modal textarea:focus{border-color:var(--gold)!important;box-shadow:0 0 0 4px rgba(245,184,65,.22)!important}
 main select option,#task-modal select option{color:#111;background:#fff}
 ::placeholder{color:var(--muted)!important;font-weight:500}
 .no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}
 ::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:var(--soft)}::-webkit-scrollbar-thumb{background:rgba(120,140,180,.5);border-radius:6px}
-/* موبايل */
+
 @media(max-width:640px){
 header{top:8px;padding:0 8px}
 .bar{padding:7px 9px;border-radius:18px;gap:8px}
@@ -210,7 +204,6 @@ header{top:8px;padding:0 8px}
 main{padding:34px 14px 30px}}
 @media print{.aurora,.grid-bg,.progress,header,.hero,.to-top,footer{display:none!important}body{background:#fff!important;color:#000!important}main{padding:0}}
 
-/* ===== خاص بصفحة جدول التوقيت ===== */
 @media(max-width:900px){.hide-sm{display:none!important}}
 #themeToggle i{position:static!important;transform:none!important;opacity:1!important;font-size:1rem}
 #daysTabContainer button{min-height:58px;border-radius:16px!important;background:var(--soft)!important;border:1px solid var(--soft-b)!important;color:var(--btn-c)!important;transform:none;transition:.3s var(--ease)}
@@ -315,7 +308,6 @@ main{padding:34px 14px 30px}}
 <div class="flex items-center gap-3">
 <div class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
 <div id="currentSelectionTitle">…</div>
-<div id="levelNotice" style="display:none;margin-top:.5rem;font-size:.75rem;line-height:1.7;padding:.6rem .9rem;border-radius:.9rem;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:var(--head)"></div>
 </div>
 <div class="flex items-center gap-2 w-full sm:w-auto">
 <button id="downloadPdfBtn" class="gbtn main flex-1 sm:flex-none"><i class="fa-solid fa-file-pdf"></i><span>تحميل الجدول PDF</span></button>
@@ -333,11 +325,9 @@ main{padding:34px 14px 30px}}
 </main>
 
 <script>
-        // Constants for External Links (تم تعديل رابط دليل القاعات ليصبح ecolemap.html)
         const ROOM_GUIDE_BASE_URL = "ecolemap.html";
         const PROF_GUIDE_BASE_URL = "professors.html";
 
-        // Days Definition
         const DAYS = [
             { id: 'Saturday', nameAr: 'السبت' },
             { id: 'Sunday', nameAr: 'الأحد' },
@@ -347,22 +337,11 @@ main{padding:34px 14px 30px}}
             { id: 'Thursday', nameAr: 'الخميس' }
         ];
 
-        // Comprehensive Timetable Master Data extracted from official ENSTP documents
-        // ============================================================
-        // TIMETABLE DATA — edit here.
-        // Each session is ONE line:
-        //   {time:"08:00 - 10:00", module:"Name", type:"lecture|td|tp|visit|project", prof:"Mr X", room:"14", groups:["SEC1"]},
-        //   - prof / room can be "" (the button is hidden)
-        //   - groups: ids from the level's "groups" list; use "PROMO" for the whole year (shown for every group)
-        // To add a session: copy a line into the right day and change it.
-        // ============================================================
         const TIMETABLE_DATA = {
 
-        // ---------------- PREPA1 ----------------
         PREPA1: {
             names: {"ar": "السنة الأولى تحضيري", "fr": "1re année préparatoire", "en": "1st Year Preparatory"},
             groups: ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10"],
-            notice: null,
             schedule: {
                 Saturday: [
                     {time:"08:00 - 09:30", module:"Computer Science 1", type:"lecture", prof:"", room:"3", groups:["G1"]},
@@ -491,11 +470,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- PREPA2 ----------------
         PREPA2: {
             names: {"ar": "السنة الثانية تحضيري", "fr": "2e année préparatoire", "en": "2nd Year Preparatory"},
             groups: ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12"],
-            notice: null,
             schedule: {
                 Saturday: [
                     {time:"08:00 - 09:30", module:"Calculus 3", type:"lecture", prof:"Mr Brahmi", room:"Auditorium A", groups:["G1", "G2", "G3", "G4", "G5", "G6"]},
@@ -644,11 +621,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG1_DMS ----------------
         ENG1_DMS: {
             names: {"ar": "السنة الأولى مهندسين - DMS", "fr": "1re année ingénieur - DMS", "en": "1st Year Engineering - DMS"},
             groups: ["SEC1", "SEC2", "SEC3", "SEC4"],
-            notice: null,
             schedule: {
                 Saturday: [
                     {time:"08:00 - 11:05", module:"TP APP GEO", type:"tp", prof:"Mr HEBIB", room:"Labos", groups:["SEC1", "SEC2", "SEC3", "SEC4"]},
@@ -723,11 +698,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG1_DIB ----------------
         ENG1_DIB: {
             names: {"ar": "السنة الأولى مهندسين - DIB", "fr": "1re année ingénieur - DIB", "en": "1st Year Engineering - DIB"},
             groups: ["G1", "G2", "G3", "G4"],
-            notice: {"ar": "ملاحظة: الجدول الرسمي لا يذكر أرقام الأفواج، فاعتُمد ترتيب الأعمدة (1–4)؛ وحصة IA (القاعتان 7 و8) معروضة لكل الأفواج لأن الجدول لا يحدد أفواجها.", "fr": "Remarque : le document officiel n'indique pas les numéros de groupes ; l'ordre des colonnes (1–4) est utilisé. La séance IA (salles 7 et 8) est affichée pour tous les groupes.", "en": "Note: the official table does not number the groups, so column order (1–4) is used. The IA session (rooms 7 and 8) is shown for all groups."},
             schedule: {
                 Saturday: [
                     {time:"09:35 - 11:05", module:"Constr Mat (online)", type:"lecture", prof:"BADAOUI", room:"", groups:["G1", "G2", "G3", "G4"]},
@@ -798,11 +771,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG2_DMS ----------------
         ENG2_DMS: {
             names: {"ar": "السنة الثانية مهندسين - DMS", "fr": "2e année ingénieur - DMS", "en": "2nd Year Engineering - DMS"},
             groups: ["SEC1", "SEC2"],
-            notice: null,
             schedule: {
                 Saturday: [
                 ],
@@ -849,11 +820,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG2_DIB ----------------
         ENG2_DIB: {
             names: {"ar": "السنة الثانية مهندسين - DIB", "fr": "2e année ingénieur - DIB", "en": "2nd Year Engineering - DIB"},
             groups: ["SEC1", "SEC2"],
-            notice: {"ar": "ملاحظة: الجدول الرسمي مكتوب عليه «2025/26» (غالباً خطأ مطبعي) والمحتوى منقول كما هو.", "fr": "Remarque : le document officiel indique « 2025/26 » (probablement une coquille) ; le contenu est repris tel quel.", "en": "Note: the official document is labelled “2025/26” (probably a typo); the content is copied as printed."},
             schedule: {
                 Saturday: [
                 ],
@@ -899,11 +868,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG3_DMS ----------------
         ENG3_DMS: {
             names: {"ar": "السنة الثالثة مهندسين - DMS", "fr": "3e année ingénieur - DMS", "en": "3rd Year Engineering - DMS"},
             groups: ["PROMO", "TUN", "BAT", "G1", "G2"],
-            notice: null,
             schedule: {
                 Saturday: [
                     {time:"08:00 - 11:05", module:"MIDAS", type:"lecture", prof:"Mr. GUERFI", room:"19", groups:["PROMO"]},
@@ -947,11 +914,9 @@ main{padding:34px 14px 30px}}
             }
         },
 
-        // ---------------- ENG3_DIB ----------------
         ENG3_DIB: {
             names: {"ar": "السنة الثالثة مهندسين - DIB", "fr": "3e année ingénieur - DIB", "en": "3rd Year Engineering - DIB"},
             groups: ["PROMO", "G1", "G2"],
-            notice: null,
             schedule: {
                 Saturday: [
                     {time:"08:00 - 12:40", module:"Additional Training on Software", type:"lecture", prof:"BOUDJEMA · TOUHAMI · HENNA", room:"20", groups:["PROMO"]},
@@ -1000,7 +965,6 @@ main{padding:34px 14px 30px}}
         },
         };
 
-        // DOM Element Selectors
         const levelSelect = document.getElementById('levelSelect');
         const groupSelect = document.getElementById('groupSelect');
         const searchInput = document.getElementById('searchInput');
@@ -1014,14 +978,12 @@ main{padding:34px 14px 30px}}
         const themeIcon = document.getElementById('themeIcon');
         const liveClock = document.getElementById('liveClock');
 
-        // Application State
         let currentLevel = 'PREPA1';
         let currentGroup = 'ALL';
         let selectedDay = getCurrentDayName();
 
-        // Utility: Get Today Name in English matching dataset
         function getCurrentDayName() {
-            const dayIndex = new Date().getDay(); // 0 is Sunday, 6 is Saturday
+            const dayIndex = new Date().getDay();
             const map = {
                 6: 'Saturday',
                 0: 'Sunday',
@@ -1034,7 +996,6 @@ main{padding:34px 14px 30px}}
             return map[dayIndex] || 'Saturday';
         }
 
-        // Live Clock Updater
         function updateLiveClock() {
             const now = new Date();
             liveClock.textContent = now.toLocaleTimeString('ar-DZ', { hour12: false });
@@ -1042,7 +1003,6 @@ main{padding:34px 14px 30px}}
         setInterval(updateLiveClock, 1000);
         updateLiveClock();
 
-        // Dark Mode (مفتاح موحد مع بقية صفحات الموقع)
         function paintThemeIcon(isDark) {
             themeIcon.className = isDark ? 'fa-solid fa-sun text-lg' : 'fa-solid fa-moon text-lg';
         }
@@ -1062,7 +1022,6 @@ main{padding:34px 14px 30px}}
             paintThemeIcon(isDark);
         });
 
-        // ---- i18n helpers (levels, groups, class types) ----
         const TYPE_LABEL={lecture:{ar:'محاضرة / درس',fr:'Cours',en:'Lecture'},td:{ar:'أعمال موجهة',fr:'TD',en:'Tutorial'},tp:{ar:'أعمال تطبيقية',fr:'TP / Labo',en:'Practical / Lab'},visit:{ar:'زيارة ميدانية',fr:'Visite de chantier',en:'Site visit'},project:{ar:'مشروع / رسم',fr:'Esquisse / Projet',en:'Sketch / Project'}};
         const TIPS={room:{ar:'انقر للانتقال إلى موقع القاعة وتحديد مكانها',fr:'Cliquez pour localiser la salle',en:'Click to locate the room'},prof:{ar:'انقر للانتقال إلى صفحة الأستاذ',fr:'Cliquez pour ouvrir la fiche de l’enseignant',en:'Click to open the teacher page'}};
         function groupLabel(id){
@@ -1078,7 +1037,7 @@ main{padding:34px 14px 30px}}
             Object.keys(TIMETABLE_DATA).forEach(k=>{const o=document.createElement('option');o.value=k;o.textContent=TIMETABLE_DATA[k].names[currentLanguage];levelSelect.appendChild(o);});
             levelSelect.value=currentLevel;
         }
-        // Dynamic Group Select Options Renderer (keepSelection = true when only the language changed)
+
         function populateGroups(keepSelection){
             const levelData = TIMETABLE_DATA[currentLevel];
             const prev = keepSelection ? currentGroup : 'ALL';
@@ -1095,7 +1054,6 @@ main{padding:34px 14px 30px}}
             groupSelect.value = currentGroup;
         }
 
-        // Days Buttons Renderer
         function renderDaysTabs() {
             daysTabContainer.innerHTML = '';
             DAYS.forEach(day => {
@@ -1108,7 +1066,6 @@ main{padding:34px 14px 30px}}
                         : 'bg-slate-200/70 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700'
                 }`;
 
-                // Mark current actual day with indicator
                 const isActualToday = day.id === getCurrentDayName();
                 const names=currentLanguage==='fr'?['Samedi','Dimanche','Lundi','Mardi','Mercredi','Jeudi']:currentLanguage==='en'?['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday']:DAYS.map(d=>d.nameAr);
                 btn.innerHTML=`<span>${names[DAYS.indexOf(day)]}</span>${isActualToday?`<span class="text-[9px] bg-amber-400 text-slate-900 font-extrabold px-1.5 rounded-full">${UI_TEXT[currentLanguage].todayTag}</span>`:''}`;
@@ -1123,13 +1080,11 @@ main{padding:34px 14px 30px}}
             });
         }
 
-        // Render Timetable Schedule Cards
         function renderSchedule() {
             const levelData = TIMETABLE_DATA[currentLevel];
             const rawDaySchedule = (levelData && levelData.schedule && levelData.schedule[selectedDay]) || [];
             const searchKeyword = searchInput.value.trim().toLowerCase();
 
-            // Filter by selected Group and Search Keyword
             let filtered = rawDaySchedule.filter(item => {
                 const matchGroup = (currentGroup === 'ALL') || (item.groups && (item.groups.includes(currentGroup) || item.groups.includes('PROMO')));
                 const matchSearch = !searchKeyword || 
@@ -1139,12 +1094,9 @@ main{padding:34px 14px 30px}}
                 return matchGroup && matchSearch;
             });
 
-            // Update Header Title
             const di=DAYS.findIndex(d=>d.id===selectedDay); const names=currentLanguage==='fr'?['Samedi','Dimanche','Lundi','Mardi','Mercredi','Jeudi']:currentLanguage==='en'?['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday']:DAYS.map(d=>d.nameAr); const currentDayAr=names[di]||'';
             currentSelectionTitle.textContent = `${levelData.names[currentLanguage]} — ${currentLanguage==='fr'?'Emploi du temps du':currentLanguage==='en'?'Timetable for':'جدول يوم'} (${currentDayAr})`;
 
-            const noticeEl=document.getElementById('levelNotice');
-            if(levelData.notice){noticeEl.textContent='ⓘ '+levelData.notice[currentLanguage];noticeEl.style.display='block';}else{noticeEl.style.display='none';}
             timetableContainer.innerHTML = '';
 
             if (filtered.length === 0) {
@@ -1160,19 +1112,16 @@ main{padding:34px 14px 30px}}
                 return;
             }
 
-            // Render Schedule Cards
             filtered.forEach(session => {
                 const card = document.createElement('div');
                 card.className = "glass-panel rounded-3xl p-5 sm:p-6 border border-slate-200/90 dark:border-slate-800 shadow-md hover:shadow-lg transition-all duration-200 relative overflow-hidden group";
 
-                // Room & Prof External Links Construction
                 const roomEncoded = encodeURIComponent(session.room);
                 const profEncoded = encodeURIComponent(session.prof);
 
                 const roomUrl = `${ROOM_GUIDE_BASE_URL}?query=${roomEncoded}`;
                 const profUrl = `${PROF_GUIDE_BASE_URL}?prof=${profEncoded}`;
 
-                // Class Type Badge Color Mapping
                 let typeColor = 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300 border-blue-200';
                 if (session.type==='tp') typeColor = 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300 border-amber-200';
                 else if (session.type==='td') typeColor = 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 border-emerald-200';
@@ -1182,15 +1131,12 @@ main{padding:34px 14px 30px}}
                 card.innerHTML = `
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         
-                        <!-- Left Side: Time Badge & Module Name -->
                         <div class="flex items-start gap-4">
-                            <!-- Time Badge -->
                             <div class="bg-enstp-blue text-white dark:bg-blue-600 px-4 py-3 rounded-2xl text-center min-w-[110px] shadow-md flex flex-col justify-center">
                                 <span class="text-xs font-extrabold tracking-wider dir-ltr">${session.time}</span>
                                 <span class="text-[10px] opacity-80 mt-0.5"><i class="fa-regular fa-clock ml-1"></i>${UI_TEXT[currentLanguage].time}</span>
                             </div>
 
-                            <!-- Subject Info -->
                             <div class="space-y-1">
                                 <div class="flex items-center gap-2 flex-wrap">
                                     <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${typeColor}">
@@ -1206,7 +1152,6 @@ main{padding:34px 14px 30px}}
                             </div>
                         </div>
 
-                        <!-- Right Side: Clickable Links for Prof & Room -->
                         <div class="flex items-center gap-2.5 pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-200 dark:border-slate-800">
                             
                             ${session.room?`<a href="${roomUrl}" target="_blank" rel="noopener noreferrer" 
@@ -1240,7 +1185,6 @@ main{padding:34px 14px 30px}}
             });
         }
 
-        // Event Listeners
         levelSelect.addEventListener('change', (e) => {
             currentLevel = e.target.value;
             populateGroups(false);
@@ -1262,12 +1206,10 @@ main{padding:34px 14px 30px}}
             renderSchedule();
         });
 
-        // Download PDF Handler
         downloadPdfBtn.addEventListener('click', () => {
             window.open('https://enstp.edu.dz/', '_blank', 'noopener');
         });
 
-        // Print Handler
         printBtn.addEventListener('click', () => {
             window.print();
         });
@@ -1293,7 +1235,6 @@ main{padding:34px 14px 30px}}
         }
         languageSelect.addEventListener('change',e=>applyLanguage(e.target.value));
 
-        // Initialization
         window.addEventListener('DOMContentLoaded', () => {
             initTheme();
             applyLanguage((function(){try{var s=localStorage.getItem('enstp-lang');return UI_TEXT[s]?s:'ar'}catch(e){return 'ar'}})());
@@ -1338,4 +1279,3 @@ window.__FT={"ar": {"title": "جدول التوقيت | ENSTP", "home": "الع�
 </script>
 </body>
 </html>
-
