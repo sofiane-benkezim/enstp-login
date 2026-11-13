@@ -22,8 +22,12 @@
       k: 'خريطة خريطه map plan campus حرم مسار مسارات itineraire itinéraire path where اين وين فين أين où قاعة قاعات salle salles amphi مدرج مقصف buvette cafeteria canteen توجيه orientation مبنى بناية batiment bâtiment block bloc ضايع perdu lost' },
     { url: 'temp.html', icon: 'fa-calendar-days',
       t: { ar: 'جدول التوقيت', fr: 'Emploi du temps', en: 'Class timetable' },
-      d: { ar: 'مواعيد الحصص والقاعات وأسماء الأساتذة لكل فوج.', fr: 'Horaires des cours, salles et enseignants par groupe.', en: 'Class times, rooms and teachers for each group.' },
-      k: 'جدول توقيت زمني حصص حصة مواعيد emploi temps horaire horaires timetable schedule planning cours seance séance groupe فوج قسم section سداسي semestre اليوم today demain tomorrow ouvrage' },
+      d: { ar: 'جدول 2026/2027 لكل المستويات (تحضيري، DMS، DIB) مع القاعات وأسماء الأساتذة لكل فوج.', fr: 'Emploi du temps 2026/2027 de tous les niveaux (prépa, DMS, DIB) avec salles et enseignants par groupe.', en: '2026/2027 timetable for all levels (prep, DMS, DIB) with rooms and teachers for each group.' },
+      k: '2026 2027 prepa prépa تحضيري dms dib 1cp 2cp جدول توقيت زمني حصص حصة مواعيد emploi temps horaire horaires timetable schedule planning cours seance séance groupe فوج قسم section سداسي semestre اليوم today demain tomorrow ouvrage' },
+    { url: 'absences.html', icon: 'fa-heart-pulse',
+      t: { ar: 'متتبع الغيابات', fr: 'Suivi des absences', en: 'Absence Tracker' },
+      d: { ar: 'اختر مستواك وفوجك وتتبّع غياباتك في كل مادة بخمسة قلوب (أبيض = غياب، أخضر = مبرَّر) مع حفظ تلقائي.', fr: 'Choisissez votre niveau et groupe et suivez vos absences par module avec 5 cœurs (blanc = absence, vert = justifiée), sauvegarde automatique.', en: 'Pick your level and group and track absences per module with 5 hearts (white = absence, green = justified), auto-saved.' },
+      k: 'غياب غيابات غيابي غايب مبرر مبررة قلوب قلب حد اقصى طرد اقصاء absence absences absent absents justifiee justifiée justifier coeur cœur coeurs cœurs hearts heart tracker suivi tracking justified limite limit exclusion eliminé elimine missed skip class' },
     { url: 'agenda.html', icon: 'fa-list-check',
       t: { ar: 'الرزنامة اليومية', fr: 'Agenda quotidien', en: 'Daily agenda' },
       d: { ar: 'نظّم مهامك ومواعيدك وتذكيراتك.', fr: 'Organisez vos tâches, rendez-vous et rappels.', en: 'Organise your tasks, appointments and reminders.' },
@@ -52,19 +56,19 @@
       t: { ar: 'المكتبة المركزية', fr: 'Bibliothèque centrale', en: 'Central library' },
       d: { ar: 'المراجع الهندسية ومذكرات التخرج وقاعات المطالعة.', fr: "Ouvrages d'ingénierie, PFE et salles de lecture.", en: 'Engineering books, graduation theses and reading rooms.' },
       k: 'مكتبة مكتبه كتب كتاب مراجع مرجع مذكرة مذكرات تخرج مطالعة bibliotheque bibliothèque livre livres pfe memoire mémoire library book books thesis theses reading lecture' },
-    { url: 'food.html', icon: 'fa-utensils',
+    { url: 'food.html', m: 'restaurant', icon: 'fa-utensils',
       t: { ar: 'مطاعم ومقاهي الجوار', fr: 'Restaurants & cafés à proximité', en: 'Nearby restaurants & cafés' },
       d: { ar: 'أفضل أماكن الأكل والقهوة قرب بوابة المدرسة.', fr: 'Les meilleurs fast-foods et cafés près de l’école.', en: 'Best food and coffee spots near the school gate.' },
       k: 'اكل أكل مطعم مطاعم مقهى مقاهي قهوة وجبة وجبات سندويتش ماكلة جوع restaurant restaurants cafe café manger nourriture fast food fastfood sandwich pizza tacos eat food coffee lunch dejeuner déjeuner' },
-    { url: 'print.html', icon: 'fa-print',
+    { url: 'print.html', m: 'imprimerie photocopie', icon: 'fa-print',
       t: { ar: 'مراكز الطباعة والنسخ والبقالة', fr: 'Impression, copie & épiceries', en: 'Printing, copying & groceries' },
       d: { ar: 'طباعة المخططات A0/A1 والدروس ومحلات قريبة.', fr: 'Tirage A0/A1, cours et commerces proches.', en: 'A0/A1 plans, course notes and nearby shops.' },
       k: 'طباعة طباعه نسخ تصوير مخططات مخطط ورق قرطاسية بقالة محل محلات impression imprimer photocopie copie copies tirage plan plans papeterie epicerie épicerie print printing copy xerox photocopy a0 a1 a3 a4 grocery shop shops superette supérette ليل night' },
-    { url: 'pharma.html', icon: 'fa-capsules',
+    { url: 'pharma.html', m: 'pharmacie', icon: 'fa-capsules',
       t: { ar: 'الصيدليات والعيادات', fr: 'Pharmacies & cliniques', en: 'Pharmacies & clinics' },
       d: { ar: 'دليل الصيدليات والعيادات الطبية القريبة.', fr: 'Pharmacies et services de santé à proximité.', en: 'Nearby pharmacies and medical clinics.' },
       k: 'صيدلية صيدليه صيدليات دواء ادوية طبيب مريض مرض عيادة عيادات مستشفى صحة اسعاف طوارئ pharmacie pharmacies medicament médicament clinique cliniques hopital hôpital sante santé medecin médecin urgence pharmacy medicine doctor clinic hospital health emergency sick ill' },
-    { url: 'transport.html', icon: 'fa-bus-simple',
+    { url: 'transport.html', m: 'station de bus', icon: 'fa-bus-simple',
       t: { ar: 'حافلات ETUSA والخطوط الجامعية', fr: 'Bus ETUSA & lignes universitaires', en: 'ETUSA buses & university lines' },
       d: { ar: 'خطوط الحافلات الرابطة بين المدرسة والمترو والقطار.', fr: "Lignes de bus reliant l’école au métro et au train.", en: 'Bus lines linking the school to metro and train stations.' },
       k: 'حافلة حافلات باص باصات نقل مواصلات مترو ترامواي قطار طاكسي تاكسي خط خطوط etusa bus transport metro métro tramway train taxi ligne lignes station stations ride commute كيفاش نروح الوصول وصول trajet itineraire itinéraire how to get route routes' },
@@ -87,7 +91,7 @@
     { url: 'sport.html', icon: 'fa-trophy',
       t: { ar: 'النوادي والأنشطة الرياضية', fr: 'Clubs & tournois sportifs', en: 'Sports clubs & tournaments' },
       d: { ar: 'كرة القدم، الشطرنج، قاعات الرياضة.', fr: 'Football, échecs et salles de sport.', en: 'Football, chess and gyms.' },
-      k: 'رياضة رياضه نادي نوادي كرة قدم شطرنج قاعة رياضة كمال اجسام بطولة دوري sport sports club clubs tournoi tournois football foot echecs échecs salle gym musculation fitness tournament chess' },
+      k: 'رياضة رياضه نادي نوادي كرة قدم شطرنج كمال اجسام بطولة دوري sport sports club clubs tournoi tournois football foot echecs échecs gym musculation fitness tournament chess' },
     { url: 'alger.html', icon: 'fa-landmark',
       t: { ar: 'معالم ومتاحف العاصمة', fr: "Monuments & musées d'Alger", en: 'Algiers landmarks & museums' },
       d: { ar: 'مقام الشهيد، حديقة الحامة، القصبة وزيارات للطلبة.', fr: "Makam Echahid, Jardin d'Essai, Casbah.", en: 'Martyrs’ Memorial, Hamma Garden, Casbah.' },
@@ -105,6 +109,14 @@
       d: { ar: 'اطرح أي سؤال بجمل طبيعية (يتطلب مفتاح Gemini).', fr: 'Posez vos questions en langage naturel (clé Gemini requise).', en: 'Ask anything in natural language (needs a Gemini key).' },
       k: 'ذكاء اصطناعي ذكي مساعد نحلة سؤال اسال ai ia assistant intelligence artificielle gemini chatbot bee abeille question demander ask' }
   ];
+
+  /* موقع المدرسة على خرائط Google (بحث بالاسم). للدقة القصوى ضع رابط موقعك من خرائط Google في MAPS_LINK. */
+  var MAPS_QUERY = 'École Nationale Supérieure des Travaux Publics (ENSTP) Kouba Alger';
+  var MAPS_LINK = '';
+  function mapsSearch(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+  function mapsDir(q) { return 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(q); }
+  var SCHOOL_RE = /(enstp|المدرسه|مدرسه|ecole|school)/;
+  var WHERE_RE = /(اين|وين|فين|موقع|عنوان|مكان|طريق|اتجاه|خريطه|خرائط|\bou\b|adresse|localis|situe|itineraire|carte|where|location|address|direction|map|find)/;
 
   var STOP = ('في من الى إلى على عن هل ما ماذا اين أين وين فين كيف كيفاش علاش لماذا متى هو هي هذا هذه هاذي هاذا انا أنا اريد أريد ابغى نبغي نحب اي أي لو لي لك مع او أو ثم قد كل بعض ' +
     'le la les un une des de du dans pour sur est ou où et au aux ce cet cette que qui quoi comment quel quelle quels je tu il elle nous vous veux voudrais cherche chercher trouver ' +
@@ -181,15 +193,15 @@
   var UI = {
     ar: { title: 'المساعد الذكي', sub: 'اسألني وسأوجّهك للصفحة المناسبة', ph: 'اكتب سؤالك... مثلاً: أين الصيدلية؟', send: 'إرسال', open: 'افتح المساعد', close: 'إغلاق',
       hello: 'مرحباً! 👋 اسألني عن أي شيء في الموقع: الجدول، القاعات، الأساتذة، النقل، الإقامة، المطاعم... وسأدلّك على الصفحة المناسبة.',
-      found: 'وجدت لك هذا:', more: 'قد يفيدك أيضاً:', none: 'لم أجد نتيجة دقيقة 🤔 جرّب كلمات أخرى، أو اختر من الاقتراحات:', thanks: 'العفو! أنا هنا متى احتجت. 😊', go: 'فتح الصفحة',
+      found: 'وجدت لك هذا:', more: 'قد يفيدك أيضاً:', none: 'لم أجد نتيجة دقيقة 🤔 جرّب كلمات أخرى، أو اختر من الاقتراحات:', thanks: 'العفو! أنا هنا متى احتجت. 😊', go: 'فتح الصفحة', mapT: 'موقع المدرسة على خرائط Google', mapD: 'يفتح الخريطة في نافذة جديدة.', dirT: 'ابدأ الاتجاهات إلى المدرسة', dirD: 'طريق الوصول من موقعك الحالي.', whereIs: 'المدرسة العليا للأشغال العمومية (ENSTP) تقع في القبة، الجزائر العاصمة 📍', nearT: 'ابحث عن أقرب نتائج في خرائط Google', nearD: 'قرب المدرسة، يفتح في نافذة جديدة.',
       sug: ['أين الصيدلية؟', 'جدول التوقيت', 'كيف أصل بالحافلة؟', 'شهادة مدرسية', 'مطاعم قريبة', 'بريد الأساتذة'] },
     fr: { title: 'Assistant intelligent', sub: 'Posez votre question, je vous oriente', ph: 'Écrivez... ex : où est la pharmacie ?', send: 'Envoyer', open: "Ouvrir l'assistant", close: 'Fermer',
       hello: "Bonjour ! 👋 Posez-moi une question sur le site : emploi du temps, salles, enseignants, transport, résidence, restauration… Je vous dirige vers la bonne page.",
-      found: 'Voici ce que j’ai trouvé :', more: 'Peut aussi vous aider :', none: "Je n'ai pas trouvé de résultat précis 🤔 Essayez d'autres mots, ou choisissez une suggestion :", thanks: 'Avec plaisir ! 😊', go: 'Ouvrir la page',
+      found: 'Voici ce que j’ai trouvé :', more: 'Peut aussi vous aider :', none: "Je n'ai pas trouvé de résultat précis 🤔 Essayez d'autres mots, ou choisissez une suggestion :", thanks: 'Avec plaisir ! 😊', go: 'Ouvrir la page', mapT: 'Position de l’école sur Google Maps', mapD: 'Ouvre la carte dans un nouvel onglet.', dirT: 'Itinéraire vers l’école', dirD: 'Chemin depuis votre position actuelle.', whereIs: 'L’ENSTP se trouve à Kouba, Alger 📍', nearT: 'Chercher à proximité sur Google Maps', nearD: 'Près de l’école, s’ouvre dans un nouvel onglet.',
       sug: ['Où est la pharmacie ?', 'Emploi du temps', 'Bus vers le métro', 'Certificat de scolarité', 'Restaurants proches', 'E-mails des profs'] },
     en: { title: 'Smart assistant', sub: 'Ask me and I will point you to the right page', ph: 'Type your question... e.g. where is the pharmacy?', send: 'Send', open: 'Open assistant', close: 'Close',
       hello: 'Hi! 👋 Ask me anything about this site: timetable, rooms, teachers, transport, residence, food… I will point you to the right page.',
-      found: 'Here is what I found:', more: 'You may also like:', none: "I couldn't find an exact match 🤔 Try other words, or pick a suggestion:", thanks: 'You are welcome! 😊', go: 'Open page',
+      found: 'Here is what I found:', more: 'You may also like:', none: "I couldn't find an exact match 🤔 Try other words, or pick a suggestion:", thanks: 'You are welcome! 😊', go: 'Open page', mapT: 'School location on Google Maps', mapD: 'Opens the map in a new tab.', dirT: 'Get directions to the school', dirD: 'Route from your current location.', whereIs: 'ENSTP is located in Kouba, Algiers 📍', nearT: 'Search nearby on Google Maps', nearD: 'Near the school, opens in a new tab.',
       sug: ['Where is the pharmacy?', 'Class timetable', 'Bus to the metro', 'Enrolment certificate', 'Restaurants nearby', 'Teachers emails'] }
   };
   var GREET = /(^|\s)(سلام|السلام|مرحبا|اهلا|أهلا|صباح|مساء|hello|hi|hey|bonjour|salut|bonsoir|coucou)(\s|$)/;
@@ -200,6 +212,30 @@
     if (l === 'ar' || l === 'fr' || l === 'en') return l;
     try { var s = localStorage.getItem('enstp-lang'); if (UI[s]) return s; } catch (e) {}
     return 'ar';
+  }
+
+  /* ---------- الصوت (قراءة الردود بصوت عالٍ، 3 لغات، مع زر كتم) ---------- */
+  var VOICE_KEY = 'enstp-assistant-voice';   // 'on' | 'off'  (الافتراضي: يتكلم)
+  var VOICE_T = {
+    ar: { on: 'الصوت يعمل — اضغط لكتم المساعد', off: 'المساعد صامت — اضغط ليتكلم', none: 'لا يوجد صوت عربي مثبّت على جهازك، لذلك قد لا يُسمع الكلام. ثبّت صوتاً عربياً من إعدادات النظام.' },
+    fr: { on: 'Voix activée — cliquez pour couper le son', off: 'Assistant muet — cliquez pour activer la voix', none: "Aucune voix française n'est installée sur votre appareil : la lecture peut ne pas fonctionner." },
+    en: { on: 'Voice on — click to mute', off: 'Assistant muted — click to turn the voice on', none: 'No English voice is installed on your device, so speech may not be audible.' }
+  };
+  var VOICE_LANG = { ar: 'ar-SA', fr: 'fr-FR', en: 'en-US' };
+  var synth = ('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window) ? window.speechSynthesis : null;
+  function voiceOn() { try { return localStorage.getItem(VOICE_KEY) !== 'off'; } catch (e) { return true; } }
+  function setVoice(v) { try { localStorage.setItem(VOICE_KEY, v ? 'on' : 'off'); } catch (e) {} }
+  function pickVoice(code) {
+    var vs = synth.getVoices() || [], base = code.slice(0, 2), exact = null, loose = null;
+    for (var i = 0; i < vs.length; i++) {
+      var vl = (vs[i].lang || '').replace('_', '-').toLowerCase();
+      if (vl === code.toLowerCase()) { exact = exact || vs[i]; }
+      else if (vl.slice(0, 2) === base) { loose = loose || vs[i]; }
+    }
+    return exact || loose || null;
+  }
+  function cleanForSpeech(t) {
+    return String(t).replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\uFE0F]/gu, '').replace(/\s+/g, ' ').trim();
   }
 
   /* ---------- الواجهة ---------- */
@@ -236,8 +272,10 @@
     '.eas-form button{width:44px;border:0;border-radius:14px;cursor:pointer;color:#14100a;background:linear-gradient(135deg,var(--gold-2,#ffdf9a),var(--gold,#f5b841));font-size:.95rem}[dir=rtl] .eas-form button i{transform:scaleX(-1)}',
     '.eas-typing{display:inline-flex;gap:4px;padding:4px 0}.eas-typing i{width:6px;height:6px;border-radius:50%;background:var(--eas-mut);animation:eas-t 1s infinite}.eas-typing i:nth-child(2){animation-delay:.15s}.eas-typing i:nth-child(3){animation-delay:.3s}',
     '@keyframes eas-t{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-3px)}}',
+    '.eas-v{margin-inline-start:auto;width:34px;height:34px;border-radius:11px;border:0;cursor:pointer;color:#fff;background:rgba(255,255,255,.14);font-size:.95rem;flex-shrink:0}.eas-v:hover{background:rgba(255,255,255,.26)}.eas-v+.eas-x{margin-inline-start:0}',
+    '.eas-v.off{background:rgba(239,68,68,.35)}.eas-v.speaking{animation:eas-p 1s infinite;background:rgba(245,184,65,.55);color:#14100a}',
     '@media(max-width:640px){.eas-fab{inset-inline-end:14px;bottom:84px;width:50px;height:50px}.eas-panel{inset-inline-end:10px;bottom:144px;height:min(520px,calc(100vh - 170px))}}',
-    '@media(prefers-reduced-motion:reduce){.eas-fab .eas-dot,.eas-m,.eas-cards{animation:none}}'
+    '@media(prefers-reduced-motion:reduce){.eas-fab .eas-dot,.eas-m,.eas-cards,.eas-v.speaking{animation:none}}'
   ].join('\n');
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -250,13 +288,37 @@
     fab.type = 'button'; fab.setAttribute('aria-expanded', 'false');
     var panel = el('div', 'eas-panel'); panel.setAttribute('role', 'dialog');
     panel.innerHTML =
-      '<div class="eas-head"><div class="eas-ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div><b class="eas-t"></b><small class="eas-s"></small></div><button type="button" class="eas-x"><i class="fa-solid fa-xmark"></i></button></div>' +
+      '<div class="eas-head"><div class="eas-ic"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div><b class="eas-t"></b><small class="eas-s"></small></div><button type="button" class="eas-v" aria-pressed="true"><i class="fa-solid fa-volume-high"></i></button><button type="button" class="eas-x"><i class="fa-solid fa-xmark"></i></button></div>' +
       '<div class="eas-msgs" aria-live="polite"></div><div class="eas-sug"></div>' +
       '<form class="eas-form" autocomplete="off"><input type="text" maxlength="200" aria-label="question"><button type="submit"><i class="fa-solid fa-paper-plane"></i></button></form>';
     document.body.appendChild(panel); document.body.appendChild(fab);
 
     var msgs = panel.querySelector('.eas-msgs'), sug = panel.querySelector('.eas-sug'), form = panel.querySelector('form'), input = form.querySelector('input');
-    var started = false;
+    var started = false, vbtn = panel.querySelector('.eas-v'), warned = {};
+    if (!synth) vbtn.style.display = 'none';
+
+    function stopSpeaking() { if (synth) { synth.cancel(); } vbtn.classList.remove('speaking'); }
+    function paintVoice() {
+      var on = voiceOn(), t = VOICE_T[lang()];
+      vbtn.classList.toggle('off', !on); vbtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      vbtn.title = on ? t.on : t.off; vbtn.setAttribute('aria-label', vbtn.title);
+      vbtn.firstChild.className = 'fa-solid ' + (on ? 'fa-volume-high' : 'fa-volume-xmark');
+    }
+    function speak(text) {
+      if (!synth || !voiceOn()) return;
+      var l = lang(), clean = cleanForSpeech(text); if (!clean) return;
+      synth.cancel();
+      var u = new SpeechSynthesisUtterance(clean), v = pickVoice(VOICE_LANG[l]);
+      u.lang = VOICE_LANG[l]; if (v) u.voice = v; u.rate = 1; u.pitch = 1.05;
+      u.onstart = function () { vbtn.classList.add('speaking'); };
+      u.onend = u.onerror = function () { vbtn.classList.remove('speaking'); };
+      if (!v && !warned[l] && synth.getVoices().length) { warned[l] = 1; say(VOICE_T[l].none, 'bot', true); }
+      setTimeout(function () { synth.speak(u); }, 60);
+    }
+    function unlock() { /* iOS/Safari: يجب بدء الصوت داخل نقرة المستخدم */
+      if (synth && voiceOn()) { try { var z = new SpeechSynthesisUtterance(' '); z.volume = 0; synth.speak(z); } catch (e) {} }
+    }
+    if (synth) { try { synth.getVoices(); } catch (e) {} }
 
     function paint() {
       var u = UI[lang()];
@@ -266,15 +328,16 @@
       form.querySelector('button').setAttribute('aria-label', u.send);
       sug.innerHTML = '';
       u.sug.forEach(function (s) { var b = el('button', null, esc(s)); b.type = 'button'; b.addEventListener('click', function () { ask(s); }); sug.appendChild(b); });
+      paintVoice();
       panel.dir = document.documentElement.dir || (lang() === 'ar' ? 'rtl' : 'ltr');
     }
     function scroll() { msgs.scrollTop = msgs.scrollHeight; }
-    function say(text, cls) { var m = el('div', 'eas-m ' + cls); m.textContent = text; msgs.appendChild(m); scroll(); return m; }
+    function say(text, cls, quiet) { var m = el('div', 'eas-m ' + cls); m.textContent = text; msgs.appendChild(m); scroll(); if (cls === 'bot' && !quiet) speak(text); return m; }
     function cards(list, top) {
       var l = lang(), wrap = el('div', 'eas-cards');
       list.forEach(function (p, i) {
         var a = el('a', 'eas-card' + (top && i === 0 ? ' top' : ''));
-        a.href = p.url;
+        a.href = p.url; if (p.ext) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
         a.innerHTML = '<i class="ci fa-solid ' + esc(p.icon) + '"></i><div><b>' + esc(p.t[l]) + '</b><span>' + esc(p.d[l]) + '</span></div><i class="go fa-solid fa-arrow-right"></i>';
         wrap.appendChild(a);
       });
@@ -283,31 +346,47 @@
     function answer(text) {
       var u = UI[lang()], n = norm1(text);
       if (THANKS.test(n)) return say(u.thanks, 'bot');
+      if (SCHOOL_RE.test(n) && WHERE_RE.test(n)) {
+        say(u.whereIs, 'bot');
+        cards([
+          { ext: 1, icon: 'fa-location-dot', url: MAPS_LINK || mapsSearch(MAPS_QUERY), t: { ar: u.mapT, fr: u.mapT, en: u.mapT }, d: { ar: u.mapD, fr: u.mapD, en: u.mapD } },
+          { ext: 1, icon: 'fa-diamond-turn-right', url: mapsDir(MAPS_QUERY), t: { ar: u.dirT, fr: u.dirT, en: u.dirT }, d: { ar: u.dirD, fr: u.dirD, en: u.dirD } }
+        ], true);
+        return;
+      }
       var res = search(text);
       if (!res.length) {
         if (GREET.test(' ' + n + ' ')) return say(u.hello, 'bot');
         say(u.none, 'bot');
         return;
       }
-      say(u.found, 'bot');
-      cards(res.slice(0, 1).map(function (r) { return r.p; }), true);
+      var topP = res[0].p, first = [topP];
+      say(u.found, 'bot', true); speak(u.found + ' ' + topP.t[lang()]);
+      if (topP.m) first.push({ ext: 1, icon: 'fa-map-location-dot', url: mapsSearch(topP.m + ' near ' + MAPS_QUERY), t: { ar: u.nearT, fr: u.nearT, en: u.nearT }, d: { ar: u.nearD, fr: u.nearD, en: u.nearD } });
+      cards(first, true);
       var rest = res.slice(1, 4).filter(function (r) { return r.s >= res[0].s * 0.55; }).map(function (r) { return r.p; });
-      if (rest.length) { say(u.more, 'bot'); cards(rest, false); }
+      if (rest.length) { say(u.more, 'bot', true); cards(rest, false); }
     }
     function ask(text) {
       text = (text || '').trim(); if (!text) return;
+      stopSpeaking(); unlock();
       say(text, 'me'); input.value = '';
       var t = el('div', 'eas-m bot', '<span class="eas-typing"><i></i><i></i><i></i></span>'); msgs.appendChild(t); scroll();
       setTimeout(function () { t.remove(); answer(text); }, 380);
     }
     function open(v) {
       panel.classList.toggle('open', v); fab.setAttribute('aria-expanded', v);
+      if (!v) stopSpeaking();
       if (v) {
         paint();
-        if (!started) { started = true; say(UI[lang()].hello, 'bot'); }
+        if (!started) { started = true; unlock(); say(UI[lang()].hello, 'bot'); }
         setTimeout(function () { input.focus(); }, 250);
       }
     }
+    vbtn.addEventListener('click', function () {
+      var on = !voiceOn(); setVoice(on); paintVoice();
+      if (on) { unlock(); speak(UI[lang()].hello); } else { stopSpeaking(); }
+    });
     fab.addEventListener('click', function () { open(!panel.classList.contains('open')); });
     panel.querySelector('.eas-x').addEventListener('click', function () { open(false); fab.focus(); });
     form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
