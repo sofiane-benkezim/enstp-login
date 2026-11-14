@@ -201,14 +201,11 @@ main{gap:70px}
 .court:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
 .court .art{position:relative;aspect-ratio:16/9;overflow:hidden}
 .court.foot .art {
-    background: linear-gradient(135deg, rgba(154,52,18,0.6), rgba(249,115,22,0.6)), url('photo110.jpg') center/cover no-repeat !important;
+    background: url('photo110.jpg') center/cover no-repeat !important;
 }
 .court.basket .art {
-    background: linear-gradient(135deg, rgba(154,52,18,0.6), rgba(249,115,22,0.6)), url('photo120.jpg') center/cover no-repeat !important;
+    background: url('photo120.jpg') center/cover no-repeat !important;
 }
-.court svg{position:absolute;inset:0;width:100%;height:100%}
-.court svg .ln{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.4;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2.4s var(--ease)}
-.court.in svg .ln,.court:hover svg .ln{stroke-dashoffset:0}
 .court .art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
 .court .cico{position:absolute;z-index:2;top:16px;inset-inline-start:16px;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:1.4rem;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3)}
 .court .free{position:absolute;z-index:2;top:16px;inset-inline-end:16px;font-size:.74rem;font-weight:900;padding:7px 14px;border-radius:999px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);display:flex;gap:8px;align-items:center}
@@ -418,7 +415,6 @@ html[data-theme=dark] .demo{color:var(--gold-2)}
 <div class="courts">
 <article class="court foot reveal">
 <div class="art">
-<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><rect x="20" y="16" width="360" height="193" rx="6" class="ln"/><line x1="200" y1="16" x2="200" y2="209" class="ln"/><circle cx="200" cy="112" r="30" class="ln"/><rect x="20" y="66" width="52" height="93" class="ln"/><rect x="328" y="66" width="52" height="93" class="ln"/><rect x="20" y="88" width="20" height="49" class="ln"/><rect x="360" y="88" width="20" height="49" class="ln"/><circle cx="200" cy="112" r="3.5" fill="#fff"/><circle r="5" fill="#fff"><animateMotion dur="7s" repeatCount="indefinite" path="M60 160 Q140 40 200 112 T340 70 T60 160"/></circle></svg>
 <div class="cico"><i class="fa-solid fa-futbol"></i></div>
 <div class="free"><span class="pulse"></span><span><b id="cFoot">–</b> <span data-i18n="freeToday"></span></span></div>
 </div>
@@ -431,7 +427,6 @@ html[data-theme=dark] .demo{color:var(--gold-2)}
 </article>
 <article class="court basket reveal">
 <div class="art">
-<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><rect x="20" y="16" width="360" height="193" rx="6" class="ln"/><line x1="200" y1="16" x2="200" y2="209" class="ln"/><circle cx="200" cy="112" r="28" class="ln"/><rect x="20" y="72" width="70" height="81" class="ln"/><rect x="310" y="72" width="70" height="81" class="ln"/><path d="M90 84 A30 30 0 0 1 90 141" class="ln"/><path d="M310 84 A30 30 0 0 0 310 141" class="ln"/><path d="M20 40 Q150 112 20 185" class="ln"/><path d="M380 40 Q250 112 380 185" class="ln"/><circle r="5" fill="#fff"><animateMotion dur="5s" repeatCount="indefinite" path="M70 112 Q130 20 200 112 T330 112 T70 112"/></circle></svg>
 <div class="cico"><i class="fa-solid fa-basketball"></i></div>
 <div class="free"><span class="pulse"></span><span><b id="cBask">–</b> <span data-i18n="freeToday"></span></span></div>
 </div>
