@@ -123,10 +123,15 @@ main{max-width:1280px;margin:0 auto;padding:40px 20px 40px;display:flex;flex-dir
 .director p{font-size:.82rem;line-height:1.8;margin:0}
 @media(max-width:600px){.director{flex-direction:column;text-align:center}}
 
-/* تنسيق قسم الفيديو */
+/* تصميم مشغل الفيديو المتجاوب والحديث للهواتف والشاشات */
 .video-wrapper{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);box-shadow:var(--card-shadow);padding:14px}
-.video-container{position:relative;width:100%;padding-top:56.25%; /* 16:9 Aspect Ratio */border-radius:calc(var(--radius) - 8px);overflow:hidden;background:#000}
-.video-container iframe, .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.video-box-inner{position:relative;width:100%;aspect-ratio:16/9;border-radius:calc(var(--radius) - 8px);overflow:hidden;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.video-box-inner iframe{width:100%;height:100%;border:0;display:block}
+.video-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+.video-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:14px;font-weight:800;font-size:.88px;font-size:.86rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 8px 25px rgba(245,184,65,.35);transition:.3s}
+.video-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(245,184,65,.5)}
+.video-btn.alt{background:var(--soft);color:var(--head);border:1px solid var(--soft-b);box-shadow:none}
+.video-btn.alt:hover{background:var(--card-b)}
 
 .search-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:var(--card);border:1px solid var(--card-b);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
 .search-card:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
@@ -216,7 +221,7 @@ main{gap:70px}
 <div class="director">
 <img src="modira.jpg" alt="مديرة المدرسة" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80'">
 <div>
-<h4 id="dir-name">الدكتورة فوزية ميكاداش باشا</h4>
+<h4 id="dir-name">الدكتورة فوزية مقيدش شافا</h4>
 <small id="dir-role">مديرة المدرسة الوطنية العليا للأشغال العمومية</small>
 <p id="dir-bio">تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.</p>
 </div>
@@ -224,7 +229,7 @@ main{gap:70px}
 </div>
 </div>
 
-<!-- ================= قسم الفيديو التعريفي بالمدرسة (المعدل ليعمل بكفاءة) ================= -->
+<!-- ================= قسم الفيديو التعريفي بالمدرسة (مُحسّن ومتجاوب للهواتف) ================= -->
 <section class="section-block">
 <div class="sec-head reveal s-v">
 <div class="sec-icon"><i class="fa-solid fa-circle-play"></i></div>
@@ -235,10 +240,18 @@ main{gap:70px}
 </div>
 </div>
 <div class="video-wrapper reveal">
-<div class="video-container">
-<!-- تم تعديل الرابط أدناه من /view إلى /preview ليعمل الفيديو داخل الإطار بشكل صحيح -->
-<iframe src="https://drive.google.com/file/d/1BAoo4NFJDTi8cnS0DCvKegFqw--tyyfo/preview" title="ENSTP Promo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+  <div class="video-box-inner">
+    <iframe src="https://drive.google.com/file/d/1BAoo4NFJDTi8cnS0DCvKegFqw--tyyfo/preview" title="ENSTP Promo Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <!-- أزرار تفاعلية سريعة تضمن العمل بسلاسة على الهواتف الذكية -->
+  <div class="video-actions">
+    <a href="https://drive.google.com/file/d/1BAoo4NFJDTi8cnS0DCvKegFqw--tyyfo/view" target="_blank" rel="noopener" class="video-btn">
+      <i class="fa-solid fa-expand"></i> <span id="vid-btn-fullscreen">فتح في شاشة كاملة (موصى به للهاتف)</span>
+    </a>
+    <a href="https://drive.google.com/uc?export=download&id=1BAoo4NFJDTi8cnS0DCvKegFqw--tyyfo" class="video-btn alt">
+      <i class="fa-solid fa-download"></i> <span id="vid-btn-download">تحميل الفيديو</span>
+    </a>
+  </div>
 </div>
 </section>
 <!-- ==================================================================== -->
@@ -303,6 +316,8 @@ dirRole:'مديرة المدرسة الوطنية العليا للأشغال ا
 dirBio:'تشرف على توجيه السياسة البيداغوجية والبحثية، وتطوير الشراكات العلمية الوطنية والدولية لخدمة الطالب والمهندس الجزائري.',
 videoHeading:'الفيديو التعريفي بالمدرسة',
 videoDesc:'جولة شريطية استعراضية تأخذكم في جولة داخل أروقة ومرافق المدرسة الوطنية العليا للأشغال العمومية:',
+vidBtnFullscreen:'فتح في شاشة كاملة (موصى به للهاتف)',
+vidBtnDownload:'تحميل الفيديو',
 amphiAHeading:'قاعة المحاضرات الكبرى (أ) - Amphithéâtre A',
 amphiADesc:'المدرج الرئيسي المحوري لاحتضان المحاضرات النظرية الكبرى، الملتقيات الوطنية، المؤتمرات العلمية والفعاليات الأكاديمية الرسمية للطلبة:',
 capA1:'واجهة المنصة والمدرج من الأمام', capA2:'المقاعد ومدرجات الجلوس الفسيحة', capA3:'تجهيزات الإضاءة والتحكم السمعي البصري',
@@ -328,6 +343,8 @@ dirName:'Dr. Fawzia Mekideche chafa', dirRole:"Directrice de l'ENSTP",
 dirBio:'Supervise la politique pédagogique et de recherche, ainsi que le développement des partenariats scientifiques nationaux et internationaux.',
 videoHeading:'Vidéo de Présentation',
 videoDesc:"Une visite vidéo guidée à travers les couloirs et les installations de l'ENSTP :",
+vidBtnFullscreen:'Plein écran (Recommandé sur mobile)',
+vidBtnDownload:'Télécharger la vidéo',
 amphiAHeading:'Amphithéâtre A',
 amphiADesc:"L'amphithéâtre principal dédié aux grandes conférences théoriques, colloques nationaux, conférences scientifiques et événements académiques :",
 capA1:"Vue de la tribune et de l'amphithéâtre", capA2:'Sièges et gradins spacieux', capA3:"Équipements d'éclairage et contrôle audiovisuel",
@@ -353,6 +370,8 @@ dirName:'Dr. Fawzia Mekideche chafa', dirRole:'Director of ENSTP',
 dirBio:'Supervises pedagogical and research policies, and develops national and international scientific partnerships to serve Algerian engineering students.',
 videoHeading:'School Promotional Video',
 videoDesc:'A guided video tour through the halls and facilities of ENSTP:',
+vidBtnFullscreen:'Fullscreen (Recommended for Mobile)',
+vidBtnDownload:'Download Video',
 amphiAHeading:'Amphitheater A',
 amphiADesc:'The primary lecture hall hosting major theoretical conferences, national symposia, scientific congresses, and official academic events:',
 capA1:'Front view of the podium and amphitheater', capA2:'Spacious seating and tiers', capA3:'Lighting and audiovisual control equipment',
@@ -370,6 +389,7 @@ const MAP = {
 'history-title':'historyTitle','history-p1':'historyP1','history-p2':'historyP2','btn-official-txt':'btnOfficial',
 'director-title':'directorTitle','director-desc':'directorDesc','dir-name':'dirName','dir-role':'dirRole','dir-bio':'dirBio',
 'video-heading':'videoHeading','video-desc':'videoDesc',
+'vid-btn-fullscreen':'vidBtnFullscreen','vid-btn-download':'vidBtnDownload',
 'amphi-a-heading':'amphiAHeading','amphi-a-desc':'amphiADesc','cap-a1':'capA1','cap-a2':'capA2','cap-a3':'capA3',
 'amphi-b-heading':'amphiBHeading','amphi-b-desc':'amphiBDesc','cap-b1':'capB1','cap-b2':'capB2',
 'class-heading':'classHeading','class-desc':'classDesc','cap-c1':'capC1','cap-c2':'capC2','cap-c3':'capC3',
