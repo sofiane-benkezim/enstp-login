@@ -200,8 +200,12 @@ main{gap:70px}
 .court{position:relative;border-radius:30px;overflow:hidden;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);transition:transform .45s var(--ease),box-shadow .45s}
 .court:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
 .court .art{position:relative;aspect-ratio:16/9;overflow:hidden}
-.court.foot .art{background:linear-gradient(135deg,#065f46,#10b981)}
-.court.basket .art{background:linear-gradient(135deg,#9a3412,#f97316)}
+.court.foot .art {
+    background: linear-gradient(135deg, rgba(154,52,18,0.6), rgba(249,115,22,0.6)), url('.jpg') center/cover no-repeat !important;
+}
+.court.basket .art {
+    background: linear-gradient(135deg, rgba(154,52,18,0.6), rgba(249,115,22,0.6)), url('.jpg') center/cover no-repeat !important;
+}
 .court svg{position:absolute;inset:0;width:100%;height:100%}
 .court svg .ln{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.4;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2.4s var(--ease)}
 .court.in svg .ln,.court:hover svg .ln{stroke-dashoffset:0}
