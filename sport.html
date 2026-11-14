@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="fr" dir="ltr" id="htmlRoot">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f3f6fc" id="metaTheme">
+<meta name="theme-color" content="#040b17" id="metaTheme">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem("enstp-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
-<title>ENSTP Sport & Vie Étudiante</title>
+<title>ENSTP Arena — Sport</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== ENSTP — نظام التصميم الموحد (نفس الصفحة الرئيسية) ===== */
+/* ===== ENSTP — نظام التصميم الموحد ===== */
 :root{
 --bg:#f3f6fc;--ink:#1b2a47;--muted:#5a6b88;--head:#0b1d3a;
 --gold:#f5b841;--gold-2:#ffdf9a;--cyan:#38bdf8;--violet:#8b7bff;
@@ -160,69 +160,212 @@ main{gap:70px}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}.reveal{opacity:1;translate:0 0}}
 
+
+/* ===== ENSTP Arena ===== */
 .hidden{display:none!important}
-.hero{min-height:58svh;text-align:start}
-.hero-bg{background:linear-gradient(135deg,rgba(7,26,51,.88),rgba(18,60,104,.8)),url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
-.hero-inner{max-width:1280px;width:100%}
-.hero h1{font-size:clamp(2.2rem,6vw,4.2rem)}
+:root{--foot:#10b981;--basket:#f97316;--pend:#f59e0b;--bad:#ef4444;--good:#10b981}
+.hero{min-height:auto;text-align:start;padding:130px 20px 70px}
+.hero-bg{background:radial-gradient(900px 500px at 80% 10%,rgba(56,189,248,.28),transparent 60%),radial-gradient(700px 500px at 10% 90%,rgba(16,185,129,.22),transparent 60%),linear-gradient(135deg,#071a33,#0b2a52 55%,#10335f)}
+.hero-bg::after{background:linear-gradient(180deg,transparent 70%,var(--bg) 100%)}
+.hero-grid{max-width:1280px;width:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.2rem,5.6vw,4.4rem);margin-bottom:20px}
 .hero h1 .g{display:inline;background:linear-gradient(100deg,var(--gold-2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin:0;max-width:600px}
-.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.15);max-width:860px}
-.feat{display:flex;align-items:center;gap:12px;font-size:.84rem;font-weight:800;color:#e1eaf6}
-.feat i{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:1.05rem;color:var(--gold);background:rgba(255,255,255,.1);flex-shrink:0}
-.s-e{--c1:#059669;--c2:#34d399;--c3:rgba(5,150,105,.5)}
-.s-f{--c1:#7c3aed;--c2:#c4b5fd;--c3:rgba(124,58,237,.5)}
-.chip{font-size:.72rem;font-weight:800;padding:6px 13px;border-radius:999px;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 6px 16px rgba(245,184,65,.35)}
-.dirbox{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;padding:34px;border-radius:32px;color:#fff;background:radial-gradient(ellipse at 0% 0%,#1d5fd1 0%,transparent 60%),linear-gradient(160deg,#0b2545,#030812);border:1px solid rgba(255,255,255,.1);box-shadow:var(--card-shadow)}
-@media(max-width:900px){.dirbox{grid-template-columns:1fr;padding:24px}}
-.dirbox h2{font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:900;line-height:1.4;margin:12px 0}
-.dirbox>div>p{font-size:.9rem;line-height:2;color:#b9c8df}
-.badge2{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:800;padding:7px 14px;border-radius:999px;color:var(--gold-2);background:rgba(245,184,65,.14);border:1px solid rgba(245,184,65,.4)}
-.who{display:flex;align-items:center;gap:14px;margin:20px 0}
-.who i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:1.2rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));border:2px solid #fff}
-.who h4{font-size:1rem;font-weight:900}
-.who small{font-size:.76rem;font-weight:700;color:var(--gold)}
-.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);text-align:center}
-.stat{padding:12px 6px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
-.stat b{display:block;font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold)}
-.stat span{font-size:.7rem;font-weight:700;color:#9db0cd}
-
-/* حاوية مشغل الفيديو المباشر في الغلاف */
-.vthumb{position:relative;border-radius:22px;overflow:hidden;border:2px solid rgba(245,184,65,.45);box-shadow:0 30px 70px rgba(0,0,0,.5);width:100%;height:320px;background:#000}
+.hero p{margin:0;max-width:560px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.cta .btn{width:auto;margin:0;padding-inline:28px}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:16px;font-weight:900;font-size:.9rem;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);transition:.3s var(--ease);cursor:pointer;font-family:inherit}
+.btn-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.16)}
+.live{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.live .lv{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#e5eefb;font-size:.8rem;font-weight:800;backdrop-filter:blur(10px)}
+.live .lv i{font-size:1.1rem}
+.live .lv b{font-family:'Inter',sans-serif;font-size:1.2rem;color:var(--gold-2)}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 rgba(16,185,129,.7);animation:pl 1.8s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 12px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.vwrap{position:relative}
+.vwrap::before{content:"";position:absolute;inset:-18px;border-radius:40px;background:conic-gradient(from 0deg,var(--cyan),var(--gold),var(--violet),var(--foot),var(--cyan));filter:blur(34px);opacity:.45;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vthumb{position:relative;border-radius:26px;overflow:hidden;border:2px solid rgba(245,184,65,.5);box-shadow:0 30px 80px rgba(0,0,0,.55);width:100%;aspect-ratio:16/10;background:#000}
 .vthumb iframe{width:100%;height:100%;border:0;display:block}
+.vcap{position:relative;display:flex;align-items:center;gap:10px;margin-top:14px;font-size:.8rem;font-weight:800;color:#c9d6ea}
+.vcap i{color:var(--gold)}
+.ball{position:absolute;font-size:2rem;opacity:.16;color:#fff;animation:fl 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes fl{to{transform:translateY(-30px) rotate(40deg)}}
 
-.sec-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:30px}
-.eyebrow{font-size:.76rem;font-weight:900;color:var(--tag-c);margin-bottom:4px}
-.eyebrow i{margin-inline-end:6px}
-.sec-top h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--head)}
-.sec-top p{font-size:.88rem;color:var(--muted);margin-top:4px}
-.pill{font-size:.74rem;font-weight:800;padding:7px 14px;border-radius:999px;color:var(--tag-c);background:var(--soft);border:1px solid var(--card-b)}
-.tagc{position:absolute;z-index:2;top:12px;inset-inline-start:12px;font-size:.68rem;font-weight:800;padding:5px 12px;border-radius:999px;color:#fff;display:inline-flex;align-items:center;gap:6px;box-shadow:0 6px 16px rgba(0,0,0,.3)}
-.ok{background:#10b981}.soonc{background:#f59e0b}.bl{background:#2563eb}.pu{background:#7c3aed}.gr{background:#059669}
-.sc-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
-.sc-body h3{font-size:1rem;font-weight:900;color:var(--head);line-height:1.5}
-.sc-body .ln{font-size:.8rem;color:var(--desc);display:flex;align-items:center;gap:8px}
-.sc-body .ln i{color:var(--gold);width:14px}
-.st{margin-top:auto;text-align:center;font-size:.76rem;font-weight:800;padding:99px}
-.st.o{color:#059669;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4)}
-.st.p{color:#b45309;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4)}
-html[data-theme="dark"] .st.o{color:#6ee7b7}
-html[data-theme="dark"] .st.p{color:var(--gold-2)}
-.team{text-align:center;padding:44px 28px;border-radius:32px;background:var(--card);border:2px solid rgba(245,184,65,.4);box-shadow:var(--card-shadow)}
-.team .ico{width:56px;height:56px;margin:0 auto 14px;border-radius:18px;display:grid;place-items:center;font-size:1.3rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 12px 28px rgba(245,184,65,.4)}
-.team h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;color:var(--head)}
-.team>p{max-width:560px;margin:8px auto 0;font-size:.9rem;color:var(--desc);line-height:1.95}
-.team .row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
-.team .btn{width:auto;margin:0;padding-inline:26px}
-.btn-dark{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:16px;font-weight:900;font-size:.9rem;color:#fff;background:linear-gradient(135deg,#0b2545,#12386a);border:1px solid rgba(255,255,255,.15);transition:.3s var(--ease)}
-.btn-dark:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(11,37,69,.4)}
-.sports{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
-.sports span{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.78rem;font-weight:800;color:var(--ink);background:var(--soft);border:1px solid var(--card-b)}
-.sports i{color:var(--gold)}
-main{gap:90px}
+.sec-top h2{letter-spacing:-.2px}
+.step-tag{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;font-family:'Inter',sans-serif;font-weight:900;font-size:.85rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));margin-inline-end:10px}
+
+/* الملاعب */
+.courts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:28px}
+.court{position:relative;border-radius:30px;overflow:hidden;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);transition:transform .45s var(--ease),box-shadow .45s}
+.court:hover{transform:translateY(-8px);box-shadow:var(--card-shadow-h)}
+.court .art{position:relative;aspect-ratio:16/9;overflow:hidden}
+.court.foot .art{background:linear-gradient(135deg,#065f46,#10b981)}
+.court.basket .art{background:linear-gradient(135deg,#9a3412,#f97316)}
+.court svg{position:absolute;inset:0;width:100%;height:100%}
+.court svg .ln{fill:none;stroke:rgba(255,255,255,.85);stroke-width:2.4;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 2.4s var(--ease)}
+.court.in svg .ln,.court:hover svg .ln{stroke-dashoffset:0}
+.court .art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
+.court .cico{position:absolute;z-index:2;top:16px;inset-inline-start:16px;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:1.4rem;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3)}
+.court .free{position:absolute;z-index:2;top:16px;inset-inline-end:16px;font-size:.74rem;font-weight:900;padding:7px 14px;border-radius:999px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);display:flex;gap:8px;align-items:center}
+.court .cb{padding:24px 26px 26px}
+.court h3{font-size:1.35rem;font-weight:900;color:var(--head);margin-bottom:6px}
+.court .cb p{color:var(--desc);font-size:.9rem;line-height:1.9;margin-bottom:16px}
+.court .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.court .meta span{font-size:.74rem;font-weight:800;padding:7px 13px;border-radius:999px;background:var(--soft);border:1px solid var(--card-b);color:var(--ink);display:inline-flex;gap:7px;align-items:center}
+.court .meta i{color:var(--gold)}
+.court.foot .btn{background:linear-gradient(135deg,#6ee7b7,#10b981);color:#04281c;box-shadow:0 14px 36px rgba(16,185,129,.4)}
+.court.basket .btn{background:linear-gradient(135deg,#fdba74,#f97316);color:#2b1204;box-shadow:0 14px 36px rgba(249,115,22,.4)}
+
+/* الحجز */
+.book{border-radius:34px;padding:34px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);backdrop-filter:blur(14px)}
+@media(max-width:640px){.book{padding:22px 16px}}
+.b-step{margin-bottom:30px}
+.b-step>h3{font-size:1.02rem;font-weight:900;color:var(--head);margin-bottom:14px;display:flex;align-items:center}
+.pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.opt{font:inherit;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:var(--soft);border:2px solid var(--card-b);color:var(--ink);text-align:start;transition:.3s var(--ease)}
+.opt i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:1.3rem;color:#fff;flex-shrink:0}
+.opt[data-c="foot"] i{background:linear-gradient(135deg,#34d399,#059669)}
+.opt[data-c="basket"] i{background:linear-gradient(135deg,#fb923c,#ea580c)}
+.opt b{display:block;font-weight:900;font-size:.95rem}.opt small{color:var(--muted);font-size:.74rem;font-weight:700}
+.opt:hover{transform:translateY(-3px)}
+.opt.on{border-color:var(--gold);background:linear-gradient(160deg,rgba(245,184,65,.16),transparent);box-shadow:0 10px 30px rgba(245,184,65,.22)}
+.days{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
+.day{font:inherit;flex:0 0 auto;scroll-snap-align:start;cursor:pointer;min-width:74px;padding:12px 10px;border-radius:18px;text-align:center;background:var(--soft);border:2px solid var(--card-b);color:var(--ink);transition:.3s var(--ease)}
+.day small{display:block;font-size:.7rem;font-weight:800;color:var(--muted)}
+.day b{display:block;font-family:'Inter',sans-serif;font-size:1.35rem;font-weight:900;line-height:1.3}
+.day em{display:block;font-style:normal;font-size:.68rem;font-weight:800;color:var(--tag-c)}
+.day:hover{transform:translateY(-3px)}
+.day.on{border-color:var(--gold);background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#14100a}
+.day.on small,.day.on em{color:#3a2a05}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
+.slot{font:inherit;cursor:pointer;padding:14px 8px;border-radius:16px;text-align:center;font-family:'Inter',sans-serif;font-weight:800;font-size:.9rem;color:var(--ink);background:var(--soft);border:2px solid var(--card-b);transition:.25s var(--ease);position:relative}
+.slot small{display:block;font-family:'Cairo',sans-serif;font-size:.66rem;font-weight:800;margin-top:2px}
+.slot.free{border-color:rgba(16,185,129,.55)}
+.slot.free small{color:#059669}html[data-theme=dark] .slot.free small{color:#6ee7b7}
+.slot.free:hover{transform:translateY(-3px);background:rgba(16,185,129,.12)}
+.slot.on{background:linear-gradient(135deg,#6ee7b7,#10b981);color:#04281c;border-color:#10b981;box-shadow:0 10px 26px rgba(16,185,129,.4)}
+.slot.on small{color:#04281c}
+.slot.pend{border-color:rgba(245,158,11,.6);opacity:.8;cursor:not-allowed}
+.slot.pend small{color:#b45309}html[data-theme=dark] .slot.pend small{color:var(--gold-2)}
+.slot.taken,.slot.past{opacity:.45;cursor:not-allowed;text-decoration:line-through;border-style:dashed}
+.slot.taken small{color:var(--bad);text-decoration:none}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:.74rem;font-weight:800;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.form{grid-template-columns:1fr}}
+.form .full{grid-column:1/-1}
+.fld label{display:block;font-size:.76rem;font-weight:800;color:var(--muted);margin-bottom:6px}
+.fld input,.fld textarea,.fld select{width:100%;font:inherit;font-size:.92rem;padding:13px 15px;border-radius:14px;background:var(--soft);border:1.5px solid var(--card-b);color:var(--ink);transition:.25s;outline:none}
+.fld textarea{resize:vertical;min-height:84px}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,184,65,.18)}
+.fld select option{color:#111}
+.summary{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 18px;border-radius:18px;background:linear-gradient(160deg,rgba(245,184,65,.14),transparent);border:1px dashed rgba(245,184,65,.6);margin:6px 0 18px;font-weight:800;font-size:.88rem;color:var(--head)}
+.summary i{color:var(--gold)}
+.summary span{display:inline-flex;gap:8px;align-items:center}
+.submit{display:flex;justify-content:flex-end}
+.submit .btn{width:auto;margin:0;padding-inline:34px;border:0;cursor:pointer;font-family:inherit}
+.submit .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.note{font-size:.8rem;color:var(--muted);font-weight:700;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.note i{color:var(--gold);margin-top:5px}
+
+/* طلباتي */
+.mylist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px;margin-top:6px}
+.req{border-radius:22px;padding:18px 20px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);position:relative;overflow:hidden}
+.req::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:5px;background:var(--pend)}
+.req.accepted::before{background:var(--good)}.req.refused::before{background:var(--bad)}
+.req h4{font-size:.98rem;font-weight:900;color:var(--head);display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.req .ln2{font-size:.8rem;color:var(--desc);font-weight:700;display:flex;gap:8px;align-items:center}
+.req .ln2 i{color:var(--gold);width:14px}
+.st2{display:inline-flex;gap:7px;align-items:center;font-size:.72rem;font-weight:900;padding:6px 12px;border-radius:999px;margin-top:10px}
+.st2.pending{color:#b45309;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.45)}
+.st2.accepted{color:#047857;background:rgba(16,185,129,.14);border:1px solid rgba(16,185,129,.45)}
+.st2.refused{color:#b91c1c;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.45)}
+html[data-theme=dark] .st2.pending{color:var(--gold-2)}html[data-theme=dark] .st2.accepted{color:#6ee7b7}html[data-theme=dark] .st2.refused{color:#fca5a5}
+.reply{margin-top:10px;font-size:.8rem;line-height:1.8;padding:10px 12px;border-radius:12px;background:var(--soft);color:var(--ink)}
+.reply b{color:var(--tag-c)}
+.empty{padding:30px;text-align:center;color:var(--muted);font-weight:700;border-radius:22px;border:2px dashed var(--card-b);grid-column:1/-1}
+.empty i{display:block;font-size:1.8rem;margin-bottom:10px;color:var(--gold)}
+
+/* الأخبار */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chp{font:inherit;cursor:pointer;font-size:.78rem;font-weight:800;padding:9px 16px;border-radius:999px;color:var(--ink);background:var(--soft);border:1px solid var(--card-b);transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.chp.on,.chp:hover{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#14100a;border-color:transparent}
+.feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:22px}
+.post{position:relative;border-radius:26px;padding:24px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px;transition:transform .4s var(--ease),box-shadow .4s;overflow:hidden}
+.post:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-h)}
+.post .pt{display:inline-flex;align-self:flex-start;gap:8px;align-items:center;font-size:.7rem;font-weight:900;padding:6px 13px;border-radius:999px;color:#fff}
+.pt.news{background:#2563eb}.pt.course{background:#7c3aed}.pt.tournament{background:#d97706}.pt.rule{background:#059669}
+.post h3{font-size:1.05rem;font-weight:900;color:var(--head);line-height:1.6}
+.post p{font-size:.86rem;line-height:1.95;color:var(--desc);white-space:pre-line}
+.post .pf{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:.74rem;font-weight:800;color:var(--muted);gap:10px}
+.post .pf a{color:var(--tag-c);font-weight:900}
+.post .evd{font-size:.78rem;font-weight:800;color:var(--tag-c);display:flex;gap:8px;align-items:center}
+
+/* القواعد */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px}
+.rl{display:flex;gap:14px;padding:20px;border-radius:22px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow)}
+.rl i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.rl b{display:block;font-weight:900;font-size:.92rem;color:var(--head);margin-bottom:2px}
+.rl span{font-size:.8rem;color:var(--desc);line-height:1.8}
+
+footer .adm{margin-top:22px;display:inline-flex;gap:9px;align-items:center;font:inherit;font-size:.8rem;font-weight:800;color:#9db0cd;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:11px 20px;border-radius:14px;cursor:pointer;transition:.3s}
+footer .adm:hover{color:#111;background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+
+/* نوافذ */
+.modal{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(3,8,18,.72);backdrop-filter:blur(8px)}
+.modal.open{display:flex}
+.mcard{width:100%;max-width:440px;border-radius:28px;padding:30px;background:var(--bg);border:1px solid var(--card-b);box-shadow:0 40px 100px rgba(0,0,0,.6);position:relative}
+.mcard h3{font-size:1.25rem;font-weight:900;color:var(--head);margin-bottom:6px;display:flex;gap:10px;align-items:center}
+.mcard h3 i{color:var(--gold)}
+.mcard>p{font-size:.84rem;color:var(--muted);margin-bottom:18px;line-height:1.8}
+.mcard .fld{margin-bottom:12px}
+.x{position:absolute;top:14px;inset-inline-end:14px;width:38px;height:38px;border-radius:12px;border:1px solid var(--card-b);background:var(--soft);color:var(--ink);cursor:pointer;font-size:1rem}
+.err{color:var(--bad);font-size:.8rem;font-weight:800;min-height:20px;margin-bottom:6px}
+.demo{display:none;margin-bottom:14px;padding:10px 14px;border-radius:12px;font-size:.76rem;font-weight:800;color:#92400e;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.5);line-height:1.8}
+.demo.show{display:block}
+html[data-theme=dark] .demo{color:var(--gold-2)}
+.mcard .btn{border:0;cursor:pointer;font-family:inherit;margin-top:6px}
+
+.admin{position:fixed;inset:0;z-index:290;display:none;flex-direction:column;background:var(--bg);overflow:auto}
+.admin.open{display:flex}
+.adm-top{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:var(--bar-s);backdrop-filter:blur(18px);border-bottom:1px solid var(--card-b);flex-wrap:wrap}
+.adm-top h2{font-size:1.1rem;font-weight:900;color:var(--head);display:flex;gap:10px;align-items:center}
+.adm-top h2 i{color:var(--gold)}
+.adm-top .row{display:flex;gap:8px}
+.sm{font:inherit;cursor:pointer;font-size:.78rem;font-weight:800;padding:9px 15px;border-radius:12px;color:var(--ink);background:var(--soft);border:1px solid var(--card-b);display:inline-flex;gap:8px;align-items:center;transition:.25s}
+.sm:hover{background:var(--gold);color:#111}
+.adm-body{width:100%;max-width:1100px;margin:0 auto;padding:24px 18px 70px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{font:inherit;cursor:pointer;font-size:.86rem;font-weight:900;padding:12px 20px;border-radius:14px;color:var(--ink);background:var(--soft);border:1px solid var(--card-b);display:inline-flex;gap:9px;align-items:center}
+.tab.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#14100a;border-color:transparent}
+.tab .cnt{font-family:'Inter',sans-serif;font-size:.72rem;min-width:22px;height:22px;display:inline-grid;place-items:center;border-radius:99px;background:var(--bad);color:#fff;padding:0 6px}
+.areq{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:18px 20px;border-radius:22px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);margin-bottom:14px;position:relative}
+@media(max-width:720px){.areq{grid-template-columns:1fr}}
+.areq h4{font-size:1rem;font-weight:900;color:var(--head);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.areq .ln2{font-size:.82rem;color:var(--desc);font-weight:700;display:flex;gap:8px;align-items:center;margin-top:4px}
+.areq .ln2 i{color:var(--gold);width:14px}
+.areq .ln2 a{color:var(--tag-c);font-weight:900}
+.acts{display:flex;flex-direction:column;gap:8px;min-width:230px}
+@media(max-width:720px){.acts{min-width:0}}
+.acts textarea{font:inherit;font-size:.82rem;padding:10px 12px;border-radius:12px;background:var(--soft);border:1.5px solid var(--card-b);color:var(--ink);resize:vertical;min-height:54px;outline:none}
+.acts .r2{display:flex;gap:8px}
+.go,.no,.del{font:inherit;cursor:pointer;flex:1;font-size:.8rem;font-weight:900;padding:11px 12px;border-radius:12px;border:0;color:#fff;display:inline-flex;gap:7px;align-items:center;justify-content:center;transition:.25s}
+.go{background:linear-gradient(135deg,#34d399,#059669)}.no{background:linear-gradient(135deg,#f87171,#dc2626)}.del{background:var(--soft);color:var(--ink);border:1px solid var(--card-b);flex:0 0 auto}
+.go:hover,.no:hover{transform:translateY(-2px)}
+.panel{border-radius:26px;padding:26px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);margin-bottom:22px}
+.panel h3{font-size:1.05rem;font-weight:900;color:var(--head);margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.panel h3 i{color:var(--gold)}
+.alist .it{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--card-b);font-size:.86rem;font-weight:700;color:var(--ink)}
+.alist .it small{display:block;color:var(--muted);font-weight:700}
+.toast{position:fixed;bottom:24px;left:50%;translate:-50% 30px;z-index:400;padding:14px 22px;border-radius:16px;font-weight:800;font-size:.86rem;color:#fff;background:#0b2545;border:1px solid rgba(245,184,65,.5);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.4s var(--ease);max-width:92vw;text-align:center}
+.toast.show{opacity:1;translate:-50% 0}
+.toast.bad{background:#7f1d1d;border-color:#f87171}
+@media(max-width:640px){.hero{padding:112px 16px 56px}.vcap{font-size:.74rem}}
 </style>
 </head>
-<body data-lang="fr">
+<body data-lang="ar">
 <div class="aurora"><i></i><i></i><i></i></div>
 <div class="grid-bg"></div>
 <div class="progress"><b id="progressBar"></b></div>
@@ -232,147 +375,591 @@ main{gap:90px}
 <div class="tools">
 <a href="index.html" class="back"><i class="fa-solid fa-arrow-right"></i><span data-i18n="back"></span></a>
 <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Dark mode"><i class="fa-solid fa-moon i-moon"></i><i class="fa-solid fa-sun i-sun"></i></button>
-<div class="lang"><button onclick="changeLanguage('ar')" id="btn-ar">AR</button><button onclick="changeLanguage('fr')" id="btn-fr" class="on">FR</button><button onclick="changeLanguage('en')" id="btn-en">EN</button></div>
+<div class="lang"><button onclick="changeLanguage('ar')" id="btn-ar">AR</button><button onclick="changeLanguage('fr')" id="btn-fr">FR</button><button onclick="changeLanguage('en')" id="btn-en">EN</button></div>
 </div>
 </div>
 </header>
+
 <section class="hero">
 <div class="hero-bg"></div>
-<div class="hero-inner">
-<span class="badge"><i class="fa-solid fa-person-running"></i> <span data-i18n="heroTag"></span></span>
+<i class="ball fa-solid fa-futbol" style="top:18%;inset-inline-start:6%"></i>
+<i class="ball fa-solid fa-basketball" style="bottom:14%;inset-inline-start:40%;animation-delay:-3s;font-size:2.6rem"></i>
+<i class="ball fa-solid fa-trophy" style="top:30%;inset-inline-end:3%;animation-delay:-5s"></i>
+<div class="hero-grid">
+<div>
+<span class="badge"><i class="fa-solid fa-bolt"></i><span data-i18n="heroTag"></span></span>
 <h1 data-i18n="heroTitle"></h1>
 <p data-i18n="heroDesc"></p>
-<div class="feats">
-<div class="feat"><i class="fa-solid fa-building-circle-check"></i><span data-i18n="feat1"></span></div>
-<div class="feat"><i class="fa-solid fa-trophy"></i><span data-i18n="feat2"></span></div>
-<div class="feat"><i class="fa-solid fa-users"></i><span data-i18n="feat3"></span></div>
+<div class="cta">
+<a href="#book" class="btn"><i class="fa-solid fa-calendar-check"></i><span data-i18n="ctaBook"></span></a>
+<a href="#feed" class="btn-ghost"><i class="fa-solid fa-bullhorn"></i><span data-i18n="ctaNews"></span></a>
+</div>
+<div class="live">
+<div class="lv"><i class="fa-solid fa-futbol" style="color:#34d399"></i><span data-i18n="football"></span><b id="liveFoot">–</b><span data-i18n="freeToday"></span></div>
+<div class="lv"><i class="fa-solid fa-basketball" style="color:#fb923c"></i><span data-i18n="basketball"></span><b id="liveBask">–</b><span data-i18n="freeToday"></span></div>
 </div>
 </div>
-</section>
-<main>
-<section id="director" class="reveal">
-<div class="dirbox">
-<div>
-<span class="badge2"><i class="fa-solid fa-clapperboard"></i><span data-i18n="dirBadge"></span></span>
-<h2 data-i18n="dirTitle"></h2>
-<p data-i18n="dirDesc"></p>
-<div class="who"><i class="fa-solid fa-user-tie"></i><div><h4 data-i18n="dirName"></h4><small data-i18n="dirRole"></small></div></div>
-<div class="stats3">
-<div class="stat"><b>5+</b><span data-i18n="stat1"></span></div>
-<div class="stat"><b>12</b><span data-i18n="stat2"></span></div>
-<div class="stat"><b>400+</b><span data-i18n="stat3"></span></div>
-</div>
-</div>
-<!-- مشغل الفيديو المباشر مباشرة في غلاف البطاقة -->
+<div class="vwrap">
 <div class="vthumb">
 <iframe src="https://drive.google.com/file/d/1vAk2admgEX9DN6wTo9sYiagNsdgEogZ7/preview" title="ENSTP Sport Video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 </div>
+<div class="vcap"><i class="fa-solid fa-clapperboard"></i><span data-i18n="vcap"></span></div>
+</div>
 </div>
 </section>
-<section id="installations" class="reveal">
-<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-dumbbell"></i><span data-i18n="sec1Sub"></span></div><h2 data-i18n="sec1Title"></h2><p data-i18n="sec1Desc"></p></div><span class="pill" data-i18n="sec1Badge"></span></div>
-<div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))">
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo110.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529900748604-07564a03e7a6?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst1Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst1Loc"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo120.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst2Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst2Loc"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo130.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80'"><span class="tagc ok"><i class="fa-solid fa-circle" style="font-size:6px"></i><span data-i18n="avail"></span></span></div><div class="sc-body"><h3 data-i18n="inst3Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst3Loc"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo140.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80'"><span class="tagc soonc"><i class="fa-solid fa-clock" style="font-size:9px"></i><span data-i18n="project"></span></span></div><div class="sc-body"><h3 data-i18n="inst4Title"></h3><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="inst4Loc"></span></div></div></div>
+
+<main>
+<section id="courts" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-location-dot"></i><span data-i18n="courtsSub"></span></div><h2 data-i18n="courtsTitle"></h2><p data-i18n="courtsDesc"></p></div></div>
+<div class="courts">
+<article class="court foot reveal">
+<div class="art">
+<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><rect x="20" y="16" width="360" height="193" rx="6" class="ln"/><line x1="200" y1="16" x2="200" y2="209" class="ln"/><circle cx="200" cy="112" r="30" class="ln"/><rect x="20" y="66" width="52" height="93" class="ln"/><rect x="328" y="66" width="52" height="93" class="ln"/><rect x="20" y="88" width="20" height="49" class="ln"/><rect x="360" y="88" width="20" height="49" class="ln"/><circle cx="200" cy="112" r="3.5" fill="#fff"/><circle r="5" fill="#fff"><animateMotion dur="7s" repeatCount="indefinite" path="M60 160 Q140 40 200 112 T340 70 T60 160"/></circle></svg>
+<div class="cico"><i class="fa-solid fa-futbol"></i></div>
+<div class="free"><span class="pulse"></span><span><b id="cFoot">–</b> <span data-i18n="freeToday"></span></span></div>
+</div>
+<div class="cb">
+<h3 data-i18n="footTitle"></h3>
+<p data-i18n="footDesc"></p>
+<div class="meta"><span><i class="fa-regular fa-clock"></i><span data-i18n="slotLen"></span></span><span><i class="fa-solid fa-user-group"></i><span data-i18n="teamsOk"></span></span><span><i class="fa-solid fa-sun"></i><span data-i18n="outdoor"></span></span></div>
+<a href="#book" class="btn" data-pick="foot"><i class="fa-solid fa-calendar-plus"></i><span data-i18n="bookThis"></span></a>
+</div>
+</article>
+<article class="court basket reveal">
+<div class="art">
+<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><rect x="20" y="16" width="360" height="193" rx="6" class="ln"/><line x1="200" y1="16" x2="200" y2="209" class="ln"/><circle cx="200" cy="112" r="28" class="ln"/><rect x="20" y="72" width="70" height="81" class="ln"/><rect x="310" y="72" width="70" height="81" class="ln"/><path d="M90 84 A30 30 0 0 1 90 141" class="ln"/><path d="M310 84 A30 30 0 0 0 310 141" class="ln"/><path d="M20 40 Q150 112 20 185" class="ln"/><path d="M380 40 Q250 112 380 185" class="ln"/><circle r="5" fill="#fff"><animateMotion dur="5s" repeatCount="indefinite" path="M70 112 Q130 20 200 112 T330 112 T70 112"/></circle></svg>
+<div class="cico"><i class="fa-solid fa-basketball"></i></div>
+<div class="free"><span class="pulse"></span><span><b id="cBask">–</b> <span data-i18n="freeToday"></span></span></div>
+</div>
+<div class="cb">
+<h3 data-i18n="baskTitle"></h3>
+<p data-i18n="baskDesc"></p>
+<div class="meta"><span><i class="fa-regular fa-clock"></i><span data-i18n="slotLen"></span></span><span><i class="fa-solid fa-user-group"></i><span data-i18n="teamsOk"></span></span><span><i class="fa-solid fa-bolt"></i><span data-i18n="fastGames"></span></span></div>
+<a href="#book" class="btn" data-pick="basket"><i class="fa-solid fa-calendar-plus"></i><span data-i18n="bookThis"></span></a>
+</div>
+</article>
 </div>
 </section>
-<section id="tournois" class="reveal">
-<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-trophy"></i><span data-i18n="sec2Sub"></span></div><h2 data-i18n="sec2Title"></h2><p data-i18n="sec2Desc"></p></div></div>
-<div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))">
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo200.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80'"><span class="tagc bl" data-i18n="tagFoot"></span></div><div class="sc-body"><h3 data-i18n="tourn1Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn1Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tFoot"></span></div><div class="st o"><i class="fa-solid fa-circle-check"></i> <span data-i18n="open"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo280.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=600&q=80'"><span class="tagc soonc" data-i18n="tagBask"></span></div><div class="sc-body"><h3 data-i18n="tourn2Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn2Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tBask"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo220.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80'"><span class="tagc pu" data-i18n="tagVolley"></span></div><div class="sc-body"><h3 data-i18n="tourn3Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn3Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tVolley"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
-<div class="search-card reveal"><div class="card-image-wrap"><img class="card-image" src="photo230.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80'"><span class="tagc gr" data-i18n="tagRun"></span></div><div class="sc-body"><h3 data-i18n="tourn4Title"></h3><div class="ln"><i class="fa-regular fa-calendar"></i><span data-i18n="tourn4Date"></span></div><div class="ln"><i class="fa-solid fa-location-dot"></i><span data-i18n="tCampus"></span></div><div class="st p"><i class="fa-solid fa-clock"></i> <span data-i18n="soon"></span></div></div></div>
+
+<section id="book" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-calendar-check"></i><span data-i18n="bookSub"></span></div><h2 data-i18n="bookTitle"></h2><p data-i18n="bookDesc"></p></div></div>
+<div class="book">
+<div class="b-step"><h3><span class="step-tag">1</span><span data-i18n="s1"></span></h3>
+<div class="pick">
+<button class="opt on" data-c="foot" type="button"><i class="fa-solid fa-futbol"></i><span><b data-i18n="footTitle"></b><small data-i18n="outdoor"></small></span></button>
+<button class="opt" data-c="basket" type="button"><i class="fa-solid fa-basketball"></i><span><b data-i18n="baskTitle"></b><small data-i18n="fastGames"></small></span></button>
+</div></div>
+<div class="b-step"><h3><span class="step-tag">2</span><span data-i18n="s2"></span></h3><div class="days" id="days"></div></div>
+<div class="b-step"><h3><span class="step-tag">3</span><span data-i18n="s3"></span></h3>
+<div class="slots" id="slots"></div>
+<div class="legend"><span><i style="background:#10b981"></i><span data-i18n="lgFree"></span></span><span><i style="background:#f59e0b"></i><span data-i18n="lgPend"></span></span><span><i style="background:#ef4444"></i><span data-i18n="lgTaken"></span></span></div>
+</div>
+<div class="b-step"><h3><span class="step-tag">4</span><span data-i18n="s4"></span></h3>
+<form id="bform" class="form" novalidate>
+<div class="fld"><label for="fName" data-i18n="fName"></label><input id="fName" maxlength="60" autocomplete="name"></div>
+<div class="fld"><label for="fContact" data-i18n="fContact"></label><input id="fContact" maxlength="40" inputmode="tel" autocomplete="tel"></div>
+<div class="fld"><label for="fPlayers" data-i18n="fPlayers"></label><input id="fPlayers" type="number" min="2" max="30" value="10"></div>
+<div class="fld"><label for="fPurpose" data-i18n="fPurpose"></label><select id="fPurpose"><option value="friendly" data-i18n="pFriendly"></option><option value="training" data-i18n="pTraining"></option><option value="promo" data-i18n="pPromo"></option><option value="other" data-i18n="pOther"></option></select></div>
+<div class="fld full"><label for="fNote" data-i18n="fNote"></label><textarea id="fNote" maxlength="300"></textarea></div>
+<div class="full">
+<div class="summary" id="summary"></div>
+<div class="submit"><button class="btn" id="sendBtn" type="submit"><i class="fa-solid fa-paper-plane"></i><span data-i18n="send"></span></button></div>
+<div class="note"><i class="fa-solid fa-circle-info"></i><span data-i18n="bookNote"></span></div>
+</div>
+</form></div>
 </div>
 </section>
-<section id="equipe" class="reveal">
-<div class="team">
-<div class="ico"><i class="fa-solid fa-user-plus"></i></div>
-<h2 data-i18n="teamTitle"></h2>
-<p data-i18n="teamDesc"></p>
-<div class="row"><a href="#" class="btn-dark"><i class="fa-solid fa-users"></i><span data-i18n="btnJoin"></span></a><a href="#" class="btn"><i class="fa-solid fa-plus-circle"></i><span data-i18n="btnPost"></span></a></div>
-<div class="sports"><span><i class="fa-solid fa-futbol"></i><span data-i18n="sFoot"></span></span><span><i class="fa-solid fa-basketball"></i><span data-i18n="sBask"></span></span><span><i class="fa-solid fa-volleyball"></i><span data-i18n="sVolley"></span></span><span><i class="fa-solid fa-table-tennis-paddle-ball"></i><span data-i18n="sTT"></span></span><span><i class="fa-solid fa-person-running"></i><span data-i18n="sRun"></span></span></div>
+
+<section id="mine" class="reveal hidden">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-ticket"></i><span data-i18n="mineSub"></span></div><h2 data-i18n="mineTitle"></h2><p data-i18n="mineDesc"></p></div></div>
+<div class="mylist" id="mylist"></div>
+</section>
+
+<section id="feed" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-bullhorn"></i><span data-i18n="feedSub"></span></div><h2 data-i18n="feedTitle"></h2><p data-i18n="feedDesc"></p></div></div>
+<div class="chips" id="chips"></div>
+<div class="feed" id="feedList"></div>
+</section>
+
+<section id="rules" class="reveal">
+<div class="sec-top"><div><div class="eyebrow"><i class="fa-solid fa-scroll"></i><span data-i18n="rulesSub"></span></div><h2 data-i18n="rulesTitle"></h2></div></div>
+<div class="rules">
+<div class="rl"><i class="fa-solid fa-shoe-prints"></i><div><b data-i18n="r1t"></b><span data-i18n="r1d"></span></div></div>
+<div class="rl"><i class="fa-solid fa-stopwatch"></i><div><b data-i18n="r2t"></b><span data-i18n="r2d"></span></div></div>
+<div class="rl"><i class="fa-solid fa-handshake"></i><div><b data-i18n="r3t"></b><span data-i18n="r3d"></span></div></div>
+<div class="rl"><i class="fa-solid fa-recycle"></i><div><b data-i18n="r4t"></b><span data-i18n="r4d"></span></div></div>
 </div>
 </section>
 </main>
+
 <footer>
-<div class="f-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+<div class="f-logo"><i class="fa-solid fa-trophy"></i></div>
 <p id="footer-title" data-i18n="ftTitle"></p>
 <p id="footer-sub" data-i18n="ftSub"></p>
+<button class="adm" id="admBtn" type="button"><i class="fa-solid fa-user-shield"></i><span data-i18n="admEnter"></span></button>
 <p style="margin-top:16px;font-size:.74rem;color:#6b7f9f">© 2026 ENSTP Guide</p>
 </footer>
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
 
+<!-- دخول المدير -->
+<div class="modal" id="loginModal">
+<form class="mcard" id="loginForm" novalidate>
+<button class="x" type="button" data-close="loginModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+<h3><i class="fa-solid fa-user-shield"></i><span data-i18n="admEnter"></span></h3>
+<p data-i18n="loginDesc"></p>
+<div class="demo" id="demoBox" data-i18n="demoNote"></div>
+<div class="fld"><label for="lEmail" data-i18n="email"></label><input id="lEmail" type="email" autocomplete="username"></div>
+<div class="fld"><label for="lPass" data-i18n="password"></label><input id="lPass" type="password" autocomplete="current-password"></div>
+<div class="err" id="loginErr"></div>
+<button class="btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i><span data-i18n="login"></span></button>
+</form>
+</div>
+
+<!-- لوحة المدير -->
+<div class="admin" id="admin">
+<div class="adm-top">
+<h2><i class="fa-solid fa-user-shield"></i><span data-i18n="admTitle"></span></h2>
+<div class="row"><button class="sm" id="admClose" type="button"><i class="fa-solid fa-arrow-up-right-from-square"></i><span data-i18n="viewSite"></span></button><button class="sm" id="admOut" type="button"><i class="fa-solid fa-right-from-bracket"></i><span data-i18n="logout"></span></button></div>
+</div>
+<div class="adm-body">
+<div class="tabs">
+<button class="tab on" data-tab="reqs" type="button"><i class="fa-solid fa-inbox"></i><span data-i18n="tReqs"></span><span class="cnt hidden" id="pendCnt">0</span></button>
+<button class="tab" data-tab="pub" type="button"><i class="fa-solid fa-pen-to-square"></i><span data-i18n="tPub"></span></button>
+<button class="tab" data-tab="blk" type="button"><i class="fa-solid fa-ban"></i><span data-i18n="tBlk"></span></button>
+</div>
+<div id="tab-reqs">
+<div class="chips" id="reqChips"></div>
+<div id="reqList"></div>
+</div>
+<div id="tab-pub" class="hidden">
+<div class="panel"><h3><i class="fa-solid fa-bullhorn"></i><span data-i18n="newPost"></span></h3>
+<form id="postForm" class="form" novalidate>
+<div class="fld"><label for="pType" data-i18n="pType"></label><select id="pType"><option value="news" data-i18n="kNews"></option><option value="course" data-i18n="kCourse"></option><option value="tournament" data-i18n="kTournament"></option><option value="rule" data-i18n="kRule"></option></select></div>
+<div class="fld"><label for="pDate" data-i18n="pDate"></label><input id="pDate" type="date"></div>
+<div class="fld full"><label for="pTitle" data-i18n="pTitle"></label><input id="pTitle" maxlength="120"></div>
+<div class="fld full"><label for="pBody" data-i18n="pBody"></label><textarea id="pBody" maxlength="1200" style="min-height:120px"></textarea></div>
+<div class="fld full"><label for="pLink" data-i18n="pLink"></label><input id="pLink" type="url" placeholder="https://"></div>
+<div class="full submit"><button class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i><span data-i18n="publish"></span></button></div>
+</form></div>
+<div class="panel"><h3><i class="fa-solid fa-list"></i><span data-i18n="published"></span></h3><div class="alist" id="postsAdmin"></div></div>
+</div>
+<div id="tab-blk" class="hidden">
+<div class="panel"><h3><i class="fa-solid fa-ban"></i><span data-i18n="blockTitle"></span></h3>
+<p style="font-size:.84rem;color:var(--muted);margin-bottom:16px" data-i18n="blockDesc"></p>
+<form id="blockForm" class="form" novalidate>
+<div class="fld"><label for="bCourt" data-i18n="s1"></label><select id="bCourt"><option value="foot" data-i18n="footTitle"></option><option value="basket" data-i18n="baskTitle"></option></select></div>
+<div class="fld"><label for="bDate" data-i18n="pDate"></label><input id="bDate" type="date"></div>
+<div class="fld"><label for="bSlot" data-i18n="s3"></label><select id="bSlot"></select></div>
+<div class="fld" style="align-self:end"><button class="btn" type="submit" style="border:0;cursor:pointer;font-family:inherit"><i class="fa-solid fa-lock"></i><span data-i18n="closeSlot"></span></button></div>
+</form></div>
+<div class="panel"><h3><i class="fa-solid fa-lock"></i><span data-i18n="closedList"></span></h3><div class="alist" id="blockedList"></div></div>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" defer></script>
 <script>
+/* ═════════════════════════════════════════════════════════════
+   ⚙️ الإعدادات — الصق هنا مفاتيح Firebase الخاصة بك (انظر الشرح)
+   إذا تركتها null تعمل الصفحة في «وضع تجريبي» داخل المتصفح فقط.
+   ═════════════════════════════════════════════════════════════ */
+const FIREBASE_CONFIG = null;
+/* مثال:
+const FIREBASE_CONFIG = {
+  apiKey: "...", authDomain: "xxx.firebaseapp.com", projectId: "xxx",
+  storageBucket: "xxx.appspot.com", messagingSenderId: "...", appId: "..."
+};*/
+const MANAGER_EMAIL = '';          // بريد مديرة النشاطات (نفس حساب Firebase Auth) — يُنصح بتعبئته
+const DAY_START = 9, DAY_END = 19; // ساعات الحجز: من 09:00 إلى 19:00 (كل حصة ساعة)
+const BREAK_HOURS = [12];          // ساعات مغلقة (استراحة الغداء) — احذف [12] إن لم تُرِد
+const CLOSED_WEEKDAYS = [5];       // أيام الإغلاق: 5 = الجمعة (0 = الأحد)
+const DAYS_AHEAD = 14;             // عدد الأيام المتاحة للحجز مسبقًا
+const DEMO_PASSWORD = 'admin123';  // كلمة سر الوضع التجريبي فقط
+
+/* ───────── الترجمة ───────── */
 const T={
-fr:{brand:'ENSTP Sport',back:"Retour à l'accueil",title:'ENSTP Sport & Vie Étudiante',
-heroTag:'Sport & Vie Étudiante',heroTitle:'Bouge, joue, <span class="g">partage !</span>',heroDesc:"Découvre les installations sportives, participe aux tournois inter-promos et trouve ton équipe à l'ENSTP.",
-feat1:'Infrastructures à disposition',feat2:"Tournois toute l'année",feat3:'Équipes et partenaires',
-dirBadge:'Présentation Vidéo',dirTitle:'Mot du Directeur des Activités Sportives',dirDesc:"Découvrez le programme sportif annuel, les créneaux d'entraînement, et le message de bienvenue du Directeur des activités physiques et sportives de l'ENSTP.",
-dirName:'Mr.sofiane',dirRole:'Directeur des Activités Sportives & Culturelles - ENSTP',stat1:'Terrains & Salles',stat2:'Tournois / An',stat3:'Étudiants Sportifs',
-avail:'Disponible',project:'En projet',open:'Prochainement',soon:'Prochainement',
-sec1Sub:'Infrastructures',sec1Title:'Nos installations sportives',sec1Desc:"Profite des infrastructures de l'école pour pratiquer ton sport préféré.",sec1Badge:"Disponibles à l'ENSTP",
-inst1Title:'Terrain de football',inst1Loc:'À côté du Bloc B',inst2Title:'Terrain de basketball',inst2Loc:'Cour intérieure',inst3Title:'Salle de musculation',inst3Loc:'Bâtiment des sports',inst4Title:'Terrain de volleyball',inst4Loc:'Cour intérieure',
-sec2Sub:'Compétitions',sec2Title:'Tournois & événements',sec2Desc:"Participe aux compétitions et aux activités sportives organisées par l'ENSTP.",
-tourn1Title:'Tournoi de football ENSTP',tourn1Date:'15 - 20 Avril 2026',tourn2Title:'Championnat de basketball',tourn2Date:'22 - 28 Avril 2026',tourn3Title:'Tournoi de volleyball',tourn3Date:'05 - 10 Mai 2026',tourn4Title:"Course de l'ENSTP",tourn4Date:'12 Mai 2026',
-tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Course',tFoot:'Terrain de football',tBask:'Basketball court',tVolley:'Volleyball court',tCampus:'ENSTP Campus',
-teamTitle:'Trouve ton équipe / joueur',teamDesc:"Rejoins une équipe existante ou trouve des coéquipiers parmi les étudiants de l'ENSTP pour partager ta passion.",btnJoin:'Rejoindre une équipe',btnPost:'Publier une annonce',
-sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Tennis de table',sRun:'Course',
-ftTitle:'ENSTP Sport & Vie Étudiante',ftSub:"Le sport à l'ENSTP, c'est aussi une histoire de partage et de dépassement de soi !"},
-ar:{brand:'رياضة ENSTP',back:'العودة للرئيسية',title:'ENSTP الرياضة والحياة الطلابية',
-heroTag:'الرياضة والحياة الطلابية',heroTitle:'تحرّك، العب، <span class="g">وشارك الشغف!</span>',heroDesc:'اكتشف المنشآت الرياضية، شارك في البطولات بين الدفعات، وجد فريقك الرياضي في المدرسة العليا للأشغال العمومية.',
-feat1:'منشآت تحت تصرفك',feat2:'بطولات على مدار السنة',feat3:'فرق وزملاء رياضيون',
-dirBadge:'فيديو تعريفي',dirTitle:'كلمة مدير النشاطات الرياضية',dirDesc:'شاهد البرنامج الرياضي السنوي، أوقات التدريب المتاحة، وكلمة الترحيب الخاصة بمدير الأنشطة البدنية والرياضية بالمدرسة.',
-dirName:'سفيان',dirRole:'مدير الأنشطة الرياضية والثقافية - ENSTP',stat1:'ملاعب وقاعات',stat2:'بطولات / سنوياً',stat3:'طالب رياضي',
-avail:'متاح',project:'قيد الإنجاز',open:'قريباً',soon:'قريباً',
-sec1Sub:'الهياكل الرياضية',sec1Title:'المنشآت الرياضية بالمدرسة',sec1Desc:'استفد من هياكل المدرسة لممارسة رياضتك المفضلة.',sec1Badge:'متوفرة في ENSTP',
-inst1Title:'ملعب كرة القدم',inst1Loc:'بجوار المجمع B',inst2Title:'ملعب كرة السلة',inst2Loc:'الساحة الداخلية',inst3Title:'قاعة تقوية العضلات',inst3Loc:'مبنى الرياضات',inst4Title:'ملعب كرة الطائرة',inst4Loc:'الساحة الداخلية',
-sec2Sub:'المنافسات',sec2Title:'البطولات والفعاليات الرياضية',sec2Desc:'شارك في البطولات والأنشطة الرياضية التي تنظمها المدرسة.',
-tourn1Title:'دوري كرة القدم ENSTP',tourn1Date:'15 - 20 أفريل 2026',tourn2Title:'بطولة كرة السلة',tourn2Date:'22 - 28 أفريل 2026',tourn3Title:'دوري كرة الطائرة',tourn3Date:'05 - 10 ماي 2026',tourn4Title:'سباق ENSTP للعدو',tourn4Date:'12 ماي 2026',
-tagFoot:'كرة القدم',tagBask:'كرة السلة',tagVolley:'كرة الطائرة',tagRun:'عدو',tFoot:'ملعب كرة القدم',tBask:'ملعب كرة السلة',tVolley:'ملعب كرة الطائرة',tCampus:'حرم ENSTP',
-teamTitle:'جد فريقك أو شريكك الرياضي',teamDesc:'انضم إلى فريق موجود أو ابحث عن زملاء من طلبة المدرسة لمشاركتك شغفك الرياضي.',btnJoin:'الانضمام إلى فريق',btnPost:'نشر إعلان بحث',
-sFoot:'كرة القدم',sBask:'كرة السلة',sVolley:'كرة الطائرة',sTT:'tennis de table',sRun:'العدو',
-ftTitle:'ENSTP الرياضة والحياة الطلابية',ftSub:'الرياضة في ENSTP هي أيضاً حكاية مشاركة وتحدٍّ للذات!'},
-en:{brand:'ENSTP Sports',back:'Back to Home',title:'ENSTP Sports & Student Life',
-heroTag:'Sports & Student Life',heroTitle:'Move, play, <span class="g">and share!</span>',heroDesc:'Discover sports facilities, take part in tournaments, and find your team at ENSTP.',
-feat1:'Facilities available',feat2:'Year-round tournaments',feat3:'Teams & teammates',
-dirBadge:'Video Presentation',dirTitle:'Message from the Sports Director',dirDesc:'Discover the annual sports program, training slots, and welcoming words from the ENSTP Sports Director.',
-dirName:'Mr.sofiane',dirRole:'Director of Sports & Cultural Activities - ENSTP',stat1:'Courts & Gyms',stat2:'Tournaments / Yr',stat3:'Student Athletes',
-avail:'Available',project:'Planned',open:'Coming soon',soon:'Coming soon',
-sec1Sub:'Infrastructures',sec1Title:'Our Sports Facilities',sec1Desc:'Take advantage of the school facilities to practice your favorite sport.',sec1Badge:'Available at ENSTP',
-inst1Title:'Football Pitch',inst1Loc:'Next to Building B',inst2Title:'Basketball Court',inst2Loc:'Inner Courtyard',inst3Title:'Fitness & Gym Room',inst3Loc:'Sports Building',inst4Title:'Volleyball Court',inst4Loc:'Inner Courtyard',
-sec2Sub:'Competitions',sec2Title:'Tournaments & Events',sec2Desc:'Participate in sports competitions organized by ENSTP.',
-tourn1Title:'ENSTP Football Tournament',tourn1Date:'April 15 - 20, 2026',tourn2Title:'Basketball Championship',tourn2Date:'April 22 - 28, 2026',tourn3Title:'Volleyball Tournament',tourn3Date:'May 05 - 10, 2026',tourn4Title:'ENSTP Campus Run',tourn4Date:'May 12, 2026',
-tagFoot:'Football',tagBask:'Basketball',tagVolley:'Volleyball',tagRun:'Running',tFoot:'Football pitch',tBask:'Basketball court',tVolley:'Volleyball court',tCampus:'ENSTP Campus',
-teamTitle:'Find your team / teammate',teamDesc:'Join an existing team or find teammates among ENSTP students to share your passion.',btnJoin:'Join a Team',btnPost:'Post an Announcement',
-sFoot:'Football',sBask:'Basketball',sVolley:'Volleyball',sTT:'Table tennis',sRun:'Running',
-ftTitle:'ENSTP Sports & Student Life',ftSub:'Sports at ENSTP is a story of teamwork and pushing boundaries!'}
+ar:{brand:'ENSTP Arena',back:'العودة للرئيسية',title:'ENSTP Arena — الرياضة وحجز الملاعب',
+heroTag:'ملاعب المدرسة • احجز في دقيقة',heroTitle:'ملعبك ينتظرك، <span class="g">احجز واللعب علينا!</span>',heroDesc:'ملعب كرة قدم وملعب كرة سلة داخل المدرسة. اختر الملعب والوقت، أرسل طلبك، وتصلك موافقة مديرة النشاطات مباشرة على الصفحة.',
+ctaBook:'احجز ملعبًا الآن',ctaNews:'آخر الأخبار والدورات',football:'كرة القدم',basketball:'كرة السلة',freeToday:'حصة متاحة اليوم',
+vcap:'فيديو تعريفي بالأنشطة الرياضية في المدرسة',
+courtsSub:'المنشآت',courtsTitle:'ملاعب المدرسة',courtsDesc:'ملعبان جاهزان لك ولفريقك طوال أيام الدراسة.',
+footTitle:'ملعب كرة القدم',footDesc:'ملعب المدرسة الرئيسي لمباريات الدفعات والتدريبات وتحدّيات الأصدقاء.',
+baskTitle:'ملعب كرة السلة',baskDesc:'ملعب لمباريات سريعة وتدريبات وبطولات مصغّرة بين الأفواج.',
+slotLen:'حصص من ساعة',teamsOk:'للفرق والمجموعات',outdoor:'ملعب مفتوح',fastGames:'مباريات سريعة',bookThis:'احجز هذا الملعب',
+bookSub:'الحجز',bookTitle:'احجز ملعبك في 4 خطوات',bookDesc:'يصل طلبك إلى مديرة النشاطات، وتتابع حالته (قبول أو رفض) من نفس الصفحة.',
+s1:'اختر الملعب',s2:'اختر اليوم',s3:'اختر الحصة',s4:'بياناتك',
+lgFree:'متاحة',lgPend:'طلب قيد الدراسة',lgTaken:'محجوزة / مغلقة',
+fName:'الاسم الكامل',fContact:'رقم الهاتف أو البريد',fPlayers:'عدد اللاعبين',fPurpose:'سبب الحجز',fNote:'ملاحظة (اختياري)',
+pFriendly:'مباراة ودية',pTraining:'تدريب',pPromo:'مباراة بين الدفعات',pOther:'آخر',
+send:'إرسال الطلب',bookNote:'الطلب ليس مؤكدًا إلا بعد موافقة مديرة النشاطات. الحصة تُحجز مؤقتًا لك حتى الرد.',
+sumNone:'اختر الملعب واليوم والحصة لتظهر خلاصة طلبك.',
+mineSub:'طلباتي',mineTitle:'متابعة طلباتي',mineDesc:'تُحفظ على هذا الجهاز وتتحدّث تلقائيًا عند ردّ المديرة.',
+stPending:'قيد الدراسة',stAccepted:'تمت الموافقة',stRefused:'تم الرفض',replyLbl:'رد المديرة:',
+feedSub:'المستجدات',feedTitle:'أخبار ودورات وتعليمات',feedDesc:'ما تنشره مديرة النشاطات يظهر هنا مباشرة.',
+all:'الكل',kNews:'أخبار',kCourse:'دورات',kTournament:'بطولات',kRule:'تعليمات',noPosts:'لا توجد منشورات بعد.',
+rulesSub:'قبل اللعب',rulesTitle:'قواعد استعمال الملاعب',
+r1t:'حذاء رياضي',r1d:'ارتدِ لباسًا وحذاءً رياضيًا مناسبًا للملعب.',r2t:'احترم الوقت',r2d:'الحصة ساعة واحدة؛ تأخّرك يُقلّص وقتك ولا يُمدَّد.',r3t:'روح رياضية',r3d:'احترم زملاءك والحكم والمنشآت.',r4t:'نظافة المكان',r4d:'اترك الملعب نظيفًا وخذ أغراضك معك.',
+ftTitle:'ENSTP Arena',ftSub:'الرياضة في المدرسة حكاية مشاركة وتحدٍّ للذات!',
+admEnter:'دخول مديرة النشاطات',loginDesc:'هذا الفضاء مخصّص لمديرة النشاطات فقط لإدارة الطلبات والمنشورات.',email:'البريد الإلكتروني',password:'كلمة السر',login:'دخول',
+demoNote:'⚠️ وضع تجريبي: Firebase غير مُعدّ بعد، فالبيانات تُحفظ في هذا المتصفح فقط. كلمة السر التجريبية: admin123',
+admTitle:'لوحة مديرة النشاطات',viewSite:'عرض الصفحة',logout:'خروج',tReqs:'الطلبات',tPub:'النشر',tBlk:'إغلاق حصص',
+fAll:'الكل',fPend:'قيد الدراسة',fAcc:'مقبولة',fRef:'مرفوضة',accept:'قبول',refuse:'رفض',replyPh:'رد للطالب (اختياري)…',noReqs:'لا توجد طلبات.',
+newPost:'منشور جديد',pType:'النوع',pDate:'التاريخ',pTitle:'العنوان',pBody:'المحتوى',pLink:'رابط (اختياري)',publish:'نشر',published:'المنشورات الحالية',
+blockTitle:'إغلاق حصة',blockDesc:'أغلق حصة (صيانة، نشاط رسمي…) فتختفي من الحجز.',closeSlot:'إغلاق الحصة',closedList:'الحصص المغلقة',reopen:'إعادة فتح',
+players:'لاعبين',playersN:'لاعب',
+tSent:'تم إرسال طلبك ✅ ستجد حالته في «طلباتي».',tTaken:'عذرًا، هذه الحصة حُجزت للتو. اختر حصة أخرى.',tErr:'حدث خطأ، حاول مجددًا.',tBadForm:'تأكد من الاسم والهاتف وعدد اللاعبين.',tPickSlot:'اختر الحصة أولًا.',
+tPosted:'تم النشر ✅',tDone:'تم ✅',tFill:'أكمل الحقول.',eAuth:'بيانات الدخول غير صحيحة.',eNotMgr:'هذا الحساب ليس حساب المديرة.',
+days:['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],today:'اليوم',tomorrow:'غدًا',free:'متاحة',pend:'قيد الدراسة',taken:'محجوزة',closed:'مغلقة',past:'انتهت',del:'حذف',
+purpose:{friendly:'ودية',training:'تدريب',promo:'بين الدفعات',other:'آخر'},sumPre:'ملخص:'},
+fr:{brand:'ENSTP Arena',back:"Retour à l'accueil",title:'ENSTP Arena — Sport & réservation de terrains',
+heroTag:"Terrains de l'école • Réserve en une minute",heroTitle:'Ton terrain t\'attend, <span class="g">réserve et joue !</span>',heroDesc:"Un terrain de football et un terrain de basketball au sein de l'école. Choisis le terrain et le créneau, envoie ta demande et suis la réponse de la direction des activités directement sur la page.",
+ctaBook:'Réserver un terrain',ctaNews:'Actualités & stages',football:'Football',basketball:'Basketball',freeToday:"créneaux libres aujourd'hui",
+vcap:"Vidéo de présentation des activités sportives de l'école",
+courtsSub:'Installations',courtsTitle:"Les terrains de l'école",courtsDesc:"Deux terrains prêts pour toi et ton équipe pendant les jours de cours.",
+footTitle:'Terrain de football',footDesc:"Le terrain principal pour les matchs inter-promos, les entraînements et les défis entre amis.",
+baskTitle:'Terrain de basketball',baskDesc:'Pour des matchs rapides, des entraînements et des mini-tournois entre groupes.',
+slotLen:'Créneaux d\'1 heure',teamsOk:'Équipes & groupes',outdoor:'Terrain extérieur',fastGames:'Matchs rapides',bookThis:'Réserver ce terrain',
+bookSub:'Réservation',bookTitle:'Réserve ton terrain en 4 étapes',bookDesc:"Ta demande arrive à la direction des activités ; tu suis son statut (acceptée ou refusée) depuis cette page.",
+s1:'Choisis le terrain',s2:'Choisis le jour',s3:'Choisis le créneau',s4:'Tes informations',
+lgFree:'Libre',lgPend:'Demande en cours',lgTaken:'Réservé / fermé',
+fName:'Nom complet',fContact:'Téléphone ou e-mail',fPlayers:'Nombre de joueurs',fPurpose:'Motif',fNote:'Remarque (facultatif)',
+pFriendly:'Match amical',pTraining:'Entraînement',pPromo:'Match inter-promos',pOther:'Autre',
+send:'Envoyer la demande',bookNote:"La demande n'est confirmée qu'après accord de la direction. Le créneau t'est réservé provisoirement jusqu'à la réponse.",
+sumNone:'Choisis le terrain, le jour et le créneau pour voir le résumé.',
+mineSub:'Mes demandes',mineTitle:'Suivi de mes demandes',mineDesc:"Enregistrées sur cet appareil et mises à jour automatiquement dès la réponse.",
+stPending:'En attente',stAccepted:'Acceptée',stRefused:'Refusée',replyLbl:'Réponse :',
+feedSub:'Actualités',feedTitle:'Annonces, stages & consignes',feedDesc:'Ce que publie la direction des activités apparaît ici en direct.',
+all:'Tout',kNews:'Actualités',kCourse:'Stages',kTournament:'Tournois',kRule:'Consignes',noPosts:'Aucune publication pour le moment.',
+rulesSub:'Avant de jouer',rulesTitle:"Règles d'utilisation des terrains",
+r1t:'Chaussures de sport',r1d:'Porte une tenue et des chaussures adaptées au terrain.',r2t:'Respecte l\'heure',r2d:"Le créneau dure 1 h ; un retard réduit ton temps, il n'est pas prolongé.",r3t:'Esprit sportif',r3d:"Respecte tes coéquipiers, l'arbitre et les installations.",r4t:'Propreté',r4d:'Laisse le terrain propre et reprends tes affaires.',
+ftTitle:'ENSTP Arena',ftSub:"Le sport à l'école, c'est une histoire de partage et de dépassement de soi !",
+admEnter:'Espace direction des activités',loginDesc:'Espace réservé à la direction des activités pour gérer les demandes et les publications.',email:'E-mail',password:'Mot de passe',login:'Connexion',
+demoNote:"⚠️ Mode démo : Firebase n'est pas encore configuré, les données restent dans ce navigateur. Mot de passe démo : admin123",
+admTitle:'Tableau de bord — Activités',viewSite:'Voir la page',logout:'Déconnexion',tReqs:'Demandes',tPub:'Publier',tBlk:'Fermer des créneaux',
+fAll:'Toutes',fPend:'En attente',fAcc:'Acceptées',fRef:'Refusées',accept:'Accepter',refuse:'Refuser',replyPh:"Réponse à l'étudiant (facultatif)…",noReqs:'Aucune demande.',
+newPost:'Nouvelle publication',pType:'Type',pDate:'Date',pTitle:'Titre',pBody:'Contenu',pLink:'Lien (facultatif)',publish:'Publier',published:'Publications actuelles',
+blockTitle:'Fermer un créneau',blockDesc:'Ferme un créneau (maintenance, événement officiel…) : il disparaît de la réservation.',closeSlot:'Fermer le créneau',closedList:'Créneaux fermés',reopen:'Rouvrir',
+players:'joueurs',playersN:'joueurs',
+tSent:'Demande envoyée ✅ Son statut est dans « Mes demandes ».',tTaken:"Désolé, ce créneau vient d'être réservé. Choisis-en un autre.",tErr:'Une erreur est survenue, réessaie.',tBadForm:'Vérifie le nom, le téléphone et le nombre de joueurs.',tPickSlot:"Choisis d'abord un créneau.",
+tPosted:'Publié ✅',tDone:'Fait ✅',tFill:'Complète les champs.',eAuth:'Identifiants incorrects.',eNotMgr:"Ce compte n'est pas celui de la direction.",
+days:['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],today:"Auj.",tomorrow:'Demain',free:'Libre',pend:'En attente',taken:'Réservé',closed:'Fermé',past:'Passé',del:'Supprimer',
+purpose:{friendly:'amical',training:'entraînement',promo:'inter-promos',other:'autre'},sumPre:'Résumé :'},
+en:{brand:'ENSTP Arena',back:'Back to Home',title:'ENSTP Arena — Sports & court booking',
+heroTag:'School courts • Book in a minute',heroTitle:'Your court is waiting, <span class="g">book it and play!</span>',heroDesc:"A football pitch and a basketball court right on campus. Pick the court and time, send your request, and follow the activities director's answer right on this page.",
+ctaBook:'Book a court now',ctaNews:'News & courses',football:'Football',basketball:'Basketball',freeToday:'free slots today',
+vcap:'Intro video of sports activities at the school',
+courtsSub:'Facilities',courtsTitle:'School courts',courtsDesc:'Two courts ready for you and your team on school days.',
+footTitle:'Football pitch',footDesc:'The main pitch for inter-year matches, training and friendly challenges.',
+baskTitle:'Basketball court',baskDesc:'For quick games, training and mini-tournaments between groups.',
+slotLen:'1-hour slots',teamsOk:'Teams & groups',outdoor:'Outdoor pitch',fastGames:'Fast games',bookThis:'Book this court',
+bookSub:'Booking',bookTitle:'Book your court in 4 steps',bookDesc:'Your request goes to the activities director and you follow its status (accepted or refused) from this page.',
+s1:'Choose the court',s2:'Choose the day',s3:'Choose the slot',s4:'Your details',
+lgFree:'Available',lgPend:'Request pending',lgTaken:'Booked / closed',
+fName:'Full name',fContact:'Phone or email',fPlayers:'Number of players',fPurpose:'Purpose',fNote:'Note (optional)',
+pFriendly:'Friendly match',pTraining:'Training',pPromo:'Inter-year match',pOther:'Other',
+send:'Send request',bookNote:"The request is confirmed only after the director's approval. The slot is held for you until she replies.",
+sumNone:'Pick the court, day and slot to see your summary.',
+mineSub:'My requests',mineTitle:'Track my requests',mineDesc:'Saved on this device and updated automatically when the director replies.',
+stPending:'Pending',stAccepted:'Approved',stRefused:'Refused',replyLbl:'Reply:',
+feedSub:'Latest',feedTitle:'News, courses & instructions',feedDesc:'Whatever the activities director publishes shows up here live.',
+all:'All',kNews:'News',kCourse:'Courses',kTournament:'Tournaments',kRule:'Instructions',noPosts:'No posts yet.',
+rulesSub:'Before you play',rulesTitle:'Court usage rules',
+r1t:'Sports shoes',r1d:'Wear sportswear and shoes suited to the court.',r2t:'Be on time',r2d:'A slot lasts 1 hour; being late shortens your time, it is not extended.',r3t:'Fair play',r3d:'Respect teammates, the referee and the facilities.',r4t:'Keep it clean',r4d:'Leave the court clean and take your belongings.',
+ftTitle:'ENSTP Arena',ftSub:'Sports at school is a story of teamwork and pushing your limits!',
+admEnter:'Activities director login',loginDesc:'This area is reserved for the activities director to manage requests and posts.',email:'Email',password:'Password',login:'Sign in',
+demoNote:'⚠️ Demo mode: Firebase is not configured yet, so data stays in this browser. Demo password: admin123',
+admTitle:'Activities director dashboard',viewSite:'View page',logout:'Sign out',tReqs:'Requests',tPub:'Publish',tBlk:'Close slots',
+fAll:'All',fPend:'Pending',fAcc:'Approved',fRef:'Refused',accept:'Approve',refuse:'Refuse',replyPh:'Reply to the student (optional)…',noReqs:'No requests.',
+newPost:'New post',pType:'Type',pDate:'Date',pTitle:'Title',pBody:'Content',pLink:'Link (optional)',publish:'Publish',published:'Current posts',
+blockTitle:'Close a slot',blockDesc:'Close a slot (maintenance, official event…) and it disappears from booking.',closeSlot:'Close slot',closedList:'Closed slots',reopen:'Reopen',
+players:'players',playersN:'players',
+tSent:'Request sent ✅ Check its status in “My requests”.',tTaken:'Sorry, this slot was just taken. Pick another one.',tErr:'Something went wrong, try again.',tBadForm:'Check the name, phone and number of players.',tPickSlot:'Pick a slot first.',
+tPosted:'Published ✅',tDone:'Done ✅',tFill:'Fill in the fields.',eAuth:'Wrong credentials.',eNotMgr:"This isn't the director's account.",
+days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],today:'Today',tomorrow:'Tomorrow',free:'Free',pend:'Pending',taken:'Booked',closed:'Closed',past:'Past',del:'Delete',
+purpose:{friendly:'friendly',training:'training',promo:'inter-year',other:'other'},sumPre:'Summary:'}
 };
-T.ar.sTT='كرة الطاولة';
-function changeLanguage(lang){
-  const d=T[lang], r=document.documentElement;
-  r.dir=lang==='ar'?'rtl':'ltr'; r.lang=lang; document.body.dataset.lang=lang;
-  ['ar','fr','en'].forEach(l=>document.getElementById('btn-'+l).classList.toggle('on',l===lang));
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n]; if(v!==undefined) el.innerHTML=v;});
-  document.title=d.title; window.__d=d;
-  try{localStorage.setItem('enstp-lang',lang)}catch(e){}
+let LANG='ar';
+const t=k=>(T[LANG][k]!==undefined?T[LANG][k]:k);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const COURT={foot:{i:'fa-futbol',k:'footTitle',col:'#10b981'},basket:{i:'fa-basketball',k:'baskTitle',col:'#f97316'}};
+const KIND={news:{i:'fa-bullhorn',k:'kNews'},course:{i:'fa-graduation-cap',k:'kCourse'},tournament:{i:'fa-trophy',k:'kTournament'},rule:{i:'fa-scroll',k:'kRule'}};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const pad=n=>String(n).padStart(2,'0');
+const dstr=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const locale=()=>({ar:'ar-u-nu-latn',fr:'fr-FR',en:'en-GB'}[LANG]);
+function fmtDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString(locale(),{weekday:'long',day:'numeric',month:'long'})}
+const HOURS=[];for(let h=DAY_START;h<DAY_END;h++)if(!BREAK_HOURS.includes(h))HOURS.push(h);
+const slotLabel=h=>'\u2066'+pad(h)+':00 – '+pad(h+1)+':00\u2069';
+const slotId=(c,d,h)=>c+'_'+d+'_'+pad(h);
+let toastT;function toast(msg,bad){const e=$('#toast');e.textContent=msg;e.className='toast show'+(bad?' bad':'');clearTimeout(toastT);toastT=setTimeout(()=>e.className='toast',3600)}
+
+/* ───────── طبقة البيانات: Firebase أو الوضع التجريبي ───────── */
+const DEMO=!FIREBASE_CONFIG;
+let DB;
+function ready(fn){if(DEMO||window.firebase)return fn();const iv=setInterval(()=>{if(window.firebase&&firebase.firestore&&firebase.auth){clearInterval(iv);fn()}},60)}
+
+function makeDemo(){
+  const K='enstp-sport-demo-v1',AK='enstp-sport-demo-admin';
+  const load=()=>{try{return JSON.parse(localStorage.getItem(K))||{slots:{},bookings:{},posts:[]}}catch(e){return{slots:{},bookings:{},posts:[]}}};
+  let mem=load();
+  const save=()=>{try{localStorage.setItem(K,JSON.stringify(mem))}catch(e){}};
+  const subs=new Set();const fire=()=>subs.forEach(f=>f());
+  addEventListener('storage',e=>{if(e.key===K){mem=load();fire()}});
+  const sub=(fn)=>{subs.add(fn);fn();return()=>subs.delete(fn)};
+  let adminOn=false;try{adminOn=sessionStorage.getItem(AK)==='1'}catch(e){}
+  const authSubs=new Set();
+  return{
+    subscribeSlots:(c,d,cb)=>sub(()=>cb(Object.values(mem.slots).filter(s=>s.court===c&&s.date===d))),
+    subscribeAllSlotsOn:(d,cb)=>sub(()=>cb(Object.values(mem.slots).filter(s=>s.date===d))),
+    async createBooking(b){const id=slotId(b.court,b.date,b.hour);if(mem.slots[id])throw{code:'taken'};
+      const bid='b'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+      mem.slots[id]={court:b.court,date:b.date,hour:b.hour,status:'pending',bid};
+      mem.bookings[bid]=Object.assign({},b,{status:'pending',reply:'',createdAt:Date.now()});save();fire();return bid},
+    watchBooking:(id,cb)=>sub(()=>cb(mem.bookings[id]||null)),
+    subscribeBookings:(cb)=>sub(()=>cb(Object.entries(mem.bookings).map(([id,v])=>Object.assign({id},v)).sort((a,b)=>b.createdAt-a.createdAt))),
+    async setStatus(id,status,reply){const b=mem.bookings[id];if(!b)return;const sid=slotId(b.court,b.date,b.hour);b.status=status;b.reply=reply||'';
+      if(status==='accepted'&&mem.slots[sid])mem.slots[sid].status='approved';if(status==='refused')delete mem.slots[sid];save();fire()},
+    async blockSlot(c,d,h){const id=slotId(c,d,h);if(mem.slots[id])throw{code:'taken'};mem.slots[id]={court:c,date:d,hour:h,status:'blocked'};save();fire()},
+    async unblock(id){delete mem.slots[id];save();fire()},
+    subscribeBlocked:(cb)=>sub(()=>cb(Object.entries(mem.slots).filter(([k,v])=>v.status==='blocked').map(([id,v])=>Object.assign({id},v)))),
+    subscribePosts:(cb)=>sub(()=>cb(mem.posts.slice().sort((a,b)=>b.createdAt-a.createdAt))),
+    async addPost(p){mem.posts.push(Object.assign({id:'p'+Date.now(),createdAt:Date.now()},p));save();fire()},
+    async delPost(id){mem.posts=mem.posts.filter(p=>p.id!==id);save();fire()},
+    async login(e,p){if(p!==DEMO_PASSWORD)throw{code:'auth'};adminOn=true;try{sessionStorage.setItem(AK,'1')}catch(x){}authSubs.forEach(f=>f(true))},
+    async logout(){adminOn=false;try{sessionStorage.removeItem(AK)}catch(x){}authSubs.forEach(f=>f(false))},
+    onAuth:(cb)=>{authSubs.add(cb);cb(adminOn)}
+  };
+}
+function makeFirebase(){
+  firebase.initializeApp(FIREBASE_CONFIG);
+  const db=firebase.firestore(),auth=firebase.auth(),FV=firebase.firestore.FieldValue;
+  const ms=v=>v&&v.toMillis?v.toMillis():(v||0);
+  const errH=e=>console.warn('Firestore:',e&&e.code);
+  return{
+    subscribeSlots:(c,d,cb)=>db.collection('sport_slots').where('court','==',c).where('date','==',d).onSnapshot(s=>cb(s.docs.map(x=>x.data())),errH),
+    subscribeAllSlotsOn:(d,cb)=>db.collection('sport_slots').where('date','==',d).onSnapshot(s=>cb(s.docs.map(x=>x.data())),errH),
+    async createBooking(b){const ref=db.collection('sport_bookings').doc();const sref=db.collection('sport_slots').doc(slotId(b.court,b.date,b.hour));
+      const batch=db.batch();batch.set(sref,{court:b.court,date:b.date,hour:b.hour,status:'pending',bid:ref.id});
+      batch.set(ref,Object.assign({},b,{status:'pending',reply:'',createdAt:FV.serverTimestamp()}));
+      try{await batch.commit()}catch(e){throw{code:(e.code==='permission-denied')?'taken':'err'}}return ref.id},
+    watchBooking:(id,cb)=>db.collection('sport_bookings').doc(id).onSnapshot(s=>cb(s.exists?s.data():null),errH),
+    subscribeBookings:(cb)=>db.collection('sport_bookings').orderBy('createdAt','desc').onSnapshot(s=>cb(s.docs.map(x=>Object.assign({id:x.id},x.data(),{createdAt:ms(x.data().createdAt)}))),errH),
+    async setStatus(id,status,reply){const bref=db.collection('sport_bookings').doc(id);const snap=await bref.get();const b=snap.data();const sref=db.collection('sport_slots').doc(slotId(b.court,b.date,b.hour));
+      const batch=db.batch();batch.update(bref,{status,reply:reply||''});
+      if(status==='accepted')batch.set(sref,{court:b.court,date:b.date,hour:b.hour,status:'approved',bid:id});else if(status==='refused')batch.delete(sref);
+      await batch.commit()},
+    async blockSlot(c,d,h){const ref=db.collection('sport_slots').doc(slotId(c,d,h));const s=await ref.get();if(s.exists)throw{code:'taken'};await ref.set({court:c,date:d,hour:h,status:'blocked'})},
+    async unblock(id){await db.collection('sport_slots').doc(id).delete()},
+    subscribeBlocked:(cb)=>db.collection('sport_slots').where('status','==','blocked').onSnapshot(s=>cb(s.docs.map(x=>Object.assign({id:x.id},x.data()))),errH),
+    subscribePosts:(cb)=>db.collection('sport_posts').orderBy('createdAt','desc').onSnapshot(s=>cb(s.docs.map(x=>Object.assign({id:x.id},x.data(),{createdAt:ms(x.data().createdAt)}))),errH),
+    async addPost(p){await db.collection('sport_posts').add(Object.assign({},p,{createdAt:FV.serverTimestamp()}))},
+    async delPost(id){await db.collection('sport_posts').doc(id).delete()},
+    async login(e,p){try{const r=await auth.signInWithEmailAndPassword(e,p);if(MANAGER_EMAIL&&r.user.email.toLowerCase()!==MANAGER_EMAIL.toLowerCase()){await auth.signOut();throw{code:'notmgr'}}}catch(x){throw x.code==='notmgr'?x:{code:'auth'}}},
+    async logout(){await auth.signOut()},
+    onAuth:(cb)=>auth.onAuthStateChanged(u=>cb(!!u&&(!MANAGER_EMAIL||u.email.toLowerCase()===MANAGER_EMAIL.toLowerCase())))
+  };
+}
+
+/* ───────── الواجهة ───────── */
+const S={court:'foot',date:null,hour:null,slots:[],filter:'all',reqFilter:'pending',posts:[],reqs:[]};
+let unSlots=null;
+
+function buildDays(){
+  const box=$('#days');box.innerHTML='';const now=new Date();let first=null;
+  for(let i=0;i<DAYS_AHEAD;i++){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i);if(CLOSED_WEEKDAYS.includes(d.getDay()))continue;
+    const s=dstr(d);if(!first)first=s;
+    const b=document.createElement('button');b.type='button';b.className='day';b.dataset.d=s;
+    b.innerHTML='<small>'+esc(t('days')[d.getDay()])+'</small><b>'+d.getDate()+'</b><em>'+(i===0?esc(t('today')):i===1?esc(t('tomorrow')):d.toLocaleDateString(locale(),{month:'short'}))+'</em>';
+    b.onclick=()=>{S.date=s;S.hour=null;paintDays();watchSlots()};box.appendChild(b)}
+  if(!S.date||!$('.day[data-d="'+S.date+'"]'))S.date=first;paintDays();
+}
+function paintDays(){$$('.day').forEach(b=>b.classList.toggle('on',b.dataset.d===S.date))}
+function slotState(h){
+  const f=S.slots.find(s=>s.hour===h);const now=new Date();
+  if(S.date===dstr(now)&&h<=now.getHours())return{c:'past',l:t('past')};
+  if(f){if(f.status==='pending')return{c:'pend',l:t('pend')};if(f.status==='blocked')return{c:'taken',l:t('closed')};return{c:'taken',l:t('taken')}}
+  return{c:'free',l:t('free')};
+}
+function paintSlots(){
+  const box=$('#slots');box.innerHTML='';
+  HOURS.forEach(h=>{const st=slotState(h);const b=document.createElement('button');b.type='button';
+    b.className='slot '+st.c+(S.hour===h?' on':'');b.innerHTML=slotLabel(h).replace(' – ','\u2069<br>\u2066')+'<small>'+esc(st.l)+'</small>';
+    b.style.lineHeight='1.35';b.disabled=st.c!=='free';
+    b.onclick=()=>{S.hour=h;paintSlots();paintSummary()};box.appendChild(b)});
+  if(S.hour!=null&&slotState(S.hour).c!=='free'){S.hour=null}
+  paintSummary();
+}
+function paintSummary(){
+  const el=$('#summary');
+  if(S.hour==null||!S.date){el.innerHTML='<span><i class="fa-regular fa-hand-pointer"></i>'+esc(t('sumNone'))+'</span>';return}
+  el.innerHTML='<span><i class="fa-solid '+COURT[S.court].i+'" style="color:'+COURT[S.court].col+'"></i>'+esc(t(COURT[S.court].k))+'</span><span><i class="fa-regular fa-calendar"></i>'+esc(fmtDate(S.date))+'</span><span><i class="fa-regular fa-clock"></i><span dir="ltr">'+slotLabel(S.hour)+'</span></span>';
+}
+function watchSlots(){
+  if(unSlots){unSlots();unSlots=null}
+  if(!S.date)return;
+  unSlots=DB.subscribeSlots(S.court,S.date,list=>{S.slots=list;paintSlots()});
+}
+function pickCourt(c){S.court=c;S.hour=null;$$('.opt').forEach(o=>o.classList.toggle('on',o.dataset.c===c));watchSlots()}
+
+/* العدّادات الحية لليوم */
+function liveCounts(){
+  const today=dstr(new Date());const open=HOURS.filter(h=>h>new Date().getHours());
+  if(CLOSED_WEEKDAYS.includes(new Date().getDay())){['liveFoot','liveBask','cFoot','cBask'].forEach(i=>$('#'+i).textContent='0');return}
+  DB.subscribeAllSlotsOn(today,list=>{
+    const n=c=>open.filter(h=>!list.some(s=>s.court===c&&s.hour===h)).length;
+    $('#liveFoot').textContent=$('#cFoot').textContent=n('foot');$('#liveBask').textContent=$('#cBask').textContent=n('basket');
+  });
+}
+
+/* طلباتي */
+const MYK='enstp-sport-my';
+const myIds=()=>{try{return JSON.parse(localStorage.getItem(MYK))||[]}catch(e){return[]}};
+const myData={};const myUn={};
+function addMy(id){const a=myIds();if(!a.includes(id)){a.unshift(id);try{localStorage.setItem(MYK,JSON.stringify(a.slice(0,30)))}catch(e){}}watchMy(id)}
+function watchMy(id){if(myUn[id])return;myUn[id]=DB.watchBooking(id,b=>{if(b)myData[id]=b;else delete myData[id];paintMine()})}
+function paintMine(){
+  const ids=myIds().filter(i=>myData[i]);$('#mine').classList.toggle('hidden',!ids.length);
+  $('#mylist').innerHTML=ids.map(i=>{const b=myData[i];const st=b.status||'pending';const ic=st==='accepted'?'fa-circle-check':st==='refused'?'fa-circle-xmark':'fa-hourglass-half';
+    const lab=st==='accepted'?t('stAccepted'):st==='refused'?t('stRefused'):t('stPending');
+    return '<div class="req '+st+'"><h4><i class="fa-solid '+COURT[b.court].i+'" style="color:'+COURT[b.court].col+'"></i>'+esc(t(COURT[b.court].k))+'</h4><div class="ln2"><i class="fa-regular fa-calendar"></i>'+esc(fmtDate(b.date))+'</div><div class="ln2"><i class="fa-regular fa-clock"></i><span dir="ltr">'+slotLabel(b.hour)+'</span></div><span class="st2 '+st+'"><i class="fa-solid '+ic+'"></i>'+esc(lab)+'</span>'+(b.reply?'<div class="reply"><b>'+esc(t('replyLbl'))+'</b> '+esc(b.reply)+'</div>':'')+'</div>'}).join('');
+}
+
+/* إرسال الطلب */
+async function submitBooking(e){
+  e.preventDefault();
+  if(S.hour==null){toast(t('tPickSlot'),1);return}
+  const name=$('#fName').value.trim(),contact=$('#fContact').value.trim(),players=parseInt($('#fPlayers').value,10);
+  if(name.length<3||contact.length<6||!(players>=2&&players<=30)){toast(t('tBadForm'),1);return}
+  const btn=$('#sendBtn');btn.disabled=true;
+  try{
+    const id=await DB.createBooking({court:S.court,date:S.date,hour:S.hour,name,contact,players,purpose:$('#fPurpose').value,note:$('#fNote').value.trim()});
+    addMy(id);toast(t('tSent'));S.hour=null;$('#fNote').value='';paintSlots();
+    $('#mine').scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(err){toast(err&&err.code==='taken'?t('tTaken'):t('tErr'),1)}
+  btn.disabled=false;
+}
+
+/* الأخبار */
+function paintChips(){
+  const kinds=['all','news','course','tournament','rule'];
+  $('#chips').innerHTML=kinds.map(k=>'<button type="button" class="chp'+(S.filter===k?' on':'')+'" data-k="'+k+'">'+(k==='all'?'<i class="fa-solid fa-layer-group"></i>'+esc(t('all')):'<i class="fa-solid '+KIND[k].i+'"></i>'+esc(t(KIND[k].k)))+'</button>').join('');
+  $$('#chips .chp').forEach(b=>b.onclick=()=>{S.filter=b.dataset.k;paintChips();paintFeed()});
+}
+function paintFeed(){
+  const list=S.posts.filter(p=>S.filter==='all'||p.type===S.filter);
+  $('#feedList').innerHTML=list.length?list.map(p=>{const K=KIND[p.type]||KIND.news;const link=/^https?:\/\//i.test(p.link||'')?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">'+'<i class="fa-solid fa-arrow-up-right-from-square"></i></a>':'';
+    return '<article class="post reveal in"><span class="pt '+esc(p.type)+'"><i class="fa-solid '+K.i+'"></i>'+esc(t(K.k))+'</span><h3>'+esc(p.title)+'</h3>'+(p.date?'<div class="evd"><i class="fa-regular fa-calendar"></i>'+esc(fmtDate(p.date))+'</div>':'')+'<p>'+esc(p.body)+'</p><div class="pf"><span>'+(p.createdAt?new Date(p.createdAt).toLocaleDateString(locale()):'')+'</span>'+link+'</div></article>'}).join(''):'<div class="empty"><i class="fa-regular fa-newspaper"></i>'+esc(t('noPosts'))+'</div>';
+}
+
+/* ───────── المدير ───────── */
+let isAdmin=false,adminUn=[];
+function openModal(id){$('#'+id).classList.add('open')}
+function closeModal(id){$('#'+id).classList.remove('open')}
+function showTab(n){$$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));['reqs','pub','blk'].forEach(x=>$('#tab-'+x).classList.toggle('hidden',x!==n))}
+function paintReqChips(){
+  const c={all:S.reqs.length,pending:0,accepted:0,refused:0};S.reqs.forEach(r=>c[r.status]=(c[r.status]||0)+1);
+  const L=[['pending','fPend'],['accepted','fAcc'],['refused','fRef'],['all','fAll']];
+  $('#reqChips').innerHTML=L.map(([k,l])=>'<button type="button" class="chp'+(S.reqFilter===k?' on':'')+'" data-k="'+k+'">'+esc(t(l))+' ('+(c[k]||0)+')</button>').join('');
+  $$('#reqChips .chp').forEach(b=>b.onclick=()=>{S.reqFilter=b.dataset.k;paintReqChips();paintReqs()});
+  const p=$('#pendCnt');p.textContent=c.pending;p.classList.toggle('hidden',!c.pending);
+}
+function paintReqs(){
+  const list=S.reqs.filter(r=>S.reqFilter==='all'||r.status===S.reqFilter);
+  $('#reqList').innerHTML=list.length?list.map(r=>{const C=COURT[r.court]||COURT.foot;const st=r.status||'pending';
+    const ct=/@/.test(r.contact)?'<a href="mailto:'+esc(r.contact)+'">'+esc(r.contact)+'</a>':'<a href="tel:'+esc(r.contact.replace(/[^\d+]/g,''))+'" dir="ltr">'+esc(r.contact)+'</a>';
+    const ic=st==='accepted'?'fa-circle-check':st==='refused'?'fa-circle-xmark':'fa-hourglass-half';
+    return '<div class="areq" data-id="'+esc(r.id)+'"><div><h4><i class="fa-solid '+C.i+'" style="color:'+C.col+'"></i>'+esc(t(C.k))+' · <span dir="ltr">'+slotLabel(r.hour)+'</span><span class="st2 '+st+'" style="margin:0"><i class="fa-solid '+ic+'"></i>'+esc(st==='accepted'?t('stAccepted'):st==='refused'?t('stRefused'):t('stPending'))+'</span></h4>'
+      +'<div class="ln2"><i class="fa-regular fa-calendar"></i>'+esc(fmtDate(r.date))+'</div>'
+      +'<div class="ln2"><i class="fa-solid fa-user"></i>'+esc(r.name)+'</div><div class="ln2"><i class="fa-solid fa-phone"></i>'+ct+'</div>'
+      +'<div class="ln2"><i class="fa-solid fa-user-group"></i>'+esc(r.players)+' '+esc(t('playersN'))+' · '+esc((t('purpose')||{})[r.purpose]||r.purpose||'')+'</div>'
+      +(r.note?'<div class="ln2"><i class="fa-regular fa-comment"></i>'+esc(r.note)+'</div>':'')
+      +(r.reply&&st!=='pending'?'<div class="reply"><b>'+esc(t('replyLbl'))+'</b> '+esc(r.reply)+'</div>':'')+'</div>'
+      +'<div class="acts">'+(st==='pending'?'<textarea placeholder="'+esc(t('replyPh'))+'" maxlength="200"></textarea><div class="r2"><button class="go" data-a="accepted" type="button"><i class="fa-solid fa-check"></i>'+esc(t('accept'))+'</button><button class="no" data-a="refused" type="button"><i class="fa-solid fa-xmark"></i>'+esc(t('refuse'))+'</button></div>':
+        '<div class="r2"><button class="no" data-a="refused" type="button" '+(st==='refused'?'style="display:none"':'')+'><i class="fa-solid fa-ban"></i>'+esc(t('refuse'))+'</button><button class="go" data-a="accepted" type="button" '+(st==='accepted'?'style="display:none"':'')+'><i class="fa-solid fa-check"></i>'+esc(t('accept'))+'</button></div>')+'</div></div>'}).join(''):'<div class="empty"><i class="fa-solid fa-inbox"></i>'+esc(t('noReqs'))+'</div>';
+  $$('#reqList .areq').forEach(card=>{card.querySelectorAll('[data-a]').forEach(b=>b.onclick=async()=>{
+    const ta=card.querySelector('textarea');try{await DB.setStatus(card.dataset.id,b.dataset.a,ta?ta.value.trim():'');toast(t('tDone'))}catch(e){toast(t('tErr'),1)}})});
+}
+function paintPostsAdmin(){
+  $('#postsAdmin').innerHTML=S.posts.length?S.posts.map(p=>'<div class="it"><div><b>'+esc(p.title)+'</b><small>'+esc(t((KIND[p.type]||KIND.news).k))+(p.date?' · '+esc(p.date):'')+'</small></div><button class="del" data-id="'+esc(p.id)+'" type="button" aria-label="'+esc(t('del'))+'"><i class="fa-solid fa-trash"></i></button></div>').join(''):'<div class="empty"><i class="fa-regular fa-newspaper"></i>'+esc(t('noPosts'))+'</div>';
+  $$('#postsAdmin .del').forEach(b=>b.onclick=()=>DB.delPost(b.dataset.id).then(()=>toast(t('tDone'))).catch(()=>toast(t('tErr'),1)));
+}
+let blocked=[];
+function paintBlocked(){
+  const l=blocked.slice().sort((a,b)=>(a.date+a.hour).localeCompare(b.date+b.hour));
+  $('#blockedList').innerHTML=l.length?l.map(s=>'<div class="it"><div><b>'+esc(t((COURT[s.court]||COURT.foot).k))+'</b><small>'+esc(fmtDate(s.date))+' · <span dir="ltr">'+slotLabel(s.hour)+'</span></small></div><button class="sm" data-id="'+esc(s.id)+'" type="button"><i class="fa-solid fa-lock-open"></i>'+esc(t('reopen'))+'</button></div>').join(''):'<div class="empty"><i class="fa-solid fa-lock-open"></i>–</div>';
+  $$('#blockedList .sm').forEach(b=>b.onclick=()=>DB.unblock(b.dataset.id).then(()=>toast(t('tDone'))).catch(()=>toast(t('tErr'),1)));
+}
+function fillBlockSlots(){$('#bSlot').innerHTML=HOURS.map(h=>'<option value="'+h+'">'+slotLabel(h)+'</option>').join('')}
+function enterAdmin(){
+  closeModal('loginModal');openModal('admin');document.body.style.overflow='hidden';
+  adminUn.forEach(f=>f&&f());adminUn=[];
+  adminUn.push(DB.subscribeBookings(l=>{S.reqs=l;paintReqChips();paintReqs()}));
+  adminUn.push(DB.subscribeBlocked(l=>{blocked=l;paintBlocked()}));
+  paintPostsAdmin();
+}
+function leaveAdmin(){closeModal('admin');document.body.style.overflow='';adminUn.forEach(f=>f&&f());adminUn=[]}
+
+function applyLang(){
+  const d=T[LANG],r=document.documentElement;
+  r.dir=LANG==='ar'?'rtl':'ltr';r.lang=LANG;document.body.dataset.lang=LANG;
+  ['ar','fr','en'].forEach(l=>$('#btn-'+l).classList.toggle('on',l===LANG));
+  $$('[data-i18n]').forEach(el=>{const v=d[el.dataset.i18n];if(v!==undefined)el.innerHTML=v});
+  document.title=d.title;
+}
+function changeLanguage(l){
+  LANG=T[l]?l:'ar';try{localStorage.setItem('enstp-lang',LANG)}catch(e){}
+  applyLang();buildDays();watchSlots();fillBlockSlots();paintChips();paintFeed();paintMine();paintSummary();
+  if($('#admin').classList.contains('open')){paintReqChips();paintReqs();paintPostsAdmin();paintBlocked()}
 }
 function toggleTheme(){
   const r=document.documentElement,next=r.dataset.theme==='dark'?'light':'dark';
-  r.dataset.theme=next; document.getElementById('metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
+  r.dataset.theme=next;$('#metaTheme').content=next==='dark'?'#040b17':'#f3f6fc';
   try{localStorage.setItem('enstp-theme',next)}catch(e){}
 }
-(function(){
-  document.getElementById('metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
-  let s='fr'; try{s=localStorage.getItem('enstp-lang')||'fr'}catch(e){}
-  changeLanguage(T[s]?s:'fr');
+
+function start(){
+  DB=DEMO?makeDemo():makeFirebase();
+  if(DEMO)$('#demoBox').classList.add('show');
+  let s='ar';try{s=localStorage.getItem('enstp-lang')||'ar'}catch(e){}
+  LANG=T[s]?s:'ar';applyLang();
+  $('#metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
+  buildDays();fillBlockSlots();paintChips();paintSummary();
+  watchSlots();liveCounts();
+  DB.subscribePosts(l=>{S.posts=l;paintFeed();if(isAdmin)paintPostsAdmin()});
+  myIds().forEach(watchMy);
+  /* أحداث */
+  $$('.opt').forEach(o=>o.onclick=()=>pickCourt(o.dataset.c));
+  $$('[data-pick]').forEach(a=>a.addEventListener('click',()=>pickCourt(a.dataset.pick)));
+  $('#bform').addEventListener('submit',submitBooking);
+  $('#admBtn').onclick=()=>{$('#loginErr').textContent='';isAdmin?enterAdmin():openModal('loginModal')};
+  $$('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+  $$('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+  $('#loginForm').addEventListener('submit',async e=>{e.preventDefault();const em=$('#lEmail').value.trim(),pw=$('#lPass').value;
+    if(!DEMO&&(!em||!pw)){$('#loginErr').textContent=t('tFill');return}
+    try{await DB.login(em,pw);$('#loginErr').textContent='';$('#lPass').value=''}catch(err){$('#loginErr').textContent=err&&err.code==='notmgr'?t('eNotMgr'):t('eAuth')}});
+  DB.onAuth(ok=>{const was=isAdmin;isAdmin=ok;if(ok&&!was&&$('#loginModal').classList.contains('open'))enterAdmin();if(!ok&&was)leaveAdmin()});
+  $('#admClose').onclick=leaveAdmin;$('#admOut').onclick=()=>DB.logout();
+  $$('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+  $('#postForm').addEventListener('submit',async e=>{e.preventDefault();const title=$('#pTitle').value.trim(),body=$('#pBody').value.trim();
+    if(title.length<3||body.length<3){toast(t('tFill'),1);return}
+    const link=$('#pLink').value.trim();
+    try{await DB.addPost({type:$('#pType').value,title,body,date:$('#pDate').value||'',link:/^https?:\/\//i.test(link)?link:''});toast(t('tPosted'));e.target.reset()}catch(err){toast(t('tErr'),1)}});
+  $('#blockForm').addEventListener('submit',async e=>{e.preventDefault();const d=$('#bDate').value;if(!d){toast(t('tFill'),1);return}
+    try{await DB.blockSlot($('#bCourt').value,d,parseInt($('#bSlot').value,10));toast(t('tDone'))}catch(err){toast(err&&err.code==='taken'?t('tTaken'):t('tErr'),1)}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){$$('.modal.open').forEach(m=>m.classList.remove('open'))}});
+  /* تأثيرات */
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const pb=document.getElementById('progressBar'),tt=document.getElementById('toTop');
+  $$('.reveal').forEach(el=>io.observe(el));
+  const pb=$('#progressBar'),tt=$('#toTop');
   addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
-})();
+  setInterval(()=>{if(S.date===dstr(new Date()))paintSlots()},60000);
+}
+/* لغة مبدئية قبل تحميل Firebase */
+(function(){let s='ar';try{s=localStorage.getItem('enstp-lang')||'ar'}catch(e){}LANG=T[s]?s:'ar';applyLang()})();
+window.addEventListener('DOMContentLoaded',()=>ready(start));
 </script>
 </body>
 </html>
