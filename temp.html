@@ -310,7 +310,7 @@ main{padding:34px 14px 30px}}
 <div id="currentSelectionTitle">…</div>
 </div>
 <div class="flex items-center gap-2 w-full sm:w-auto">
-<button id="downloadPdfBtn" class="gbtn main flex-1 sm:flex-none"><i class="fa-solid fa-file-pdf"></i><span>تحميل الجدول PDF</span></button>
+<button id="downloadPdfBtn" class="gbtn main flex-1 sm:flex-none"><i class="fa-solid fa-file-pdf"></i><span>تحميل الجدول الرسمي (PDF)</span></button>
 <button id="printBtn" class="gbtn flex-1 sm:flex-none"><i class="fa-solid fa-print"></i><span>طباعة</span></button>
 </div>
 </div>
@@ -1206,19 +1206,33 @@ main{padding:34px 14px 30px}}
             renderSchedule();
         });
 
+        // ربط زر التحميل بملفات الـ PDF الخاصة بكل مستوى
+        const PDF_FILES = {
+            PREPA1: '1CP-2026-2027.pdf',
+            PREPA2: '2CP-2026-2027.pdf',
+            ENG1_DMS: 'DMS_1.pdf',
+            ENG2_DMS: 'DMS_2.pdf',
+            ENG3_DMS: 'DMS_3.pdf',
+            ENG1_DIB: 'DIB_1.pdf',
+            ENG2_DIB: 'DIB_2.pdf',
+            ENG3_DIB: 'DIB_3.pdf'
+        };
+
         downloadPdfBtn.addEventListener('click', () => {
-            window.open('https://enstp.edu.dz/', '_blank', 'noopener');
+            const fileUrl = PDF_FILES[currentLevel];
+            if (fileUrl) {
+                window.open(fileUrl, '_blank', 'noopener');
+            }
         });
 
         printBtn.addEventListener('click', () => {
             window.print();
         });
 
-
         const UI_TEXT = {
-          ar:{all:'جميع الأفواج / الأقسام',level:'المستوى والتخصص:',group:'الفوج / القسم:',search:'بحث سريع (مادة / أستاذ / قاعة):',placeholder:'ابحث هنا...',today:'العودة لليوم الحالي',pdf:'الجداول الرسمية (موقع المدرسة)',print:'طباعة',time:'التوقيت',room:'القاعة',prof:'الأستاذ',none:'لا توجد حصص في هذا اليوم أو بهذا الاختيار',hint:'تأكد من اختيار الفوج أو جرب البحث عن مادة/أستاذ آخر.',todayTag:'اليوم'},
-          fr:{all:'Tous les groupes / sections',level:'Niveau et spécialité :',group:'Groupe / section :',search:'Recherche rapide (matière / enseignant / salle) :',placeholder:'Rechercher ici...',today:'Revenir au jour actuel',pdf:'Emplois du temps officiels (site ENSTP)',print:'Imprimer',time:'Horaire',room:'Salle',prof:'Enseignant',none:'Aucun cours pour ce jour ou cette sélection',hint:'Choisissez un groupe ou recherchez une matière / un enseignant.',todayTag:'Aujourd’hui'},
-          en:{all:'All groups / sections',level:'Level and specialty:',group:'Group / section:',search:'Quick search (subject / teacher / room):',placeholder:'Search here...',today:'Return to today',pdf:'Official timetables (ENSTP site)',print:'Print',time:'Time',room:'Room',prof:'Teacher',none:'No classes for this day or selection',hint:'Choose a group or search for another subject / teacher.',todayTag:'Today'}
+          ar:{all:'جميع الأفواج / الأقسام',level:'المستوى والتخصص:',group:'الفوج / القسم:',search:'بحث سريع (مادة / أستاذ / قاعة):',placeholder:'ابحث هنا...',today:'العودة لليوم الحالي',pdf:'تحميل الجدول الرسمي (PDF)',print:'طباعة',time:'التوقيت',room:'القاعة',prof:'الأستاذ',none:'لا توجد حصص في هذا اليوم أو بهذا الاختيار',hint:'تأكد من اختيار الفوج أو جرب البحث عن مادة/أستاذ آخر.',todayTag:'اليوم'},
+          fr:{all:'Tous les groupes / sections',level:'Niveau et spécialité :',group:'Groupe / section :',search:'Recherche rapide (matière / enseignant / salle) :',placeholder:'Rechercher ici...',today:'Revenir au jour actuel',pdf:'Télécharger l’emploi du temps (PDF)',print:'Imprimer',time:'Horaire',room:'Salle',prof:'Enseignant',none:'Aucun cours pour ce jour ou cette sélection',hint:'Choisissez un groupe ou recherchez une matière / un enseignant.',todayTag:'Aujourd’hui'},
+          en:{all:'All groups / sections',level:'Level and specialty:',group:'Group / section:',search:'Quick search (subject / teacher / room):',placeholder:'Search here...',today:'Return to today',pdf:'Download Official Timetable (PDF)',print:'Print',time:'Time',room:'Room',prof:'Teacher',none:'No classes for this day or selection',hint:'Choose a group or search for another subject / teacher.',todayTag:'Today'}
         };
         let currentLanguage='ar';
         function applyLanguage(lang){
