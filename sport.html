@@ -561,17 +561,11 @@ html[data-theme=dark] .demo{color:var(--gold-2)}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js" defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" defer></script>
 <script>
-/* ═════════════════════════════════════════════════════════════
-   ⚙️ الإعدادات — الصق هنا مفاتيح Firebase الخاصة بك (انظر الشرح)
-   إذا تركتها null تعمل الصفحة في «وضع تجريبي» داخل المتصفح فقط.
-   ═════════════════════════════════════════════════════════════ */
+
 const FIREBASE_CONFIG = null;
-/* مثال:
-const FIREBASE_CONFIG = {
-  apiKey: "...", authDomain: "xxx.firebaseapp.com", projectId: "xxx",
-  storageBucket: "xxx.appspot.com", messagingSenderId: "...", appId: "..."
-};*/
-const MANAGER_EMAIL = '';          // بريد مديرة النشاطات (نفس حساب Firebase Auth) — يُنصح بتعبئته
+const SUPABASE_URL = 'https://fynbdujbtbqsoahhsylo.supabase.co';  
+const SUPABASE_ANON_KEY = 'sb_publishable_t1yPBiRKFGvdgQKYfZvL8w_LbloOd2f'; 
+const MANAGER_EMAIL = 'sofiane.benkezim@enstp.edu.dz';          // بريد مديرة النشاطات (نفس حساب Firebase Auth) — يُنصح بتعبئته
 const DAY_START = 9, DAY_END = 19; // ساعات الحجز: من 09:00 إلى 19:00 (كل حصة ساعة)
 const BREAK_HOURS = [12];          // ساعات مغلقة (استراحة الغداء) — احذف [12] إن لم تُرِد
 const CLOSED_WEEKDAYS = [5];       // أيام الإغلاق: 5 = الجمعة (0 = الأحد)
