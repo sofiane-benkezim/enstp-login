@@ -414,21 +414,15 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
         const LT = (ar, fr, en) => currentLang === 'ar' ? ar : (currentLang === 'en' ? en : fr);
         let currentLabId = null;
 
-        /* ═══════════════════════════════════════════════════════════
-           📸 صور المخابر — هنا فقط تضع صور كل مخبر
-           ضع صور كل مخبر داخل [ ] بين علامتي اقتباس وافصل بينها بفاصلة.
-           الصورة الأولى هي صورة غلاف المخبر، والباقي تظهر كمعرض صور.
-           يمكنك وضع عدد غير محدود من الصور (4 أو 10 أو أكثر).
-           إن تركت القائمة فارغة [] تبقى الصورة القديمة كما هي.
-           ═══════════════════════════════════════════════════════════ */
+       
         const LAB_PHOTOS = {
-            physique:   [ /* 'physique1.jpg', 'physique2.jpg', 'physique3.jpg', 'physique4.jpg' */ ],
-            chimie:     [ /* 'chimie1.jpg', 'chimie2.jpg', 'chimie3.jpg', 'chimie4.jpg' */ ],
-            mdf:        [ ],
-            mds:        [ ],
-            rdm:        [ ],
-            electricite:[ ],
-            mdc:        [ ]
+            physique:   ['photo+1.jpg', 'photo+2.jpg', 'photo+3.jpg', 'photo+4.jpg', 'photo+1.jpg',  ],
+            chimie:     ['photo+5.jpg', 'photo+6.jpg', 'photo+7.jpg', 'photo+8.jpg', 'photo+9.jpg', 'photo+10.jpg',],
+            mdf:        ['photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg',  ],
+            mds:        ['photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', ],
+            rdm:        ['photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg',  ],
+            electricite:['photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg',  ],
+            mdc:        ['photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', 'photo+1.jpg', ]
         };
 
         // Labs Primary Master Data
