@@ -505,20 +505,51 @@ function card(p){const u=U(),s=p.o?st(p.o):null,far=p.d>=2500||p.c==="alger",n=p
 return`<article class="card${sel===p.i?" sel":""}${PH[p.n]?" hasph":""}${LOGO_BG.has(p.n)?" logobg":""}" id="p${p.i}" data-s="${slug(p)}" data-b="${bud(p)==null?"":bud(p)}" style="--c:var(--${p.c})${PH[p.n]?";--bg:url("+PH[p.n][0]+")":""}"><div class="top"><span class="ic">${ic(p)}<b class="nb">${p.r}</b></span><div><h3>${nm(p)}</h3><p class="t">${ty(p)}</p></div><div class="dist">≈ ${dist(p.d)}<small>${far?u.bird:wk(p.d)+" "+u.walk}</small></div></div>${s?`<span class="st ${s.o?"on":"off"}">${s.t}</span>`:""}<p class="i"><b>${u.hrs}</b> ${p.h?tH(p.h):u.nohrs}</p>${p.pl||p.pr?`<p class="i"><b>${u.price}</b> ${[p.pl?u["pl"+p.pl]:"",p.pr?p.pr[LG==="fr"?0:LG==="en"?1:2]:""].filter(Boolean).join(", ")}</p>`:""}${p.ph?`<p class="i"><b>${u.tel}</b> <a class="tel" href="tel:${tl(p)}"><bdi dir="ltr">${p.ph}</bdi></a></p>`:""}${p.rt?`<p class="i"><b>${u.rat}</b> ★ ${rtx(p)}</p>`:""}${p.rv?`<p class="i rv"><b>${u.rvl}</b><br>${p.rv[LG==="fr"?0:LG==="en"?1:2]}</p>`:""}${cmt(p)}${n?`<p class="i warn">${n}</p>`:""}<div class="btns"><a class="btn main" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=${O.lat},${O.lng}&destination=${p.lat},${p.lng}&travelmode=${far?"driving":"walking"}">${far?u.rT:u.rW}</a><a class="btn" target="_blank" rel="noopener" href="${mu(p)}">${u.maps}</a>${PH[p.n]&&PH[p.n].length>0?`<button class="btn gal" data-n="${p.n.replace(/"/g,"&quot;")}" aria-label="${GL[LG]}" title="${GL[LG]}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg> ${PH[p.n].length}</button>`:""}${MENU[p.n]?`<button class="btn mnu" data-n="${p.n.replace(/"/g,"&quot;")}" aria-label="${ML[LG]}" title="${ML[LG]}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg> ${MT[LG]}</button>`:""}${FORM_URL?`<a class="btn" target="_blank" rel="noopener" href="${FORM_URL}">${V().rep}</a>`:""}${xb(p)}</div></article>`}
 
 const COMMENTS={
-  "Musée national du Bardo":"uyfdcpm-_y",
-  "Musée national des Beaux-Arts":"nnmouigggggggggggggggggggggggggfpèmyyyyyyyyyyyiç",
-  "Jardin d'Essai du Hamma":"",
+  "Musée national du Bardo":"اخرج من ENSTP بالقبة.
+توجّه إلى محطة الحافلات أمام CNEP.
+ابحث عن حافلة رقم 33 باتجاه Place Maurice Audin.
+الخط 33 يربط بين محطة القبة وPlace Maurice Audin، ويمر بمنطقة المتحف الوطني باردو حسب مسار الخط المنشور.",
+  "Musée national des Beaux-Arts":"اخرج من ENSTP.
+توجّه إلى محطة الحافلات أمام CNEP، على بعد حوالي 350 متر.
+ابحث عن حافلة رقم 06 (Ligne 06).
+تأكد أن وجهتها مكتوب عليها Vieux Kouba → Place des Martyrs.
+اهبط في محطة Jardin d'Essai.
+من المحطة توجّه نحو المتحف.
+تمشي تقريباً 5 إلى 7 دقائق حسب المخرج والطريق.",
+  "Jardin d'Essai du Hamma":"من ENSTP امشِ إلى محطة الحافلات أمام CNEP (حوالي 5 دقائق).
+اسأل عن حافلة رقم 06 باتجاه Place des Martyrs.
+اركب وابقَ فيها، ما تحتاجش تبدّل الحافلة.
+اتبع المحطات حتى تسمع:
+El Anasser
+Hamoud Boualem
+Jardin d'Essai
+انزل في محطة Jardin d'Essai.
+امشِ حوالي 5 دقائق إلى المدخل الرئيسي للحديقة.",
   "Place des Martyrs":"",
   "Basilique Notre-Dame d'Afrique":"",
-  "Grande Poste d'Alger":"",
+  "Grande Poste d'Alger":"اخرج من المدرسة.
+توجّه إلى محطة الحافلات أمام CNEP.
+اسأل عن حافلة 06 باتجاه Place des Martyrs (ساحة الشهداء).
+انزل في محطة Grande Poste (Parc Sofia). 
+كي تهبط، تلقى البريد المركزي قريب منك، حوالي دقيقتين إلى 4 دقائق مشياً.",
   "Mosquée Ketchaoua":"",
-  "Sablette (Les Sablettes)":"",
+  "Sablette (Les Sablettes)":"امشِ إلى Station multimodale de Kouba (حوالي 7 دقائق من المدرسة).
+اركب الحافلة رقم 06 في اتجاه Place des Martyrs.
+انزل في محطة 1er Mai. الخط يمر بها فعلاً.
+عند الوصول إلى محطة اول ماي ابحث عن حافلة ETUSA رقم 126.
+تأكد أن الوجهة المكتوبة هي Sablettes / Ardis.
+اركب حتى محطة الصابلات.",
   "Dream Park":"",
   "Place Emir Abdelkader":"",
   "Dar Mustapha Pacha":"",
   "Bab Ezzouar Mall":"",
   "Garden City Mall":"",
-  "Grande Mosquée d'Algérie":"",
+  "Grande Mosquée d'Algérie":"توجد رحلات مباشرة من محطة القبة إلى جامع الجزائر.
+قل للسائق: «Djamaâ El Djazaïr».
+اركب الحافلة المتجهة مباشرة إلى الجامع.
+ما تحتاجش تبدل الحافلة.
+انزل عند Passerelle Est – الجسر الشرقي.
+من هناك تتوجه مباشرة إلى مدخل الجامع.",
 };
 const cmt=p=>{let c=COMMENTS[p.n];if(Array.isArray(c))c=c[LG==="fr"?0:LG==="en"?1:2];c=(c||"").toString().trim();return c?`<p class="i cm">${c.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</p>`:""};
 /* === À MODIFIER FACILEMENT === */
