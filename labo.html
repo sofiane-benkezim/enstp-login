@@ -90,7 +90,7 @@ html.dark .theme-btn .i-sun{transform:none;opacity:1}
 
 /* الواجهة */
 .hero{position:relative;min-height:62svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;isolation:isolate;padding:150px 20px 90px}
-.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo12.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,var(--hero-o1),var(--hero-o2)),url('photo11.jpg') center/cover no-repeat,linear-gradient(135deg,#0b2545,#1d5288)}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 72%,var(--bg) 100%)}
 .hero-inner{max-width:900px}
 .badge{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:800;color:var(--gold-2);padding:10px 20px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(245,184,65,.4);backdrop-filter:blur(14px);margin-bottom:24px}
@@ -251,6 +251,16 @@ main{padding:34px 14px 30px}}
 html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
 .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
+
+/* معرض صور المخبر */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+.gal-th{padding:0;border:2px solid var(--card-b,rgba(120,150,200,.25));border-radius:14px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:#0b1730;transition:transform .25s,border-color .25s,box-shadow .25s}
+.gal-th img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-th:hover{transform:translateY(-3px)}
+.gal-th.on{border-color:var(--gold,#f5b841);box-shadow:0 8px 22px rgba(245,184,65,.35)}
+.lb-nav{position:fixed;top:50%;translate:0 -50%;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(15,23,42,.8);color:#fff;font-size:1.1rem;cursor:pointer;z-index:60}
+.lb-prev{left:14px}.lb-next{right:14px}
+.lb-nav:hover{background:var(--gold,#f5b841);color:#111}
 </style>
 </head>
 <body class="">
@@ -345,7 +355,7 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
 </div>
 <div class="p-6 overflow-y-auto flex-grow space-y-6 modal-body">
 <div class="relative group rounded-xl overflow-hidden" style="background:#0b1730">
-<img id="modalMainImg" src="" alt="Lab" class="w-full h-56 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105">
+<img id="modalMainImg" src="" alt="Lab" class="w-full h-56 sm:h-72 object-cover transition-transform duration-500 group-hover:scale-105" style="cursor:zoom-in" onclick="openGallery(galIdx)">
 <div class="absolute inset-0 flex flex-col justify-end p-4 text-white" style="background:linear-gradient(0deg,rgba(4,11,23,.85),transparent 60%)">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 <div>
@@ -358,6 +368,12 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
 </label>
 </div>
 </div>
+</div>
+<div id="galleryBox" class="hidden">
+<h4 class="text-sm font-bold flex items-center gap-2" style="color:var(--head);margin-bottom:10px">
+<i class="fa-solid fa-images" style="color:var(--gold)"></i><span id="galleryTitle"></span>
+</h4>
+<div id="galleryGrid" class="gal-grid"></div>
 </div>
 <div class="about">
 <h4 class="text-sm font-bold flex items-center gap-2" style="color:var(--head);margin-bottom:8px">
@@ -383,7 +399,9 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
 
 <div id="lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" style="background:rgba(0,0,0,.92)" onclick="closeLightbox()">
 <div class="relative max-w-4xl flex flex-col items-center" style="max-height:90vh">
-<img id="lightboxImg" src="" alt="" class="max-w-full rounded-lg object-contain" style="max-height:80vh;border:2px solid rgba(255,255,255,.15)">
+<img id="lightboxImg" src="" alt="" class="max-w-full rounded-lg object-contain" style="max-height:80vh;border:2px solid rgba(255,255,255,.15)" onclick="event.stopPropagation()">
+<button type="button" id="lbPrev" class="lb-nav lb-prev" onclick="event.stopPropagation();lbStep(-1)" aria-label="Prev"><i class="fa-solid fa-chevron-left"></i></button>
+<button type="button" id="lbNext" class="lb-nav lb-next" onclick="event.stopPropagation();lbStep(1)" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
 <p id="lightboxCaption" class="text-white text-sm font-medium mt-3 px-4 py-2 rounded-full text-center" style="background:rgba(15,23,42,.85);border:1px solid rgba(255,255,255,.15)"></p>
 <button type="button" onclick="closeLightbox()" class="absolute text-white text-3xl" style="top:-48px;inset-inline-end:0"><i class="fa-solid fa-xmark"></i></button>
 </div>
@@ -395,6 +413,23 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
         let currentLang = (function(){try{var s=localStorage.getItem('enstp-lang');return (s==='fr'||s==='en')?s:'ar'}catch(e){return 'ar'}})();
         const LT = (ar, fr, en) => currentLang === 'ar' ? ar : (currentLang === 'en' ? en : fr);
         let currentLabId = null;
+
+        /* ═══════════════════════════════════════════════════════════
+           📸 صور المخابر — هنا فقط تضع صور كل مخبر
+           ضع صور كل مخبر داخل [ ] بين علامتي اقتباس وافصل بينها بفاصلة.
+           الصورة الأولى هي صورة غلاف المخبر، والباقي تظهر كمعرض صور.
+           يمكنك وضع عدد غير محدود من الصور (4 أو 10 أو أكثر).
+           إن تركت القائمة فارغة [] تبقى الصورة القديمة كما هي.
+           ═══════════════════════════════════════════════════════════ */
+        const LAB_PHOTOS = {
+            physique:   [ /* 'physique1.jpg', 'physique2.jpg', 'physique3.jpg', 'physique4.jpg' */ ],
+            chimie:     [ /* 'chimie1.jpg', 'chimie2.jpg', 'chimie3.jpg', 'chimie4.jpg' */ ],
+            mdf:        [ ],
+            mds:        [ ],
+            rdm:        [ ],
+            electricite:[ ],
+            mdc:        [ ]
+        };
 
         // Labs Primary Master Data
         const labsData = [
@@ -652,6 +687,12 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
             }
         ];
 
+        // ربط الصور بالمخابر (لا تعدّل هنا)
+        labsData.forEach(function (lab) {
+            lab.gallery = (LAB_PHOTOS[lab.id] || []).filter(Boolean);
+            if (lab.gallery.length) lab.mainImage = lab.gallery[0];
+        });
+
         // Initialize App UI
         document.addEventListener('DOMContentLoaded', () => {
             renderLabs(labsData);
@@ -691,6 +732,7 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
                                 <span>${lab.code}</span>
                             </div>
                             
+                            ${lab.gallery && lab.gallery.length > 1 ? `<div class="absolute top-3 left-3 bg-black/55 backdrop-blur-md text-white text-xs font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1.5"><i class="fa-solid fa-images"></i><span>${lab.gallery.length}</span></div>` : ''}
                             <div class="absolute bottom-3 right-3 left-3">
                                 <h3 class="text-lg font-bold text-white leading-snug drop-shadow">${title}</h3>
                                 <p class="text-xs text-amber-300 font-medium">${lab.titleFr}</p>
@@ -736,6 +778,9 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
             document.getElementById('modalMainImg').src = lab.mainImage;
             document.getElementById('modalLabDesc').innerText = currentLang === 'ar' ? lab.shortDescAr : lab.shortDescFr;
             document.getElementById('modalFullDesc').innerText = currentLang === 'ar' ? lab.fullDescAr : lab.fullDescFr;
+
+            // معرض الصور
+            renderGallery(lab);
 
             // Render Equipment Grid inside Modal
             renderModalEquipment(lab.equipment);
@@ -786,11 +831,55 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
         }
 
         // Lightbox Functions
+        let lbList = [], lbIdx = 0, galIdx = 0;
+        function lbShow() {
+            const it = lbList[lbIdx];
+            document.getElementById('lightboxImg').src = it.src;
+            document.getElementById('lightboxCaption').innerText = it.caption + (lbList.length > 1 ? '  (' + (lbIdx + 1) + '/' + lbList.length + ')' : '');
+            const multi = lbList.length > 1;
+            document.getElementById('lbPrev').style.display = multi ? '' : 'none';
+            document.getElementById('lbNext').style.display = multi ? '' : 'none';
+        }
+        function lbStep(d) { lbIdx = (lbIdx + d + lbList.length) % lbList.length; lbShow(); }
         function openLightbox(imgSrc, caption) {
-            document.getElementById('lightboxImg').src = imgSrc;
-            document.getElementById('lightboxCaption').innerText = caption;
+            lbList = [{ src: imgSrc, caption: caption }]; lbIdx = 0; lbShow();
             document.getElementById('lightbox').classList.remove('hidden');
         }
+        // معرض صور المخبر (تنقّل بالأسهم أو بالسحب أو بالكيبورد)
+        function openGallery(i) {
+            const lab = labsData.find(l => l.id === currentLabId);
+            if (!lab) return;
+            const title = currentLang === 'ar' ? lab.titleAr : lab.titleFr;
+            const list = (lab.gallery && lab.gallery.length) ? lab.gallery : [lab.mainImage];
+            lbList = list.map((u, k) => ({ src: u, caption: title }));
+            lbIdx = Math.min(Math.max(i || 0, 0), lbList.length - 1); lbShow();
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+        function renderGallery(lab) {
+            const box = document.getElementById('galleryBox'), grid = document.getElementById('galleryGrid');
+            const g = lab.gallery || [];
+            galIdx = 0;
+            if (g.length < 2) { box.classList.add('hidden'); grid.innerHTML = ''; return; }
+            box.classList.remove('hidden');
+            document.getElementById('galleryTitle').innerText = LT('صور المخبر', 'Photos du laboratoire', 'Lab photos') + ' (' + g.length + ')';
+            grid.innerHTML = g.map((u, k) => `<button type="button" class="gal-th${k === 0 ? ' on' : ''}" onclick="pickPhoto(${k})"><img src="${u}" alt="" loading="lazy"></button>`).join('');
+        }
+        function pickPhoto(k) {
+            const lab = labsData.find(l => l.id === currentLabId);
+            if (!lab) return;
+            galIdx = k; document.getElementById('modalMainImg').src = lab.gallery[k];
+            document.querySelectorAll('#galleryGrid .gal-th').forEach((b, i) => b.classList.toggle('on', i === k));
+        }
+        document.addEventListener('keydown', function (e) {
+            if (document.getElementById('lightbox').classList.contains('hidden')) return;
+            const rtl = document.documentElement.dir === 'rtl';
+            if (e.key === 'ArrowRight') lbStep(rtl ? -1 : 1);
+            else if (e.key === 'ArrowLeft') lbStep(rtl ? 1 : -1);
+            else if (e.key === 'Escape') closeLightbox();
+        });
+        (function () { let x0 = null; const lb = document.getElementById('lightbox');
+            lb.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+            lb.addEventListener('touchend', e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50 && lbList.length > 1) lbStep(dx < 0 ? 1 : -1); x0 = null; }, { passive: true }); })();
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.add('hidden');
@@ -807,6 +896,7 @@ html[dir="ltr"] .lab-card .absolute.right-3{right:auto;left:12px}
                     const lab = labsData.find(l => l.id === currentLabId);
                     if (lab) {
                         lab.mainImage = newUrl;
+                        if (lab.gallery && lab.gallery.length) { lab.gallery.unshift(newUrl); renderGallery(lab); }
                         document.getElementById('modalMainImg').src = newUrl;
                         renderLabs(labsData); // Refresh grid
                     }
