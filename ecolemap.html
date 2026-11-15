@@ -673,18 +673,7 @@ function xLang(){const c=XS.cfg;if(!c)return;const z=c.zp.controls;
  z.querySelector('[data-z=in]').title=xt('zin');z.querySelector('[data-z=out]').title=xt('zout');z.querySelector('[data-z=reset]').title=xt('zreset');z.querySelector('[data-z=full]').title=xt('full');
  c.zp.hint.textContent=xt('hint');renderCats();renderMy();applyCat()}
 
-/* ═══════════════════════════════════════════════════════════════
-   📸 صور الأماكن — هنا فقط تضع صورة (أو عدة صور) لكل مكان
-   • ضع الصور في المستودع بجانب هذا الملف، ثم اكتب أسماءها بين [ ] مفصولة بفاصلة.
-   • مثال:   A: [ 'admin1.jpg', 'admin2.jpg', 'admin3.jpg' ]
-   • الصورة الأولى تظهر أولًا، والبقية كمعرض صور صغير تحتها.
-   • اترك [ ] فارغة إن لم تكن لديك صورة بعد (يظهر مكانها إطار «لا توجد صورة»).
-   • الرمز أمام كل سطر هو رمز المكان في الخريطة.
-   • اختياري (أدق): يمكنك أيضًا وضع صورة لقاعة أو مخبر بعينه بدل المبنى كله،
-     بكتابة اسمه الإنجليزي كما في الخريطة، فتظهر عند البحث عنه. مثال:
-       'Library': [ 'library1.jpg', 'library2.jpg' ],
-       'Chemistry Lab': [ 'chimie1.jpg' ],
-   ═══════════════════════════════════════════════════════════════ */
+
 const PLACE_PHOTOS = {
     A: [ ],
     B: [ ],
