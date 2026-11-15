@@ -1,10 +1,6 @@
-/* === التعليقات (نص فقط) تظهر تحت « رأي الزبائن » في كل بطاقة ===
-   اكتب تعليقك بين علامتي الاقتباس أمام اسم المكان. اتركه فارغًا "" فلا يظهر شيء.
-   - نص واحد يظهر بكل اللغات:      "تعليقي هنا"
-   - أو ثلاث لغات [فرنسية، إنجليزية، عربية]: ["Mon commentaire","My comment","تعليقي"]
-   - للانتقال إلى سطر جديد داخل التعليق استعمل \n */
+
 const COMMENTS={
-  "Musée national du Bardo":"",
+  "Musée national du Bardo":"ztyiujtk-k",
   "Musée national des Beaux-Arts":"",
   "Jardin d'Essai du Hamma":"",
   "Place des Martyrs":"",
