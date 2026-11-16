@@ -725,6 +725,7 @@ const locale=()=>({ar:'ar-u-nu-latn',fr:'fr-FR',en:'en-GB'}[LANG]);
 const fmtDate=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString(locale(),{weekday:'short',day:'numeric',month:'short'})};
 const KINDS={ride_offer:{i:'fa-car-side'},ride_request:{i:'fa-hand'},carry_offer:{i:'fa-suitcase-rolling'},parcel_request:{i:'fa-box'}};
 const KL=k=>t('k_'+k);
+const why=e=>{console.error(e);const m=e&&(e.message||e.code||e.error_description);return m?' ('+String(m).slice(0,140)+')':''};
 let toastT;function toast(m,bad){const e=$('#toast');e.textContent=m;e.className='toast show'+(bad?' bad':'');clearTimeout(toastT);toastT=setTimeout(()=>e.className='toast',3400)}
 function ago(ts){const s=Math.max(0,(Date.now()-ts)/1000);if(s<60)return t('justNow');const u=s<3600?[Math.floor(s/60),'m']:s<86400?[Math.floor(s/3600),'h']:[Math.floor(s/86400),'d'];return (LANG==='fr'||LANG==='ar'?t('ago')+' ':'')+u[0]+' '+t(u[1])+(LANG==='en'?' ago':'')}
 const uuid=()=>(crypto&&crypto.randomUUID)?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)});
@@ -931,7 +932,7 @@ function openProfile(){
 async function saveProfile(e){
   e.preventDefault();const name=$('#pName').value.trim();if(name.length<2){$('#pErr').textContent=t('eName');return}
   const p={name,phone:$('#pPhone').value.trim().replace(/[^\d+ ]/g,''),home:$('#pHome').value||null,year:$('#pYear').value.trim()};
-  try{await B.saveProfile(p);S.profile=Object.assign({id:S.uid},p);closeModal('mProfile');toast(t('tSaved'));if(S.afterProfile){const f=S.afterProfile;S.afterProfile=null;f()}else if($('#mMine').classList.contains('open'))renderMine()}catch(err){$('#pErr').textContent=t('tErr')}
+  try{await B.saveProfile(p);S.profile=Object.assign({id:S.uid},p);closeModal('mProfile');toast(t('tSaved'));if(S.afterProfile){const f=S.afterProfile;S.afterProfile=null;f()}else if($('#mMine').classList.contains('open'))renderMine()}catch(err){$('#pErr').textContent=t('tErr')+why(err)}
 }
 
 /* ───────── نشر رحلة ───────── */
@@ -959,7 +960,7 @@ async function submitPost(e){
   const pv=$('#tPrice').value;
   const tr={owner_name:S.profile.name,kind:k,direction:S.pdir,wilaya:$('#tWil').value,place:$('#tPlace').value.trim(),date,time:$('#tTime').value||'',seats,seats_left:k==='ride_offer'?seats:seats,price:pv===''?null:Math.max(0,parseInt(pv,10)),negotiable:$('#tNego').checked,item:(k==='carry_offer'||k==='parcel_request')?item:'',note:$('#tNote').value.trim()};
   $('#postBtn').disabled=true;
-  try{await B.createTrip(tr);closeModal('mPost');toast(t('tPosted'));['tPlace','tPrice','tNote','tItem','tTime'].forEach(i=>$('#'+i).value='');await refresh();$('#feed').scrollIntoView({behavior:'smooth'})}catch(err){$('#tErr').textContent=t('tErr')}
+  try{await B.createTrip(tr);closeModal('mPost');toast(t('tPosted'));['tPlace','tPrice','tNote','tItem','tTime'].forEach(i=>$('#'+i).value='');await refresh();$('#feed').scrollIntoView({behavior:'smooth'})}catch(err){$('#tErr').textContent=t('tErr')+why(err)}
   $('#postBtn').disabled=false;
 }
 
@@ -980,7 +981,7 @@ async function submitOffer(e){
   const pv=$('#oPrice').value;
   const o={trip_id:tr.id,from_name:S.profile.name,price:pv===''?null:Math.max(0,parseInt(pv,10)),seats:tr.kind==='ride_offer'?Math.max(1,parseInt($('#oSeats').value,10)||1):1,message:$('#oMsg').value.trim()};
   try{const row=await B.createOffer(o);closeModal('mOffer');toast(t('tOfferSent'));await refresh();openChat(row.id)}
-  catch(err){$('#oErr').textContent=err&&err.code==='dup'?t('eDup'):err&&err.code==='own'?t('eOwn'):t('tErr')}
+  catch(err){$('#oErr').textContent=err&&err.code==='dup'?t('eDup'):err&&err.code==='own'?t('eOwn'):t('tErr')+why(err)}
 }
 
 /* ───────── مساحتي ───────── */
@@ -1069,7 +1070,7 @@ async function start(){
   B=DEMO?makeDemo():makeSupabase();
   let s='ar';try{s=localStorage.getItem('enstp-lang')||'ar'}catch(e){}
   LANG=T[s]?s:'ar';
-  try{S.uid=await B.init()}catch(e){toast(t('eAuth'),1);S.uid=null}
+  try{S.uid=await B.init()}catch(e){console.error(e);S.uid=null;const bar=document.createElement('div');bar.style.cssText='position:fixed;top:70px;inset-inline:12px;z-index:400;padding:12px 16px;border-radius:14px;background:#7f1d1d;color:#fff;font:800 .82rem Cairo,sans-serif;text-align:center';bar.textContent=T[LANG].eAuth;document.body.appendChild(bar)}
   S.profile=S.uid?await B.getProfile().catch(()=>null):null;
   setLang(LANG);$('#metaTheme').content=document.documentElement.dataset.theme==='dark'?'#040b17':'#f3f6fc';
   $('#demoBox').classList.toggle('show',DEMO);
