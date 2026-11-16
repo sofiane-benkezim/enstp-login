@@ -351,7 +351,7 @@ html[data-theme="dark"] .sts span.tt-chip{color:#6ee7b7}
 <div class="m-sec"><i class="fa-solid fa-ticket"></i><div><b>أسعار التذاكر والاشتراك:</b><span id="modalPrice"></span></div></div>
 </div>
 <div><div class="m-h"><i class="fa-solid fa-route"></i><span>أبرز المحطات والخطوط المقربة للجامعة:</span></div><ul class="m-list" id="modalStations"></ul></div>
-<div id="ttBox" class="hidden"><div class="m-h"><i class="fa-solid fa-calendar-days"></i><span>جدول رحلات المحطة (محطة القبة - أمام المدرسة العليا للأساتذة)</span></div><div class="tt" id="tt"></div></div>
+<div id="ttBox" class="hidden"><div class="m-h"><i class="fa-solid fa-calendar-days"></i><span id="ttTitle"></span></div><div class="tt" id="tt"></div></div>
 <div><div class="m-h"><span>الروابط المتاحة والتطبيق الرسمي:</span></div><div class="m-links" id="modalLinks"></div></div>
 </div>
 <div class="m-foot"><button onclick="closeTransportModal()">إغلاق</button></div>
@@ -398,7 +398,7 @@ const ETUSA_OTHER=[
 ];
 const toMin=s=>{const[a,b]=s.split(':').map(Number);return a*60+b};
 const fromMin=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
-let ttLine='33',ttDir='b',ttIv=null;
+let ttLine='33',ttDir='b',ttIv=null,ttCur='';
 function nowMin(){const d=new Date();return d.getHours()*60+d.getMinutes()}
 function nextOf(list){const n=nowMin();return list.find(x=>toMin(x)>=n)||null}
 function waitText(m){if(m<=0)return 'الآن';if(m<60)return 'بعد '+m+' دقيقة';return 'بعد '+Math.floor(m/60)+' س '+(m%60?(m%60)+' د':'')}
@@ -421,7 +421,29 @@ function renderTT(){
   box.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{ttLine=b.dataset.l;renderTT()});
   box.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{ttDir=b.dataset.d;renderTT()});
 }
-transportsData.find(t=>t.id==='etusa-bus').hasTT=true;
+
+/* ===== مواعيد الميترو والترامواي والقطار (من مصادر منشورة، مع التاريخ) ===== */
+const SVC={
+'metro-algiers':{title:'مواعيد الخدمة',src:'المصدر: Algérie360 — إعلان مشغّل الميترو (31 جويلية 2026). قد تتغير الساعات مؤقتاً (صيانة، رمضان، الأعياد)، فتأكد من الموقع الرسمي.',
+ open:(d,m)=>{const last=(d===5||d===6)?1440:1380;return m>=300&&m<last},
+ lastTxt:d=>(d===5||d===6)?'منتصف الليل':'23:00',first:'05:00',
+ rows:[['الأحد إلى الخميس','آخر رحلة حتى 23:00'],['الجمعة والسبت','آخر رحلة حتى منتصف الليل'],['أول رحلة','05:00 صباحاً'],['التردد بين القطارات','غير منشور رسمياً']]},
+'tramway-algiers':{title:'مواعيد الخدمة',src:'المصدر: Algérie360 — إعلان SETRAM (سارٍ منذ 11 نوفمبر 2025). قد تتغير الساعات في الأعياد ورمضان.',
+ open:(d,m)=>m>=330&&m<1340,lastTxt:()=>'22:00 – 22:20',first:'05:30',
+ rows:[['أول انطلاق','05:30 صباحاً من المحطات الرئيسية'],['آخر انطلاق من العناصر (رويسو)','22:20'],['آخر انطلاق من درقانة','22:00'],['الانتظار بين ترامواي وآخر','من 4 إلى 8 دقائق']]},
+'sntf-train':{title:'أمثلة من برنامج الانطلاق',src:'المصدر: Algérie360 — برنامج SNTF الجديد الساري من 19 سبتمبر 2026. هذه أولى الرحلات فقط وليست الجدول الكامل؛ الجدول الكامل في تطبيق وموقع SNTF.',
+ trains:[['الجزائر ← الثنية',['06:25','07:30','08:30','16:05']],['الثنية ← الجزائر',['06:00','07:00','08:05']],['الجزائر ← العفرون (عبر البليدة)',['05:35','06:20','07:10']],['الجزائر ← زرالدة',['05:30','06:20','07:30','08:40']],['الجزائر ← مطار هواري بومدين',['04:40','06:00','07:20','08:35']]]}
+};
+function renderSvc(id){
+  const s=SVC[id],box=document.getElementById('tt'),d=new Date().getDay(),n=nowMin();
+  let h=`<div class="tt-note"><i class="fa-solid fa-circle-info"></i><span>${s.src}</span></div>`;
+  if(s.open){const o=s.open(d,n);h+=`<div class="tt-next" style="${o?'':'background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4)'}"><i class="fa-solid ${o?'fa-circle-check':'fa-moon'}" style="color:${o?'#059669':'#dc2626'};font-size:1.3rem"></i><div><small>الحالة الآن</small><b style="font-size:1.1rem">${o?'الخدمة جارية':'الخدمة متوقفة'}</b></div><span>${o?'آخر رحلة تقريباً: '+s.lastTxt(d):'تبدأ غداً الساعة '+s.first}</span></div>`;
+    h+='<div class="tt-tbl">'+s.rows.map(r=>`<div class="tt-row"><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')+'</div>';}
+  else h+=s.trains.map(r=>{const nx=nextOf(r[1]);return `<div><div class="tt-row" style="margin-bottom:6px"><b>${r[0]}</b>${nx?`<em>الأقرب: ${nx}</em>`:'<span>انتهت الرحلات المدرجة اليوم</span>'}</div><div class="tt-grid" style="padding:10px">${r[1].map(x=>`<span class="${toMin(x)<n?'past':''} ${x===nx?'nx':''}">${x}</span>`).join('')}</div></div>`}).join('');
+  box.innerHTML=h;
+}
+
+transportsData.forEach(t=>{if(t.id==='etusa-bus'||SVC[t.id])t.hasTT=true});
 
 let currentCategory='all', searchQuery='';
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -452,7 +474,7 @@ function renderCards(){
   grid.innerHTML=list.map(i=>`<article class="tc">
     <div class="card-image-wrap"><img class="card-image" src="${esc(i.image)}" alt="${esc(i.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility='hidden'"><span class="tag ${i.badgeColor}">${esc(i.badgeText)}</span></div>
     <div class="tc-body"><h3>${esc(i.title)}</h3><div class="sub">${esc(i.subtitle)}</div><p>${esc(i.description)}</p>
-      <div class="sts">${i.stations.slice(0,2).map(s=>`<span>${esc(s)}</span>`).join('')}${i.stations.length>2?`<span class="more">+${i.stations.length-2} المزيد</span>`:''}${i.hasTT?'<span class="tt-chip">⏱ جدول الرحلات</span>':''}</div></div>
+      <div class="sts">${i.stations.slice(0,2).map(s=>`<span>${esc(s)}</span>`).join('')}${i.stations.length>2?`<span class="more">+${i.stations.length-2} المزيد</span>`:''}${i.hasTT?'<span class="tt-chip">⏱ '+(i.id==="etusa-bus"?'جدول الرحلات':'مواعيد الخدمة')+'</span>':''}</div></div>
     <div class="tc-foot"><button class="btn" onclick="openTransportModal('${i.id}')"><span>عرض التفاصيل والروابط</span><i class="fa-solid fa-arrow-left"></i></button></div>
   </article>`).join('');
 }
@@ -470,7 +492,7 @@ function openTransportModal(id){
   document.getElementById('modalStations').innerHTML=i.stations.map(s=>`<li>${esc(s)}</li>`).join('');
   document.getElementById('modalLinks').innerHTML=i.apps.map(a=>`<a class="lk" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><i class="${a.icon.startsWith('fa-brands')?a.icon:'fa-solid '+a.icon}"></i><span>${esc(a.name)}</span><i class="fa-solid fa-up-right-from-square x"></i></a>`).join('');
   const tb=document.getElementById('ttBox');tb.classList.toggle('hidden',!i.hasTT);clearInterval(ttIv);
-  if(i.hasTT){ttLine='33';ttDir='b';renderTT();ttIv=setInterval(renderTT,30000)}
+  if(i.hasTT){const sv=SVC[i.id],tl=document.getElementById('ttTitle');ttCur=i.id;tl.textContent=sv?sv.title+' — '+i.title:'جدول رحلات المحطة (محطة القبة - أمام المدرسة العليا للأساتذة)';ttLine='33';ttDir='b';const run=()=>sv?renderSvc(i.id):renderTT();run();ttIv=setInterval(run,30000)}
   document.getElementById('transportModal').classList.add('open'); lockOn();
   const mb=document.querySelector('#transportModal .m-body');if(mb)mb.scrollTop=0;
 }
