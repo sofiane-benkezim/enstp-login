@@ -254,6 +254,31 @@ main{gap:70px}
 .sub-box p{font-size:.84rem;line-height:2;color:var(--desc)}
 main{gap:70px}
 body.lock{overflow:hidden}
+
+/* ===== جدول رحلات ETUSA ===== */
+.tt{display:grid;gap:12px}
+.tt-note{display:flex;gap:10px;padding:12px 14px;border-radius:16px;font-size:.78rem;line-height:1.9;color:var(--ink);background:rgba(245,184,65,.14);border:1px solid rgba(245,184,65,.4)}
+.tt-note i{color:var(--gold);margin-top:5px}
+.tt-lines,.tt-dirs{display:flex;gap:8px;flex-wrap:wrap}
+.tt-lines button{font:inherit;cursor:pointer;font-family:'Inter','Cairo',sans-serif;font-weight:900;font-size:.82rem;padding:9px 16px;border-radius:12px;color:#fff;background:#d97706;border:2px solid transparent;opacity:.6;transition:.25s}
+.tt-lines button.on{opacity:1;box-shadow:0 8px 22px rgba(217,119,6,.45);border-color:var(--gold-2)}
+.tt-lines button.oth{background:#475569}
+.tt-dirs button{flex:1;min-width:150px;font:inherit;cursor:pointer;font-size:.76rem;font-weight:800;padding:10px 12px;border-radius:13px;color:var(--ink);background:var(--soft);border:1.5px solid var(--card-b);transition:.25s}
+.tt-dirs button.on{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#14100a;border-color:transparent}
+.tt-next{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 16px;border-radius:18px;font-weight:800;font-size:.86rem;color:var(--ink);background:linear-gradient(135deg,rgba(16,185,129,.16),rgba(16,185,129,.05));border:1px solid rgba(16,185,129,.45)}
+.tt-next b{font-family:'Inter',sans-serif;font-size:1.5rem;font-weight:900;color:var(--head)}
+.tt-next small{display:block;font-size:.72rem;color:var(--muted);font-weight:700}
+.tt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px;padding:14px;border-radius:18px;background:var(--soft);border:1px solid var(--card-b)}
+.tt-grid span{direction:ltr;text-align:center;font-family:'Inter',sans-serif;font-weight:800;font-size:.82rem;padding:8px 0;border-radius:10px;color:#fff;background:#334155}
+html:not([data-theme="dark"]) .tt-grid span{background:#1e3358}
+.tt-grid span.past{opacity:.35}
+.tt-grid span.nx{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#14100a;box-shadow:0 6px 18px rgba(245,184,65,.5);opacity:1}
+.tt-tbl{display:grid;gap:8px}
+.tt-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:var(--soft);border:1px solid var(--card-b);font-size:.82rem;line-height:1.8}
+.tt-row b{color:var(--head)}.tt-row span{color:var(--desc);font-weight:700}
+.tt-row em{font-style:normal;font-family:'Inter',sans-serif;font-weight:800;color:var(--tag-c)}
+.sts span.tt-chip{color:#047857;background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.4)}
+html[data-theme="dark"] .sts span.tt-chip{color:#6ee7b7}
 </style>
 </head>
 <body data-lang="ar">
@@ -326,6 +351,7 @@ body.lock{overflow:hidden}
 <div class="m-sec"><i class="fa-solid fa-ticket"></i><div><b>أسعار التذاكر والاشتراك:</b><span id="modalPrice"></span></div></div>
 </div>
 <div><div class="m-h"><i class="fa-solid fa-route"></i><span>أبرز المحطات والخطوط المقربة للجامعة:</span></div><ul class="m-list" id="modalStations"></ul></div>
+<div id="ttBox" class="hidden"><div class="m-h"><i class="fa-solid fa-calendar-days"></i><span>جدول رحلات المحطة (محطة القبة - أمام المدرسة العليا للأساتذة)</span></div><div class="tt" id="tt"></div></div>
 <div><div class="m-h"><span>الروابط المتاحة والتطبيق الرسمي:</span></div><div class="m-links" id="modalLinks"></div></div>
 </div>
 <div class="m-foot"><button onclick="closeTransportModal()">إغلاق</button></div>
@@ -343,7 +369,60 @@ body.lock{overflow:hidden}
 </div>
 </div>
 <script>
-const transportsData = [{"id": "metro-algiers", "category": "metro", "badgeText": "ميترو", "badgeColor": "c-metro", "title": "ميترو الجزائر (Metro d'Alger)", "subtitle": "خط ساحة الشهداء - عين النعجة / الحراش", "image": "https://cdn.sabqpress.dz/wp-content/uploads/2026/04/ywtrdvAGqcZUdbUuCxOdojfRKCLsGYO1WsGtMY9w-672x449.jpg", "description": "وسيلة وسريعة جداً ومكيفة تربط وسط العاصمة بالضواحي الشرقية والجنوبية، وتصل مباشرة لعدة كليات ومعاهد جامعة الجزائر.", "workingHours": "من 05:00 صباحاً إلى 23:00 مساءً يومياً", "pricing": "تذكرة عادية 50 د.ج / اشتراك طلابي شهري وسنوي بأسعار مخفضة", "stations": ["محطة تافورة / البريد المركزي (جامعة الجزائر 1)", "محطة الحراش (المدرسة الوطنية المتعددة التقنيات ENP)", "محطة حي البدر / عين النعجة", "محطة باش جراح / المعدومين"], "apps": [{"name": "تطبيق الخريطة (Google Maps)", "icon": "fa-map-location-dot", "url": "https://maps.google.com"}, {"name": "تحميل مخطط الخطوط (PDF)", "icon": "fa-file-pdf", "url": "https://www.metroalger.dz"}, {"name": "الموقع الرسمي للميترو", "icon": "fa-globe", "url": "https://www.metroalger.dz"}]}, {"id": "tramway-algiers", "category": "tram", "badgeText": "ترامواي", "badgeColor": "c-tram", "title": "ترامواي العاصمة (SETRAM)", "subtitle": "خط العناصر (رويسو) - درقانة", "image": "https://cdn.akhbardzair.dz/static/medias/2026/03/%D8%AA%D8%B1%D8%A7%D9%85%D9%88%D8%A7%D9%8A-%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1.jpg", "description": "يمتد الترامواي على مسافة طويلة تغطي الجهة الشرقية للعاصمة ويمر بالقرب من الإقامات الجامعية بالرويبة، درقانة، والبرج.", "workingHours": "من 05:30 صباحاً إلى 22:30 مساءً", "pricing": "40 د.ج للتذكرة / اشتراك طلابي شهرية بنسبة تخفيض كبيرة", "stations": ["محطة العناصر (نقطة التبادل مع الميترو)", "محطة باب الزوار (جامعة USTHB الإقامة الجامعية)", "محطة درقانة شاطئ", "محطة برج الكيفان"], "apps": [{"name": "تطبيق SETRAM (Play Store)", "icon": "fa-brands fa-google-play", "url": "https://play.google.com"}, {"name": "مخطط الترامواي الرسمي", "icon": "fa-route", "url": "https://www.setram.dz"}]}, {"id": "etusa-bus", "category": "bus", "badgeText": "حافلات ETUSA", "badgeColor": "c-bus", "title": "حافلات إيتوزا (ETUSA)", "subtitle": "شبكة النقل الحضري والشبه حضري", "image": "https://www.echaab.dz/static/medias/2023/04/%D8%A7%D9%8A%D8%AA%D9%88%D8%B2%D8%A7.jpg", "description": "تغطي معظم الأحياء والجامعات في العاصمة بخطوط متعددة، وتوفر بطاقات اشتراك طلابية سنوية زاهيدة الثمن.", "workingHours": "من 05:30 صباحاً إلى 19:00 مساءً (وخدمات الليل)", "pricing": "تذكرة من 20 إلى 50 د.ج / بطاقة الطالب مجانية تقريباً مع الاشتراك", "stations": ["محطة أول مايو (Place 1er Mai)", "محطة ساحة الشهداء / تافورة", "محطة الحراش وبن عكنون", "خطوط الإقامات الجامعية"], "apps": [{"name": "تطبيق إيتوزا ETUSA App", "icon": "fa-mobile-screen-button", "url": "https://play.google.com"}, {"name": "دليل الخطوط والمواعيد", "icon": "fa-bus-simple", "url": "#"}]}, {"id": "sntf-train", "category": "train", "badgeText": "قطار BANLIEUE", "badgeColor": "c-train", "title": "قطار الضواحي (SNTF)", "subtitle": "خطوط الثنية، العفرون، زرالدة، وتيزي وزو", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2tugbIw4IsXe7eyH1wz5syFFoyKL77Nd87FktIwMC2g&s=10", "description": "الوسيلة الأكثر سرعة وملاءمة للطلبة القادمين من ولايات بومرداس، البليدة، وتيبازة بشكل يومي نحو الكليات.", "workingHours": "من 05:00 صباحاً إلى 21:00 مساءً", "pricing": "تخفيض 50% للطلبة حاملي بطاقات التخفيض الطلابية", "stations": ["محطة آغا ومحطة خضرة (الجزائر الوسطى)", "محطة جامعة بومرداس", "محطة الجامعة المركزية البليدة", "محطة تسالة المرجة وزرالدة"], "apps": [{"name": "تطبيق مواعيد القطار SNTF", "icon": "fa-train", "url": "https://play.google.com"}, {"name": "حجز وتحقق التوقيت بالموقع", "icon": "fa-globe", "url": "https://www.sntf.dz"}]}, {"id": "onou-bus", "category": "bus", "badgeText": "النقل الجامعي ONOU", "badgeColor": "c-onou", "title": "حافلات النقل الجامعي (ONOU)", "subtitle": "الحافلات الصفراء الخاصة بالطلبة", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZV0dWmYwEH_ztjclFh_-_mYpF6ZKov7_1nv2HjnOUtg&s=10", "description": "مخصصة حكراً للطلبة الجامعيين المقيمين والفرعيين، تربط بين مختلف الإقامات الجامعية والكليات والمعاهد.", "workingHours": "من 06:30 صباحاً إلى 18:30 مساءً", "pricing": "مجاني بالكامل للحاملين لبطاقة الطالب / حقوق شريط رمزي سنوي", "stations": ["جميع نقاط الانطلاق بالإقامات الجامعية", "المجمعات الجامعية (باب الزوار، بن عكنون، دالي إبراهيم، دلس)", "محطات العبور الرئيسية"], "apps": [{"name": "البوابة الإلكترونية للخدمات الجامعية", "icon": "fa-building-columns", "url": "https://progres.mesrs.dz"}]}, {"id": "yassir-course", "category": "apps", "badgeText": "تطبيقات حجز", "badgeColor": "c-apps", "title": "تطبيقات النقل الذكي (Yassir / Heetch)", "subtitle": "خدمات سيارات الأجرة وسيارات VTC", "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", "description": "خيارات ممتازة عند الحالات الطارئة أو الامتحانات، وتتوفر عادة على عروض تخفيض ورموز بروموكود خاصة بالطلبة.", "workingHours": "متوفر 24/7 على مدار الساعة", "pricing": "حسب المسافة / مشاركة الرحلة مع الزملاء تخفض التكلفة", "stations": ["من وإلى أي وجهة أو جامعة مختارة"], "apps": [{"name": "تحميل تطبيق Yassir", "icon": "fa-mobile", "url": "https://yassir.com"}, {"name": "تطبيق Heetch", "icon": "fa-car", "url": "https://heetch.com"}]}];
+const transportsData = [{"id": "metro-algiers", "category": "metro", "badgeText": "ميترو", "badgeColor": "c-metro", "title": "ميترو الجزائر (Metro d'Alger)", "subtitle": "خط ساحة الشهداء - عين النعجة / الحراش", "image": "https://cdn.sabqpress.dz/wp-content/uploads/2026/04/ywtrdvAGqcZUdbUuCxOdojfRKCLsGYO1WsGtMY9w-672x449.jpg", "description": "وسيلة وسريعة جداً ومكيفة تربط وسط العاصمة بالضواحي الشرقية والجنوبية، وتصل مباشرة لعدة كليات ومعاهد جامعة الجزائر.", "workingHours": "من 05:00 صباحاً إلى 23:00 مساءً يومياً", "pricing": "تذكرة عادية 50 د.ج / اشتراك طلابي شهري وسنوي بأسعار مخفضة", "stations": ["محطة تافورة / البريد المركزي (جامعة الجزائر 1)", "محطة الحراش (المدرسة الوطنية المتعددة التقنيات ENP)", "محطة حي البدر / عين النعجة", "محطة باش جراح / المعدومين"], "apps": [{"name": "تطبيق الخريطة (Google Maps)", "icon": "fa-map-location-dot", "url": "https://maps.google.com"}, {"name": "تحميل مخطط الخطوط (PDF)", "icon": "fa-file-pdf", "url": "https://www.metroalger.dz"}, {"name": "الموقع الرسمي للميترو", "icon": "fa-globe", "url": "https://www.metroalger.dz"}]}, {"id": "tramway-algiers", "category": "tram", "badgeText": "ترامواي", "badgeColor": "c-tram", "title": "ترامواي العاصمة (SETRAM)", "subtitle": "خط العناصر (رويسو) - درقانة", "image": "https://cdn.akhbardzair.dz/static/medias/2026/03/%D8%AA%D8%B1%D8%A7%D9%85%D9%88%D8%A7%D9%8A-%D8%A7%D9%84%D8%AC%D8%B2%D8%A7%D8%A6%D8%B1.jpg", "description": "يمتد الترامواي على مسافة طويلة تغطي الجهة الشرقية للعاصمة ويمر بالقرب من الإقامات الجامعية بالرويبة، درقانة، والبرج.", "workingHours": "من 05:30 صباحاً إلى 22:30 مساءً", "pricing": "40 د.ج للتذكرة / اشتراك طلابي شهرية بنسبة تخفيض كبيرة", "stations": ["محطة العناصر (نقطة التبادل مع الميترو)", "محطة باب الزوار (جامعة USTHB الإقامة الجامعية)", "محطة درقانة شاطئ", "محطة برج الكيفان"], "apps": [{"name": "تطبيق SETRAM (Play Store)", "icon": "fa-brands fa-google-play", "url": "https://play.google.com"}, {"name": "مخطط الترامواي الرسمي", "icon": "fa-route", "url": "https://www.setram.dz"}]}, {"id": "etusa-bus", "category": "bus", "badgeText": "حافلات ETUSA", "badgeColor": "c-bus", "title": "حافلات إيتوزا (ETUSA)", "subtitle": "شبكة النقل الحضري والشبه حضري", "image": "https://www.echaab.dz/static/medias/2023/04/%D8%A7%D9%8A%D8%AA%D9%88%D8%B2%D8%A7.jpg", "description": "تغطي معظم الأحياء والجامعات في العاصمة بخطوط متعددة، وتوفر بطاقات اشتراك طلابية سنوية زاهيدة الثمن.", "workingHours": "من 05:30 صباحاً إلى 19:00 مساءً (وخدمات الليل)", "pricing": "تذكرة من 20 إلى 50 د.ج / بطاقة الطالب مجانية تقريباً مع الاشتراك", "stations": ["محطة أول مايو (Place 1er Mai)", "محطة ساحة الشهداء / تافورة", "محطة الحراش وبن عكنون", "خطوط الإقامات الجامعية"], "apps": [{"name": "تطبيق إيتوزا ETUSA App", "icon": "fa-mobile-screen-button", "url": "https://play.google.com"}]}, {"id": "sntf-train", "category": "train", "badgeText": "قطار BANLIEUE", "badgeColor": "c-train", "title": "قطار الضواحي (SNTF)", "subtitle": "خطوط الثنية، العفرون، زرالدة، وتيزي وزو", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2tugbIw4IsXe7eyH1wz5syFFoyKL77Nd87FktIwMC2g&s=10", "description": "الوسيلة الأكثر سرعة وملاءمة للطلبة القادمين من ولايات بومرداس، البليدة، وتيبازة بشكل يومي نحو الكليات.", "workingHours": "من 05:00 صباحاً إلى 21:00 مساءً", "pricing": "تخفيض 50% للطلبة حاملي بطاقات التخفيض الطلابية", "stations": ["محطة آغا ومحطة خضرة (الجزائر الوسطى)", "محطة جامعة بومرداس", "محطة الجامعة المركزية البليدة", "محطة تسالة المرجة وزرالدة"], "apps": [{"name": "تطبيق مواعيد القطار SNTF", "icon": "fa-train", "url": "https://play.google.com"}, {"name": "حجز وتحقق التوقيت بالموقع", "icon": "fa-globe", "url": "https://www.sntf.dz"}]}, {"id": "onou-bus", "category": "bus", "badgeText": "النقل الجامعي ONOU", "badgeColor": "c-onou", "title": "حافلات النقل الجامعي (ONOU)", "subtitle": "الحافلات الصفراء الخاصة بالطلبة", "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZV0dWmYwEH_ztjclFh_-_mYpF6ZKov7_1nv2HjnOUtg&s=10", "description": "مخصصة حكراً للطلبة الجامعيين المقيمين والفرعيين، تربط بين مختلف الإقامات الجامعية والكليات والمعاهد.", "workingHours": "من 06:30 صباحاً إلى 18:30 مساءً", "pricing": "مجاني بالكامل للحاملين لبطاقة الطالب / حقوق شريط رمزي سنوي", "stations": ["جميع نقاط الانطلاق بالإقامات الجامعية", "المجمعات الجامعية (باب الزوار، بن عكنون، دالي إبراهيم، دلس)", "محطات العبور الرئيسية"], "apps": [{"name": "البوابة الإلكترونية للخدمات الجامعية", "icon": "fa-building-columns", "url": "https://progres.mesrs.dz"}]}, {"id": "yassir-course", "category": "apps", "badgeText": "تطبيقات حجز", "badgeColor": "c-apps", "title": "تطبيقات النقل الذكي (Yassir / Heetch)", "subtitle": "خدمات سيارات الأجرة وسيارات VTC", "image": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80", "description": "خيارات ممتازة عند الحالات الطارئة أو الامتحانات، وتتوفر عادة على عروض تخفيض ورموز بروموكود خاصة بالطلبة.", "workingHours": "متوفر 24/7 على مدار الساعة", "pricing": "حسب المسافة / مشاركة الرحلة مع الزملاء تخفض التكلفة", "stations": ["من وإلى أي وجهة أو جامعة مختارة"], "apps": [{"name": "تحميل تطبيق Yassir", "icon": "fa-mobile", "url": "https://yassir.com"}, {"name": "تطبيق Heetch", "icon": "fa-car", "url": "https://heetch.com"}]}];
+
+/* ===== جدول رحلات ETUSA (محطة القبة - ENS Kouba) ===== */
+const ETUSA_NOTE='التواقيت المدرجة للخطين 33 و82 هي التواقيت الرسمية والدقيقة بالساعة والدقيقة. بقية الخطوط تمثل وتيرة العمل التقريبية (حافلة كل 20 إلى 40 دقيقة) انطلاقاً من موعد أول رحلة حتى آخر رحلة.';
+const ETUSA_TT=[
+{id:'33',label:'33',far:'ساحة أودان',
+ a:['05:40','06:20','07:20','08:00','09:10','09:50','10:50','11:30','12:10','12:50','13:40','14:20','15:20','16:00','17:00','17:40'],
+ b:['06:30','07:10','08:20','09:00','10:00','10:40','11:30','12:10','12:50','13:30','14:30','15:10','16:10','16:50','17:50','18:30']},
+{id:'82',label:'82',far:'الحراش',
+ a:['06:00','06:40','08:00','08:40','10:10','10:50','12:10','12:50','13:50','14:30','15:50','16:30','17:50','18:30'],
+ b:['06:50','07:30','09:10','09:50','11:10','11:50','13:00','13:40','14:50','15:30','16:50','17:30']},
+{id:'6',label:'6',far:'ساحة الشهداء',
+ a:['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:15'],
+ b:['06:15','06:45','07:15','07:45','08:15','08:45','09:15','09:45','10:15','10:45','11:15','11:45','12:15','12:45','13:15','13:45','14:15','14:45','15:15','15:45','16:15','16:45','17:15','17:45','18:15','18:45','19:30']},
+{id:'14',label:'14 / 27 / 34',far:'ساحة أول ماي',
+ a:['07:00','07:30','08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','19:55'],
+ b:['06:20','06:50','07:20','07:50','08:20','08:50','09:20','09:50','10:20','10:50','11:20','11:50','12:20','12:50','13:20','13:50','14:20','14:50','15:20','15:50','16:20','16:50','17:20','17:50','18:20','18:50','19:15']},
+{id:'18',label:'18 / 73',far:'باش جراح',
+ a:['06:50','07:20','07:50','08:20','08:50','09:20','09:50','10:20','10:50','11:20','11:50','12:20','12:50','13:20','13:50','14:20','14:50','15:20','15:50','16:20','16:50','17:20','17:50','18:20','18:50','19:20','19:35'],
+ b:['06:15','06:45','07:15','07:45','08:15','08:45','09:15','09:45','10:15','10:45','11:15','11:45','12:15','12:45','13:15','13:45','14:15','14:45','15:15','15:45','16:15','16:45','17:15','17:45','18:15','18:45','19:00']}
+];
+const ETUSA_OTHER=[
+{n:'80',d:'الحراش (عبر باش جراح)',every:40,from:'06:40',to:'18:45'},
+{n:'89',d:'أول ماي (عبر المعدومين)',every:30,from:'06:30',to:'18:00'},
+{n:'185',d:'بن عكنون (شاطوناف)',every:45,from:'06:30',to:'18:30'},
+{n:'656',d:'خروبة / عين النعجة',every:60,from:'06:30',to:'17:30'}
+];
+const toMin=s=>{const[a,b]=s.split(':').map(Number);return a*60+b};
+const fromMin=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+let ttLine='33',ttDir='b',ttIv=null;
+function nowMin(){const d=new Date();return d.getHours()*60+d.getMinutes()}
+function nextOf(list){const n=nowMin();return list.find(x=>toMin(x)>=n)||null}
+function waitText(m){if(m<=0)return 'الآن';if(m<60)return 'بعد '+m+' دقيقة';return 'بعد '+Math.floor(m/60)+' س '+(m%60?(m%60)+' د':'')}
+function renderTT(){
+  const box=document.getElementById('tt');if(!box)return;
+  const lines=ETUSA_TT.map(l=>`<button type="button" class="${ttLine===l.id?'on':''}" data-l="${l.id}">${l.label}</button>`).join('')+`<button type="button" class="oth ${ttLine==='other'?'on':''}" data-l="other">خطوط أخرى</button>`;
+  let html=`<div class="tt-note"><i class="fa-solid fa-circle-info"></i><span><b>ملاحظة هامة:</b> ${ETUSA_NOTE}</span></div><div class="tt-lines">${lines}</div>`;
+  if(ttLine==='other'){
+    html+='<div class="tt-tbl">'+ETUSA_OTHER.map(o=>{
+      const times=[];for(let m=toMin(o.from);m<=toMin(o.to);m+=o.every)times.push(fromMin(m));
+      const nx=nextOf(times);
+      return `<div class="tt-row"><div><b>الخط ${o.n}:</b> <span>${o.d}</span></div><div><span>انطلاق كل ${o.every} دقيقة (من ${o.from} صباحاً إلى ${o.to})</span> ${nx?`<em>· الأقرب تقريباً ${nx}</em>`:''}</div></div>`}).join('')+'</div>';
+  }else{
+    const l=ETUSA_TT.find(x=>x.id===ttLine),list=ttDir==='a'?l.a:l.b,nx=nextOf(list),n=nowMin();
+    html+=`<div class="tt-dirs"><button type="button" data-d="b" class="${ttDir==='b'?'on':''}">من محطة القبة ← ${l.far}</button><button type="button" data-d="a" class="${ttDir==='a'?'on':''}">من ${l.far} ← محطة القبة</button></div>`;
+    html+=nx?`<div class="tt-next"><i class="fa-solid fa-bus-simple" style="color:#059669;font-size:1.3rem"></i><div><small>أقرب رحلة قادمة</small><b>${nx}</b></div><span>${waitText(toMin(nx)-n)}</span></div>`:`<div class="tt-next"><i class="fa-solid fa-moon" style="color:#6366f1;font-size:1.3rem"></i><div><small>انتهت رحلات اليوم</small><span>أول رحلة غداً: <b style="font-size:1.1rem">${list[0]}</b></span></div></div>`;
+    html+=`<div class="tt-grid">${list.map(x=>`<span class="${toMin(x)<n?'past':''} ${x===nx?'nx':''}">${x}</span>`).join('')}</div>`;
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{ttLine=b.dataset.l;renderTT()});
+  box.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{ttDir=b.dataset.d;renderTT()});
+}
+transportsData.find(t=>t.id==='etusa-bus').hasTT=true;
+
 let currentCategory='all', searchQuery='';
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function updateCounts(){
@@ -373,7 +452,7 @@ function renderCards(){
   grid.innerHTML=list.map(i=>`<article class="tc">
     <div class="card-image-wrap"><img class="card-image" src="${esc(i.image)}" alt="${esc(i.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility='hidden'"><span class="tag ${i.badgeColor}">${esc(i.badgeText)}</span></div>
     <div class="tc-body"><h3>${esc(i.title)}</h3><div class="sub">${esc(i.subtitle)}</div><p>${esc(i.description)}</p>
-      <div class="sts">${i.stations.slice(0,2).map(s=>`<span>${esc(s)}</span>`).join('')}${i.stations.length>2?`<span class="more">+${i.stations.length-2} المزيد</span>`:''}</div></div>
+      <div class="sts">${i.stations.slice(0,2).map(s=>`<span>${esc(s)}</span>`).join('')}${i.stations.length>2?`<span class="more">+${i.stations.length-2} المزيد</span>`:''}${i.hasTT?'<span class="tt-chip">⏱ جدول الرحلات</span>':''}</div></div>
     <div class="tc-foot"><button class="btn" onclick="openTransportModal('${i.id}')"><span>عرض التفاصيل والروابط</span><i class="fa-solid fa-arrow-left"></i></button></div>
   </article>`).join('');
 }
@@ -390,9 +469,12 @@ function openTransportModal(id){
   const b=document.getElementById('modalBadge'); b.textContent=i.badgeText; b.className='tag '+i.badgeColor;
   document.getElementById('modalStations').innerHTML=i.stations.map(s=>`<li>${esc(s)}</li>`).join('');
   document.getElementById('modalLinks').innerHTML=i.apps.map(a=>`<a class="lk" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><i class="${a.icon.startsWith('fa-brands')?a.icon:'fa-solid '+a.icon}"></i><span>${esc(a.name)}</span><i class="fa-solid fa-up-right-from-square x"></i></a>`).join('');
+  const tb=document.getElementById('ttBox');tb.classList.toggle('hidden',!i.hasTT);clearInterval(ttIv);
+  if(i.hasTT){ttLine='33';ttDir='b';renderTT();ttIv=setInterval(renderTT,30000)}
   document.getElementById('transportModal').classList.add('open'); lockOn();
+  const mb=document.querySelector('#transportModal .m-body');if(mb)mb.scrollTop=0;
 }
-function closeTransportModal(){document.getElementById('transportModal').classList.remove('open');lockOff();}
+function closeTransportModal(){clearInterval(ttIv);document.getElementById('transportModal').classList.remove('open');lockOff();}
 function openSubscriptionGuideModal(){document.getElementById('subscriptionModal').classList.add('open');lockOn();}
 function closeSubscriptionModal(){document.getElementById('subscriptionModal').classList.remove('open');lockOff();}
 function scrollToDiscounts(){document.getElementById('discountsSection').scrollIntoView({behavior:'smooth'});}
