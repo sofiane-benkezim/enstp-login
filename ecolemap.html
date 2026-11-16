@@ -545,9 +545,7 @@ function toggleTheme(){
  try{localStorage.setItem('enstp-theme',next)}catch(e){}
 }
 
-/* ═══════════════════════════════════════════════════════════
-   MapKit — تقريب/تحريك، صور الأماكن، المفضلة، المشاركة، التصنيفات
-   ═══════════════════════════════════════════════════════════ */
+
 const X={
 ar:{photos:'صور المكان',noPhoto:'لا توجد صورة لهذا المكان بعد',fav:'أضف للمفضلة',unfav:'إزالة من المفضلة',share:'مشاركة',copied:'تم نسخ الرابط ✅',center:'تمركز على الخريطة',zin:'تقريب',zout:'تبعيد',zreset:'إعادة الضبط',full:'ملء الشاشة',favs:'المفضلة',recent:'آخر ما زرته',none:'لا شيء بعد',all:'الكل',close:'إغلاق',hint:'Ctrl + العجلة أو إصبعان للتقريب'},
 fr:{photos:'Photos du lieu',noPhoto:"Pas encore de photo pour ce lieu",fav:'Ajouter aux favoris',unfav:'Retirer des favoris',share:'Partager',copied:'Lien copié ✅',center:'Centrer sur la carte',zin:'Zoom +',zout:'Zoom −',zreset:'Réinitialiser',full:'Plein écran',favs:'Favoris',recent:'Récemment consultés',none:'Rien pour le moment',all:'Tout',close:'Fermer',hint:'Ctrl + molette ou deux doigts pour zoomer'},
@@ -675,7 +673,7 @@ function xLang(){const c=XS.cfg;if(!c)return;const z=c.zp.controls;
 
 
 const PLACE_PHOTOS = {
-    A: [ ],
+    A: ['photo'],
     B: [ ],
     C: [ ],
     D: [ ],
