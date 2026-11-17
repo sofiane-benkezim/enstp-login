@@ -191,6 +191,80 @@ main{gap:70px}
 [dir="rtl"] .rs .go i{transform:scaleX(-1)}
 .sec-head h2{font-size:clamp(1.3rem,3vw,1.9rem)}
 main{gap:80px}
+
+/* ===== ملفات الطلبة ===== */
+.hidden{display:none!important}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:15px 28px;border-radius:16px;font-weight:900;font-size:.92rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 14px 36px rgba(245,184,65,.45);transition:.3s var(--ease);cursor:pointer;border:0;font-family:inherit}
+.hero-cta:hover{transform:translateY(-3px)}
+.cm-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.cm-top .sec-head{margin-bottom:0}
+.cm-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:16px;font:inherit;font-weight:900;font-size:.9rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);border:0;cursor:pointer;box-shadow:0 14px 36px rgba(245,184,65,.4);transition:.3s var(--ease)}
+.cm-btn:hover{transform:translateY(-3px)}
+.cm-demo{display:none;margin-bottom:16px;padding:12px 16px;border-radius:16px;font-size:.78rem;font-weight:800;line-height:1.9;color:#92400e;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.5)}
+.cm-demo.show{display:block}
+html[data-theme="dark"] .cm-demo{color:var(--gold-2)}
+.cm-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;padding:14px;border-radius:22px;background:var(--bar-s);border:1px solid var(--glass-b);box-shadow:var(--bar-shadow);margin-bottom:14px}
+@media(max-width:860px){.cm-filters{grid-template-columns:1fr 1fr}.cm-filters .q{grid-column:1/-1}}
+.cm-filters input,.cm-filters select,.cm-f input,.cm-f select,.cm-f textarea{width:100%;font:inherit;font-size:.9rem;padding:12px 14px;border-radius:14px;background:var(--soft);border:1.5px solid var(--card-b);color:var(--ink);outline:none;transition:.25s}
+.cm-f textarea{resize:vertical;min-height:80px}
+.cm-filters input:focus,.cm-filters select:focus,.cm-f input:focus,.cm-f select:focus,.cm-f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(245,184,65,.18)}
+.cm-filters select option,.cm-f select option{color:#111}
+.cm-count{font-size:.8rem;font-weight:800;color:var(--muted);margin:0 4px 16px}
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px}
+.fc{position:relative;display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:24px;background:var(--card);border:1px solid var(--card-b);box-shadow:var(--card-shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.fc:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-h)}
+.fc-top{display:flex;gap:14px;align-items:flex-start}
+.fi{flex:0 0 52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:1.5rem;color:#fff;background:var(--fc,#64748b)}
+.fc h3{font-size:.98rem;font-weight:900;color:var(--head);line-height:1.6;word-break:break-word}
+.fc .sb{font-size:.76rem;font-weight:800;color:var(--tag-c)}
+.fc .ds{font-size:.82rem;line-height:1.85;color:var(--desc);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:.68rem;font-weight:800;padding:4px 10px;border-radius:999px;color:var(--muted);background:var(--soft);border:1px solid var(--card-b)}
+.tags span.y{color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));border-color:transparent}
+.fmeta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.74rem;font-weight:700;color:var(--muted);padding-top:10px;border-top:1px solid var(--card-b);margin-top:auto}
+.fmeta span{display:inline-flex;gap:6px;align-items:center}
+.fmeta i{color:var(--gold)}
+.fact{display:flex;gap:8px}
+.fdl{flex:1;display:inline-flex;gap:9px;align-items:center;justify-content:center;padding:12px;border-radius:14px;font:inherit;font-weight:900;font-size:.84rem;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold));box-shadow:0 10px 24px rgba(245,184,65,.35);transition:.3s var(--ease);cursor:pointer;border:0}
+.fdl:hover{transform:translateY(-3px)}
+.fsm{font:inherit;cursor:pointer;width:42px;border-radius:13px;color:var(--ink);background:var(--soft);border:1px solid var(--card-b);transition:.25s}
+.fsm:hover{background:var(--gold);color:#111;border-color:transparent}
+.fsm.bad:hover{background:#ef4444;color:#fff}
+.cm-empty{grid-column:1/-1;text-align:center;padding:46px 20px;border-radius:26px;border:2px dashed var(--card-b);color:var(--muted);font-weight:700}
+.cm-empty i{display:block;font-size:2.2rem;margin-bottom:12px;color:var(--gold)}
+.cm-more{display:block;margin:22px auto 0;padding:12px 26px;border-radius:14px;font:inherit;font-weight:800;color:var(--btn-c);background:var(--soft);border:1px solid var(--card-b);cursor:pointer}
+.cm-more:hover{background:var(--gold);color:#111}
+.cm-modal{position:fixed;inset:0;z-index:300;display:none;align-items:flex-end;justify-content:center;background:rgba(3,8,18,.72);backdrop-filter:blur(8px)}
+.cm-modal.open{display:flex}
+@media(min-width:700px){.cm-modal{align-items:center;padding:20px}}
+.cm-card{width:100%;max-width:620px;max-height:92vh;overflow:auto;border-radius:28px 28px 0 0;padding:26px;background:var(--bar-s);border:1px solid var(--glass-b);box-shadow:0 40px 100px rgba(0,0,0,.55);position:relative;animation:cmup .35s var(--ease)}
+@media(min-width:700px){.cm-card{border-radius:28px}}
+@keyframes cmup{from{transform:translateY(30px);opacity:0}}
+.cm-card h3{font-size:1.2rem;font-weight:900;color:var(--head);display:flex;gap:10px;align-items:center;margin-bottom:6px;padding-inline-end:46px}
+.cm-card h3 i{color:var(--gold)}
+.cm-card .sub{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.cm-x{position:absolute;top:16px;inset-inline-end:16px;width:38px;height:38px;border-radius:12px;border:1px solid var(--card-b);background:var(--soft);color:var(--ink);cursor:pointer}
+.drop{display:block;text-align:center;padding:26px 16px;border-radius:20px;border:2px dashed var(--card-b);background:var(--soft);cursor:pointer;transition:.25s;margin-bottom:14px}
+.drop:hover,.drop.over{border-color:var(--gold);background:rgba(245,184,65,.1)}
+.drop i{font-size:1.9rem;color:var(--gold);display:block;margin-bottom:6px}
+.drop b{display:block;color:var(--head);font-size:.92rem;word-break:break-word}
+.drop small{font-size:.72rem;color:var(--muted);font-weight:700}
+.drop input{display:none}
+.cm-f{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.cm-f{grid-template-columns:1fr}}
+.cm-f .full{grid-column:1/-1}
+.cm-f label{display:block;font-size:.7rem;font-weight:800;color:var(--muted);margin-bottom:5px}
+.terms{display:flex;gap:10px;align-items:flex-start;font-size:.78rem;line-height:1.8;font-weight:700;color:var(--ink);margin-top:14px;cursor:pointer}
+.terms input{width:18px;height:18px;margin-top:4px;accent-color:#f5b841;flex-shrink:0}
+.cm-err{color:#ef4444;font-size:.8rem;font-weight:800;min-height:20px;margin-top:10px}
+.cm-bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px;display:none}
+.cm-bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width .3s}
+.cm-go{display:flex;justify-content:flex-end;margin-top:16px}
+.cm-go button{font:inherit;cursor:pointer;display:inline-flex;gap:9px;align-items:center;padding:14px 28px;border-radius:15px;border:0;font-weight:900;color:#14100a;background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,#e29a14);box-shadow:0 12px 30px rgba(245,184,65,.4)}
+.cm-go button[disabled]{opacity:.55;cursor:wait}
+.cm-toast{position:fixed;bottom:24px;left:50%;translate:-50% 30px;z-index:500;padding:14px 22px;border-radius:16px;font-weight:800;font-size:.86rem;color:#fff;background:#0b2545;border:1px solid rgba(245,184,65,.5);box-shadow:0 20px 50px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.4s var(--ease);max-width:92vw;text-align:center}
+.cm-toast.show{opacity:1;translate:-50% 0}
+.cm-toast.bad{background:#7f1d1d;border-color:#f87171}
 </style>
 </head>
 <body data-lang="ar">
@@ -213,6 +287,7 @@ main{gap:80px}
 <span class="badge"><i class="fa-solid fa-folder-tree"></i> <span data-i18n="badge"></span></span>
 <h1 data-i18n="h1"></h1>
 <p data-i18n="desc"></p>
+<button class="hero-cta" type="button" onclick="document.getElementById('community').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-cloud-arrow-up"></i><span data-i18n="heroCta"></span></button>
 </div>
 </section>
 <main>
@@ -223,6 +298,15 @@ main{gap:80px}
 <div class="yr reveal s-d"><div><div class="yr-top"><span class="chip" data-i18n="y4_badge"></span><div class="ico"><i class="fa-solid fa-hard-hat"></i></div></div><h3 data-i18n="y4_title"></h3><p data-i18n="y4_desc"></p></div><div class="links"><a href="https://drive.google.com/drive/mobile/folders/1K_YAN07DloK-QVLXFCoBwtMMPeKmdnwV" target="_blank" rel="noopener" class="lk"><span><i class="fa-solid fa-folder-open l"></i><span data-i18n="general"></span></span><i class="fa-solid fa-arrow-up-right-from-square x"></i></a><div class="two2"><a href="https://enstpstudy.vercel.app/engineering/dib/2nd-year" target="_blank" rel="noopener" class="lk sm" data-i18n="dib"></a><a href="https://enstpstudy.vercel.app/engineering/dms/2nd-year" target="_blank" rel="noopener" class="lk sm" data-i18n="dms"></a></div></div></div>
 <div class="yr reveal s-f"><div><div class="yr-top"><span class="chip" data-i18n="y5_badge"></span><div class="ico"><i class="fa-solid fa-award"></i></div></div><h3 data-i18n="y5_title"></h3><p data-i18n="y5_desc"></p></div><div class="links"><a href="https://drive.google.com/drive/mobile/folders/1kUX3sQsWOlmXrAB36KoYAcI80ldNK9Ik" target="_blank" rel="noopener" class="lk big"><span><i class="fa-solid fa-folder-tree l"></i><span data-i18n="y5_link"></span></span><i class="fa-solid fa-arrow-up-right-from-square x"></i></a></div></div>
 </div>
+<section id="community" class="reveal">
+<div class="cm-top"><div class="sec-head s-e"><div class="sec-icon"><i class="fa-solid fa-users-between-lines"></i></div><div><h2 data-i18n="cmTitle"></h2><p data-i18n="cmDesc"></p><div class="sec-line"></div></div></div>
+<button class="cm-btn" type="button" id="openUp"><i class="fa-solid fa-cloud-arrow-up"></i><span data-i18n="btnUp"></span></button></div>
+<div class="cm-demo" id="cmDemo" data-i18n="demoNote"></div>
+<div class="cm-filters"><input class="q" id="cmQ" type="search" autocomplete="off"><select id="cmY"></select><select id="cmK"></select><select id="cmS"></select></div>
+<div class="cm-count" id="cmCount"></div>
+<div class="cm-grid" id="cmGrid"></div>
+<button class="cm-more hidden" id="cmMore" type="button"></button>
+</section>
 <section class="reveal">
 <div class="sec-head s-r">
 <div class="sec-icon"><i class="fa-brands fa-youtube"></i></div>
@@ -242,6 +326,27 @@ main{gap:80px}
 <p id="footer-sub" data-i18n="footer_s"></p>
 </footer>
 <button class="to-top" id="toTop" aria-label="Top" onclick="window.scrollTo({top:0})"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="cm-modal" id="cmModal">
+<form class="cm-card" id="cmForm" novalidate>
+<button class="cm-x" type="button" id="cmClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+<h3><i class="fa-solid fa-cloud-arrow-up"></i><span data-i18n="upTitle"></span></h3>
+<p class="sub" data-i18n="upDesc"></p>
+<label class="drop" id="drop"><i class="fa-solid fa-file-circle-plus"></i><b id="dropName" data-i18n="dropTxt"></b><small data-i18n="dropHint"></small><input type="file" id="cmFile" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.jpg,.jpeg,.png,.zip,.rar,.7z"></label>
+<div class="cm-f">
+<div class="full"><label for="fTitle" data-i18n="lTitle"></label><input id="fTitle" maxlength="90"></div>
+<div><label for="fYear" data-i18n="lYear"></label><select id="fYear"></select></div>
+<div><label for="fKind" data-i18n="lKind"></label><select id="fKind"></select></div>
+<div><label for="fSubject" data-i18n="lSubject"></label><input id="fSubject" maxlength="60"></div>
+<div><label for="fName" data-i18n="lName"></label><input id="fName" maxlength="40" autocomplete="name"></div>
+<div class="full"><label for="fDesc" data-i18n="lDesc"></label><textarea id="fDesc" maxlength="300"></textarea></div>
+</div>
+<label class="terms"><input type="checkbox" id="fTerms"><span data-i18n="terms"></span></label>
+<div class="cm-bar" id="cmBar"><b id="cmBarIn"></b></div>
+<div class="cm-err" id="cmErr"></div>
+<div class="cm-go"><button type="submit" id="cmSend"><i class="fa-solid fa-paper-plane"></i><span data-i18n="send"></span></button></div>
+</form></div>
+<div class="cm-toast" id="cmToast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" defer></script>
 <script>
 const T={
 ar:{back:"العودة للرئيسية",brand:"مصادر الدراسة",title:"مصادر الدراسة - دليل ENSTP ال",badge:"المصادر والمراجع الأكاديمية",h1:"اختر سنتك الدراسية <span>للوصول إلى المصادر</span>",
@@ -296,7 +401,175 @@ function toggleTheme(){
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const pb=document.getElementById('progressBar'),tt=document.getElementById('toTop');
   addEventListener('scroll',()=>{const h=document.documentElement;pb.style.width=(h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight)*100)+'%';tt.classList.toggle('show',h.scrollTop>600)},{passive:true});
-})();
+})();Object.assign(T.ar,{heroCta:'شارك ملفًا مع زملائك',cmTitle:'ملفات الطلبة',cmDesc:'ارفع دروسك وسلاسل TD والامتحانات والملخصات ليستفيد منها زملاؤك، وحمّل ما رفعه الآخرون.',btnUp:'شارك ملفًا',
+demoNote:'⚠️ وضع تجريبي: Supabase غير مُعدّ بعد، فالملفات تُحفظ في هذا المتصفح فقط ولا يراها الآخرون.',
+searchPh:'ابحث بالعنوان أو المادة أو الاسم…',allYears:'كل السنوات',allKinds:'كل الأنواع',sNew:'الأحدث',sPop:'الأكثر تحميلاً',
+found:'{n} ملف',empty:'لا توجد ملفات بعد. كن أول من يشارك!',dl:'تحميل',reportB:'إبلاغ',del:'حذف',more:'عرض المزيد',
+by:'بواسطة',times:'{n} تحميل',confirmDel:'حذف هذا الملف نهائيًا؟',reportAsk:'ما سبب الإبلاغ؟',reported:'تم إرسال البلاغ، شكرًا.',deleted:'تم حذف الملف.',demoFile:'هذا ملف تجريبي للعرض فقط.',
+upTitle:'شارك ملفًا',upDesc:'سيظهر ملفك لكل الطلبة فور رفعه. ارفع ما تملك حق مشاركته فقط.',dropTxt:'اضغط لاختيار ملف أو اسحبه هنا',dropHint:'PDF، Word، PowerPoint، Excel، صور، ZIP — حتى 20 ميغابايت',
+lTitle:'عنوان الملف',lYear:'السنة',lKind:'النوع',lSubject:'المادة',lName:'اسمك الظاهر',lDesc:'وصف مختصر (اختياري)',terms:'أؤكد أن الملف لا ينتهك حقوق أحد ولا يحتوي محتوى مخالفًا، وأن لي الحق في مشاركته.',send:'رفع الملف',sending:'جارٍ الرفع…',
+eFile:'اختر ملفًا أولًا.',eType:'نوع الملف غير مسموح.',eSize:'حجم الملف يتجاوز 20 ميغابايت.',eTitle:'اكتب عنوانًا (3 أحرف على الأقل).',eName:'اكتب اسمك.',eTerms:'يجب الموافقة على الشرط.',eRate:'وصلت للحد اليومي (10 ملفات). حاول غدًا.',eAuth:'تعذّر تسجيل الدخول. فعّل Anonymous sign-ins في Supabase.',eGen:'حدث خطأ، حاول مجددًا',ok:'تم رفع ملفك، شكرًا لمساهمتك ✅',
+y_cp1:'تحضيري 1',y_cp2:'تحضيري 2',y_s1:'تخصص 1',y_s2:'تخصص 2',y_s3:'تخرج',y_gen:'عام',
+k_course:'درس',k_td:'سلسلة TD',k_exam:'امتحان',k_summary:'ملخص',k_project:'مشروع / تقرير',k_other:'أخرى'});
+Object.assign(T.fr,{heroCta:'Partager un fichier avec tes camarades',cmTitle:'Fichiers des étudiants',cmDesc:"Dépose tes cours, séries de TD, examens et résumés pour aider tes camarades, et télécharge ceux des autres.",btnUp:'Partager un fichier',
+demoNote:"⚠️ Mode démo : Supabase n'est pas encore configuré ; les fichiers restent dans ce navigateur et ne sont pas visibles par les autres.",
+searchPh:'Rechercher par titre, matière ou nom…',allYears:'Toutes les années',allKinds:'Tous les types',sNew:'Plus récents',sPop:'Plus téléchargés',
+found:'{n} fichier(s)',empty:"Aucun fichier pour l'instant. Sois le premier à partager !",dl:'Télécharger',reportB:'Signaler',del:'Supprimer',more:'Voir plus',
+by:'Par',times:'{n} téléch.',confirmDel:'Supprimer définitivement ce fichier ?',reportAsk:'Motif du signalement ?',reported:'Signalement envoyé, merci.',deleted:'Fichier supprimé.',demoFile:'Fichier de démonstration uniquement.',
+upTitle:'Partager un fichier',upDesc:"Ton fichier sera visible par tous les étudiants dès l'envoi. Ne dépose que ce que tu as le droit de partager.",dropTxt:'Clique pour choisir un fichier ou dépose-le ici',dropHint:'PDF, Word, PowerPoint, Excel, images, ZIP — jusqu’à 20 Mo',
+lTitle:'Titre du fichier',lYear:'Année',lKind:'Type',lSubject:'Matière',lName:'Ton nom affiché',lDesc:'Courte description (facultatif)',terms:"Je confirme que ce fichier ne viole aucun droit, ne contient rien d'inapproprié et que j'ai le droit de le partager.",send:'Envoyer le fichier',sending:'Envoi…',
+eFile:"Choisis d'abord un fichier.",eType:"Type de fichier non autorisé.",eSize:'Le fichier dépasse 20 Mo.',eTitle:'Saisis un titre (3 caractères minimum).',eName:'Saisis ton nom.',eTerms:'Tu dois accepter la condition.',eRate:'Limite quotidienne atteinte (10 fichiers). Réessaie demain.',eAuth:'Connexion impossible. Active Anonymous sign-ins dans Supabase.',eGen:'Une erreur est survenue, réessaie',ok:'Fichier envoyé, merci pour ta contribution ✅',
+y_cp1:'Prépa 1',y_cp2:'Prépa 2',y_s1:'Spécialité 1',y_s2:'Spécialité 2',y_s3:'Diplôme',y_gen:'Général',
+k_course:'Cours',k_td:'Série de TD',k_exam:'Examen',k_summary:'Résumé',k_project:'Projet / rapport',k_other:'Autre'});
+Object.assign(T.en,{heroCta:'Share a file with your classmates',cmTitle:'Student files',cmDesc:'Upload your lessons, TD sheets, exams and summaries to help your classmates, and download what others shared.',btnUp:'Share a file',
+demoNote:'⚠️ Demo mode: Supabase is not configured yet, so files stay in this browser and nobody else can see them.',
+searchPh:'Search by title, subject or name…',allYears:'All years',allKinds:'All types',sNew:'Newest',sPop:'Most downloaded',
+found:'{n} file(s)',empty:'No files yet. Be the first to share!',dl:'Download',reportB:'Report',del:'Delete',more:'Show more',
+by:'By',times:'{n} downloads',confirmDel:'Delete this file permanently?',reportAsk:'Reason for the report?',reported:'Report sent, thank you.',deleted:'File deleted.',demoFile:'Demo file for display only.',
+upTitle:'Share a file',upDesc:'Your file becomes visible to all students right after upload. Only upload what you have the right to share.',dropTxt:'Click to choose a file or drop it here',dropHint:'PDF, Word, PowerPoint, Excel, images, ZIP — up to 20 MB',
+lTitle:'File title',lYear:'Year',lKind:'Type',lSubject:'Subject',lName:'Your display name',lDesc:'Short description (optional)',terms:'I confirm this file infringes no one’s rights, contains nothing inappropriate and that I have the right to share it.',send:'Upload file',sending:'Uploading…',
+eFile:'Choose a file first.',eType:'File type not allowed.',eSize:'File exceeds 20 MB.',eTitle:'Enter a title (3 characters minimum).',eName:'Enter your name.',eTerms:'You must accept the condition.',eRate:'Daily limit reached (10 files). Try tomorrow.',eAuth:'Sign-in failed. Enable Anonymous sign-ins in Supabase.',eGen:'Something went wrong, try again',ok:'File uploaded, thanks for contributing ✅',
+y_cp1:'Prep 1',y_cp2:'Prep 2',y_s1:'Specialty 1',y_s2:'Specialty 2',y_s3:'Graduation',y_gen:'General',
+k_course:'Lesson',k_td:'TD sheet',k_exam:'Exam',k_summary:'Summary',k_project:'Project / report',k_other:'Other'});
+/* ═════════════════════════════════════════════════════════════
+   ⚙️ الإعدادات — الصق رابط ومفتاح Supabase (نفس المستعمل في sport و safar)
+   إذا تركتهما فارغين تعمل الصفحة في «وضع تجريبي» داخل المتصفح فقط.
+   ═════════════════════════════════════════════════════════════ */
+const SUPABASE_URL='';       // مثال: 'https://abcdxyz.supabase.co'
+const SUPABASE_ANON_KEY='';  // المفتاح العام anon public
+const BUCKET='study-files';
+const MAX_MB=20, PAGE=24;
+const EXTS=['pdf','doc','docx','ppt','pptx','xls','xlsx','txt','jpg','jpeg','png','zip','rar','7z'];
+const YEARS=['cp1','cp2','s1','s2','s3','gen'], KINDS=['course','td','exam','summary','project','other'];
+const FI={pdf:['fa-file-pdf','#dc2626'],doc:['fa-file-word','#2563eb'],docx:['fa-file-word','#2563eb'],ppt:['fa-file-powerpoint','#ea580c'],pptx:['fa-file-powerpoint','#ea580c'],xls:['fa-file-excel','#059669'],xlsx:['fa-file-excel','#059669'],txt:['fa-file-lines','#64748b'],jpg:['fa-file-image','#7c3aed'],jpeg:['fa-file-image','#7c3aed'],png:['fa-file-image','#7c3aed'],zip:['fa-file-zipper','#b45309'],rar:['fa-file-zipper','#b45309'],'7z':['fa-file-zipper','#b45309']};
+const DEMO=!(SUPABASE_URL&&SUPABASE_ANON_KEY);
+const L=()=>document.documentElement.lang||'ar';
+const tr=(k,n)=>{let v=(T[L()]||T.ar)[k];if(v===undefined)v=k;return n!==undefined?String(v).replace('{n}',n):v};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ext=n=>(String(n).split('.').pop()||'').toLowerCase();
+const fsize=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';
+const uuid=()=>(crypto&&crypto.randomUUID)?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)});
+let tT;function toast(m,bad){const e=$('#cmToast');e.textContent=m;e.className='cm-toast show'+(bad?' bad':'');clearTimeout(tT);tT=setTimeout(()=>e.className='cm-toast',3400)}
+function when(ts){try{return new Date(ts).toLocaleDateString({ar:'ar-u-nu-latn',fr:'fr-FR',en:'en-GB'}[L()],{day:'numeric',month:'short',year:'numeric'})}catch(e){return''}}
+
+function makeDemo(){
+  const K='enstp-drive-demo-v1';let uid;try{uid=localStorage.getItem('enstp-drive-uid');if(!uid){uid=uuid();localStorage.setItem('enstp-drive-uid',uid)}}catch(e){uid=uuid()}
+  const seed=()=>[
+    {id:'d1',owner:'bot',owner_name:'Yacine B.',title:'Cours Résistance des matériaux - Chapitre 1',description:'Cours complet avec exemples corrigés.',year:'s1',subject:'RDM',kind:'course',file_name:'rdm-ch1.pdf',size:1843200,downloads:42,created_at:Date.now()-864e5*3,demo:true},
+    {id:'d2',owner:'bot',owner_name:'Amira K.',title:'Examen Analyse 2 (2025)',description:'Sujet et corrigé type.',year:'cp1',subject:'Analyse',kind:'exam',file_name:'analyse2-2025.pdf',size:622592,downloads:77,created_at:Date.now()-864e5*7,demo:true},
+    {id:'d3',owner:'bot',owner_name:'Nabil R.',title:'ملخص الميكانيك العام',description:'ملخص مرتب للمراجعة قبل الامتحان.',year:'cp2',subject:'Mécanique',kind:'summary',file_name:'mecanique.docx',size:310272,downloads:18,created_at:Date.now()-864e5,demo:true}];
+  let mem;try{mem=JSON.parse(localStorage.getItem(K))||seed()}catch(e){mem=seed()}
+  const save=()=>{try{localStorage.setItem(K,JSON.stringify(mem.map(f=>{const c=Object.assign({},f);if(c.blobUrl)delete c.blobUrl;return c})))}catch(e){}};
+  return{uid:()=>uid,async init(){return uid},
+    async list(){return mem.slice()},
+    async upload(file,meta,onP){onP&&onP(.5);const row=Object.assign({id:uuid(),owner:uid,downloads:0,created_at:Date.now(),file_name:file.name,size:file.size},meta);
+      row.blobUrl=URL.createObjectURL(file);mem.unshift(row);
+      if(file.size<=400*1024){await new Promise(res=>{const r=new FileReader();r.onload=()=>{row.dataUrl=r.result;res()};r.onerror=res;r.readAsDataURL(file)})}
+      save();onP&&onP(1);return row},
+    async remove(id){mem=mem.filter(f=>!(f.id===id&&f.owner===uid));save()},
+    async bump(id){const f=mem.find(x=>x.id===id);if(f){f.downloads=(f.downloads||0)+1;save()}},
+    async report(id,reason){},
+    url(f){return f.blobUrl||f.dataUrl||null}};
+}
+function makeSupabase(){
+  const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let uid=null;
+  return{uid:()=>uid,
+    async init(){let{data}=await sb.auth.getSession();if(!data.session){const r=await sb.auth.signInAnonymously();if(r.error)throw{code:'auth'};data=r.data}uid=(data.session||data).user.id;return uid},
+    async list(){const{data,error}=await sb.from('study_files').select('*').eq('status','visible').order('created_at',{ascending:false}).limit(600);if(error)throw error;return(data||[]).map(r=>Object.assign({},r,{created_at:new Date(r.created_at).getTime()}))},
+    async upload(file,meta,onP){
+      const safe=file.name.replace(/[^A-Za-z0-9._-]/g,'_').slice(-60),path=uid+'/'+Date.now()+'-'+safe;
+      onP&&onP(.15);const up=await sb.storage.from(BUCKET).upload(path,file,{contentType:file.type||'application/octet-stream',upsert:false});if(up.error)throw up.error;onP&&onP(.8);
+      const row=Object.assign({file_path:path,file_name:file.name,size:file.size,mime:file.type||null},meta);
+      const{data,error}=await sb.from('study_files').insert(row).select().single();
+      if(error){await sb.storage.from(BUCKET).remove([path]);throw error}onP&&onP(1);return Object.assign({},data,{created_at:new Date(data.created_at).getTime()})},
+    async remove(id){const{data}=await sb.from('study_files').select('file_path').eq('id',id).maybeSingle();const{error}=await sb.from('study_files').delete().eq('id',id);if(error)throw error;if(data&&data.file_path)await sb.storage.from(BUCKET).remove([data.file_path])},
+    async bump(id){await sb.rpc('bump_download',{p_id:id})},
+    async report(id,reason){await sb.from('study_reports').insert({file_id:id,reason})},
+    url(f){return sb.storage.from(BUCKET).getPublicUrl(f.file_path).data.publicUrl}};
+}
+
+let B,UID=null,FILES=[],shown=PAGE,picked=null,busy=false;
+const F={q:'',y:'',k:'',s:'new'};
+function fillSelects(){
+  const keep=[$('#cmY').value,$('#cmK').value,$('#cmS').value,$('#fYear').value,$('#fKind').value];
+  $('#cmY').innerHTML='<option value="">'+esc(tr('allYears'))+'</option>'+YEARS.map(y=>'<option value="'+y+'">'+esc(tr('y_'+y))+'</option>').join('');
+  $('#cmK').innerHTML='<option value="">'+esc(tr('allKinds'))+'</option>'+KINDS.map(k=>'<option value="'+k+'">'+esc(tr('k_'+k))+'</option>').join('');
+  $('#cmS').innerHTML='<option value="new">'+esc(tr('sNew'))+'</option><option value="pop">'+esc(tr('sPop'))+'</option>';
+  $('#fYear').innerHTML=YEARS.map(y=>'<option value="'+y+'">'+esc(tr('y_'+y))+'</option>').join('');
+  $('#fKind').innerHTML=KINDS.map(k=>'<option value="'+k+'">'+esc(tr('k_'+k))+'</option>').join('');
+  $('#cmY').value=keep[0]||F.y;$('#cmK').value=keep[1]||F.k;$('#cmS').value=keep[2]||F.s;if(keep[3])$('#fYear').value=keep[3];if(keep[4])$('#fKind').value=keep[4];
+  $('#cmQ').placeholder=tr('searchPh');$('#cmMore').textContent=tr('more');
+}
+function cardHTML(f){
+  const e=ext(f.file_name),ic=FI[e]||['fa-file','#64748b'],mine=UID&&f.owner===UID;
+  return '<article class="fc" style="--fc:'+ic[1]+'"><div class="fc-top"><span class="fi"><i class="fa-solid '+ic[0]+'"></i></span><div style="min-width:0"><h3>'+esc(f.title)+'</h3>'+(f.subject?'<div class="sb">'+esc(f.subject)+'</div>':'')+'</div></div>'+
+   (f.description?'<p class="ds">'+esc(f.description)+'</p>':'')+
+   '<div class="tags"><span class="y">'+esc(tr('y_'+f.year))+'</span><span>'+esc(tr('k_'+f.kind))+'</span><span dir="ltr">'+esc(e.toUpperCase())+' · '+esc(fsize(f.size||0))+'</span></div>'+
+   '<div class="fmeta"><span><i class="fa-solid fa-user"></i>'+esc(tr('by'))+' '+esc(f.owner_name)+'</span><span><i class="fa-regular fa-calendar"></i>'+esc(when(f.created_at))+'</span><span><i class="fa-solid fa-download"></i>'+esc(tr('times',f.downloads||0))+'</span></div>'+
+   '<div class="fact"><button class="fdl" data-a="dl" data-id="'+esc(f.id)+'"><i class="fa-solid fa-download"></i>'+esc(tr('dl'))+'</button>'+(mine?'<button class="fsm bad" data-a="del" data-id="'+esc(f.id)+'" aria-label="'+esc(tr('del'))+'"><i class="fa-solid fa-trash"></i></button>':'<button class="fsm bad" data-a="rep" data-id="'+esc(f.id)+'" aria-label="'+esc(tr('reportB'))+'"><i class="fa-solid fa-flag"></i></button>')+'</div></article>';
+}
+function filtered(){
+  const q=F.q.trim().toLowerCase();let l=FILES.filter(f=>(!F.y||f.year===F.y)&&(!F.k||f.kind===F.k)&&(!q||(f.title+' '+(f.subject||'')+' '+(f.owner_name||'')+' '+(f.description||'')).toLowerCase().includes(q)));
+  l.sort(F.s==='pop'?(a,b)=>(b.downloads||0)-(a.downloads||0)||b.created_at-a.created_at:(a,b)=>b.created_at-a.created_at);return l;
+}
+function renderFiles(){
+  const l=filtered();$('#cmCount').textContent=tr('found',l.length);
+  $('#cmGrid').innerHTML=l.length?l.slice(0,shown).map(cardHTML).join(''):'<div class="cm-empty"><i class="fa-solid fa-folder-open"></i>'+esc(tr('empty'))+'</div>';
+  $('#cmMore').classList.toggle('hidden',l.length<=shown);
+}
+async function refresh(){try{FILES=await B.list()}catch(e){console.warn(e)}renderFiles()}
+function resetForm(){picked=null;$('#cmForm').reset();$('#dropName').textContent=tr('dropTxt');$('#cmErr').textContent='';$('#cmBar').style.display='none';$('#cmBarIn').style.width='0';try{$('#fName').value=localStorage.getItem('enstp-uname')||''}catch(e){}}
+function pickFile(f){
+  $('#cmErr').textContent='';if(!f)return;
+  if(!EXTS.includes(ext(f.name))){$('#cmErr').textContent=tr('eType');return}
+  if(f.size>MAX_MB*1048576){$('#cmErr').textContent=tr('eSize');return}
+  picked=f;$('#dropName').textContent=f.name+' ('+fsize(f.size)+')';if(!$('#fTitle').value)$('#fTitle').value=f.name.replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').slice(0,90);
+}
+async function submitFile(e){
+  e.preventDefault();if(busy)return;const er=$('#cmErr');
+  if(!picked){er.textContent=tr('eFile');return}
+  const title=$('#fTitle').value.trim(),name=$('#fName').value.trim();
+  if(title.length<3){er.textContent=tr('eTitle');return}if(name.length<2){er.textContent=tr('eName');return}if(!$('#fTerms').checked){er.textContent=tr('eTerms');return}
+  if(!UID){er.textContent=tr('eAuth');return}
+  busy=true;$('#cmSend').disabled=true;$('#cmSend').lastElementChild.textContent=tr('sending');$('#cmBar').style.display='block';
+  try{
+    await B.upload(picked,{owner_name:name,title,description:$('#fDesc').value.trim(),year:$('#fYear').value,subject:$('#fSubject').value.trim(),kind:$('#fKind').value},p=>{$('#cmBarIn').style.width=Math.round(p*100)+'%'});
+    try{localStorage.setItem('enstp-uname',name)}catch(x){}
+    $('#cmModal').classList.remove('open');toast(tr('ok'));await refresh();$('#cmGrid').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(err){console.error(err);const m=String((err&&(err.message||err.code))||'');er.textContent=/row-level|violates|policy/i.test(m)?tr('eRate'):tr('eGen')+(m?' ('+m.slice(0,120)+')':'')}
+  busy=false;$('#cmSend').disabled=false;$('#cmSend').lastElementChild.textContent=tr('send');
+}
+async function onClick(e){
+  const b=e.target.closest('[data-a]');if(!b)return;const f=FILES.find(x=>x.id===b.dataset.id);if(!f)return;
+  try{
+    if(b.dataset.a==='dl'){const u=B.url(f);if(!u){toast(tr('demoFile'));return}
+      const a=document.createElement('a');a.href=u;a.target='_blank';a.rel='noopener';a.download=f.file_name;document.body.appendChild(a);a.click();a.remove();
+      f.downloads=(f.downloads||0)+1;renderFiles();B.bump(f.id).catch(()=>{})}
+    else if(b.dataset.a==='del'){if(confirm(tr('confirmDel'))){await B.remove(f.id);toast(tr('deleted'));await refresh()}}
+    else if(b.dataset.a==='rep'){const r=prompt(tr('reportAsk'));if(r&&r.trim()){await B.report(f.id,r.trim().slice(0,300));toast(tr('reported'))}}
+  }catch(err){console.error(err);toast(tr('eGen'),1)}
+}
+const _setLanguage=setLanguage;
+setLanguage=function(l){_setLanguage(l);if(!B)return;fillSelects();renderFiles();$('#dropName').textContent=picked?picked.name+' ('+fsize(picked.size)+')':tr('dropTxt')};
+async function startCommunity(){
+  B=DEMO?makeDemo():makeSupabase();
+  $('#cmDemo').classList.toggle('show',DEMO);
+  try{UID=await B.init()}catch(e){console.error(e);const bar=document.createElement('div');bar.style.cssText='position:fixed;top:80px;inset-inline:12px;z-index:400;padding:12px 16px;border-radius:14px;background:#7f1d1d;color:#fff;font:800 .82rem Cairo,sans-serif;text-align:center';bar.textContent=tr('eAuth');document.body.appendChild(bar);setTimeout(()=>bar.remove(),8000)}
+  fillSelects();resetForm();
+  $('#cmQ').oninput=e=>{F.q=e.target.value;shown=PAGE;renderFiles()};$('#cmY').onchange=e=>{F.y=e.target.value;shown=PAGE;renderFiles()};$('#cmK').onchange=e=>{F.k=e.target.value;shown=PAGE;renderFiles()};$('#cmS').onchange=e=>{F.s=e.target.value;renderFiles()};
+  $('#cmMore').onclick=()=>{shown+=PAGE;renderFiles()};
+  $('#openUp').onclick=()=>{resetForm();$('#cmModal').classList.add('open')};$('#cmClose').onclick=()=>$('#cmModal').classList.remove('open');
+  $('#cmModal').addEventListener('mousedown',e=>{if(e.target.id==='cmModal')$('#cmModal').classList.remove('open')});
+  addEventListener('keydown',e=>{if(e.key==='Escape')$('#cmModal').classList.remove('open')});
+  $('#cmFile').onchange=e=>pickFile(e.target.files[0]);
+  const dr=$('#drop');['dragover','dragenter'].forEach(ev=>dr.addEventListener(ev,e=>{e.preventDefault();dr.classList.add('over')}));['dragleave','drop'].forEach(ev=>dr.addEventListener(ev,e=>{e.preventDefault();dr.classList.remove('over')}));
+  dr.addEventListener('drop',e=>{if(e.dataTransfer.files[0])pickFile(e.dataTransfer.files[0])});
+  $('#cmForm').addEventListener('submit',submitFile);document.addEventListener('click',onClick);
+  setLanguage(L());await refresh();setInterval(()=>{if(!DEMO)refresh()},60000);
+}
+window.addEventListener('DOMContentLoaded',()=>{if(DEMO||window.supabase)startCommunity();else{const iv=setInterval(()=>{if(window.supabase){clearInterval(iv);startCommunity()}},60)}});
+
 </script>
 </body>
 </html>
